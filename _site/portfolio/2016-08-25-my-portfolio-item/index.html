@@ -1,0 +1,1019 @@
+<h2 id="table-of-contents">Table of Contents</h2>
+
+<ul>
+  <li><a href="#connect-your-raspberry-to-aws-iot">Connect your Raspberry to AWS-Iot</a>
+    <ul>
+      <li><a href="#getting-started-with-the-sense-hat">Getting started with the Sense HAT</a>
+        <ul>
+          <li><a href="#what-you-will-need">What you will need</a></li>
+          <li><a href="#what-you-will-learn">What you will learn</a></li>
+        </ul>
+      </li>
+      <li><a href="#create-an-account-at-aws-iot">Create an account at AWS-IoT</a></li>
+      <li><a href="#connect-your-raspberry-pi-to-aws-iot">Connect your Raspberry Pi to AWS-IoT</a></li>
+      <li><a href="#what-is-mqtt">What is MQTT</a></li>
+      <li><a href="#test-your-certificates-with-mqttfx">Test your Certificates with MQTT.fx</a></li>
+      <li><a href="#how-to-comunicate-with-aws">How to comunicate with AWS</a></li>
+    </ul>
+  </li>
+  <li><a href="#how-to-start-with-the-project">How to Start with the project</a>
+    <ul>
+      <li><a href="#execute-the-code-in-your-raspberry">Execute the code in your Raspberry</a></li>
+      <li><a href="#send-desire-from-mqttfx">Send desire from MQTT.fx</a></li>
+      <li><a href="#execute-your-project-and-enjoy">Execute your project and enjoy!!</a>
+        <ul>
+          <li><a href="#execute-the-script">Execute it</a></li>
+          <li><a href="#check-the-shadow-state">Check the Shadow</a></li>
+          <li><a href="#watch-the-led-screen">LED screen</a></li>
+          <li><a href="#send-a-command">Send a command</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="connect-your-raspberry-to-aws-iot">Connect your Raspberry to AWS-Iot</h1>
+<p>For this project, we will sample the different sensors on the board and publish them in AWS. 
+You will also be able to send different commands from the MQTT.fx interface that will be received on your Raspberry.</p>
+
+<p>The HAT sensor will take measurements of your sensors by publishing them in the shadow, 
+showing them also in the LED display.</p>
+
+<p align="center">      
+	  <img title="Project_med" src="pictures/miscellaneous/overview_rasp_AWS.png" />	  
+</p>
+
+<h2 id="getting-started-with-the-sense-hat">Getting started with the Sense HAT</h2>
+
+<p>The Sense HAT is an add-on board for the Raspberry Pi. 
+The board allows you to make measurements of temperature, humidity, pressure, and orientation 
+and to output information using the LED matrix.</p>
+
+<p>Installing and using your Sense HAT is easy, 
+just follow our tutorial below to get started!</p>
+<p align="center">
+      <img title="Raspi_SenseHAT" src="pictures/Raspberry/Raspi_SenseHAT.gif" href="RaspberryPi_HAT.md" width="400" height="300" />
+</p>
+
+<h4 id="what-you-will-need">What you will need</h4>
+
+<ul>
+  <li>Complet succeesfully the Raspberry Pi Starterkit tutorial</li>
+  <li>Raspberry Pi with Raspbian</li>
+  <li>Raspberry Pi Sense HAT</li>
+  <li>Keyboar and monitor or SSH connection</li>
+  <li>AWS account</li>
+</ul>
+
+<h4 id="what-you-will-learn">What you will learn</h4>
+
+<ul>
+  <li>Control the Sense HAT using Python</li>
+  <li>Register a device on AWS</li>
+  <li>Generate credentials for AWS</li>
+  <li>Take measurements and display them in the LED matrix</li>
+  <li>Establish a communication with AWS using MQTT</li>
+  <li>Send commands to the device remotely</li>
+</ul>
+
+<p>If you have successfully completed the Raspberry tutorial, all the necessary software is already updated.</p>
+
+<p>First of all, you should know that you are going to manage your Sense HAT using Python. 
+If you have any questions about how to run your code, do not forget to visit our tutorial for Raspberry</p>
+
+<p align="center">
+	<a href="RaspberryPi_Python.md">
+		<img src="pictures/miscellaneous/Python_logo.png" />
+	</a>
+</p>
+
+<p><a href="#table-of-contents"><img src="pictures/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="create-an-account-at-aws-iot">Create an account at AWS-IoT</h2>
+<p>(TBD)</p>
+<ol>
+  <li>and login</li>
+</ol>
+
+<p><a href="#table-of-contents"><img src="pictures/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="connect-your-raspberry-pi-to-aws-iot">Connect your Raspberry Pi to AWS-IoT</h2>
+
+<ol>
+  <li>Sign in to the AWS Management Console, and then open the AWS IoT console at https://console.aws.amazon.com/iot</li>
+  <li>Go to the Monitor page. In the left navigation panel, choose Manage, and then choose Things.
+<img src="pictures/AWS/AWS_Console.png" alt="pic" /></li>
+  <li>You don’t have any things yet page. Choose Register a thing.
+<img src="pictures/AWS/AWS_Console_Manage_Register.png" alt="pic" /></li>
+  <li>On the Creating AWS IoT things page, choose Create a single thing.
+<img src="pictures/AWS/AWS_Console_Manage_Register_things.png" alt="pic" /></li>
+  <li>Enter a name for the device, leave the default values for all the other fields, and then choose Next.
+<img src="pictures/AWS/AWS_Console_Manage_Register_Raspberry.png" alt="pic" /></li>
+  <li>Now generates the certificates.
+<img src="pictures/AWS/AWS_Console_Manage_Certificates.png" alt="pic" /></li>
+  <li>Download your public and private keys, certificate, and root certificate authority (CA)on your PC. 
+<img src="pictures/AWS/AWS_Console_Manage_Certificates_Download.png" alt="pic" /></li>
+  <li>For download your root certificate authority a new window is open for select a CA to download
+<img src="pictures/AWS/AWS_Console_Manage_Certificates_Download_CA.png" alt="pic" /></li>
+  <li>Don’t forget to save these files, you need them to establish the connection</li>
+  <li>Returns to the previous window and <strong>Activate</strong></li>
+  <li>Select <strong>Attach a policy</strong>
+<img src="pictures/AWS/AWS_Console_Manage_Certificates_Download.png" alt="pic" /></li>
+  <li>Close this window, before you need to create and attach a new policy to the certificate
+<img src="pictures/AWS/AWS_Console_Manage_Certificates_AttachPolicy.png" alt="pic" /></li>
+  <li>Open the AWS IoT console again https://console.aws.amazon.com/iot</li>
+  <li>In the left navigation panel, choose <strong>Secure</strong>, and then choose <strong>Policies</strong>.</li>
+  <li>Select <strong>Create a Policy</strong>
+<img src="pictures/AWS/AWS_Console_Secure_Policies.png" alt="pic" /></li>
+  <li>Enter a Name for the policy:
+    <ul>
+      <li><strong>Action</strong>        enter ‘iot:*’</li>
+      <li><strong>Resource ARN</strong>  enter ‘*’</li>
+      <li><strong>Effect</strong>        choose <strong>Allow</strong> 
+Select Create. This policy allows your Raspberry Pi to publish messages to AWS IoT.
+<img src="pictures/AWS/AWS_Console_Secure_Policies_Create.png" alt="pic" /></li>
+    </ul>
+  </li>
+  <li>In the AWS IoT console, choose <strong>Manage</strong>, <strong>Things</strong>. On the Things page, choose your Thing
+<img src="pictures/AWS/AWS_Console_Manage_Things.png" alt="pic" /></li>
+  <li>On the thing’s <strong>Details</strong> page, in the left navigation panel, choose <strong>Interact</strong>.
+Make a note of the REST API endpoint. You need it to connect to your device shadow.
+<img src="pictures/AWS/AWS_Console_Manage_Things_Details_Interact.png" alt="pic" /></li>
+  <li>Now choose <strong>Security</strong>.hoose the certificate that you created earlier. 
+<img src="pictures/AWS/AWS_Console_Manage_Things_Details_Security.png" alt="pic" /></li>
+  <li>In Actions, choose Attach policy
+<img src="pictures/AWS/AWS_Console_Manage_Things_Details_Security_Policy.png" alt="pic" /></li>
+  <li>Select your new policy and then choose Attach 
+<img src="pictures/AWS/AWS_Console_Manage_Things_Details_Security_Policy_Attach.png" alt="pic" /></li>
+</ol>
+
+<p><a href="#table-of-contents"><img src="pictures/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="what-is-mqtt">What is MQTT</h2>
+<p>MQTT is a machine-to-machine (M2M)/”Internet of Things” connectivity protocol. 
+It was designed as an extremely lightweight publish/subscribe messaging transport.</p>
+
+<p>The first concept is the publish and subscribe system. 
+A device can publish a message on a topic, 
+or it can be subscribed to a topic to receive messages</p>
+
+<p>AWS use this system to communicate with your devices</p>
+
+<p>If you access to AWS Management Console.In the left navigation panel, choose Manage, and then choose Things.
+When choose a thing you can find out the different topic that you can subscribe/publish 
+Select <em>**Interact</em> to copy they</p>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Things_Details_Interact_MQTT.png" alt="pic" /></p>
+
+<p>At the moment, you only need to know three topics:</p>
+<ul>
+  <li>Update to this thing shadow
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyRaspberryPi/shadow/update
+</code></pre></div>    </div>
+  </li>
+  <li>Update to this thing shadow was accepted
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyRaspberryPi/shadow/update/accepted
+</code></pre></div>    </div>
+  </li>
+  <li>Update to this thing shadow was rejected
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyRaspberryPi/shadow/update/rejected
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><a href="#table-of-contents"><img src="pictures/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="test-your-certificates-with-mqttfx">Test your Certificates with MQTT.fx</h2>
+
+<p>One of the best ways to make sure that certificates have been created correctly is to try connecting via a 
+MQTT client with graphical interface.</p>
+
+<p>We recommend you download MQTT.fx from the following link https://mqttfx.jensd.de/</p>
+
+<ol>
+  <li>Open MQTT.fx and create a new connection.</li>
+</ol>
+
+<p><img src="pictures/MQTT/MQTTFX_open.png" alt="pic" /></p>
+
+<ol>
+  <li>Configure the broker as shown in the image below.
+Remember to use the files you downloaded in the previous step. And configure the broker address associated to your device.</li>
+</ol>
+
+<p><img src="pictures/MQTT/MQTTFX_Broker_Connect.png" alt="pic" /></p>
+
+<ol>
+  <li>Now that you are connected to the broker, you need to subscribe to the topics to know the state of the shadow: 
+accepted and rejected.</li>
+</ol>
+
+<p>Every time a message is published in the topic to update the shadow, 
+you can check in these topics if the message has been <strong>accepted</strong> or <strong>rejected</strong>.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyRaspberryPi/shadow/update/accepted
+$aws/things/MyRaspberryPi/shadow/update/rejected
+</code></pre></div></div>
+
+<p><img src="pictures/MQTT/MQTTFX_Topic_Subscribe.png" alt="pic" /></p>
+
+<ol>
+  <li>To update the shadow of your device, only in necessary to publish in the topic the following <strong>json file</strong>, 
+you can use the following link to validate it https://jsonlint.com/</li>
+</ol>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "state": {
+        "reported" : { 
+            "temp" : 22    
+        }
+    }
+}
+</code></pre></div></div>
+<p>This file will simulate the publishing of a device to make temperature measurements.</p>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Things_Details_Shadow.png" alt="pic" /></p>
+
+<ol>
+  <li>Of course, you need to choose the topics in which you can update your shadow.
+Be sure to select the service quality level as QoS 0, amazon doesn’t allow a different police.
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyRaspberryPi/shadow/update
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p><img src="pictures/MQTT/MQTTFX_Topic_Publish.png" alt="pic" /></p>
+
+<ol>
+  <li>For delte the shadow’s value publish the next <strong>json file</strong>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+ "state": {
+     "reported" : { 
+         "temp" : null    
+     }
+ }
+}
+</code></pre></div>    </div>
+  </li>
+  <li>Play with this, sending different values until you understand how it works.
+:thumbsup: Remember to check if your shipment has been accepted or rejected</li>
+</ol>
+
+<p><a href="#table-of-contents"><img src="pictures/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="how-to-comunicate-with-aws">How to comunicate with AWS</h2>
+
+<p>As you know, when you register a new device in AWS. A topics are created by default.
+These topics are the way of communication. In them you can send data and receive information.</p>
+
+<p>At the moment you only need to know two of them:</p>
+
+<p>topic Update</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyRaspberryPi/shadow/update
+</code></pre></div></div>
+<p>this topic is where you publish the status of the device,
+in this tutorial this information is composed by the values of the sensors as the current color of the LED display.</p>
+
+<p>topic Delta</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyRaspberryPi/shadow/update/delta
+</code></pre></div></div>
+<p>This is the channel that AWS uses to communicate the <strong>desired</strong> changes to the device.
+In this case we use the MQTT.fx to communicate these changes to AWS and to report the change to the device.</p>
+
+<p>All these changes are recorded in the <strong>shadow</strong> of the device. 
+To see the current status just access the AWS core as you saw in the previous section.</p>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Things_Details_Shadow_Delta.png" alt="pic" /></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"desired"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"command"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"val"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Caution"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"colour"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"r"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"g"</span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"b"</span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"reported"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"command"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"colour"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"r"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"b"</span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"g"</span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"val"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"temp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"colour"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"r"</span><span class="p">:</span><span class="w"> </span><span class="mi">143</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"b"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"g"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"val"</span><span class="p">:</span><span class="w"> </span><span class="mf">35.861732482910156</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"humidity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"colour"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"r"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"b"</span><span class="p">:</span><span class="w"> </span><span class="mi">65</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"g"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"val"</span><span class="p">:</span><span class="w"> </span><span class="mf">32.788143157958984</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"delta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"command"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"val"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Caution"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>As you can see in the previous file, there are three main indexes:</p>
+<ul>
+  <li>“desired”: Contains the desired state, sent from the MQTT.fx</li>
+  <li>“reported”: Contains the status information reported by the device</li>
+  <li>“delta”: contains the differences between the reported status and the desired status. 
+This is the information that is published in the delta topic</li>
+</ul>
+
+<p><a href="#table-of-contents"><img src="pictures/arrow_up.png" alt="pic" /></a></p>
+
+<h1 id="how-to-start-with-the-project">How to Start with the project</h1>
+
+<p>Although we will explain it to you in detail how to execute it step by step, 
+for this tutorial you need to be familiar with the following concepts</p>
+
+<ul>
+  <li>Run a Python file on your raspberry (we recommend using the Desktop)</li>
+  <li>Copy the credentials files to Raspberry</li>
+  <li>Use MQTT.fx to post messages in a topic</li>
+  <li>Review the shadow from AWS core</li>
+</ul>
+
+<h2 id="execute-the-code-in-your-raspberry">Execute the code in your Raspberry</h2>
+
+<p>At this point your raspberry won’t have any secrets for you. 
+Nevertheless we will help you to continue so that you do not have any mishap.</p>
+
+<p>Create a folder on your Raspberry’s desktop called <strong>Python</strong> and copy into it the following 
+<a href="../scripts/Python/Sense_HAT_AWS">folder</a> and copy in the <strong>CA</strong> folder the device’s certification files</p>
+
+<p>Before, you need to edit the <a href="../scripts/Python/Sense_HAT_AWS/config/Config_HAT.yaml">script configuration file</a>.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># selection to the AWS connection from the connection file</span>
+<span class="na">Connection</span><span class="pi">:</span> <span class="s">AWS</span>
+
+<span class="c1">#takes a measurement every x seconds</span>
+<span class="na">sample </span><span class="pi">:</span> <span class="s">30</span>
+
+<span class="c1">#Sense HAT board configuration</span>
+<span class="na">Sense_HAT</span><span class="pi">:</span>
+    <span class="na">temperature</span><span class="pi">:</span>
+      <span class="na">active</span><span class="pi">:</span> <span class="s">ok</span>        <span class="c1"># enables/disables the taking of measurements</span>
+      <span class="na">msg</span><span class="pi">:</span> <span class="s">temperature</span>  <span class="c1"># text shown on the display</span>
+      <span class="na">max</span><span class="pi">:</span> <span class="s">100</span>          <span class="c1"># value with maximum light intensity</span>
+      <span class="na">min</span><span class="pi">:</span> <span class="s">0</span>            <span class="c1"># value with minimum light intensity</span>
+    <span class="na">humidity</span><span class="pi">:</span>
+      <span class="na">active</span><span class="pi">:</span> <span class="s">ok</span>
+      <span class="na">msg</span><span class="pi">:</span> <span class="s">humidity</span>
+      <span class="na">max</span><span class="pi">:</span> <span class="s">60</span>
+      <span class="na">min</span><span class="pi">:</span> <span class="s">0</span>
+    <span class="na">pressure</span><span class="pi">:</span>
+      <span class="na">active</span><span class="pi">:</span> <span class="s">no</span>
+      <span class="na">msg</span><span class="pi">:</span> <span class="s">pressure</span>
+      <span class="na">max</span><span class="pi">:</span> <span class="s">0</span>
+      <span class="na">min</span><span class="pi">:</span> <span class="s">0</span>
+    <span class="na">acceleration</span><span class="pi">:</span>
+      <span class="na">active</span><span class="pi">:</span> <span class="s">no</span>
+      <span class="na">msg</span><span class="pi">:</span> <span class="s">accel</span>
+      <span class="na">max</span><span class="pi">:</span> <span class="s">60</span>
+      <span class="na">min</span><span class="pi">:</span> <span class="s">0</span>
+</code></pre></div></div>
+<p>You also need to edit  <a href="../scripts/Python/Sense_HAT_AWS/config/Config_Cloud.yaml">script configuration file</a>.
+Pay attention to configure your device and select for the connection to AWS as well as the topics and messages.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">connection</span><span class="pi">:</span>
+  <span class="na">cloud</span><span class="pi">:</span> <span class="s">AWS</span>  <span class="c1">#select your broker and the thing</span>
+  <span class="na">things</span><span class="pi">:</span> <span class="s2">"</span><span class="s">MyRaspberryPi"</span>
+  <span class="na">broker</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xxxxxxxxxxxx-ats.iot.xx-xxxx-x.amazonaws.com"</span>
+  <span class="na">port</span><span class="pi">:</span> <span class="s">8883</span>
+  <span class="na">Certificate</span><span class="pi">:</span> <span class="c1"># identify the name of your files and the path</span>
+    <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">CA/"</span>
+    <span class="na">ca</span><span class="pi">:</span> <span class="s2">"</span><span class="s">AmazonRootCA1.pem"</span>
+    <span class="na">certificate</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xxxxxxxxxx-certificate.pem.crt"</span>
+    <span class="na">private_key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xxxxxxxxxx-private.pem.key"</span>
+  <span class="na">topic</span><span class="pi">:</span>   <span class="c1"># copy here the list of topics</span>
+    <span class="na">update</span><span class="pi">:</span> <span class="s2">"</span><span class="s">$aws/things/MyRaspberryPi/shadow/update"</span>
+    <span class="na">delta</span><span class="pi">:</span> <span class="s2">"</span><span class="s">$aws/things/MyRaspberryPi/shadow/update/delta"</span>
+    <span class="na">accepted</span><span class="pi">:</span> <span class="s2">"</span><span class="s">$aws/things/MyRaspberryPi/shadow/update/accepted"</span>
+    <span class="na">rejected</span><span class="pi">:</span> <span class="s2">"</span><span class="s">$aws/things/MyRaspberryPi/shadow/update/rejected"</span>
+</code></pre></div></div>
+
+<p>:thumbsup: Depending on the version of Phyton’s interpreter may conflict when accessing a library</p>
+
+<p>install the libraries from your folder directory with the commands:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo pip install paho-mqtt -t ./
+sudo pip install json -t ./
+sudo pip install yaml -t ./
+</code></pre></div></div>
+
+<p><a href="#table-of-contents"><img src="pictures/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="send-command-from-mqttfx">Send Command from MQTT.fx</h2>
+
+<p>The first thing you need to know is that MQTT is a powerful tool that allows you to both communicate 
+with AWS and monitor all communications between AWS and the device.
+Use it whenever you have a problem or simply verify the content of a post.</p>
+
+<p>Connect withe the broker and configure it for publis in update and suscribe to delta.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyRaspberryPi/shadow/update
+$aws/things/MyRaspberryPi/shadow/update/accepted
+$aws/things/MyRaspberryPi/shadow/update/rejected
+$aws/things/MyRaspberryPi/shadow/delta
+</code></pre></div></div>
+<p>if you subscribe to delta, you can review the content that AWS sends to your Raspberry. 
+as a tip you can subscribe to the topics <strong>accepted</strong> and <strong>rejected</strong> for check if the communication 
+is established or rejected by the broker.</p>
+
+<p>Publish the following json file to send a command to your Raspberry. 
+When the broker receives it, it will update the shadow of the device. 
+Generating a delta message that will be used by your raspberry to update his status. 
+Showing the command and RGB color on the LED display.</p>
+
+<p>Play trying new messages and colors. This can be very useful!</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+	</span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+		</span><span class="s2">"desired"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+			</span><span class="s2">"command"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+				</span><span class="s2">"val"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Warning"</span><span class="p">,</span><span class="w">
+				</span><span class="s2">"colour"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+					</span><span class="s2">"r"</span><span class="p">:</span><span class="w"> </span><span class="mi">250</span><span class="p">,</span><span class="w">
+					</span><span class="s2">"g"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+					</span><span class="s2">"b"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+				</span><span class="p">}</span><span class="w">
+			</span><span class="p">}</span><span class="w">
+		</span><span class="p">}</span><span class="w">
+	</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p><a href="#table-of-contents"><img src="pictures/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="execute-your-project-and-enjoy">Execute your project and enjoy!!</h2>
+
+<h4 id="execute-the-script">Execute the Script</h4>
+
+<p>Great! Now you can start running the script, with the following command:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo python Rasp_HAT_AWS.py
+</code></pre></div></div>
+
+<p>Another option is to configure your raspberry to run the script on power up</p>
+
+<p>Open the cron Table with de command <code class="highlighter-rouge">crontab -e</code> and copy the next line in the file</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@reboot ( sleep 60  ; /usr/bin/python2.7 /home/pi/Desktop/Rasp_HAT_AWS.py &gt; /home/pi/Desktop/Rasp_HAT_AWS.log )
+</code></pre></div></div>
+
+<h4 id="check-the-shadow-state">Check the Shadow state</h4>
+
+<p>Before starting the execution you will see how your shadow is empty. 
+With this script you can make temperature and humidity measurements on the board.
+This updated the shadow with each shipment of the device, showing the same values as shown on the screen.</p>
+
+<h4 id="watch-the-led-screen">watch the LED screen</h4>
+
+<p>As you will be visualizing in your display, different messages are shown for the temperature and other 
+sensor measurements varying the intensity of the luminosity according to the measured value, 
+being able to modify even the message by the configuration file.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">Sense_HAT</span><span class="pi">:</span>
+    <span class="na">temperature</span><span class="pi">:</span>
+      <span class="na">active</span><span class="pi">:</span> <span class="s">ok</span>            
+      <span class="na">msg</span><span class="pi">:</span> <span class="s">change-text-here</span>   <span class="c1"># text shown on the display</span>
+      <span class="na">max</span><span class="pi">:</span> <span class="s">100</span>          <span class="c1"># value with maximum light intensity</span>
+      <span class="na">min</span><span class="pi">:</span> <span class="s">0</span>            <span class="c1"># value with minimum light intensity</span>
+</code></pre></div></div>
+
+<p>The display is able to show up to different states, temperature, humidity and a 
+third state to visualize the received command.</p>
+
+<h4 id="send-a-command">Send a command</h4>
+
+<p>To send a command to the device you must use the MQTT as explained in the previous section 
+through the json that we provide. you can change both the message and the background color 
+using an RGB encoding (Red, Green, Blue).</p>
+
+<p>You can change this instruction as many times as needed.</p>
+
+<p><a href="#table-of-contents"><img src="pictures/arrow_up.png" alt="pic" /></a>## Table of Contents</p>
+
+<ul>
+  <li><a href="#connect-your-raspberry-to-aws-iot">Connect your Raspberry to AWS-Iot</a>
+    <ul>
+      <li><a href="#getting-started-with-the-sense-hat">Getting started with the Sense HAT</a>
+        <ul>
+          <li><a href="#what-you-will-need">What you will need</a></li>
+          <li><a href="#what-you-will-learn">What you will learn</a></li>
+        </ul>
+      </li>
+      <li><a href="#create-an-account-at-aws-iot">Create an account at AWS-IoT</a></li>
+      <li><a href="#connect-your-raspberry-pi-to-aws-iot">Connect your Raspberry Pi to AWS-IoT</a></li>
+      <li><a href="#what-is-mqtt">What is MQTT</a></li>
+      <li><a href="#test-your-certificates-with-mqttfx">Test your Certificates with MQTT.fx</a></li>
+      <li><a href="#how-to-comunicate-with-aws">How to comunicate with AWS</a></li>
+    </ul>
+  </li>
+  <li><a href="#how-to-start-with-the-project">How to Start with the project</a>
+    <ul>
+      <li><a href="#execute-the-code-in-your-raspberry">Execute the code in your Raspberry</a></li>
+      <li><a href="#send-desire-from-mqttfx">Send desire from MQTT.fx</a></li>
+      <li><a href="#execute-your-project-and-enjoy">Execute your project and enjoy!!</a>
+        <ul>
+          <li><a href="#execute-the-script">Execute it</a></li>
+          <li><a href="#check-the-shadow-state">Check the Shadow</a></li>
+          <li><a href="#watch-the-led-screen">LED screen</a></li>
+          <li><a href="#send-a-command">Send a command</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="connect-your-raspberry-to-aws-iot-1">Connect your Raspberry to AWS-Iot</h1>
+<p>For this project, we will sample the different sensors on the board and publish them in AWS. 
+You will also be able to send different commands from the MQTT.fx interface that will be received on your Raspberry.</p>
+
+<p>The HAT sensor will take measurements of your sensors by publishing them in the shadow, 
+showing them also in the LED display.</p>
+
+<p align="center">      
+	  <img title="Project_med" src="pictures/miscellaneous/overview_rasp_AWS.png" />	  
+</p>
+
+<h2 id="getting-started-with-the-sense-hat-1">Getting started with the Sense HAT</h2>
+
+<p>The Sense HAT is an add-on board for the Raspberry Pi. 
+The board allows you to make measurements of temperature, humidity, pressure, and orientation 
+and to output information using the LED matrix.</p>
+
+<p>Installing and using your Sense HAT is easy, 
+just follow our tutorial below to get started!</p>
+<p align="center">
+      <img title="Raspi_SenseHAT" src="pictures/Raspberry/Raspi_SenseHAT.gif" href="RaspberryPi_HAT.md" width="400" height="300" />
+</p>
+
+<h4 id="what-you-will-need-1">What you will need</h4>
+
+<ul>
+  <li>Complet succeesfully the Raspberry Pi Starterkit tutorial</li>
+  <li>Raspberry Pi with Raspbian</li>
+  <li>Raspberry Pi Sense HAT</li>
+  <li>Keyboar and monitor or SSH connection</li>
+  <li>AWS account</li>
+</ul>
+
+<h4 id="what-you-will-learn-1">What you will learn</h4>
+
+<ul>
+  <li>Control the Sense HAT using Python</li>
+  <li>Register a device on AWS</li>
+  <li>Generate credentials for AWS</li>
+  <li>Take measurements and display them in the LED matrix</li>
+  <li>Establish a communication with AWS using MQTT</li>
+  <li>Send commands to the device remotely</li>
+</ul>
+
+<p>If you have successfully completed the Raspberry tutorial, all the necessary software is already updated.</p>
+
+<p>First of all, you should know that you are going to manage your Sense HAT using Python. 
+If you have any questions about how to run your code, do not forget to visit our tutorial for Raspberry</p>
+
+<p align="center">
+	<a href="RaspberryPi_Python.md">
+		<img src="pictures/miscellaneous/Python_logo.png" />
+	</a>
+</p>
+
+<p><a href="#table-of-contents"><img src="pictures/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="create-an-account-at-aws-iot-1">Create an account at AWS-IoT</h2>
+<p>(TBD)</p>
+<ol>
+  <li>and login</li>
+</ol>
+
+<p><a href="#table-of-contents"><img src="pictures/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="connect-your-raspberry-pi-to-aws-iot-1">Connect your Raspberry Pi to AWS-IoT</h2>
+
+<ol>
+  <li>Sign in to the AWS Management Console, and then open the AWS IoT console at https://console.aws.amazon.com/iot</li>
+  <li>Go to the Monitor page. In the left navigation panel, choose Manage, and then choose Things.
+<img src="pictures/AWS/AWS_Console.png" alt="pic" /></li>
+  <li>You don’t have any things yet page. Choose Register a thing.
+<img src="pictures/AWS/AWS_Console_Manage_Register.png" alt="pic" /></li>
+  <li>On the Creating AWS IoT things page, choose Create a single thing.
+<img src="pictures/AWS/AWS_Console_Manage_Register_things.png" alt="pic" /></li>
+  <li>Enter a name for the device, leave the default values for all the other fields, and then choose Next.
+<img src="pictures/AWS/AWS_Console_Manage_Register_Raspberry.png" alt="pic" /></li>
+  <li>Now generates the certificates.
+<img src="pictures/AWS/AWS_Console_Manage_Certificates.png" alt="pic" /></li>
+  <li>Download your public and private keys, certificate, and root certificate authority (CA)on your PC. 
+<img src="pictures/AWS/AWS_Console_Manage_Certificates_Download.png" alt="pic" /></li>
+  <li>For download your root certificate authority a new window is open for select a CA to download
+<img src="pictures/AWS/AWS_Console_Manage_Certificates_Download_CA.png" alt="pic" /></li>
+  <li>Don’t forget to save these files, you need them to establish the connection</li>
+  <li>Returns to the previous window and <strong>Activate</strong></li>
+  <li>Select <strong>Attach a policy</strong>
+<img src="pictures/AWS/AWS_Console_Manage_Certificates_Download.png" alt="pic" /></li>
+  <li>Close this window, before you need to create and attach a new policy to the certificate
+<img src="pictures/AWS/AWS_Console_Manage_Certificates_AttachPolicy.png" alt="pic" /></li>
+  <li>Open the AWS IoT console again https://console.aws.amazon.com/iot</li>
+  <li>In the left navigation panel, choose <strong>Secure</strong>, and then choose <strong>Policies</strong>.</li>
+  <li>Select <strong>Create a Policy</strong>
+<img src="pictures/AWS/AWS_Console_Secure_Policies.png" alt="pic" /></li>
+  <li>Enter a Name for the policy:
+    <ul>
+      <li><strong>Action</strong>        enter ‘iot:*’</li>
+      <li><strong>Resource ARN</strong>  enter ‘*’</li>
+      <li><strong>Effect</strong>        choose <strong>Allow</strong> 
+Select Create. This policy allows your Raspberry Pi to publish messages to AWS IoT.
+<img src="pictures/AWS/AWS_Console_Secure_Policies_Create.png" alt="pic" /></li>
+    </ul>
+  </li>
+  <li>In the AWS IoT console, choose <strong>Manage</strong>, <strong>Things</strong>. On the Things page, choose your Thing
+<img src="pictures/AWS/AWS_Console_Manage_Things.png" alt="pic" /></li>
+  <li>On the thing’s <strong>Details</strong> page, in the left navigation panel, choose <strong>Interact</strong>.
+Make a note of the REST API endpoint. You need it to connect to your device shadow.
+<img src="pictures/AWS/AWS_Console_Manage_Things_Details_Interact.png" alt="pic" /></li>
+  <li>Now choose <strong>Security</strong>.hoose the certificate that you created earlier. 
+<img src="pictures/AWS/AWS_Console_Manage_Things_Details_Security.png" alt="pic" /></li>
+  <li>In Actions, choose Attach policy
+<img src="pictures/AWS/AWS_Console_Manage_Things_Details_Security_Policy.png" alt="pic" /></li>
+  <li>Select your new policy and then choose Attach 
+<img src="pictures/AWS/AWS_Console_Manage_Things_Details_Security_Policy_Attach.png" alt="pic" /></li>
+</ol>
+
+<p><a href="#table-of-contents"><img src="pictures/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="what-is-mqtt-1">What is MQTT</h2>
+<p>MQTT is a machine-to-machine (M2M)/”Internet of Things” connectivity protocol. 
+It was designed as an extremely lightweight publish/subscribe messaging transport.</p>
+
+<p>The first concept is the publish and subscribe system. 
+A device can publish a message on a topic, 
+or it can be subscribed to a topic to receive messages</p>
+
+<p>AWS use this system to communicate with your devices</p>
+
+<p>If you access to AWS Management Console.In the left navigation panel, choose Manage, and then choose Things.
+When choose a thing you can find out the different topic that you can subscribe/publish 
+Select <em>**Interact</em> to copy they</p>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Things_Details_Interact_MQTT.png" alt="pic" /></p>
+
+<p>At the moment, you only need to know three topics:</p>
+<ul>
+  <li>Update to this thing shadow
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyRaspberryPi/shadow/update
+</code></pre></div>    </div>
+  </li>
+  <li>Update to this thing shadow was accepted
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyRaspberryPi/shadow/update/accepted
+</code></pre></div>    </div>
+  </li>
+  <li>Update to this thing shadow was rejected
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyRaspberryPi/shadow/update/rejected
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><a href="#table-of-contents"><img src="pictures/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="test-your-certificates-with-mqttfx-1">Test your Certificates with MQTT.fx</h2>
+
+<p>One of the best ways to make sure that certificates have been created correctly is to try connecting via a 
+MQTT client with graphical interface.</p>
+
+<p>We recommend you download MQTT.fx from the following link https://mqttfx.jensd.de/</p>
+
+<ol>
+  <li>Open MQTT.fx and create a new connection.</li>
+</ol>
+
+<p><img src="pictures/MQTT/MQTTFX_open.png" alt="pic" /></p>
+
+<ol>
+  <li>Configure the broker as shown in the image below.
+Remember to use the files you downloaded in the previous step. And configure the broker address associated to your device.</li>
+</ol>
+
+<p><img src="pictures/MQTT/MQTTFX_Broker_Connect.png" alt="pic" /></p>
+
+<ol>
+  <li>Now that you are connected to the broker, you need to subscribe to the topics to know the state of the shadow: 
+accepted and rejected.</li>
+</ol>
+
+<p>Every time a message is published in the topic to update the shadow, 
+you can check in these topics if the message has been <strong>accepted</strong> or <strong>rejected</strong>.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyRaspberryPi/shadow/update/accepted
+$aws/things/MyRaspberryPi/shadow/update/rejected
+</code></pre></div></div>
+
+<p><img src="pictures/MQTT/MQTTFX_Topic_Subscribe.png" alt="pic" /></p>
+
+<ol>
+  <li>To update the shadow of your device, only in necessary to publish in the topic the following <strong>json file</strong>, 
+you can use the following link to validate it https://jsonlint.com/</li>
+</ol>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "state": {
+        "reported" : { 
+            "temp" : 22    
+        }
+    }
+}
+</code></pre></div></div>
+<p>This file will simulate the publishing of a device to make temperature measurements.</p>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Things_Details_Shadow.png" alt="pic" /></p>
+
+<ol>
+  <li>Of course, you need to choose the topics in which you can update your shadow.
+Be sure to select the service quality level as QoS 0, amazon doesn’t allow a different police.
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyRaspberryPi/shadow/update
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p><img src="pictures/MQTT/MQTTFX_Topic_Publish.png" alt="pic" /></p>
+
+<ol>
+  <li>For delte the shadow’s value publish the next <strong>json file</strong>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+ "state": {
+     "reported" : { 
+         "temp" : null    
+     }
+ }
+}
+</code></pre></div>    </div>
+  </li>
+  <li>Play with this, sending different values until you understand how it works.
+:thumbsup: Remember to check if your shipment has been accepted or rejected</li>
+</ol>
+
+<p><a href="#table-of-contents"><img src="pictures/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="how-to-comunicate-with-aws-1">How to comunicate with AWS</h2>
+
+<p>As you know, when you register a new device in AWS. A topics are created by default.
+These topics are the way of communication. In them you can send data and receive information.</p>
+
+<p>At the moment you only need to know two of them:</p>
+
+<p>topic Update</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyRaspberryPi/shadow/update
+</code></pre></div></div>
+<p>this topic is where you publish the status of the device,
+in this tutorial this information is composed by the values of the sensors as the current color of the LED display.</p>
+
+<p>topic Delta</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyRaspberryPi/shadow/update/delta
+</code></pre></div></div>
+<p>This is the channel that AWS uses to communicate the <strong>desired</strong> changes to the device.
+In this case we use the MQTT.fx to communicate these changes to AWS and to report the change to the device.</p>
+
+<p>All these changes are recorded in the <strong>shadow</strong> of the device. 
+To see the current status just access the AWS core as you saw in the previous section.</p>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Things_Details_Shadow_Delta.png" alt="pic" /></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"desired"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"command"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"val"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Caution"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"colour"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"r"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"g"</span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"b"</span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"reported"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"command"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"colour"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"r"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"b"</span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"g"</span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"val"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"temp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"colour"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"r"</span><span class="p">:</span><span class="w"> </span><span class="mi">143</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"b"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"g"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"val"</span><span class="p">:</span><span class="w"> </span><span class="mf">35.861732482910156</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"humidity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"colour"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"r"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"b"</span><span class="p">:</span><span class="w"> </span><span class="mi">65</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"g"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"val"</span><span class="p">:</span><span class="w"> </span><span class="mf">32.788143157958984</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"delta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"command"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"val"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Caution"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>As you can see in the previous file, there are three main indexes:</p>
+<ul>
+  <li>“desired”: Contains the desired state, sent from the MQTT.fx</li>
+  <li>“reported”: Contains the status information reported by the device</li>
+  <li>“delta”: contains the differences between the reported status and the desired status. 
+This is the information that is published in the delta topic</li>
+</ul>
+
+<p><a href="#table-of-contents"><img src="pictures/arrow_up.png" alt="pic" /></a></p>
+
+<h1 id="how-to-start-with-the-project-1">How to Start with the project</h1>
+
+<p>Although we will explain it to you in detail how to execute it step by step, 
+for this tutorial you need to be familiar with the following concepts</p>
+
+<ul>
+  <li>Run a Python file on your raspberry (we recommend using the Desktop)</li>
+  <li>Copy the credentials files to Raspberry</li>
+  <li>Use MQTT.fx to post messages in a topic</li>
+  <li>Review the shadow from AWS core</li>
+</ul>
+
+<h2 id="execute-the-code-in-your-raspberry-1">Execute the code in your Raspberry</h2>
+
+<p>At this point your raspberry won’t have any secrets for you. 
+Nevertheless we will help you to continue so that you do not have any mishap.</p>
+
+<p>Create a folder on your Raspberry’s desktop called <strong>Python</strong> and copy into it the following 
+<a href="../scripts/Python/Sense_HAT_AWS">folder</a> and copy in the <strong>CA</strong> folder the device’s certification files</p>
+
+<p>Before, you need to edit the <a href="../scripts/Python/Sense_HAT_AWS/config/Config_HAT.yaml">script configuration file</a>.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># selection to the AWS connection from the connection file</span>
+<span class="na">Connection</span><span class="pi">:</span> <span class="s">AWS</span>
+
+<span class="c1">#takes a measurement every x seconds</span>
+<span class="na">sample </span><span class="pi">:</span> <span class="s">30</span>
+
+<span class="c1">#Sense HAT board configuration</span>
+<span class="na">Sense_HAT</span><span class="pi">:</span>
+    <span class="na">temperature</span><span class="pi">:</span>
+      <span class="na">active</span><span class="pi">:</span> <span class="s">ok</span>        <span class="c1"># enables/disables the taking of measurements</span>
+      <span class="na">msg</span><span class="pi">:</span> <span class="s">temperature</span>  <span class="c1"># text shown on the display</span>
+      <span class="na">max</span><span class="pi">:</span> <span class="s">100</span>          <span class="c1"># value with maximum light intensity</span>
+      <span class="na">min</span><span class="pi">:</span> <span class="s">0</span>            <span class="c1"># value with minimum light intensity</span>
+    <span class="na">humidity</span><span class="pi">:</span>
+      <span class="na">active</span><span class="pi">:</span> <span class="s">ok</span>
+      <span class="na">msg</span><span class="pi">:</span> <span class="s">humidity</span>
+      <span class="na">max</span><span class="pi">:</span> <span class="s">60</span>
+      <span class="na">min</span><span class="pi">:</span> <span class="s">0</span>
+    <span class="na">pressure</span><span class="pi">:</span>
+      <span class="na">active</span><span class="pi">:</span> <span class="s">no</span>
+      <span class="na">msg</span><span class="pi">:</span> <span class="s">pressure</span>
+      <span class="na">max</span><span class="pi">:</span> <span class="s">0</span>
+      <span class="na">min</span><span class="pi">:</span> <span class="s">0</span>
+    <span class="na">acceleration</span><span class="pi">:</span>
+      <span class="na">active</span><span class="pi">:</span> <span class="s">no</span>
+      <span class="na">msg</span><span class="pi">:</span> <span class="s">accel</span>
+      <span class="na">max</span><span class="pi">:</span> <span class="s">60</span>
+      <span class="na">min</span><span class="pi">:</span> <span class="s">0</span>
+</code></pre></div></div>
+<p>You also need to edit  <a href="../scripts/Python/Sense_HAT_AWS/config/Config_Cloud.yaml">script configuration file</a>.
+Pay attention to configure your device and select for the connection to AWS as well as the topics and messages.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">connection</span><span class="pi">:</span>
+  <span class="na">cloud</span><span class="pi">:</span> <span class="s">AWS</span>  <span class="c1">#select your broker and the thing</span>
+  <span class="na">things</span><span class="pi">:</span> <span class="s2">"</span><span class="s">MyRaspberryPi"</span>
+  <span class="na">broker</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xxxxxxxxxxxx-ats.iot.xx-xxxx-x.amazonaws.com"</span>
+  <span class="na">port</span><span class="pi">:</span> <span class="s">8883</span>
+  <span class="na">Certificate</span><span class="pi">:</span> <span class="c1"># identify the name of your files and the path</span>
+    <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">CA/"</span>
+    <span class="na">ca</span><span class="pi">:</span> <span class="s2">"</span><span class="s">AmazonRootCA1.pem"</span>
+    <span class="na">certificate</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xxxxxxxxxx-certificate.pem.crt"</span>
+    <span class="na">private_key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xxxxxxxxxx-private.pem.key"</span>
+  <span class="na">topic</span><span class="pi">:</span>   <span class="c1"># copy here the list of topics</span>
+    <span class="na">update</span><span class="pi">:</span> <span class="s2">"</span><span class="s">$aws/things/MyRaspberryPi/shadow/update"</span>
+    <span class="na">delta</span><span class="pi">:</span> <span class="s2">"</span><span class="s">$aws/things/MyRaspberryPi/shadow/update/delta"</span>
+    <span class="na">accepted</span><span class="pi">:</span> <span class="s2">"</span><span class="s">$aws/things/MyRaspberryPi/shadow/update/accepted"</span>
+    <span class="na">rejected</span><span class="pi">:</span> <span class="s2">"</span><span class="s">$aws/things/MyRaspberryPi/shadow/update/rejected"</span>
+</code></pre></div></div>
+
+<p>:thumbsup: Depending on the version of Phyton’s interpreter may conflict when accessing a library</p>
+
+<p>install the libraries from your folder directory with the commands:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo pip install paho-mqtt -t ./
+sudo pip install json -t ./
+sudo pip install yaml -t ./
+</code></pre></div></div>
+
+<p><a href="#table-of-contents"><img src="pictures/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="send-command-from-mqttfx-1">Send Command from MQTT.fx</h2>
+
+<p>The first thing you need to know is that MQTT is a powerful tool that allows you to both communicate 
+with AWS and monitor all communications between AWS and the device.
+Use it whenever you have a problem or simply verify the content of a post.</p>
+
+<p>Connect withe the broker and configure it for publis in update and suscribe to delta.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyRaspberryPi/shadow/update
+$aws/things/MyRaspberryPi/shadow/update/accepted
+$aws/things/MyRaspberryPi/shadow/update/rejected
+$aws/things/MyRaspberryPi/shadow/delta
+</code></pre></div></div>
+<p>if you subscribe to delta, you can review the content that AWS sends to your Raspberry. 
+as a tip you can subscribe to the topics <strong>accepted</strong> and <strong>rejected</strong> for check if the communication 
+is established or rejected by the broker.</p>
+
+<p>Publish the following json file to send a command to your Raspberry. 
+When the broker receives it, it will update the shadow of the device. 
+Generating a delta message that will be used by your raspberry to update his status. 
+Showing the command and RGB color on the LED display.</p>
+
+<p>Play trying new messages and colors. This can be very useful!</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+	</span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+		</span><span class="s2">"desired"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+			</span><span class="s2">"command"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+				</span><span class="s2">"val"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Warning"</span><span class="p">,</span><span class="w">
+				</span><span class="s2">"colour"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+					</span><span class="s2">"r"</span><span class="p">:</span><span class="w"> </span><span class="mi">250</span><span class="p">,</span><span class="w">
+					</span><span class="s2">"g"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+					</span><span class="s2">"b"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+				</span><span class="p">}</span><span class="w">
+			</span><span class="p">}</span><span class="w">
+		</span><span class="p">}</span><span class="w">
+	</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p><a href="#table-of-contents"><img src="pictures/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="execute-your-project-and-enjoy-1">Execute your project and enjoy!!</h2>
+
+<h4 id="execute-the-script-1">Execute the Script</h4>
+
+<p>Great! Now you can start running the script, with the following command:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo python Rasp_HAT_AWS.py
+</code></pre></div></div>
+
+<p>Another option is to configure your raspberry to run the script on power up</p>
+
+<p>Open the cron Table with de command <code class="highlighter-rouge">crontab -e</code> and copy the next line in the file</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@reboot ( sleep 60  ; /usr/bin/python2.7 /home/pi/Desktop/Rasp_HAT_AWS.py &gt; /home/pi/Desktop/Rasp_HAT_AWS.log )
+</code></pre></div></div>
+
+<h4 id="check-the-shadow-state-1">Check the Shadow state</h4>
+
+<p>Before starting the execution you will see how your shadow is empty. 
+With this script you can make temperature and humidity measurements on the board.
+This updated the shadow with each shipment of the device, showing the same values as shown on the screen.</p>
+
+<h4 id="watch-the-led-screen-1">watch the LED screen</h4>
+
+<p>As you will be visualizing in your display, different messages are shown for the temperature and other 
+sensor measurements varying the intensity of the luminosity according to the measured value, 
+being able to modify even the message by the configuration file.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">Sense_HAT</span><span class="pi">:</span>
+    <span class="na">temperature</span><span class="pi">:</span>
+      <span class="na">active</span><span class="pi">:</span> <span class="s">ok</span>            
+      <span class="na">msg</span><span class="pi">:</span> <span class="s">change-text-here</span>   <span class="c1"># text shown on the display</span>
+      <span class="na">max</span><span class="pi">:</span> <span class="s">100</span>          <span class="c1"># value with maximum light intensity</span>
+      <span class="na">min</span><span class="pi">:</span> <span class="s">0</span>            <span class="c1"># value with minimum light intensity</span>
+</code></pre></div></div>
+
+<p>The display is able to show up to different states, temperature, humidity and a 
+third state to visualize the received command.</p>
+
+<h4 id="send-a-command-1">Send a command</h4>
+
+<p>To send a command to the device you must use the MQTT as explained in the previous section 
+through the json that we provide. you can change both the message and the background color 
+using an RGB encoding (Red, Green, Blue).</p>
+
+<p>You can change this instruction as many times as needed.</p>
+
+<p><a href="#table-of-contents"><img src="pictures/arrow_up.png" alt="pic" /></a></p>
