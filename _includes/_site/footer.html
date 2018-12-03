@@ -1,0 +1,30 @@
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-lg-offset-1 text-center">
+        <h4><strong>{{ site.owner }}</strong>
+        </h4>
+        <p>
+          {% for address in site.address %}
+          {{ address.line }}<br>
+          {% endfor %}
+        </p>
+        
+        <br>
+        <ul class="list-inline">
+          <li>
+            <a href="https://facebook.com/telefonicaid"><i class="fab fa-facebook fa-fw fa-3x"></i></a>
+          </li>
+          <li>
+            <a href="https://twitter.com/telefonicaiot"><i class="fab fa-twitter fa-fw fa-3x"></i></a>
+          </li>
+          <li>
+            <a href="https://iot.telefonica.com/"><i class="fas fa-globe fa-fw fa-3x"></i></a>
+          </li>
+        </ul>
+        <hr class="small">
+        <p class="text-muted">Copyright &copy; {{ site.copyright }} 20{{ site.time | date: '%y' }}</p>
+      </div>
+    </div>
+  </div>
+</footer>
