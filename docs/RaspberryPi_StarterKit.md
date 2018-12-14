@@ -1,4 +1,5 @@
-## Table of Contents
+### Table of Contents
+
 - [Raspberry Pi Starterkit for IoT-Activation](#raspberry-pi-starterkit-for-iot-activation)
     + [Raspberry Pi 3 B+](#raspberry-pi-3-b)
     + [MicroSD with pre-installer NOOBS (Raspberry-Pi OS)](#microsd-with-pre-installer-noobs-raspberry-pi-os)
@@ -232,12 +233,18 @@ sudo apt-get install realvnc-vnc-server realvnc-vnc-viewer
 ## Tenefonica's Connection.
 Connect the USB modem MS2131 to the Raspberry's usb.
 
+Once connected, you can check that your raspberry recognizes the device using the command `lsusb`.
+
+This command lists all devices connected USB ports of your device, checks how when connecting and disconnecting 
+the modem the device appears and disappears from the list.
+
 Create the USB Stick connection in a command line
 ```
-sudo nmcli con add type gsm ifname "*" con-name USBStick apn TelefonicaSIM_APN user telefonica password telefonica
-```
+sudo nmcli con add type gsm ifname "*" con-name USBStick apn TelefonicaSIM_APN user telefonica password telefonica```
 
 :heavy_exclamation_mark:  The field **TelefonicaSIM_APN** must be replaced by the APN address of your Telefonica SIM card.
+In this case, the APN of your SIM card will be provided by Telefonica. 
+However, you will be able to identify it through access to [Kite.](Movistar_Kite_Platform.md)
 
 Now the connection USB-Stick has been created.
 Look at it with the command 
@@ -264,10 +271,13 @@ Another way to test it, It is downloading a file from a server and read it.
 ```
 wget https://jsonplaceholder.typicode.com/todos/1
 ````
-check the new file with
+
+to check the downloaded file you can use the cat command
+
 ```
 cat 1
 ```
+
 Now you should be able to read something close to this **json** example
 
 ```json
@@ -284,6 +294,12 @@ we recommend you delete the test file with the following command.
 rm 1
 ```
 [![pic](pictures/arrow_up.png)](#table-of-contents)
+
+If you have followed all these steps, there should be no problem. but if not, your SIM card may not be activated.
+
+Luckily you have access to the Kite Platform and you can manage its status
+check out our tutorial [here](Movistar_Kite_Platform.md)
+
 
 ## Use a remote access. Enable SSH server on Raspbian. 
 
@@ -336,11 +352,13 @@ Now for connect with your Raspberry you need installer a SSH client on your comp
 ##### Set up your SSH client in Linux
 from a terminal window:
 ```
-ssh –p 22 pi@00.00.00.00  -> Raspberry IP
+ssh –p 22 pi@00.00.00.00 -> Raspberry IP
 ```
 ##### Set up your SSH client in Windows
 
-Download Putty from www.putty.org and install it
+There is a wide variety of SSH clients that you can use. Many of them are free!!
+
+But if you know which one to choose, we can recommend download Putty from www.putty.org and install it
 
 Open putty and write the Raspberry's IP in the Host Name box
 Select SSH like Connection type and Port 22
@@ -353,7 +371,7 @@ use the Raspberry default user **pi** and the new-password selected on the previ
 
 #### Control your raspberry with a network cable
 
-if you prefer it is also possible to control your Raspberri pi connected to your pc via a network cable (Ethernet)
+If you prefer it is also possible to control your Raspberri pi connected to your pc via a network cable (Ethernet)
 
 [How to connect via Ethernet](SSH_Ethernet.md)
 

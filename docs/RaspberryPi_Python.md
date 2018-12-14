@@ -2,6 +2,9 @@
 
 # What is python!
 
+Python is an interpreted, high-level programming language for general-purpose programming.
+It provides constructs that enable clear programming on both small and large scales
+
 # How to program using the Terminal Window
 
 Opena a terminal widows with keys **Ctrl+Alt+T**
@@ -35,9 +38,5 @@ Now you can run the script and see what happens
 python HelloWorld.py
 ```
 
-
-
-# How to program using Raspbian Desktop
-(TBD)
 
 

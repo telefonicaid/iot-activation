@@ -20,7 +20,7 @@
     + [UDP](#how-does-udp-works)
     + [TCP vs UDP?](#what-is-the-difference-between-tcp-and-udp)
   * [AWS-IoT](#amazon-web-services-and-aws-iot)
-- [Kite Platform](#kite-platform)
+- [Why are we different? Kite Platform](#why-are-we-different-kite-platform)
 
 # Welcome to IoT-Activation of Telefonica
 
@@ -47,12 +47,13 @@ To learn how to configure your device and start developing your applications che
 </p>
 	
 ## And in the Arduino kit? 
-(Soon...)
 
 In your Arduino Starterkit you can find the next components:
 
-- Arduino board
 - Arduino MKR NB-1500
+- Arduino Antenna GSM
+- Power Supply 
+- Telefonica SIM Card
 
 To learn how to configure your device and start developing your applications check out the following tutorial 
 [Arduino StarterKit guide](Arduino_StarterKit.md)
@@ -191,8 +192,7 @@ You can create rules that define an action to be performed based on the message 
 
 [![pic](pictures/arrow_up.png)](#table-of-contents)
 
-# Kite Platform
-(Soon ...)
+# Why are we different? Kite Platform
 
 Connectivity management functionalities like inventory, real time expenses control, alarms, 
 automatic business rules or reporting.
@@ -202,7 +202,7 @@ remote device resets and remote diagnostics.
 
 Cloud connectors that eases integration amongst the main public cloud platforms and apps.
 
-
+[discover Kite](Movistar_Kite_Platform.md)
 
 [![pic](pictures/arrow_up.png)](#table-of-contents)
 

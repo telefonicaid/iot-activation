@@ -1,6 +1,6 @@
-## Table of Contents
+### Table of Contents
 
-- [Connect your Raspberry to AWS-Iot](#connect-your-raspberry-to-aws-iot)
+- [Raspsberry: Sense-HAT to AWS-IoT](#raspsberry-sense-hat-to-aws-iot)
   * [Getting started with the Sense HAT](#getting-started-with-the-sense-hat)
       - [What you will need](#what-you-will-need)
       - [What you will learn](#what-you-will-learn)
@@ -11,7 +11,7 @@
   * [How to comunicate with AWS](#how-to-comunicate-with-aws)
 - [How to Start with the project](#how-to-start-with-the-project)
   * [Execute the code in your Raspberry](#execute-the-code-in-your-raspberry)
-  * [Send desire from MQTT.fx](#send-desire-from-mqttfx)
+  * [Send command from MQTT.fx](#send-command-from-mqttfx)
   * [Execute your project and enjoy!!](#execute-your-project-and-enjoy)
       - [Execute it](#execute-the-script)
       - [Check the Shadow](#check-the-shadow-state)
@@ -20,7 +20,7 @@
 
 
 
-# Connect your Raspberry to AWS-Iot
+# Raspsberry: Sense-HAT to AWS-IoT
 For this project, we will sample the different sensors on the board and publish them in AWS. 
 You will also be able to send different commands from the MQTT.fx interface that will be received on your Raspberry.
 
@@ -63,10 +63,11 @@ just follow our tutorial below to get started!
 - Establish a communication with AWS using MQTT
 - Send commands to the device remotely
 
-If you have successfully completed the Raspberry tutorial, all the necessary software is already updated.
+If you have successfully completed the Raspberry Starterkit tutorial, all the necessary software is already updated.
 
 First of all, you should know that you are going to manage your Sense HAT using Python. 
-If you have any questions about how to run your code, do not forget to visit our tutorial for Raspberry
+If you have any questions about how to run your code, do not forget to visit our 
+[tutorial](RaspberryPi_Python.md) for Raspberry or click on the image
 
 <p align="center">
 	<a href="RaspberryPi_Python.md">
@@ -96,7 +97,8 @@ If you have any questions about how to run your code, do not forget to visit our
 ![pic](pictures/AWS/AWS_Console_Manage_Register_Raspberry.png)
 6. Now generates the certificates.
 ![pic](pictures/AWS/AWS_Console_Manage_Certificates.png)
-7. Download your public and private keys, certificate, and root certificate authority (CA)on your PC. 
+7. Download your public and private keys, certificate, and root certificate authority (CA) on your PC,
+copy the content into a file and call it for example **AmazonRootCA1.pem**
 ![pic](pictures/AWS/AWS_Console_Manage_Certificates_Download.png)
 8. For download your root certificate authority a new window is open for select a CA to download
 ![pic](pictures/AWS/AWS_Console_Manage_Certificates_Download_CA.png)
@@ -111,8 +113,8 @@ If you have any questions about how to run your code, do not forget to visit our
 15. Select **Create a Policy**
 ![pic](pictures/AWS/AWS_Console_Secure_Policies.png)
 16. Enter a Name for the policy:
-    - **Action**        enter 'iot:*'
-    - **Resource ARN**  enter '*' 
+    - **Action**        enter **iot:***
+    - **Resource ARN**  enter **\***
     - **Effect**        choose **Allow** 
 Select Create. This policy allows your Raspberry Pi to publish messages to AWS IoT.
 ![pic](pictures/AWS/AWS_Console_Secure_Policies_Create.png)
@@ -121,7 +123,7 @@ Select Create. This policy allows your Raspberry Pi to publish messages to AWS I
 18. On the thing's **Details** page, in the left navigation panel, choose **Interact**.
 Make a note of the REST API endpoint. You need it to connect to your device shadow.
 ![pic](pictures/AWS/AWS_Console_Manage_Things_Details_Interact.png)
-19. Now choose **Security**.hoose the certificate that you created earlier. 
+19. Now select **Security**, and choose the certificate that you created earlier. 
 ![pic](pictures/AWS/AWS_Console_Manage_Things_Details_Security.png)
 20. In Actions, choose Attach policy
 ![pic](pictures/AWS/AWS_Console_Manage_Things_Details_Security_Policy.png)
@@ -214,14 +216,10 @@ $aws/things/MyRaspberryPi/shadow/update
 
 ![pic](pictures/MQTT/MQTTFX_Topic_Publish.png)
 
-6. For delte the shadow's value publish the next **json file**
+6. For delete the shadow's value publish the next **json file**
 ```
 {
-    "state": {
-        "reported" : { 
-            "temp" : null    
-        }
-    }
+    "state": null
 }
 ```
 
