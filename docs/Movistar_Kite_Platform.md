@@ -80,7 +80,7 @@ If this is not the case you should contact your local SIM distributor.
 ![pic](pictures/Kite/Kite_interface_SIM_select_1Assign_subscription_group.png)
 
 ##### Change life cycle state
-In order for a SIM to be operational, it must be activated.
+To make it works... it must be activated!!!
 
 ![pic](pictures/Kite/Kite_interface_SIM_select_2Change_life_cycle.png)
 
