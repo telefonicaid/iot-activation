@@ -57,7 +57,7 @@ or you can access the SIM inventory, where you can locate and manage all your ca
 
 ![pic](pictures/Kite/Kite_interface_SIM.png)
 
-To see the details of each of the SIM, double click on each of them to view SIM details,
+If you want to verify some SIM details, you can double click on each,
 or simply select one or several to activate the bottom menu
 
 ![pic](pictures/Kite/Kite_interface_SIM_select.png)
@@ -80,7 +80,7 @@ If this is not the case you should contact your local SIM distributor.
 ![pic](pictures/Kite/Kite_interface_SIM_select_1Assign_subscription_group.png)
 
 ##### Change life cycle state
-In order for a SIM to be operational, it must be activated.
+To make it works... it must be activated!!!
 
 ![pic](pictures/Kite/Kite_interface_SIM_select_2Change_life_cycle.png)
 
@@ -100,7 +100,7 @@ once the time or the available traffic is consumed in the Test state.
 - Pending activation, state similar to the previous one, but in this one the change
 to the Activated state is done manually from Inventory.
 
-- Activated, in this state the SIM card is fully operating, in condition of regular
+- Activated, at this state the SIM card is fully operating, in condition of regular
 traffic, and fees and service restrictions set up in the Subscriptions group through
 the assigned commercial plan apply to it.
 
@@ -176,7 +176,7 @@ indicates whether they are activated
 
 # What is Kite Platform API?
 The Kite Platform offers you an API that allows you to integrate it with all your systems. 
-It allows you to access all your data your data offering you various functionalities
+It allows you to access all your data offering you various functionalities
 
 ## How to access Kite Platform API?
 
@@ -192,7 +192,7 @@ This protocol allows you to establish a bidirectional communication between your
 
 This request is made through the use of a certificate and a private key for encryption,
 these will be issued on demand and will be exclusive to you. Take good care of it! 
-Remember that it is the gateway to all your SIM data.
+Remember that it is the gateway to all your SIM data and information.
 
 ### Access step by step using the CURL command
 
