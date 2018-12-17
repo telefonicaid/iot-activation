@@ -123,10 +123,54 @@ And lastly you must make sure that the SIM has the traffic activated.
 
 ![pic](pictures/Kite/Kite_interface_SIM_select_3Activate_data_traffic.png)
 
-
 ### SIM details
 
 ![pic](pictures/Kite/Kite_interface_SIM_manager.png)
+
+##### SIM identification
+When the section opens, the detailed information on the SIM card is accessed. 
+Some of these fields are editable with the **Edi**t button on the top right corner.
+
+Here you can add both an identifying name to your SIM **Alias** 
+and add and manage the content of your **custom fields**.
+
+![pic](pictures/Kite/Kite_interface_SIM_Inventory_01_SIM_identification.png)
+
+##### Life cycle state
+It groups information related to the status changes in the life cycle of the SIM card.
+It displays only the value of the current state.
+
+![pic](pictures/Kite/Kite_interface_SIM_Inventory_02_Life_cycle_state.png)
+
+
+##### Presence
+It displays SIM information related to the connectivity. 
+If you do not know the APN through which your SIM has to be connected, 
+you can check it in this section.
+
+![pic](pictures/Kite/Kite_interface_SIM_Inventory_03_Presence.png)
+
+##### Traffic consumption control
+Shows detailed or summary information on the SMS messages, data and traffic or
+voice consumption of the SIM card during the current billing period.
+
+![pic](pictures/Kite/Kite_interface_SIM_Inventory_04_Traffic_consumption_control.png)
+
+##### Monthly expense control
+Shows detailed or summary information on data, SMS messages and voice
+expense incurred by the SIM card during the last months.
+
+![pic](pictures/Kite/Kite_interface_SIM_Inventory_05_Monthly_expense_control.png)
+
+##### Basic services and Supplementary services
+Includes data, SMS and voice traffic services for SIM M2M cards and. 
+indicates whether they are activated
+
+![pic](pictures/Kite/Kite_interface_SIM_Inventory_06_Basic_services_enabled.png)
+![pic](pictures/Kite/Kite_interface_SIM_Inventory_07_Supplementary_services.png)
+
+##### Location
+![pic](pictures/Kite/Kite_interface_SIM_Inventory_08_Location.png)
 
 [![pic](pictures/arrow_up.png)](#table-of-contents)
 
