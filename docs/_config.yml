@@ -22,7 +22,7 @@ google_api_key:
 
 # Build settings
 markdown: kramdown
-theme: jekyll-theme-cayman
+theme: jekyll-theme-minimal
 collections:
   portfolio:
     output: true
