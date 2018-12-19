@@ -1,27 +1,18 @@
-########################################################################################################################
-#                                                                                                                      #
-#   Telefonica                                                                                                         #
-#   IoT Activation                                                                                                     #
-#                                                                                                                      #
-########################################################################################################################
-
 # List of connection settings
 connection:
   cloud: AWS
   things: "MyRaspberryPi"
-  broker: "a2jj8ta6u3ozw1-ats.iot.us-east-2.amazonaws.com"
+  broker: "xxxxxxxxxxxx-ats.iot.xx-xxxx-x.amazonaws.com"
   port: 8883
   Certificate:
     path: "CA/"
     ca: "AmazonRootCA1.pem"
-    certificate: "6403f3df19-certificate.pem.crt"
-    private_key: "6403f3df19-private.pem.key"
+    certificate: "xxxxxxxxxx-certificate.pem.crt"
+    private_key: "xxxxxxxxxx-private.pem.key"
   topic:
     update: "$aws/things/MyRaspberryPi/shadow/update"
     delta: "$aws/things/MyRaspberryPi/shadow/update/delta"
     accepted: "$aws/things/MyRaspberryPi/shadow/update/accepted"
     rejected: "$aws/things/MyRaspberryPi/shadow/update/rejected"
-
-
 
    

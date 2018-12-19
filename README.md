@@ -1,10 +1,10 @@
 <p align="center">
-      <img  title="Telefonica" src="docs/pictures/Telefonica_logo.png">
+      <img  title="Telefonica" src="tutorials/pictures/miscellaneous/Telefonica_logo.png">
 </p>
 
 # Welcome to IoT-Activation of Telefonica
 
-![pic](docs/pictures/IOT_Activation.png)
+![pic](tutorials/pictures/miscellaneous/IOT_Activation.png)
 
 Welcome to The IoT World. 
 With this tutorial you will not only learn how to start in the world of IoT, 
@@ -27,25 +27,25 @@ They may seem small, but the possibilities are immense!!
 
 # Your first workbench
 
-[Everything you need to know about IoT](docs/README.md)
+[Everything you need to know about IoT](tutorials/README.md)
 
-[Why are we different? Kite Platform](docs/Movistar_Kite_Platform.md)
+[Why are we different? Kite Platform](tutorials/Movistar_Kite_Platform.md)
 
-[Raspberry Pi Starter-Kit](docs/RaspberryPi_StarterKit.md)
-- [Raspberry: Sens-HAT to AWS-IoT](docs/RaspberryPi_HAT.md)
-
-
-<p align="center">      
-	  <img  title="Project_med" src="docs/pictures/miscellaneous/overview_rasp_AWS.png"
-	  href="docs/RaspberryPi_HAT.md" 
-	  width="425" height="250">	  
+[Raspberry Pi Starter-Kit](tutorials/RaspberryPi_StarterKit.md)
+- [Raspberry: Sens-HAT to AWS-IoT](tutorials/RaspberryPi_HAT.md)
+<p align="center">
+	<a href="tutorials/RaspberryPi_HAT.md" lign="center">
+		<img src="tutorials/pictures/schematics/overview_rasp_AWS.png"
+		width="425" height="250">	 	 
+	</a>
 </p>
 
-
-[Arduino Starter-Kit](docs/Arduino_StarterKit.md)
-
-
-
-
-
+[Arduino Starter-Kit](tutorials/Arduino_StarterKit.md)
+- [Arduino: Connect to AWS-IoT](tutorials/Arduino_AWS.md)
+<p align="center">
+	<a href="tutorials/Arduino_AWS.md" lign="center">
+		<img src="tutorials/pictures/schematics/overview_arduino_AWS.png"
+		width="500" height="250">	 
+	</a>
+</p>
 
