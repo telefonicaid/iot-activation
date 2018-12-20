@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>Arduino Starter Kit</title>
+  <meta name="description" content="Table of Contents">
+  <meta name="google-translate-customization" content="b9870a0c7376df54-aa35852016e6a5cc-ga0a0d80f6c171f17-e"></meta>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/arduinostarterkit.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="alternate" type="application/atom+xml" title="IoT Activation" href="http://localhost:4000/atom.xml" />
+</head>
+
+
+  <body>
+         <div class="col-md-12 navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">IoT Activation</a>
+      </div>
+      <div class="navbar-collapse collapse navbar-inverse-collapse">
+        <ul class="nav navbar-nav">
+          
+            
+          
+            
+          
+            
+          
+          
+<!--           <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+            
+              
+            
+              
+            
+              
+            
+            </ul>
+          </li>
+ -->        </ul>
+       
+        <ul class="nav navbar-nav navbar-right left-syms">
+          <li><a href="https://facebook.com/telefonicaid" target="_blank"><i class="fa fa-facebook-square"></i> <span>Facebook</span></a></li>
+          <li><a href="http://github.com/telefonicaid/iot-activation" target="_blank"><i class="fa fa-github"></i> <span>Github</span></a></li>
+          <li><a href="//twitter.com/TelefonicaIoT" target="_blank"><i class="fa fa-twitter"></i> <span>Twitter</span></a></li>
+          <li><a href="http://localhost:4000/atom.xml" target="_blank"><i class="fa fa-rss"></i> <span>RSS Feed</span></a></li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="col-md-12 blog-theme-class">
+          <!-- Top Blog Header -->
+          <div class="row jumb-bot">
+            <div class="col-md-1"></div>
+            <div class="jumbotron jumb-bot-jumbu col-md-10">
+
+              <h1>IoT Activation</h1>
+              <p>Welcome to IoT</p>
+            </div>            
+            <div class="col-md-1"></div>
+          </div>
+    </div>
+    <div class="col-md-12">
+        <div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+
+	  	
+	    <h1>Arduino Starter Kit</h1>
+	    <!--<div id="google_translate_element" style="padding-right: 27px;float: left;"></div><script type="text/javascript">
+			function googleTranslateElementInit() {
+  				new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+				}
+		</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+		-->
+	    <p class="post-meta">Dec 19, 2018</p>
+
+	   
+	  	<article class="blog-post-small blog-post-content">
+	    	<h3 id="table-of-contents">Table of Contents</h3>
+
+<ul>
+  <li><a href="#arduino-starterkit-for-iot-activation">Arduino StarterKit for IoT-Activation</a>
+    <ul>
+      <li><a href="#what-is-arduino-">What is Arduino?</a>
+        <ul>
+          <li><a href="#arduino-mkr-nb-1500">Arduino MKR NB-1500</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#getting-started-with-your-arduino">Getting started with your Arduino</a>
+    <ul>
+      <li><a href="#configure-arduino-ide">Arduino IDE</a></li>
+      <li><a href="#use-arduino-web-editor">Arduino web editor</a></li>
+      <li><a href="#hello-world-create-your-first-arduino-program">Hello World: Create your first Arduino program</a></li>
+      <li><a href="#nb-iot-and-lte-m-setup-and-connection">NB-IoT and LTE-M: Setup and Connection</a>
+        <ul>
+          <li><a href="#connection">Connection</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="arduino-starterkit-for-iot-activation">Arduino StarterKit for IoT-Activation</h1>
+
+<h2 id="what-is-arduino">What is Arduino?</h2>
+<p>Arduino is an open-source electronics platform based on easy-to-use hardware. 
+The Arduino software is easy for beginners an flexible enough for advanced users</p>
+
+<h3 id="arduino-mkr-nb-1500">Arduino MKR NB-1500</h3>
+<p>The MKR branch of the Arduino board family is dedicated to the IoT so it tries to provide 
+solutions for devices in remote locations without a high speed Internet connection, or in situations in which power isn’t available.</p>
+
+<p>The Arduino MKR NB 1500 adds the wireless connectivity  Narrow Band IoT and LTE CAT M1 to the Arduino platform. 
+It is a learning and development board which contains the ATMEL SAMD21 micro controller, 
+designed to integrate the core’s low power-consumption and high performance with the Arduino’s ease-of-use. 
+The MKR NB 1500 brings the Arduino Zero functionalities in the smaller form factor.</p>
+
+<p align="center">
+      <img title="Arduino_NB1500" src="pictures/Arduino/Arduino_NB1500.jpg" />
+</p>
+
+<h5 id="led-on">LED ON</h5>
+<p>This LED is connected to the 5V input from either USB or VIN</p>
+
+<h5 id="reset-button">Reset button</h5>
+<p>This button allows you to reset the program contained on the board so that it runs again from the init.</p>
+
+<h5 id="onboard-led">Onboard LED</h5>
+<p>The onboard LED is connected to pin D6</p>
+
+<h5 id="battery-connector">Battery connector</h5>
+<p>If you want to connect a battery to your board be sure to search one with female 2 pin JST PHR2 Type connector.</p>
+
+<h5 id="led-charge">LED charge</h5>
+<p>The indicator lights when the board receives 5V from VIN or USB, and the chip starts charging the Li-Po battery connected to the JST connector.</p>
+
+<h5 id="antenna-connector">Antenna connector</h5>
+<p>Allows you to connect an external antenna to receive and send the RF signal</p>
+
+<h3 id="arduino-antenna-gsm">Arduino Antenna GSM</h3>
+
+<p>GSM antennas designed for mobile communications compatible with the Arduino board.</p>
+
+<p align="center">
+      <img title="Arduino_NB1500" src="pictures/Arduino/Arduino_antenna_GSM.jpg" width="300" height="250" />
+</p>
+
+<h3 id="power-supply">Power Supply</h3>
+<p>An electrical device that supplies electric power to your Arduino board</p>
+
+<p align="center">
+      <img title="Arduino_NB1500" src="pictures/Arduino/Arduino_power_supply.jpg" width="300" height="250" />
+</p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h3 id="telefonica-sim-card">Telefonica SIM Card</h3>
+<p>This little one makes you enjoy all the advantages of the Telefonica network. 
+Take care of her, she will be your partner into the IoT world.</p>
+
+<p>:heavy_exclamation_mark:  Note that to insert it into the Arduino board you will need the microSIM format</p>
+
+<p align="center">
+      <img title="Telefonica_SIM" src="pictures/miscellaneous/Telefonica_SIM.png" width="300" height="210" />
+</p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h1 id="getting-started-with-your-arduino">Getting started with your Arduino</h1>
+
+<h2 id="configure-arduino-ide">Configure Arduino IDE</h2>
+
+<p>Arduino platform provides a Integrated Development Environment (IDE). 
+The first step to get started with the kit is to download the Arduino IDE from their web https://www.arduino.cc/en/Main/Software</p>
+
+<p><img src="pictures/Arduino/Arduino_IDE.png" alt="pic" /></p>
+
+<p>This environment provides not only an interface to develop your scripts. 
+It is also your tool to download your files to the device.</p>
+
+<p>This development environment provides support for the different Arduino boards.
+For this reason, before loading your software, you must select your board type.
+If you want to program your MKR NB 1500 you need to install the Arduino Desktop IDE and add the Atmel SAMD Core to it. 
+This simple procedure is done selecting <strong>Tools</strong> menu, then <strong>Boards</strong> and last <strong>Boards Manager</strong>,</p>
+
+<p><img src="pictures/Arduino/Arduino_IDE_boards_manager.png" alt="pic" /></p>
+
+<p>Here you can search MKR NB 1500 to find the core. Click on its box and click on the install button. 
+On the bottom bar of the window you can follow the download and install procedure, including the installation of the proper driver, needed by the operating system to use the board</p>
+
+<p><img src="pictures/Arduino/Arduino_IDE_boards_manager_NB.png" alt="pic" /></p>
+
+<p>Now that the SAMD Core is installed. All you have to do is select the corresponding Board.
+Select the entry in the <strong>Tools &gt; Board menu</strong> that corresponds to <strong>Arduino MKR NB-1500</strong>.</p>
+
+<p><img src="pictures/Arduino/Arduino_IDE_board.png" alt="pic" /></p>
+
+<p>The first time you connect your board, your computer will recognize it as a new device. 
+However, you must configure the environment to indicate the port to which it has been connected.</p>
+
+<p>Connect your board to your computer you need a micro USB cable, and wait a moment until your computer recognizes it.
+Select the serial device port from the <strong>Tools &gt; Serial Port menu</strong>. 
+This is likely to be <strong>COMx</strong> (COM1 and COM2 are usually reserved). 
+if you can’t find the port used, you should disconnect your board and re-open the menu.
+The entry that disappears should be the Arduino board. Reconnect the board and select that serial port.</p>
+
+<p><img src="pictures/Arduino/Arduino_IDE_com.png" alt="pic" /></p>
+
+<p>If this is your first time using the board, it is likely that when copiling you will not find some libraries.</p>
+
+<p>To avoid this error when using the connection libraries, you can import them by following these steps:</p>
+
+<p>Go to the menu <strong>sketch</strong> and select <strong>Include library</strong> to enter the <strong>Manage libraries…</strong></p>
+
+<p><img src="pictures/Arduino/Arduino_IDE_library_manager.png" alt="pic" /></p>
+
+<p>Search by board name <strong>MKR NB</strong> to find the necessary libraries.</p>
+
+<p><img src="pictures/Arduino/Arduino_IDE_library_manager_MKRNB.png" alt="pic" /></p>
+
+<p>Now everything is ready to run your first script</p>
+
+<h2 id="use-arduino-web-editor">Use Arduino web editor</h2>
+
+<p>Another alternative for development on Arduino boards without download anything, it is its new web editor 
+https://create.arduino.cc/editor allowing the same development as on the desktop editor.</p>
+
+<p>If you want to use this online tool, you only need to register on the Arduino website and create a user account.</p>
+
+<p><img src="pictures/Arduino/Arduino_WEB_login.png" alt="pic" /></p>
+
+<p>This editor shows a friendly interface with the same functionalities. As you can see in the following screenshot</p>
+
+<p><img src="pictures/Arduino/Arduino_WEB_editor.png" alt="pic" /></p>
+
+<p>The web editor is ready to use, you just have to select your board and make sure you have an internet connection.
+Because it will not be necessary to manage the libraries and the boards.</p>
+
+<p><img src="pictures/Arduino/Arduino_WEB_editor_board.png" alt="pic" /></p>
+
+<p>In this case, you should try to find the model of your board, MKR NB 1500</p>
+
+<p><img src="pictures/Arduino/Arduino_WEB_editor_board_NB.png" alt="pic" /></p>
+
+<p>As we mentioned, you will not need to manage the installed libraries, because the editor has access to the Arduino repository. 
+However, it has the same tools to locate the available libraries.</p>
+
+<p><img src="pictures/Arduino/Arduino_WEB_editor_library_manager_MKRNB.png" alt="pic" /></p>
+
+<p>To download the code on your board, you must follow the same process as with the IDE, 
+however being an online tool allows new options such as sharing the sketch using a url</p>
+
+<p><img src="pictures/Arduino/Arduino_WEB_editor_code_menu_upload.png" alt="pic" /></p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="hello-world-create-your-first-arduino-program">Hello World: Create your first Arduino program</h2>
+
+<p>The Arduino programming language is based on Wiring, creating a simplified version of the C++ language.</p>
+
+<p>here you can see the typical structure of a program. This structure is created automatically when you open a new file</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Put your setup code here:</span>
+  <span class="c1">// This part of the software will run only once when the program is started</span>
+  <span class="c1">// Use this code to initialize your device</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Put your main code here:</span>
+  <span class="c1">// This part of the code is repeated constantly</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>To run your first program, copy the following code into the Arduino IDE or the web editor</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// put your setup code here, to run once:</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+  
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// put your main code here, to run repeatedly:</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">" Hello World "</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Great, now you should be able to see something like that.</p>
+
+<p><img src="pictures/Arduino/Arduino_IDE_code.png" alt="pic" /></p>
+
+<p>Now, We are gonna run the last test. Compile and upload your code to the board.
+But you’re lucky, the IDE will do  this for you. If an error occurs, It will appear at the console below</p>
+
+<p>To do this press the <strong>Upload</strong> button that you will find below the menu.</p>
+
+<p><img src="pictures/Arduino/Arduino_IDE_code_menu_upload.png" alt="pic" /></p>
+
+<p>If everything goes well, your software is already running on the board, and will restart every time you turn it on.</p>
+
+<p>But what the hell, your Arduino doesn’t have a screen where display text!
+This is not a problem, as you have previously set up a serial connection to send the message.
+So your board is sending this message through the usb that connects to your pc.</p>
+
+<p>Effectively! again your Arduino IDE does this for you.
+You can open a terminal to display all messages sent from the Arduino via serial communication.
+Click on the lens icon to open it.</p>
+
+<p><img src="pictures/Arduino/Arduino_IDE_code_menu_serial_console.png" alt="pic" /></p>
+
+<p>Now you can see that the message <strong>“Hello world”</strong> is sent every 2 seconds.</p>
+
+<p><img src="pictures/Arduino/Arduino_IDE_serial_console.png" alt="pic" /></p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="assembling-antenna-and-microsim">Assembling: Antenna and microSIM</h2>
+
+<p>The Arduino board has a very simple assembly, but make sure you’ve done it correctly or 
+you won’t be able to make the connection.</p>
+
+<p>The SIM card must be in microSIM format, and must be fully inserted, with the metal face of the 
+connector towards the inside of the board.</p>
+
+<p>To plug in the GSM antenna, carefully press the connector and lock it in parallel.</p>
+
+<h2 id="nb-iot-and-lte-m-setup-and-connection">NB-IoT and LTE-M: Setup and Connection</h2>
+
+<p>Now that you’ve run your first arduino program. You need to learn how to set up the network connection. 
+The Arduino board is equipped with a SARA-R410M modem.
+It is a Ultra-compact LTE Cat M1 / NB1 and GPRS modules with multi-regional coverage.</p>
+
+<p>Not only allows you to select the type of network you want to connect to, 
+but also to prepare the appropriate configuration to connect to the Movistar network in your country.</p>
+
+<p>Arduino will provide you with different examples and tools to perform the initial configuration of the SARA module. 
+But we’ll help you by going one step further. You’ll learn how to create your own configuration code. 
+This way you will be able to run it at the start of each new script.</p>
+
+<p><img src="pictures/Arduino/Arduino_IDE_examples_mkrnb_tool.png" alt="pic" /></p>
+
+<p>:thumbsup: make sure that you correctly configure each device before each program. since the module will maintain 
+the previous configuration in the case of not modifying it.</p>
+
+<h3 id="setup">Setup</h3>
+
+<p>Before preparing the script, you should know that the communication between the board and the module is done 
+by means of a series of instructions known as AT commands.</p>
+
+<p>These AT commands allow you, among other things, to select if you connect to NB or LTE, as well as to configure
+the band to which you must connect. This varies according to your territorial zone.</p>
+
+<p>Here you will only learn the basic commands to make a correct connection with the Movistar network.</p>
+
+<p>Here you can see an example of a <a href="..\scripts\Arduino\Connection\setup_SaraR410M_movistar.h">setup file</a>, 
+but we’ll show you what those commands mean and how to select the appropriate parameters.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">apply</span><span class="p">(){</span>  
+  <span class="n">MODEM</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="s">"AT+CFUN=15"</span><span class="p">);</span>
+  <span class="n">MODEM</span><span class="p">.</span><span class="n">waitForResponse</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span>
+
+  <span class="k">do</span> <span class="p">{</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+    <span class="n">MODEM</span><span class="p">.</span><span class="n">noop</span><span class="p">();</span>
+  <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">MODEM</span><span class="p">.</span><span class="n">waitForResponse</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">);</span>
+   
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">setup_SaraR410M_movistar</span><span class="p">(){</span>
+
+  <span class="n">String</span> <span class="n">response</span><span class="p">;</span>
+  <span class="n">MODEM</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+  <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">MODEM</span><span class="p">.</span><span class="n">noop</span><span class="p">());</span>
+
+  <span class="c1">//// Disconnecting from network</span>
+  <span class="c1">//MODEM.sendf("AT+COPS=2"); </span>
+  <span class="n">MODEM</span><span class="p">.</span><span class="n">sendf</span><span class="p">(</span><span class="s">"AT+CFUN=0"</span><span class="p">);</span>
+  <span class="n">MODEM</span><span class="p">.</span><span class="n">waitForResponse</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span>
+   
+
+  <span class="c1">//// Select Radio Access Technology (RAT)</span>
+  <span class="c1">//// uncomment only 1 of the 4 options</span>
+  
+  <span class="c1">//// LTE only</span>
+  <span class="c1">//MODEM.sendf("AT+URAT=7");</span>
+  <span class="c1">//// NB-IoT only</span>
+  <span class="c1">//MODEM.sendf("AT+URAT=8");</span>
+  <span class="c1">//// LTE-M preferred, NB-IoT as failover</span>
+  <span class="c1">//MODEM.sendf("AT+URAT=7,8"); </span>
+  <span class="c1">//// NB-IoT preferred, LTE-M as failover</span>
+  <span class="n">MODEM</span><span class="p">.</span><span class="n">sendf</span><span class="p">(</span><span class="s">"AT+URAT=8,7"</span><span class="p">);</span>
+  <span class="c1">////wait response</span>
+  <span class="n">MODEM</span><span class="p">.</span><span class="n">waitForResponse</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">response</span><span class="p">);</span>
+  
+  <span class="c1">//// Select Band bitmask </span>
+  <span class="c1">//// configure both masks if necessary (LTE-M and NB-IoT )</span>
+  
+  <span class="c1">//// configure bitmask for LTE-M (Band-20)</span>
+  <span class="n">MODEM</span><span class="p">.</span><span class="n">sendf</span><span class="p">(</span><span class="s">"AT+UBANDMASK=0,524288"</span><span class="p">);</span>
+  <span class="n">MODEM</span><span class="p">.</span><span class="n">waitForResponse</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">response</span><span class="p">);</span>
+  <span class="c1">//// configure bitmask for NB-IoT (Band-20)</span>
+  <span class="n">MODEM</span><span class="p">.</span><span class="n">sendf</span><span class="p">(</span><span class="s">"AT+UBANDMASK=1,524288"</span><span class="p">);</span>
+  <span class="n">MODEM</span><span class="p">.</span><span class="n">waitForResponse</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">response</span><span class="p">);</span>  
+
+  <span class="c1">////configure the default values for Mobile Network Operators</span>
+  <span class="n">MODEM</span><span class="p">.</span><span class="n">sendf</span><span class="p">(</span><span class="s">"AT+UMNOPROF=0"</span><span class="p">);</span>
+  <span class="n">MODEM</span><span class="p">.</span><span class="n">waitForResponse</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">response</span><span class="p">);</span>
+  
+  <span class="c1">////configure the APN if you know it in (APN_NAME)</span>
+  <span class="c1">//MODEM.sendf("AT+CGDCONT=1,\"IP\",\"APN_NAME\"");</span>
+  <span class="c1">//MODEM.waitForResponse(2000, &amp;response);  </span>
+  
+  <span class="c1">////// Configures the Extended Discontinuous Reception (eDRX).   </span>
+  <span class="n">MODEM</span><span class="p">.</span><span class="n">sendf</span><span class="p">(</span><span class="s">"AT+CEDRXS=0"</span><span class="p">);</span>
+  <span class="c1">//// in LTE-M</span>
+  <span class="c1">// MODEM.sendf("AT+CEDRXS=2,4\"0010\"");</span>
+  <span class="c1">//// or in NB-Iot</span>
+  <span class="c1">// MODEM.sendf("AT+CEDRXS=2,5\"0010\"");    </span>
+  <span class="n">MODEM</span><span class="p">.</span><span class="n">waitForResponse</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">response</span><span class="p">);</span>
+  
+  <span class="c1">////// Configures the Power Saving Mode (PSM).   </span>
+  <span class="n">MODEM</span><span class="p">.</span><span class="n">sendf</span><span class="p">(</span><span class="s">"AT+CPSMS=0"</span><span class="p">);</span>  
+  <span class="c1">//MODEM.sendf("AT+CPSMS=1,\"00100001\",\"00100101\"");  </span>
+  <span class="n">MODEM</span><span class="p">.</span><span class="n">waitForResponse</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">response</span><span class="p">);</span>    
+    
+  <span class="c1">//// Applying changes and saving configuration</span>
+  <span class="n">apply</span><span class="p">();</span>
+  
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>  
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>And now a short tutorial to configure the parameters</p>
+
+<h5 id="select-radio-access-technology-rat">Select Radio Access Technology (RAT)</h5>
+
+<p>RAT is the underlying physical connection method for a radio based communication network.</p>
+
+<p>The SARA module of your Arduino allows you to select different technologies such as GSM, LTE/NB …
+Even select several technologies in case the primary technology is not available.</p>
+
+<p>Although for our purpose we will focus on the lowest consumption technologies such as LTE and NB, 
+as they are specific technologies for use in IoT.</p>
+
+<p>This configuration will be done using the AT command <code class="highlighter-rouge">AT+URAT=&lt;value&gt;</code></p>
+
+<p>According to the assigned value, it will allow you to choose between the following cases:</p>
+<ul>
+  <li>LTE only                              <code class="highlighter-rouge">AT+URAT=7</code></li>
+  <li>NB-IoT only                           <code class="highlighter-rouge">AT+URAT=8</code></li>
+  <li>LTE-M preferred, NB-IoT as failover   <code class="highlighter-rouge">AT+URAT=7,8</code></li>
+  <li>NB-IoT preferred, LTE-M as failover   <code class="highlighter-rouge">AT+URAT=8,7</code></li>
+</ul>
+
+<p>As indicated, the value 7 corresponds to LTE and 8 to NB</p>
+
+<h5 id="select-band">Select Band</h5>
+
+<p>The module supports a series of 4G LTE bands for the different radio access technologies (RAT).</p>
+
+<p>This configuration is done through a bitmask. So you will have to configure both NB and LTE bitmask.</p>
+
+<ul>
+  <li>for configure LTE-M bitmask use the AT command <code class="highlighter-rouge">AT+UBANDMASK=0,&lt;Bands&gt;</code></li>
+  <li>for configure LTE-M bitmask use the AT command <code class="highlighter-rouge">AT+UBANDMASK=1,&lt;Bands&gt;</code></li>
+</ul>
+
+<p>But how do you calculate the mask for each band? this is very simple.</p>
+
+<p>look at it with this examples.</p>
+
+<p>for example, if you want to activate the European band (B20), you will make sure that the mask has bit 20 activated.</p>
+
+<p>It is only necessary to translate the number from binary to decimal</p>
+
+<p>just do the following calculation</p>
+
+<p><code class="highlighter-rouge">BX   -&gt;  2^( X-1)</code></p>
+
+<p>examples:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>B3   -&gt;  2^( 3-1) = 4 
+B4   -&gt;  2^( 4-1) = 8
+B20  -&gt;  2^(20-1) = 524288
+</code></pre></div></div>
+<p>and so on ….</p>
+
+<p>Is also very easy if you need to activate multiple bands. Sum them all!</p>
+
+<p>for bands 3 and 4 simultaneously:</p>
+
+<p><code class="highlighter-rouge">B3 &amp; B4  -&gt;  2^( 4-1) + 2^( 3-1) = 12</code></p>
+
+<p>But if you’d like to consider it an explanation. You can always use a calculator!</p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h5 id="configure-the-consumption">Configure the consumption:</h5>
+
+<p>One of the main goals from de device pespective is the battery energy consumption.</p>
+
+<h6 id="extended-discontinuous-reception">Extended Discontinuous Reception</h6>
+
+<p>try with a complete example discontinuous reception (eDRX) is a way that mobile communication are used to save the battery of the mobile device.</p>
+
+<p>The mobile device and the network negotiate in each data transfer. 
+from time to time the device turns off goes into a low power state.</p>
+
+<p>You can activate and configure this option using one of the AT commands <code class="highlighter-rouge">AT+CEDRXS=</code></p>
+
+<p>Although the network has the final word, it is possible to configure the modem to select eDRX times.</p>
+
+<h6 id="power-saving-mode">Power Saving Mode</h6>
+
+<p>Power save mode (PSM) means that the device notifies the network that it is going to be inactive, 
+so it will turn the radio interface after a while.</p>
+
+<p>Using AT commands, you can activate this mode to determine the schedule times. <code class="highlighter-rouge">AT+CPSMS=</code></p>
+
+<p>these consumption modes are really important as they can improve the battery life in IoT devices.</p>
+
+<p>Now that you know a little more about energy modes. You’ll see how these are integrated into the communication proccess.
+Out of the box, the device will perform an Attachment stage to connect to the mobile network. This step will be performed 
+whenever the device is reconnected to the network, resulting in a process with a very high power consumption.</p>
+
+<p>Once the Attachment is done and the data is sent, the device will keep waiting for a few seconds depending on the connection 
+technology  (NB-IoT or LTE-M) go through the IDLE stage.
+During the IDLE stage, the device will maintain the connection to the network. 
+This connection is maintained by swaping short periods of data exchange with the network with periods of workless. 
+If you review the consumption graph, you can see how during the IDLE stage a series of square pulses appears.</p>
+
+<p><img src="pictures/schematics/LTE_transmision.png" alt="pic" /></p>
+
+<p>But how do these savings modes fit into the cycle? As expected, both modes are involved in the IDLE stage.
+The device will remain in this stage for most of the cycle.</p>
+
+<p>If you activate the eDRX, a new cycle will be established during the IDLE stage, which will be repeated continuously, 
+maintaining a resting stage during part of the cycle. With the AT command you can select both the total time of the new cycle 
+and the time during which the communication takes place.</p>
+
+<p><img src="pictures/schematics/LTE_transmision_eDRX.png" alt="pic" /></p>
+
+<p>When the PSM is activated, the device will perform the IDLE stage and then turn off the antenna. 
+But as we mentioned earlier, every time we connect to the network, Attachment will happen again. 
+Well! the advantage of the PSM is that when you configured it, the device warns the network of the time it remains deactivated, 
+so the network will keep the configuration of the device even if the antenna is off. 
+At the end, the device will alert the network again of its connection but without the need to 
+perform Attachment again, which saves time and energy.</p>
+
+<p>Using the AT command it is possible to determine the total cycle time, 
+which contains both the IDLE connection time and the workless time.</p>
+
+<p><img src="pictures/schematics/LTE_transmision_PSM.png" alt="pic" /></p>
+
+<p>Both saving modes can be combined and used together. This allows you to reduce energy consumption in cases 
+where you do not need continuous communication.</p>
+
+<p><img src="pictures/schematics/LTE_transmision_eDRX_PSM.png" alt="pic" /></p>
+
+<h5 id="how-to-set-the-timers">How to set the timers:</h5>
+<p>Although the configuration of the modes is a negotiation with the network, 
+where the network has the final decision, using the AT command you can activate/deactivate both modes 
+as well as configure their cycle times.</p>
+
+<h6 id="--edrx">- eDRX</h6>
+
+<p>You can disable it with command <code class="highlighter-rouge">AT+CEDRXS=0,4</code> in LTE-M or with command <code class="highlighter-rouge">AT+CEDRXS=0,5</code> for NB-IoT.</p>
+
+<p>Effectively the code 4 or 5 will serve you to identify the type of connection you want to configure !!</p>
+
+<p>To activate it you must do exactly the same thing, but changing the 0 for a 2, 
+although this time you will have to add a code of 4 digits to configure the cycle time.</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Activate eDRX: 20,48s in LTE-M</span>
+<span class="n">MODEM</span><span class="p">.</span><span class="n">sendf</span><span class="p">(</span><span class="s">"AT+CEDRXS=2,4</span><span class="se">\"</span><span class="s">0010</span><span class="se">\"</span><span class="s">"</span><span class="p">);</span>
+
+<span class="c1">// Activate eDRX: 20,48s in NB-IoT</span>
+<span class="n">MODEM</span><span class="p">.</span><span class="n">sendf</span><span class="p">(</span><span class="s">"AT+CEDRXS=2,5</span><span class="se">\"</span><span class="s">0010</span><span class="se">\"</span><span class="s">"</span><span class="p">);</span>
+
+<span class="c1">// Activate eDRX: 40,96s in LTE-M</span>
+<span class="n">AT</span><span class="o">+</span><span class="n">CEDRXS</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="s">"0011"</span>
+
+<span class="c1">// Activate eDRX: 40,96s in NB-IoT</span>
+<span class="n">AT</span><span class="o">+</span><span class="n">CEDRXS</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="s">"0011"</span>
+</code></pre></div></div>
+
+<p>you can check the rest of the values in the table</p>
+
+<p><img src="pictures/schematics/LTE_table_value_DRX.png" alt="pic" /></p>
+
+<h6 id="--psm">- PSM</h6>
+
+<p>Disable with command <code class="highlighter-rouge">AT+CPSMS=0</code></p>
+
+<p>To activate the PSM, you only have to select the value to one and configure 
+the time of the cicle (IDLE + PSM) and time of conection (IDLE) copying the codes that there are in the table.</p>
+<pre><code class="language-AT">** Activate PSM: 1h of cycle / 5m resting"
+AT+CEDRXS=1,"00100001","00100101"
+</code></pre>
+
+<p>To complete the code of each timer, select the first 3 digits of the PSM table and complete them 
+with the last 5 digits with are the multiplying factor in binary code</p>
+
+<p>follow the example below</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//IDLE + PSM:</span>
+<span class="mo">011</span> <span class="mo">00001</span> <span class="o">-&gt;</span> <span class="mi">2</span> <span class="n">sec</span> <span class="o">*</span> <span class="mi">1</span> <span class="o">=</span> <span class="mi">2</span> <span class="n">sec</span>
+<span class="mo">011</span> <span class="mo">00010</span> <span class="o">-&gt;</span> <span class="mi">2</span> <span class="n">sec</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">4</span> <span class="n">sec</span>
+<span class="mi">101</span> <span class="mo">00010</span> <span class="o">-&gt;</span> <span class="mi">1</span> <span class="n">min</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">2</span> <span class="n">min</span>
+
+<span class="c1">//IDLE:</span>
+<span class="mo">000</span> <span class="mo">00001</span> <span class="o">-&gt;</span> <span class="mi">2</span> <span class="n">sec</span> <span class="o">*</span> <span class="mi">1</span> <span class="o">=</span> <span class="mi">2</span> <span class="n">sec</span>
+<span class="mo">001</span> <span class="mo">00010</span> <span class="o">-&gt;</span> <span class="mi">1</span> <span class="n">min</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">2</span> <span class="n">min</span>
+</code></pre></div></div>
+<p>try with a complete example</p>
+<pre><code class="language-AT">** Activate PSM: 1h of cycle / 5m resting"
+//IDLE + PSM:
+001 00001 -&gt; 1 hour * 1 = 1 hour
+//IDLE:
+001 00101 -&gt; 1 min  * 5 = 5 min
+//PSM
+1hour - 5 min = 45 min
+
+AT+CEDRXS=1,"00100001","00100101"
+</code></pre>
+
+<p>if you need, you can use a binary online calculator: https://www.rapidtables.com/convert/number/decimal-to-binary.html</p>
+
+<p><img src="pictures/schematics/LTE_table_value_PSM.png" alt="pic" /></p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h3 id="connection">Connection</h3>
+
+<p>Now that you know how to configure your modem to make a correct connection.</p>
+
+<p>You will be able to execute the following <a href="../scripts/Arduino/Connection">code</a> 
+with which to connect to the Movistar network. Let the games begin!</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+  <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">Serial</span><span class="p">)</span> <span class="p">{;}</span>
+  
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"START setup"</span><span class="p">);</span>
+  <span class="c1">//setup modem Sara R410M</span>
+  <span class="n">setup_SaraR410M_movistar</span><span class="p">();</span>
+  
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"Testing Modem:"</span><span class="p">);</span>
+  <span class="n">IMEI</span> <span class="o">=</span> <span class="n">test_modem</span><span class="p">();</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"Modem's IMEI: "</span> <span class="o">+</span> <span class="n">IMEI</span><span class="p">);</span>
+  
+  <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">connected</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"Try Connecting...."</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">nbAccess</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="n">PINNUMBER</span><span class="p">)</span> <span class="o">==</span> <span class="n">NB_READY</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">gprs</span><span class="p">.</span><span class="n">attachGPRS</span><span class="p">()</span> <span class="o">==</span> <span class="n">GPRS_READY</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="n">connected</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+      <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"Connected"</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"Not connected"</span><span class="p">);</span>
+      <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"END setup"</span><span class="p">);</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>With this test software, you will be able to check the connection of your SIM card and check
+the access to the NB-IoT network.</p>
+
+<p>Open the Arduino IDE Serial Monitor to check by messages 
+if the connection to the module and the network is correct</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>START setup
+Testing Modem:
+- Starting modem test...
+- Modem is connected
+- Checking IMEI...
+- Modem is functioning properly
+- Resetting modem...
+- Modem is functioning properly
+Modem's IMEI: xxxxxxxxxxxxxxx
+NB-IoT networks scanner
+Scanning Networks:
+1
+Try Connecting....
+Connected
+END setup
+Connected
+Connected
+Connected
+Connected
+Connected
+[...]
+ 
+</code></pre></div></div>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+	  	</article>
+	  	
+	  	
+	  	
+<!-- Output author details if some exist. -->
+   
+
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/README.html" title="Previous Post:
+        IoT Basics">&laquo; IoT Basics</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+      <li class="next"><a class="basic-alignment right" href="/movistarkiteplatform.html"
+        title="Next Post: Kite Platform">Kite Platform
+        &raquo;</a></li>
+      
+    </ul>
+	</div>
+	<div class="col-md-1"></div>
+</div>
+    </div>
+    <div class="col-md-12 share-div">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          
+<div class="fb_share">
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=354997024639145&version=v2.0";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+<div class="fb-share-button" data-layout="button_count"></div>
+</div>
+
+
+
+<div class="twitter_share">
+	<a href="https://twitter.com/share" class="twitter-share-button" data-via="TelefonicaIoT" data-hashtags="sailsjs">Tweet</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+</div>
+
+
+
+<div class="linkedin_share">
+	<script src="//platform.linkedin.com/in.js" type="text/javascript">
+	  lang: en_US
+	</script>
+	<script type="IN/Share" data-counter="right"></script>
+</div>
+
+
+
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="col-md-12">
+    <!-- Footer -->
+            <div class="row footer">
+              <div class="col-md-1"></div>
+              <div class="col-md-10">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <h4>Recent Posts</h4>
+                        <ul>
+                        
+                          <li><a href="/raspberrysshethernet.html">Raspberry Ethernet</a></li>
+                        
+                          <li><a href="/raspberrypistarterkit.html">Raspberry Starter Kit</a></li>
+                        
+                          <li><a href="/raspberrypipython.html">Python Hello World</a></li>
+                        
+                          <li><a href="/raspberrypihat.html">Raspberry PI Hat</a></li>
+                        
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-md-offset-1">
+                      <h4>Github Repositories</h4>
+                      <ul>
+                      
+                        <li>
+                          <a href="https://github.com/telefonicaid/iot-activation">
+                            <span class="username">telefonicaid/iot-activation</span>
+                          </a>
+                        </li>
+                        
+                      </ul>
+                    </div>
+                    <div class="col-md-3 col-md-offset-1">
+                    
+                      <h4>Follow Us Here</h4>
+                      
+                        <!-- <img class="footer-logo" src="img/maanga-logo.png"/> -->
+                      
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-1"></div>
+            </div>
+          <!-- End Footer -->
+
+    </div>
+    <div class="col-md-12">
+    			<div class="row end_footer">
+              <div class="col-md-1"></div>
+              <div class="col-md-6">
+                <p>Copyright &copy; IoT Activation 2014</p>
+              </div>
+              <div class="col-md-4"></div>
+              <div class="col-md-1"></div>
+            </div>
+    </div>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/prettify.js"></script>
+    <script>
+      [].forEach.call(document.getElementsByTagName("pre"), function(el) {
+        el.classList.add("prettyprint");
+      });
+
+      prettyPrint();
+    </script>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+
+    <style>
+      pre.prettyprint {
+
+        font-size: 13px;
+        font-family: "Open Sans";
+        padding: 8px 12px;
+        border: 1px solid #bbb;
+        border-radius: 4px;
+      }
+    </style>
+    
+  </body>
+
+</html>
