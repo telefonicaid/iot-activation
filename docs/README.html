@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>IoT Basics</title>
+  <meta name="description" content="      ">
+  <meta name="google-translate-customization" content="b9870a0c7376df54-aa35852016e6a5cc-ga0a0d80f6c171f17-e"></meta>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/README.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="alternate" type="application/atom+xml" title="IoT Activation" href="http://localhost:4000/atom.xml" />
+</head>
+
+
+  <body>
+         <div class="col-md-12 navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">IoT Activation</a>
+      </div>
+      <div class="navbar-collapse collapse navbar-inverse-collapse">
+        <ul class="nav navbar-nav">
+          
+            
+          
+            
+          
+            
+          
+          
+<!--           <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+            
+              
+            
+              
+            
+              
+            
+            </ul>
+          </li>
+ -->        </ul>
+       
+        <ul class="nav navbar-nav navbar-right left-syms">
+          <li><a href="https://facebook.com/telefonicaid" target="_blank"><i class="fa fa-facebook-square"></i> <span>Facebook</span></a></li>
+          <li><a href="http://github.com/telefonicaid/iot-activation" target="_blank"><i class="fa fa-github"></i> <span>Github</span></a></li>
+          <li><a href="//twitter.com/TelefonicaIoT" target="_blank"><i class="fa fa-twitter"></i> <span>Twitter</span></a></li>
+          <li><a href="http://localhost:4000/atom.xml" target="_blank"><i class="fa fa-rss"></i> <span>RSS Feed</span></a></li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="col-md-12 blog-theme-class">
+          <!-- Top Blog Header -->
+          <div class="row jumb-bot">
+            <div class="col-md-1"></div>
+            <div class="jumbotron jumb-bot-jumbu col-md-10">
+
+              <h1>IoT Activation</h1>
+              <p>Welcome to IoT</p>
+            </div>            
+            <div class="col-md-1"></div>
+          </div>
+    </div>
+    <div class="col-md-12">
+        <div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+
+	  	
+	    <h1>IoT Basics</h1>
+	    <!--<div id="google_translate_element" style="padding-right: 27px;float: left;"></div><script type="text/javascript">
+			function googleTranslateElementInit() {
+  				new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+				}
+		</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+		-->
+	    <p class="post-meta">Dec 19, 2018</p>
+
+	   
+	  	<article class="blog-post-small blog-post-content">
+	    	<p align="center">
+      <img title="Telefonica" src="pictures/miscellaneous/Telefonica_logo.png" />
+</p>
+
+<h3 id="table-of-contents">Table of Contents</h3>
+
+<ul>
+  <li><a href="#welcome-to-iot-activation-of-telefonica">Welcome to IoT-Activation of Telefonica</a>
+    <ul>
+      <li><a href="#what-can-you-find-in-the-raspberry-starter-kit">Raspberry Starter-kit</a></li>
+      <li><a href="#and-in-the-arduino-kit">Arduino  Starter-kit</a></li>
+    </ul>
+  </li>
+  <li><a href="#before-starting-with-the-iot-activation-program-what-do-you-need-to-know">What do you need to know?</a>
+    <ul>
+      <li><a href="#what-is-nb-iot-or-lte-m">What is NB-IoT or LTE-M?</a>
+        <ul>
+          <li><a href="#narrowband-iot-nb-iot">NB-IoT</a></li>
+          <li><a href="#long-term-evolution-for-machines-lte-m">LTE-M</a></li>
+          <li><a href="#nb-iot-vs-lte-m">NB-IoT vs LTE-M</a></li>
+        </ul>
+      </li>
+      <li><a href="#connectivity-2g-and-3g">Connectivity 2G and 3G</a>
+        <ul>
+          <li><a href="#2g-networks-gprs-gsm">2G Networks</a></li>
+          <li><a href="#3g-networks-hspa-umts">3G Networks</a></li>
+        </ul>
+      </li>
+      <li><a href="#tcp-and-udp">TCP and UDP</a>
+        <ul>
+          <li><a href="#how-does-tcp-works">TCP</a></li>
+          <li><a href="#how-does-udp-works">UDP</a></li>
+          <li><a href="#what-is-the-difference-between-tcp-and-udp">TCP vs UDP?</a></li>
+        </ul>
+      </li>
+      <li><a href="#amazon-web-services-and-aws-iot">AWS-IoT</a></li>
+    </ul>
+  </li>
+  <li><a href="#why-are-we-different-kite-platform">Why are we different? Kite Platform</a></li>
+</ul>
+
+<h1 id="welcome-to-iot-activation-of-telefonica">Welcome to IoT-Activation of Telefonica</h1>
+
+<h2 id="what-can-you-find-in-the-raspberry-starter-kit">What can you find in the Raspberry Starter-kit?</h2>
+
+<ul>
+  <li>Raspberry Pi 3 B+</li>
+  <li>Case for Raspberry</li>
+  <li>MicroSD with pre-installer NOOBS (Raspberry-pi SO)</li>
+  <li>Raspberry Pi universal Power Supply 2.5A 5.1V</li>
+  <li>Raspberry Pi Camera V2</li>
+  <li>Raspberry Pi Sense HAT</li>
+  <li>Huawei USB Stick</li>
+  <li>Telefonica SIM Card</li>
+</ul>
+
+<p>To learn how to configure your device and start developing your applications check out the following tutorial 
+<a href="RaspberryPi_StarterKit.md">Raspberry Pi StarterKit guide</a></p>
+
+<p align="center">
+	<a href="RaspberryPi_StarterKit.md" lign="center">
+		<img src="pictures/Raspberry/Raspi_logol.png" width="250" height="75" />
+	</a>
+</p>
+
+<h2 id="and-in-the-arduino-kit">And in the Arduino kit?</h2>
+
+<p>In your Arduino Starterkit you can find the next components:</p>
+
+<ul>
+  <li>Arduino MKR NB-1500</li>
+  <li>Arduino Antenna GSM</li>
+  <li>Power Supply</li>
+  <li>Telefonica SIM Card</li>
+</ul>
+
+<p>To learn how to configure your device and start developing your applications check out the following tutorial 
+<a href="Arduino_StarterKit.md">Arduino StarterKit guide</a></p>
+
+<p align="center">
+	<a href="Arduino_StarterKit.md" lign="center">
+		<img src="pictures/Arduino/Arduino_Logo.png" width="150" height="100" />
+	</a>
+</p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h1 id="before-starting-with-the-iot-activation-program-what-do-you-need-to-know">Before starting with the IoT-Activation program… What do you need to know?</h1>
+
+<h2 id="what-is-nb-iot-or-lte-m">What is NB-IoT or LTE-M?</h2>
+
+<p>Surely you are already wondering how to connect these devices to intenet, 
+and if there is a specific technology for it. The answer to these questions is yes.</p>
+
+<p>In the last few years, different radio communication technologies have been developed 
+by different organizations.</p>
+
+<p>Amongst these new technologies developed for communication in the world of IoT 
+we can highlight NB-IoT and LTE-M as the most entrenched for this purpose.</p>
+
+<h3 id="narrowband-iot-nb-iot">Narrowband IoT (NB-IoT)</h3>
+
+<p>Narrowband IoT is a radio technology standard.
+It enables a wide range of simultaneous connections of a low power devices.</p>
+
+<p>NB-IoT does not need a high speed connection on the other hand it needs a stable connection. 
+It focuses specifically on indoor coverage.</p>
+
+<p>low power consumption enables a battery life of several years.</p>
+
+<p>Likewise, it preserves all characteristic of security and privacy of a mobile net.</p>
+
+<p align="center">
+	<a href="README.md">
+		<img src="pictures/miscellaneous/nbiot_logo.png" width="250" height="75" />
+	</a>
+</p>
+
+<h3 id="long-term-evolution-for-machines-lte-m">Long Term Evolution for Machines (LTE-M)</h3>
+
+<p>LTE is a standard for high-speed wireless communication for mobile devices.</p>
+
+<p>It allows bigger rate of data enable a real-time communication voice included.</p>
+
+<p align="center">
+	<a href="README.md">
+		<img src="pictures/miscellaneous/ltem_logo.png" width="250" height="75" />
+	</a>
+</p>
+
+<h3 id="nb-iot-vs-lte-m">NB-IoT vs LTE-M</h3>
+<p>Both standards are focus in wireless communication between devices.
+They are good connectivity options to take advantage of Low Power Wide Area Network</p>
+
+<p>Deciding between LTE-M and NB-IoT requires an understanding of the key differences between these two technologies.
+After analysing the similarities and differences between LTE-M and NB-IoT, you should be able to make a correct decision.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><strong>NB-IoT</strong></th>
+      <th style="text-align: center"><strong>LTE-M</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">high connection density</td>
+      <td style="text-align: center">mobile devices</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">limited bandwidth</td>
+      <td style="text-align: center">high-speed</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">long battery life</td>
+      <td style="text-align: center">long battery life</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">focus in indoor coverage</td>
+      <td style="text-align: center">focus in real-time communication</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">low cost</td>
+      <td style="text-align: center">low cost</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>If you have any doubt about what type of connection you should use for your devices we can clarify that 
+the choice between LTE-M and NB-IoT depends on the amount of data and the frequency your application needs.</p>
+
+<p>Choose LTE-M if you need real-time communication, on the other hand if you need many devices or sensors and do not need<br />
+a precision tracking data, you should choose NB-IoT.</p>
+
+<p>But when dealing with moving devices you can use a multi-technology NBIoT/LTE-M solution to guarantee the services.</p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="connectivity-2g-and-3g">Connectivity 2G and 3G</h2>
+
+<p>Surely more than once you have read acronyms such as 2G, 3G, 4G, GPRS, HDSPA or LTE among others 
+on the screen of your mobile. If you don’t know exactly what they mean, 
+If you don’t know exactly what they mean, we’ll explain the differences between 2G and 3G 
+so you don’t get stuck with the doubt.</p>
+
+<h4 id="2g-networks-gprs-gsm">2G Networks (GPRS, GSM)</h4>
+<p>They are the second generation networks and therefore lower speed networks.</p>
+
+<h4 id="3g-networks-hspa-umts">3G Networks (HSPA, UMTS)</h4>
+<p>They are third-generation networks. The main difference between 3G and 2G networks 
+is that 3G offers a higher transmission speed.</p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="tcp-and-udp">TCP and UDP</h2>
+<p>As you know, when two devices need to communicate with each other, it is logical for them to do so over the Internet. 
+What you may not know is that in establishing this data exchange, 
+there is a set of rules and regulations known as Internet Protocols (IP). 
+Although there is a diversity of them, which in turn are included within other protocols, t
+he most common protocols used in data transmission are TCP and UDP</p>
+
+<p>At first glance it may not seem important to use them indistinctly, 
+but in the next section you will see the advantages and weaknesses of each protocol.</p>
+
+<h3 id="how-does-tcp-works">How does TCP works?</h3>
+<p>TCP is the main protocol on Internet and is a connection-based protocol. This means that before starting a transmission, 
+a device needs to connect to the receiver and confirm that the receiver is listening to them.</p>
+
+<p>Then the device divides the information into packets and sends them in order after confirming 
+that they have been received correctly.</p>
+
+<p>Each time the receiver receives one of the packets, it has the task of verifying if the content is correct 
+and make the decision whether to request the shipment again or request the next packet until the shipment is complete.</p>
+
+<p>Although it is a slow process, TCP guarantees that all data has been received correctly.</p>
+
+<h3 id="how-does-udp-works">How does UDP works?</h3>
+<p>UDP is one of the simplest and fastest protocols used for communication between devices over the Internet. 
+Unlike other protocols, UDP only divides the information into packets and sends them to the destination.</p>
+
+<p>For this reason it is not necessary to wait for a confirmation. 
+UDP is limited to sending the packets no matter what happens.</p>
+
+<p>Although simple and fast, this protocol doesn’t guarantee that the data will be received correctly.</p>
+
+<h3 id="what-is-the-difference-between-tcp-and-udp">What is the difference between TCP and UDP?</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><strong>Transmission Control Protocol (TCP)</strong></th>
+      <th style="text-align: center"><strong>User Datagram Protocol (UDP)</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Protocol oriented to connections and it guarantees receive all the packets in order</td>
+      <td style="text-align: center">Easier and does not need to establish a connection</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Hight reliability and slow transmission time</td>
+      <td style="text-align: center">Fast transmission time for a large number of clients</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Error checking and quality guarantee for shipment</td>
+      <td style="text-align: center">Error checking without recovery</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For these reasons when choosing one of the protocols, it is necessary to assess the needs of the application.
+If we need the data transmission to be reliable we will choose TCP, 
+however if we need a fast data transmission and we can afford the loss of some of this, UDP is our best option.</p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="amazon-web-services-and-aws-iot">Amazon Web Services and AWS-IoT</h2>
+
+<p>Today Amazon Web Services is one of the largest providers of cloud computing services,
+and some of its products focus exclusively on the development of IoT technologies.</p>
+
+<p>AWS-IoT provides secure, two-way communication between multiple devices connected to the Internet.
+This allows you to collect and process telemetry from Internet-connected devices and control them remotely.
+You can create rules that define an action to be performed based on the message received.</p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h1 id="why-are-we-different-kite-platform">Why are we different? Kite Platform</h1>
+
+<p>Connectivity management functionalities like inventory, real time expenses control, alarms, 
+automatic business rules or reporting.</p>
+
+<p>Remote management of devices that allow features like APN configuration, remote firmware updates, 
+remote device resets and remote diagnostics.</p>
+
+<p>Cloud connectors that eases integration amongst the main public cloud platforms and apps.</p>
+
+<p>Discover Kite <a href="Movistar_Kite_Platform.md">here</a></p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+
+	  	</article>
+	  	
+	  	
+	  	
+<!-- Output author details if some exist. -->
+   
+
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/arduinoaws.html" title="Previous Post:
+        Arduino Aws">&laquo; Arduino Aws</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+      <li class="next"><a class="basic-alignment right" href="/arduinostarterkit.html"
+        title="Next Post: Arduino Starter Kit">Arduino Starter Kit
+        &raquo;</a></li>
+      
+    </ul>
+	</div>
+	<div class="col-md-1"></div>
+</div>
+    </div>
+    <div class="col-md-12 share-div">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          
+<div class="fb_share">
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=354997024639145&version=v2.0";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+<div class="fb-share-button" data-layout="button_count"></div>
+</div>
+
+
+
+<div class="twitter_share">
+	<a href="https://twitter.com/share" class="twitter-share-button" data-via="TelefonicaIoT" data-hashtags="sailsjs">Tweet</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+</div>
+
+
+
+<div class="linkedin_share">
+	<script src="//platform.linkedin.com/in.js" type="text/javascript">
+	  lang: en_US
+	</script>
+	<script type="IN/Share" data-counter="right"></script>
+</div>
+
+
+
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="col-md-12">
+    <!-- Footer -->
+            <div class="row footer">
+              <div class="col-md-1"></div>
+              <div class="col-md-10">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <h4>Recent Posts</h4>
+                        <ul>
+                        
+                          <li><a href="/raspberrysshethernet.html">Raspberry Ethernet</a></li>
+                        
+                          <li><a href="/raspberrypistarterkit.html">Raspberry Starter Kit</a></li>
+                        
+                          <li><a href="/raspberrypipython.html">Python Hello World</a></li>
+                        
+                          <li><a href="/raspberrypihat.html">Raspberry PI Hat</a></li>
+                        
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-md-offset-1">
+                      <h4>Github Repositories</h4>
+                      <ul>
+                      
+                        <li>
+                          <a href="https://github.com/telefonicaid/iot-activation">
+                            <span class="username">telefonicaid/iot-activation</span>
+                          </a>
+                        </li>
+                        
+                      </ul>
+                    </div>
+                    <div class="col-md-3 col-md-offset-1">
+                    
+                      <h4>Follow Us Here</h4>
+                      
+                        <!-- <img class="footer-logo" src="img/maanga-logo.png"/> -->
+                      
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-1"></div>
+            </div>
+          <!-- End Footer -->
+
+    </div>
+    <div class="col-md-12">
+    			<div class="row end_footer">
+              <div class="col-md-1"></div>
+              <div class="col-md-6">
+                <p>Copyright &copy; IoT Activation 2014</p>
+              </div>
+              <div class="col-md-4"></div>
+              <div class="col-md-1"></div>
+            </div>
+    </div>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/prettify.js"></script>
+    <script>
+      [].forEach.call(document.getElementsByTagName("pre"), function(el) {
+        el.classList.add("prettyprint");
+      });
+
+      prettyPrint();
+    </script>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+
+    <style>
+      pre.prettyprint {
+
+        font-size: 13px;
+        font-family: "Open Sans";
+        padding: 8px 12px;
+        border: 1px solid #bbb;
+        border-radius: 4px;
+      }
+    </style>
+    
+  </body>
+
+</html>
