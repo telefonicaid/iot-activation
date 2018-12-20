@@ -1,0 +1,29 @@
+# Site settings
+title:
+email:
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "" # the base hostname & protocol for your site
+
+# User setting
+owner:
+email:
+facebook_username:
+twitter_username:
+github_username:
+address:
+  - line:
+  - line:
+  # Feel free to add more lines here
+telephone:
+copyright:
+
+# API settings
+google_api_key:
+
+# Build settings
+markdown: kramdown
+theme: jekyll-theme-minimal
+collections:
+  portfolio:
+    output: true
+    permalink: /portfolio/:path/
