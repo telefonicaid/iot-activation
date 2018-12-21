@@ -26,4 +26,4 @@ theme: jekyll-theme-minimal
 collections:
   portfolio:
     output: true
-    permalink: /portfolio/:path/
+    permalink: iot-activation/portfolio/:path/
