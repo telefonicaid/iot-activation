@@ -19,21 +19,27 @@
 //SOFTWARE.
 ////////////////////////////////////////////////////////////////////////////////
 #include <MKRNB.h>
+#include <ArduinoJson.h>
 #include "configuration.h"
 #include "my_sensor.h"
 #include "send_UDP.h"
+#include "device.h"
 #include "setup_SaraR410M_movistar.h"
 
-NB nbAccess('false');
-GPRS gprs;
-NBUDP Udp2;
+// Const
+const int PACKET_BUFFER_SIZE = 255;
 
-//variables
+// Variables
+NB nbAccess(1);
+GPRS gprs;
+NBUDP Udp;
 my_sensor data;
-char data_string[30];
+
+char packetBuffer[PACKET_BUFFER_SIZE]; //buffer to send packets
+//char data_string[30];
 const char PINNUMBER[]=SECRET_PINNUMBER;
 const int polling=POLL_TIME*1000;
-unsigned int local_Port2 = LOCAL_PORT;      // local port to listen for UDP packets
+
 
 void setup() {
   
@@ -61,7 +67,9 @@ void setup() {
     
   }
   
-  Udp2.begin(local_Port2);
+  Udp.begin(local_Port);
+
+  device_setup();
   
   Serial.println("END setup");
 
@@ -75,12 +83,26 @@ void loop() {
   Serial.print("- voltage: ");
   Serial.println(data.get_voltage());
   Serial.print("- amperage: "); 
-  Serial.println(data.get_amperage());
+  Serial.println();  
+      
+  Serial.println("Formating...");
+  memset(packetBuffer, 0x00, PACKET_BUFFER_SIZE);
+  sprintf(packetBuffer,"{\"v\":%d,\"a\":%d}",data.get_voltage(),data.get_amperage());
+  Serial.println(packetBuffer);
 
-  Serial.println("Sending... ");     
+  Serial.println("Sending data to UDP ... ");      
+  JsonObject& ack_command = send_UDP_ack(Udp,packetBuffer); 
+
+  if (ack_command["code"] == 200){
+    Serial.print("command: ");
+    char msg = ack_command["msg"];
+    Serial.println(msg); 
+    char status_device = device_task(msg);
+  }
   
-  send_data_UDP(Udp2,data.get_voltage(),data.get_amperage()); 
   
-  Serial.println("waiting... "); 
+  Serial.print("waiting for "); 
+  Serial.print(polling/1000); 
+  Serial.println(" seconds ... "); 
   delay(polling);
 }
