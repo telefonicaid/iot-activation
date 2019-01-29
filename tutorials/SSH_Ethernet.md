@@ -25,3 +25,9 @@ Scroll to the bottom of the script, and add the following lines
 Save the file with **Ctrl+O**  and close it with **Ctrl+X**
 review the changes whit the command `cat /etc/dhcpcd.conf`
 
+---
+layout: post
+title: "Raspberry SSH Ethernet"
+date: 2018-12-20 22:37:00 +05:30
+categories: Raspberry
+---

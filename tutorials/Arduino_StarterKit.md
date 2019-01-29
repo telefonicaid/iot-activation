@@ -62,9 +62,10 @@ GSM antennas designed for mobile communications compatible with the Arduino boar
 An electrical device that supplies electric power to your Arduino board
 
 <p align="center">
-      <img  title="Arduino_NB1500" src="pictures/Arduino/Arduino_power_supply.jpg"
+      <img  title="Arduino_PowerSupply" src="pictures/Raspberry/Raspi_PowerSupply.png"
 	  width="300" height="250">
 </p>
+
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
@@ -518,7 +519,7 @@ To activate the PSM, you only have to select the value to one and configure
 the time of the cicle (IDLE + PSM) and time of conection (IDLE) copying the codes that there are in the table. 
 ```AT
 ** Activate PSM: 1h of cycle / 5m resting"
-AT+CEDRXS=1,"00100001","00100101"
+AT+CPSMS=1,"00100001","00100101"
 ```
 
 To complete the code of each timer, select the first 3 digits of the PSM table and complete them 
@@ -545,7 +546,7 @@ try with a complete example
 //PSM
 1hour - 5 min = 45 min
 
-AT+CEDRXS=1,"00100001","00100101"
+AT+CPSMS=1,"00100001","00100101"
 ```
 
 if you need, you can use a binary online calculator: https://www.rapidtables.com/convert/number/decimal-to-binary.html
@@ -621,3 +622,4 @@ Connected
 ```
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+

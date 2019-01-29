@@ -39,5 +39,10 @@ Now you can run the script and see what happens
 python HelloWorld.py
 ```
 
-
+---
+layout: post
+title: "Raspberry Pi Python"
+date: 2018-12-20 22:37:00 +05:30
+categories: Raspberry
+---
 

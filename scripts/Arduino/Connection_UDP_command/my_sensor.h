@@ -18,36 +18,26 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 ////////////////////////////////////////////////////////////////////////////////
-#include "my_sensor.h"
+#ifndef my_sensor_h
+#define my_sensor_h
 
-#include "Arduino.h"
-
-my_sensor::my_sensor(){
-  _voltage=0 ;
-  _amperage=0 ;
-}
-
-void my_sensor::set_voltage(){
-  randomSeed(millis());
-  _voltage=random(30,40);  
-}
-
-void my_sensor::set_amperage(){
-  randomSeed(millis());
-  _amperage=random(5,30);    
-}
-
-void my_sensor::measurement(){
-  set_voltage();
-  set_amperage();    
-}     
-      
-int my_sensor::get_voltage(){
-  return _voltage;    
-}
-
-int my_sensor::get_amperage(){
-  return _amperage ;    
-}
-
+class my_sensor {
+  private:
+  	int _voltage;
+  	int _amperage;
+    
   
+  public:
+    //Constructor
+    my_sensor();
+    //set function
+    void set_voltage();  
+    void set_amperage();  
+    void measurement();
+    //get function  
+    int get_voltage();  
+    int get_amperage();   
+    
+} ;
+
+#endif

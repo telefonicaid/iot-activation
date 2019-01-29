@@ -374,8 +374,9 @@ use the Raspberry default user **pi** and the new-password selected on the previ
 
 #### Control your raspberry with a network cable
 
-If you prefer it is also possible to control your Raspberri pi connected to your pc via a network cable (Ethernet)
+If you prefer it is also possible to control your Raspberry pi connected to your pc via a network cable (Ethernet)
 
 [How to connect via Ethernet](SSH_Ethernet.md)
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+

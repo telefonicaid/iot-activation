@@ -1,6 +1,6 @@
 ### Table of Contents
 
-- [This is KITE!](#this-is-kite-)
+- [This is KITE!](#this-is-kite)
 - [Quick view to Kite Grafic Interface](#quick-view-to-kite-grafic-interface)
   * [Manage your SIMs](#manage-your-sims)
     + [SIM inventory](#sim-inventory)
@@ -9,12 +9,14 @@
         * [Change life cycle state](#change-life-cycle-state)
         * [Activate data traffic](#activate-data-traffic)
     + [SIM details](#sim-details)
-- [What is Kite Platform API?](#what-is-kite-platform-api-)
+  * [Commercial Management](#commercial-management)
+- [What is Kite Platform API?](#what-is-kite-platform-api)
   * [How to access Kite Platform API?](#how-to-access-kite-platform-api)
-    + [Access step by step using the CURL command](#access-step-by-step-using-the-curl-command)
+    + [Extract your credentials files](#extract-your-credentials-files)
+    + [Access API using a command](#access-api-using-a-command)
+- [How it's made!](#how-it-s-made)
 
 [![IMAGE ALT TEXT HERE](pictures/Kite/Kite.png)](https://www.youtube.com/watch?v=Kr5aICVJxSA)
-
 
 
 # This is KITE!
@@ -84,7 +86,7 @@ In order for a SIM to be operational, it must be activated.
 
 ![pic](pictures/Kite/Kite_interface_SIM_select_2Change_life_cycle.png)
 
-![pic](pictures/Kite/Kite_interface_SIM_LifeCycle.png)
+![pic](pictures/Kite/Kite_interface_SIM_LifeCycle2.png)
 
 - Inactive new, initial state of any SIM card. The card will remain in this state until you 
 assign a Subscription Group to it (including a commercial plan).
@@ -122,6 +124,8 @@ there is no going back to the previously defined states.
 And lastly you must make sure that the SIM has the traffic activated.
 
 ![pic](pictures/Kite/Kite_interface_SIM_select_3Activate_data_traffic.png)
+
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
 ### SIM details
 
@@ -174,6 +178,10 @@ indicates whether they are activated
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
+## Commercial Management
+
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
 # What is Kite Platform API?
 The Kite Platform offers you an API that allows you to integrate it with all your systems. 
 It allows you to access all your data your data offering you various functionalities
@@ -194,13 +202,14 @@ This request is made through the use of a certificate and a private key for encr
 these will be issued on demand and will be exclusive to you. Take good care of it! 
 Remember that it is the gateway to all your SIM data.
 
-### Access step by step using the CURL command
+### Extract your credentials files
 
-The Curl command is used to transfer files from a server, it supports various protocols such as HTTP, FTP ...
 
 If you have requested access to the Kite Platform API, the support team will have provided you with an encrypted file.pfx
 containing both the key and the certificate for the SSL context of your connection. It will also provide you 
 a password so that you can extract them.
+
+It is important not to modify the name of the .pfx file until you extract the files.
 
 1. Open a Linux Terminal and install openssl, if you do not have it installed.
 This command allows you to decrypt your file
@@ -209,21 +218,27 @@ sudo apt-get install openssl
 ```
 2. Extract the public key from Customer certificate **your_customer_certificate.pfx**
 ```
-openssl pkcs12 -in your_customer_certificate.pfx -clcerts -nokeys -out your_customer_certificate.cer
+openssl pkcs12 -in your_customer_certificate.pfx -clcerts -nokeys -out your_customer_certificate.cer -password pass:xxxxxxx
 ```
 You will need the password provided by the Kite Platform Support Team
 
 3. Extract the private key from the Customer certificate
 ```
-openssl pkcs12 -in your_customer_certificate.pfx -nocerts -nodes -out your_customer_certificate.key
+openssl pkcs12 -in your_customer_certificate.pfx -nocerts -nodes -out your_customer_certificate.key -password pass:xxxxxxxx
 ```
 also you will need your password here.
+
 :heavy_exclamation_mark:  Remember, keep these new files in a safe place!!
 
-4. There is an example about the access to the Commercial Plans API REST using the CURL command:
+### Access API using a command
+
+The Curl command is used to transfer files from a server, it supports various protocols such as HTTP, FTP ...
+
+ There is an example about the access to the Commercial Plans API REST using the CURL command:
+ 
 ```
 sudo curl --cert ./your_customer_certificate.cer --key ./your_customer_certificate.key https://m2m-api.telefonica.com:8010/services/REST/GlobalM2M/ServicePacks/v2/r12/servicePack
 ```
 
-
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 

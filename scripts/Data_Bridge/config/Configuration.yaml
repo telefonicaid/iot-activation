@@ -1,0 +1,15 @@
+# List of connection settings
+
+cloud: AWS
+
+UDP:
+  ip: "0.0.0.0"
+  port: 4114
+
+
+KITE:
+  url:"https://m2m-api.telefonica.com"    
+  path: "CA/"
+  certificate: "your_customer_certificate.cer"
+  private_key: "your_customer_certificate.key"
+

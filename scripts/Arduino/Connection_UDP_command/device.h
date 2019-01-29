@@ -18,36 +18,38 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 ////////////////////////////////////////////////////////////////////////////////
-#include "my_sensor.h"
 
-#include "Arduino.h"
-
-my_sensor::my_sensor(){
-  _voltage=0 ;
-  _amperage=0 ;
+void device_setup() {
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(LED_BUILTIN, OUTPUT);
 }
 
-void my_sensor::set_voltage(){
-  randomSeed(millis());
-  _voltage=random(30,40);  
+void device_task_led_on(){
+  digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
 }
 
-void my_sensor::set_amperage(){
-  randomSeed(millis());
-  _amperage=random(5,30);    
+void device_task_led_off(){
+  digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
 }
 
-void my_sensor::measurement(){
-  set_voltage();
-  set_amperage();    
-}     
-      
-int my_sensor::get_voltage(){
-  return _voltage;    
-}
+char device_task(char  msg){
 
-int my_sensor::get_amperage(){
-  return _amperage ;    
+  switch (msg) {  
+  case 1:
+    Serial.println("turn ON led command");
+    device_task_led_on();
+    break;  
+  case 2:
+    Serial.println("turn OFF led command");
+    device_task_led_off();
+    break;
+  default:
+    Serial.println("Unidentified command"); 
+    break;
+  return msg;
 }
 
   
+
+  
+}

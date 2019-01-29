@@ -31,12 +31,14 @@ They may seem small, but the possibilities are immense!!
 
 [Why are we different? Kite Platform](tutorials/Movistar_Kite_Platform.md)
 
+[Data Bridge](tutorials/Bridge_UDP.md)
+
 [Raspberry Pi Starter-Kit](tutorials/RaspberryPi_StarterKit.md)
 - [Raspberry: Sens-HAT to AWS-IoT](tutorials/RaspberryPi_HAT.md)
 <p align="center">
 	<a href="tutorials/RaspberryPi_HAT.md" lign="center">
 		<img src="tutorials/pictures/schematics/overview_rasp_AWS.png"
-		width="425" height="250">	 	 
+		width="640" height="360">	 	 
 	</a>
 </p>
 
@@ -45,7 +47,7 @@ They may seem small, but the possibilities are immense!!
 <p align="center">
 	<a href="tutorials/Arduino_AWS.md" lign="center">
 		<img src="tutorials/pictures/schematics/overview_arduino_AWS.png"
-		width="500" height="250">	 
+		width="640" height="360">	 
 	</a>
 </p>
 
