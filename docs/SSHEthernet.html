@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width initial-scale=1">
 
-  <title>Your first python Script</title>
-  <meta name="description" content="Your first python Script!What is python!Python is an interpreted, high-level programming language for general-purpose programming.It provides constructs that...">
+  <title>Control your Raspberry with a Network cable</title>
+  <meta name="description" content="Control your Raspberry with a Network cable">
   <meta name="google-translate-customization" content="b9870a0c7376df54-aa35852016e6a5cc-ga0a0d80f6c171f17-e"></meta>
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/RaspberryPiPython.html">
+  <link rel="canonical" href="http://localhost:4000/SSHEthernet.html">
   <link href="/favicon.png" rel="icon">
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="alternate" type="application/atom+xml" title="IoT Activation" href="http://localhost:4000/atom.xml" />
@@ -87,7 +87,7 @@
 	<div class="col-md-10">
 
 	  	
-	    <h1>Your first python Script</h1>
+	    <h1>Control your Raspberry with a Network cable</h1>
 	    <!--<div id="google_translate_element" style="padding-right: 27px;float: left;"></div><script type="text/javascript">
 			function googleTranslateElementInit() {
   				new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
@@ -98,44 +98,31 @@
 
 	   
 	  	<article class="blog-post-small blog-post-content">
-	    	<h1 id="your-first-python-script">Your first python Script!</h1>
+	    	<h1 id="control-your-raspberry-with-a-network-cable">Control your Raspberry with a Network cable</h1>
 
-<h1 id="what-is-python">What is python!</h1>
+<p>If you want to connect your Raspberry to your computer via a network cable, 
+you must ensure that both devices are configured for the same network.</p>
 
-<p>Python is an interpreted, high-level programming language for general-purpose programming.
-It provides constructs that enable clear programming on both small and large scales</p>
+<p>The easiest way is to set up a static IP. In order to do this, 
+we will assign an IP of our choice to the configuration that you assign for the configuration.</p>
 
-<h1 id="how-to-program-using-the-terminal-window">How to program using the Terminal Window</h1>
+<p>Open a terminal windows use the next command ‘sudo ifconfig -a’</p>
 
-<p>Opena a terminal widows with keys <strong>Ctrl+Alt+T</strong></p>
+<p>If you are connected by cable you will see an IP address assigned.
+This IP has been assigned automatically and will change whenever you establish a new connection.</p>
 
-<p>Create a new file
-type <code class="highlighter-rouge">nano</code> in the command line to open the text editor.</p>
+<p>To set a default IP address edit the file <strong>/etc/dhcpcd.conf</strong>
+use the command <code class="highlighter-rouge">sudo nano /etc/dhcpcd.conf</code> at the command prompt.
+Scroll to the bottom of the script, and add the following lines</p>
 
-<p>If you know other text editors, you can use your preferred one</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	interface eth0
 
-<p><img src="pictures/miscellaneous/python_nano.png" alt="pick" /></p>
-
-<p>copy the following text:
-You can also find it here <a href="../scripts/HelloWorld.py">HelloWorld.py</a></p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#! /usr/bin/python
-</span>
-<span class="c1">#this is a comment
-#import the librery time
-</span><span class="kn">import</span> <span class="nn">time</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"Hello IoT World"</span><span class="p">)</span>
-<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"Goodbye IoT World"</span><span class="p">)</span>
+	static ip_address=192.168.0.2/24
+	static routers=192.168.0.1
+	static domain_name_servers=192.168.0.1
 </code></pre></div></div>
-<p><img src="pictures/miscellaneous/python_nano_sript.png" alt="pick" /></p>
-
-<p>To exit and save the changes press <strong>Ctrl+X</strong>. Select <strong>Y</strong> to save and type the name of the file ** “HelloWorld.py” **.</p>
-
-<p>You can check the file with the command <code class="highlighter-rouge">cat HelloWorld.py</code></p>
-
-<p>Now you can run the script and see what happens</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python HelloWorld.py
-</code></pre></div></div>
+<p>Save the file with <strong>Ctrl+O</strong>  and close it with <strong>Ctrl+X</strong>
+review the changes whit the command <code class="highlighter-rouge">cat /etc/dhcpcd.conf</code></p>
 
 
 	  	</article>
@@ -148,13 +135,13 @@ You can also find it here <a href="../scripts/HelloWorld.py">HelloWorld.py</a></
     <ul class="pager">
       
       <li class="previous"><a class="basic-alignment left"
-        href="/AWScreatenewthing.html" title="Previous Post:
-        AWS-IoT Create Device Thing">&laquo; AWS-IoT Create Device Thing</a></li>
+        href="/RaspberryPiPython.html" title="Previous Post:
+        Your first python Script">&laquo; Your first python Script</a></li>
       
       <li><a href="/blog/archives">Blog Archives</a></li>
       
-      <li class="next"><a class="basic-alignment right" href="/SSHEthernet.html"
-        title="Next Post: Control your Raspberry with a Network cable">Control your Raspberry with a Network cable
+      <li class="next"><a class="basic-alignment right" href="/ArduinoAWS.html"
+        title="Next Post: Arduino to AWS">Arduino to AWS
         &raquo;</a></li>
       
     </ul>
