@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width initial-scale=1">
 
-  <title>Your first python Script</title>
-  <meta name="description" content="Your first python Script!What is python!Python is an interpreted, high-level programming language for general-purpose programming.It provides constructs that...">
+  <title>AWS-IoT Create Device Thing</title>
+  <meta name="description" content="Create device thing in AWS-IoT  Sign in to the AWS Management Console, and then open the AWS IoT console at https://console.aws.amazon.com/iot  Go to the Mon...">
   <meta name="google-translate-customization" content="b9870a0c7376df54-aa35852016e6a5cc-ga0a0d80f6c171f17-e"></meta>
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/RaspberryPiPython.html">
+  <link rel="canonical" href="http://localhost:4000/AWScreatenewthing.html">
   <link href="/favicon.png" rel="icon">
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="alternate" type="application/atom+xml" title="IoT Activation" href="http://localhost:4000/atom.xml" />
@@ -87,7 +87,7 @@
 	<div class="col-md-10">
 
 	  	
-	    <h1>Your first python Script</h1>
+	    <h1>AWS-IoT Create Device Thing</h1>
 	    <!--<div id="google_translate_element" style="padding-right: 27px;float: left;"></div><script type="text/javascript">
 			function googleTranslateElementInit() {
   				new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
@@ -98,45 +98,55 @@
 
 	   
 	  	<article class="blog-post-small blog-post-content">
-	    	<h1 id="your-first-python-script">Your first python Script!</h1>
+	    	<h2 id="create-device-thing-in-aws-iot">Create device thing in AWS-IoT</h2>
 
-<h1 id="what-is-python">What is python!</h1>
-
-<p>Python is an interpreted, high-level programming language for general-purpose programming.
-It provides constructs that enable clear programming on both small and large scales</p>
-
-<h1 id="how-to-program-using-the-terminal-window">How to program using the Terminal Window</h1>
-
-<p>Opena a terminal widows with keys <strong>Ctrl+Alt+T</strong></p>
-
-<p>Create a new file
-type <code class="highlighter-rouge">nano</code> in the command line to open the text editor.</p>
-
-<p>If you know other text editors, you can use your preferred one</p>
-
-<p><img src="pictures/miscellaneous/python_nano.png" alt="pick" /></p>
-
-<p>copy the following text:
-You can also find it here <a href="../scripts/HelloWorld.py">HelloWorld.py</a></p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#! /usr/bin/python
-</span>
-<span class="c1">#this is a comment
-#import the librery time
-</span><span class="kn">import</span> <span class="nn">time</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"Hello IoT World"</span><span class="p">)</span>
-<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"Goodbye IoT World"</span><span class="p">)</span>
-</code></pre></div></div>
-<p><img src="pictures/miscellaneous/python_nano_sript.png" alt="pick" /></p>
-
-<p>To exit and save the changes press <strong>Ctrl+X</strong>. Select <strong>Y</strong> to save and type the name of the file ** “HelloWorld.py” **.</p>
-
-<p>You can check the file with the command <code class="highlighter-rouge">cat HelloWorld.py</code></p>
-
-<p>Now you can run the script and see what happens</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python HelloWorld.py
-</code></pre></div></div>
-
+<ol>
+  <li>Sign in to the AWS Management Console, and then open the AWS IoT console at https://console.aws.amazon.com/iot</li>
+  <li>Go to the Monitor page. In the left navigation panel, choose Manage, and then choose Things.
+<img src="pictures/AWS/AWS_Console.png" alt="pic" /></li>
+  <li>You don’t have a thing created yet. Choose Register a thing.
+<img src="pictures/AWS/AWS_Console_Manage_Register.png" alt="pic" /></li>
+  <li>On the Creating AWS IoT things page, choose Create a single thing.
+<img src="pictures/AWS/AWS_Console_Manage_Register_things.png" alt="pic" /></li>
+  <li>Enter a name for the device, leave the default values for all the other fields, and then choose Next.
+<img src="pictures/AWS/AWS_Console_Manage_Register_Device.png" alt="pic" /></li>
+  <li>Now generates the certificates.
+<img src="pictures/AWS/AWS_Console_Manage_Certificates.png" alt="pic" /></li>
+  <li>Download your public and private keys, certificate, and root certificate authority (CA)on your PC. 
+<img src="pictures/AWS/AWS_Console_Manage_Certificates_Download.png" alt="pic" /></li>
+  <li>Download your root certificate authority a new window is open for select a CA to download
+<img src="pictures/AWS/AWS_Console_Manage_Certificates_Download_CA.png" alt="pic" /></li>
+  <li>Don’t forget to save these files, you need them to set the connection</li>
+  <li>Returns to the previous window and <strong>Activate</strong></li>
+  <li>Select <strong>Attach a policy</strong>
+<img src="pictures/AWS/AWS_Console_Manage_Certificates_Download.png" alt="pic" /></li>
+  <li>Close this window, before you need to create and attach a new policy to the certificate
+<img src="pictures/AWS/AWS_Console_Manage_Certificates_AttachPolicy.png" alt="pic" /></li>
+  <li>Open the AWS IoT console again https://console.aws.amazon.com/iot</li>
+  <li>In the left navigation panel, choose <strong>Secure</strong>, and then choose <strong>Policies</strong>.</li>
+  <li>Select <strong>Create a Policy</strong>
+<img src="pictures/AWS/AWS_Console_Secure_Policies.png" alt="pic" /></li>
+  <li>Enter a Name for the policy:
+    <ul>
+      <li><strong>Action</strong>        enter <strong>iot:</strong>*</li>
+      <li><strong>Resource ARN</strong>  enter <strong>*</strong></li>
+      <li><strong>Effect</strong>        choose <strong>Allow</strong>
+Select Create. This policy allows your Device to publish messages to AWS IoT.
+<img src="pictures/AWS/AWS_Console_Secure_Policies_Create_Device.png" alt="pic" /></li>
+    </ul>
+  </li>
+  <li>In the AWS IoT console, choose <strong>Manage</strong>, <strong>Things</strong>. On the Things page, choose your Thing
+<img src="pictures/AWS/AWS_Console_Manage_Things_Device.png" alt="pic" /></li>
+  <li>On the thing’s <strong>Details</strong> page, in the left navigation panel, choose <strong>Interact</strong>.
+Make a note of the REST API endpoint. You need it to connect to your device shadow.
+<img src="pictures/AWS/AWS_Console_Manage_Things_Details_Interact_Device.png" alt="pic" /></li>
+  <li>Now select <strong>Security</strong>, and choose the certificate that you created earlier. 
+<img src="pictures/AWS/AWS_Console_Manage_Things_Details_Security_Device.png" alt="pic" /></li>
+  <li>In Actions, choose Attach policy
+<img src="pictures/AWS/AWS_Console_Manage_Things_Details_Security_Policy_Device.png" alt="pic" /></li>
+  <li>Select your new policy and then choose Attach 
+<img src="pictures/AWS/AWS_Console_Manage_Things_Details_Security_Policy_Attach_Device.png" alt="pic" /></li>
+</ol>
 
 	  	</article>
 	  	
@@ -147,14 +157,10 @@ You can also find it here <a href="../scripts/HelloWorld.py">HelloWorld.py</a></
 
     <ul class="pager">
       
-      <li class="previous"><a class="basic-alignment left"
-        href="/AWScreatenewthing.html" title="Previous Post:
-        AWS-IoT Create Device Thing">&laquo; AWS-IoT Create Device Thing</a></li>
-      
       <li><a href="/blog/archives">Blog Archives</a></li>
       
-      <li class="next"><a class="basic-alignment right" href="/SSHEthernet.html"
-        title="Next Post: Control your Raspberry with a Network cable">Control your Raspberry with a Network cable
+      <li class="next"><a class="basic-alignment right" href="/RaspberryPiPython.html"
+        title="Next Post: Your first python Script">Your first python Script
         &raquo;</a></li>
       
     </ul>
