@@ -1,3 +1,9 @@
+---
+layout: post
+title:  "Raspberry Pi Starterkit"
+date:   2019-02-06 12:00:00 +00:00
+categories: tutorial
+---
 ### Table of Contents
 
 - [Raspberry Pi Starterkit for IoT-Activation](#raspberry-pi-starterkit-for-iot-activation)
@@ -74,7 +80,7 @@ Raspbian is a free operating system based on Debian optimized for the Raspberry 
 An operating system is the set of basic programs and utilities that make your Raspberry Pi run. 
 However, Raspbian provides pre-compiled software bundled in a nice format for easy installation.
 
-![pic](pictures/Raspbian_Desktop.png)
+![pic](pictures/Raspberry/Raspbian_Desktop.png)
 
 
 ### Raspberry Pi universal Power Supply 2.5A 5.1V
@@ -245,7 +251,7 @@ sudo nmcli con add type gsm ifname "*" con-name USBStick apn TelefonicaSIM_APN u
 
 :heavy_exclamation_mark:  The field **TelefonicaSIM_APN** must be replaced by the APN address of your Telefonica SIM card.
 In this case, the APN of your SIM card will be provided by Telefonica. 
-However, you will be able to identify it through access to [Kite.](Movistar_Kite_Platform.md)
+However, you will be able to identify it through access to [Kite.](Kite_Platform.md)
 
 If your SIM uses a PIN code, add to the end of the command: `pin 0000`
 
@@ -301,7 +307,7 @@ rm 1
 If you have followed all these steps, there should be no problem. but if not, your SIM card may not be activated.
 
 Luckily you have access to the Kite Platform and you can manage its status
-check out our tutorial [here](Movistar_Kite_Platform.md)
+check out our tutorial [here](Kite_Platform.md)
 
 
 ## Use a remote access. Enable SSH server on Raspbian. 
