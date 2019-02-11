@@ -1,9 +1,15 @@
+---
+layout: post
+title:  "Arduino to AWS"
+date:   2019-02-06 12:00:00 +00:00
+categories: tutorial
+---
 ### Table of Contents
 
 - [Arduino: MKR NB-1500 to AWS-IoT](#arduino-mkr-nb-1500-to-aws-iot)
   * [Getting started with the MKR NB-1500](#getting-started-with-the-mkr-nb-1500)
-    - [What you will learn](#what-you-will-learn)
-	- [What you will need](#what-you-will-need)
+    - [What will you learn?](#what-will-you-learn)
+    - [What will you need?](#what-will-you-need)
   * [What is MQTT](#what-is-mqtt)
   * [Test your Certificates with MQTT.fx](#test-your-certificates-with-mqttfx)
   * [How to comunicate with AWS](#how-to-comunicate-with-aws)
@@ -33,14 +39,16 @@ For this project, we will take different values from the Arduino board and publi
 - Generate credentials for AWS
 - Build a bridge between UDP and MQTT with Python
 
-#### What will you need
+#### What will you need?
 
 - Finish successfully the Arduino Starterkit tutorial
 - Arduino board MKR NB-1500
 - Micro USB cable
 - Arduino IDE
 - AWS account
-
+- [KITE Platform](Kite_Platform.md#access-step-by-step-using-the-curl-command) Certificates files
+- Telefonica SIMs with private APN [(IPsec)](BP_IPsec.md)
+- Telefonica [data Bridge](BP_DataBridge.md)
 
 If you have successfully completed the Arduino Starterkit tutorial, all the necessary software is already updated.
 
@@ -269,9 +277,9 @@ By updating your Kite SIM information, the data bridge recognizes the SIM and au
 the corresponding AWS MQTT broker. 
 
 Just make sure to add the name of the thing as one of the fields of the SIM in Kite.
-[Kite](Movistar_Kite_Platform.md#sim-identification)
+[Kite](Kite_Platform.md#sim-identification)
 
-This [bridge](Bridge_UDP.md)
+This [bridge](BP_DataBridge.md)
 is the easiest way to connect to AWS using only one UDP send
 
 :heavy_exclamation_mark: If you're running the connection tests in The Thinx lab. 

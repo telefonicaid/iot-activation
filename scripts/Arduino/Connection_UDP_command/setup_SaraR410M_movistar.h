@@ -50,13 +50,13 @@ int setup_SaraR410M_movistar(){
   //// uncomment only 1 of the 4 options
   
   //// LTE only
-  //MODEM.sendf("AT+URAT=7");
+  MODEM.sendf("AT+URAT=7");
   //// NB-IoT only
   //MODEM.sendf("AT+URAT=8");
   //// LTE-M preferred, NB-IoT as failover
   //MODEM.sendf("AT+URAT=7,8"); 
   //// NB-IoT preferred, LTE-M as failover
-  MODEM.sendf("AT+URAT=8,7");
+  //MODEM.sendf("AT+URAT=8,7");
   ////wait response
   MODEM.waitForResponse(2000, &response);
   

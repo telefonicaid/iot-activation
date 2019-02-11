@@ -1,9 +1,15 @@
+---
+layout: post
+title:  "Raspberry to AWS"
+date:   2019-02-06 12:00:00 +00:00
+categories: tutorial
+---
 ### Table of Contents
 
-- [Raspsberry: Sense-HAT to AWS-IoT](#raspsberry-sense-hat-to-aws-iot)
+- [Raspberry: Sense-HAT to AWS-IoT](#raspberry-sense-hat-to-aws-iot)
   * [Getting started with the Sense HAT](#getting-started-with-the-sense-hat)
-      - [What you will need](#what-you-will-need)
-      - [What you will learn](#what-you-will-learn)
+      - [What will you learn?](#what-will-you-learn)
+      - [What will you need?](#what-will-you-need)
   * [Open an account at AWS-IoT](#open-an-account-at-aws-iot)
   * [Create Raspberry Pi thing in AWS-IoT](#create-raspberry-pi-thing-in-aws-iot)
   * [What is MQTT](#what-is-mqtt)
@@ -19,8 +25,7 @@
       - [Send a command](#send-a-command)
 
 
-
-# Raspsberry: Sense-HAT to AWS-IoT
+# Raspberry: Sense-HAT to AWS-IoT
 For this project, we will sample the different sensors on the board and publish them in AWS. 
 You will also be able to send different commands from the MQTT.fx interface that will be received on your Raspberry.
 
@@ -29,7 +34,7 @@ showing them also in the LED display.
 
 <p align="center">      
 	  <img  title="Project_med" src="pictures/schematics/overview_rasp_AWS.png"
-	  >	  
+	  >
 </p>
 
 ## Getting started with the Sense HAT
@@ -46,15 +51,7 @@ just follow our tutorial below to get started!
 	  width="400" height="300">
 </p>
 
-#### What you will need
-
-- Complet succeesfully the Raspberry Pi Starterkit tutorial
-- Raspberry Pi with Raspbian
-- Raspberry Pi Sense HAT
-- Keyboar and monitor or SSH connection
-- AWS account
-
-#### What you will learn
+#### What will you learn?
 
 - Control the Sense HAT using Python
 - Register a device on AWS
@@ -62,6 +59,15 @@ just follow our tutorial below to get started!
 - Take measurements and display them in the LED matrix
 - Establish a communication with AWS using MQTT
 - Send commands to the device remotely
+
+#### What will you need?
+
+- Complet succeesfully the Raspberry Pi Starterkit tutorial
+- Raspberry Pi with Raspbian
+- Raspberry Pi Sense HAT
+- Keyboar and monitor or SSH connection
+- AWS account
+
 
 If you have successfully completed the Raspberry Starterkit tutorial, all the necessary software is already updated.
 

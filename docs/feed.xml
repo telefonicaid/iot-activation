@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-02-07T10:39:23+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">IoT Activation</title><subtitle>Welcome to IoT</subtitle><entry><title type="html">Arduino to AWS</title><link href="http://localhost:4000/ArduinoAWS.html" rel="alternate" type="text/html" title="Arduino to AWS" /><published>2019-02-06T13:00:00+01:00</published><updated>2019-02-06T13:00:00+01:00</updated><id>http://localhost:4000/ArduinoAWS</id><content type="html" xml:base="http://localhost:4000/ArduinoAWS.html">&lt;h3 id=&quot;table-of-contents&quot;&gt;Table of Contents&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-02-07T18:27:00+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">IoT Activation</title><subtitle>Welcome to IoT</subtitle><entry><title type="html">Arduino to AWS</title><link href="http://localhost:4000/ArduinoAWS.html" rel="alternate" type="text/html" title="Arduino to AWS" /><published>2019-02-06T13:00:00+01:00</published><updated>2019-02-06T13:00:00+01:00</updated><id>http://localhost:4000/ArduinoAWS</id><content type="html" xml:base="http://localhost:4000/ArduinoAWS.html">&lt;h3 id=&quot;table-of-contents&quot;&gt;Table of Contents&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;#arduino-mkr-nb-1500-to-aws-iot&quot;&gt;Arduino: MKR NB-1500 to AWS-IoT&lt;/a&gt;
@@ -2775,7 +2775,7 @@ With light pipes for power and activity LEDs&lt;/p&gt;
 An operating system is the set of basic programs and utilities that make your Raspberry Pi run. 
 However, Raspbian provides pre-compiled software bundled in a nice format for easy installation.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;pictures/Raspbian_Desktop.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;pictures/Raspberry/Raspbian_Desktop.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;raspberry-pi-universal-power-supply-25a-51v&quot;&gt;Raspberry Pi universal Power Supply 2.5A 5.1V&lt;/h3&gt;
 &lt;p&gt;Interchangeable heads for different countries and 1.5m lead&lt;/p&gt;

@@ -1,4 +1,11 @@
-## Create Device thing in AWS-IoT
+---
+layout: post
+title:  "AWS-IoT Create Device Thing"
+date:   2018-12-19 22:37:00 +05:30
+categories: AWS
+---
+
+## Create device thing in AWS-IoT
 
 1. Sign in to the AWS Management Console, and then open the AWS IoT console at https://console.aws.amazon.com/iot
 2. Go to the Monitor page. In the left navigation panel, choose Manage, and then choose Things.

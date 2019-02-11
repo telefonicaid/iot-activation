@@ -1,3 +1,10 @@
+---
+layout: post
+title:  "Welcome to IoT-Activation"
+date:   2019-02-06 12:00:00 +00:00
+categories: tutorial
+---
+
 <p align="center">
       <img  title="Telefonica" src="pictures/miscellaneous/Telefonica_logo.png">
 </p>
@@ -127,6 +134,7 @@ After analysing the similarities and differences between LTE-M and NB-IoT, you s
 | focus in indoor coverage | focus in real-time communication |
 | low cost | low cost |
 
+
 If you have any doubt about what type of connection you should use for your devices we can clarify that 
 the choice between LTE-M and NB-IoT depends on the amount of data and the frequency your application needs. 
 
@@ -220,7 +228,7 @@ remote device resets and remote diagnostics.
 
 Cloud connectors that eases integration amongst the main public cloud platforms and apps.
 
-Discover Kite [here](Movistar_Kite_Platform.md)
+Discover Kite [here](Kite_Platform.md)
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
