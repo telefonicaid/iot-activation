@@ -50,9 +50,9 @@ int setup_SaraR410M_movistar(){
   //// uncomment only 1 of the 4 options
   
   //// LTE only
-  MODEM.sendf("AT+URAT=7");
+  //MODEM.sendf("AT+URAT=7");
   //// NB-IoT only
-  //MODEM.sendf("AT+URAT=8");
+  MODEM.sendf("AT+URAT=8");
   //// LTE-M preferred, NB-IoT as failover
   //MODEM.sendf("AT+URAT=7,8"); 
   //// NB-IoT preferred, LTE-M as failover
@@ -75,9 +75,9 @@ int setup_SaraR410M_movistar(){
   MODEM.waitForResponse(2000, &response);
 
   ////configure the APN if you know it
-  //MODEM.sendf("AT+CGDCONT=1,\"IP\",\"m2mtrial.telefonica.com\"");
+  MODEM.sendf("AT+CGDCONT=1,\"IP\",\"m2mtrial.telefonica.com\"");
   //MODEM.sendf("AT+CGDCONT=1,\"IP\",\"sm2m-apple.movistar.es\"");  
-  MODEM.sendf("AT+CGDCONT=1,\"IP\",\"iotactivation.movistar.es\"");
+  //MODEM.sendf("AT+CGDCONT=1,\"IP\",\"iotactivation.movistar.es\"");
   //MODEM.sendf("AT+CGDCONT=1,\"IP\",\"m2m.movistar.es\"");
   MODEM.waitForResponse(2000, &response);  
   
