@@ -1730,6 +1730,21 @@ a.text-danger:hover {
 	color: #843534
 }
 
+.bg-second_icon {
+	color: #fff;
+	background-color: #003243
+}
+
+.bg-second_blueprint {
+	color: #fff;
+	background-color: #003243
+}
+.bg-second_end {
+	color: #fff;
+	background-color: #003243
+}
+
+
 .bg-primary {
 	color: #fff;
 	background-color: #003243

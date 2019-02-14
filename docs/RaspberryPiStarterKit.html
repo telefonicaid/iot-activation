@@ -12,7 +12,8 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="canonical" href="http://localhost:4000/RaspberryPiStarterKit.html">
   <link href="/favicon.png" rel="icon">
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <!--link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="alternate" type="application/atom+xml" title="IoT Activation" href="http://localhost:4000/atom.xml" />
 </head>
 
@@ -33,7 +34,7 @@
             
           
             
-              <li><a href="/about/">About</a></li>
+              <!-- li><a href="/about.html">About</a></li-->
             
           
             
@@ -48,7 +49,7 @@
               
             
               
-                <li><a href="/about/" style="text-transform : uppercase;">About</a></li>
+                <li><a href="/about.html" style="text-transform : uppercase;">About</a></li>
               
             
               
@@ -60,10 +61,11 @@
  -->        </ul>
        
         <ul class="nav navbar-nav navbar-right left-syms">
-          <li><a href="https://facebook.com/telefonicaid" target="_blank"><i class="fa fa-facebook-square"></i> <span>Facebook</span></a></li>
-          <li><a href="http://github.com/telefonicaid/iot-activation" target="_blank"><i class="fa fa-github"></i> <span>Github</span></a></li>
+          <li><a href="https://iot.telefonica.com/blog" target="_blank"><i class="fa fa-rss"></i> <span>Blog</span></a></li>
+          <li><a href="https://www.linkedin.com/showcase/telefonicaiot/" target="_blank"><i class="fa fa-linkedin"></i> <span>linkedin</span></a></li>
           <li><a href="//twitter.com/TelefonicaIoT" target="_blank"><i class="fa fa-twitter"></i> <span>Twitter</span></a></li>
-          <li><a href="http://localhost:4000/atom.xml" target="_blank"><i class="fa fa-rss"></i> <span>RSS Feed</span></a></li>
+          <li><a href="https://www.youtube.com/user/m2mtelefonica/featured" target="_blank"><i class="fa fa-youtube"></i> <span>Youtube</span></a></li>
+          <li><a href="http://github.com/telefonicaid/iot-activation" target="_blank"><i class="fa fa-github"></i> <span>Github</span></a></li>
         </ul>
       </div>
     </div>
@@ -76,7 +78,7 @@
             <div class="jumbotron jumb-bot-jumbu col-md-10">
 
               <h1>IoT Activation</h1>
-              <p>Welcome to IoT</p>
+              <p>Welcome to the Revolu<strong>IOT</strong>n</p>
             </div>            
             <div class="col-md-1"></div>
           </div>
@@ -112,12 +114,12 @@
       <li><a href="#raspberry-pi-camera-v2">Raspberry Pi Camera V2</a></li>
       <li><a href="#raspberry-pi-sense-hat">Raspberry Pi Sense HAT</a></li>
       <li><a href="#huawei-ms2131-usb-stick">Huawei MS2131 USB Stick</a></li>
-      <li><a href="#telefonica-sim-card">Telefonica SIM Card</a></li>
+      <li><a href="#telefonica-sim-card">Telefónica SIM Card</a></li>
     </ul>
   </li>
   <li><a href="#getting-started-with-your-raspberry">Getting started with your Raspberry</a>
     <ul>
-      <li><a href="#install-so-raspbian">Install SO (Raspbian)</a></li>
+      <li><a href="#install-os-raspbian">Install OS (Raspbian)</a></li>
       <li><a href="#connect-with-your-wi-fi-and-update-the-software">Connect with your Wi-Fi</a></li>
       <li><a href="#tenefonicas-connection">Tenefonica’s Connection.</a></li>
       <li><a href="#use-a-remote-access-enable-ssh-server-on-raspbian">Use a remote access</a></li>
@@ -248,7 +250,7 @@ Withstands high temperatures and humidity conditions.</p>
       <img title="Huawei_MS2121" src="pictures/Raspberry/Huawei_MS2121.png" width="600" height="250" />
 </p>
 
-<h3 id="telefonica-sim-card">Telefonica SIM Card</h3>
+<h3 id="telefónica-sim-card">Telefónica SIM Card</h3>
 <p>this little one makes you enjoy all the advantages of the Telefonica network. 
 Take care of her, she will be your partner into the IoT world.</p>
 
@@ -260,7 +262,7 @@ Take care of her, she will be your partner into the IoT world.</p>
 
 <h1 id="getting-started-with-your-raspberry">Getting started with your Raspberry</h1>
 
-<h2 id="install-so-raspbian">Install SO (Raspbian)</h2>
+<h2 id="install-os-raspbian">Install OS (Raspbian)</h2>
 
 <p>You will start the OS installation, prepare the following material:</p>
 
@@ -360,8 +362,8 @@ the modem the device appears and disappears from the list.</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo nmcli con add type gsm ifname "*" con-name USBStick apn TelefonicaSIM_APN user telefonica password telefonica
 </code></pre></div></div>
 
-<p>:heavy_exclamation_mark:  The field <strong>TelefonicaSIM_APN</strong> must be replaced by the APN address of your Telefonica SIM card.
-In this case, the APN of your SIM card will be provided by Telefonica. 
+<p>:heavy_exclamation_mark:  The field <strong>TelefonicaSIM_APN</strong> must be replaced by the APN address of your Telefónica SIM card.
+In this case, the APN of your SIM card will be provided by Telefónica. 
 However, you will be able to identify it through access to <a href="KitePlatform.html">Kite.</a></p>
 
 <p>If your SIM uses a PIN code, add to the end of the command: <code class="highlighter-rouge">pin 0000</code></p>

@@ -32,11 +32,11 @@ The technology has greatly facilitated us to have GPS modules easy to install in
 but for small devices of low consumption, not only cause us an increase in the final price of the 
 device but also an increase in the size that has cost so much to reduce, including the payment of a higher battery consumption.
 
-**What is Telefonica's solution?**
+**What is Telefónica's solution?**
 
 The solution is the [Kite Platform](Kite_Platform.md)
 
-Through the managed connection, you can access the location of the SIM using the Telefonica network coverage.
+Through the managed connection, you can access the location of the SIM using the Telefónica network coverage.
 
 It's easy, you just have to activate the Location Service of your SIM in Kite
 

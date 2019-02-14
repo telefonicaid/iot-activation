@@ -2,7 +2,7 @@
       <img  title="Telefonica" src="tutorials/pictures/miscellaneous/Telefonica_logo.png">
 </p>
 
-# Welcome to IoT-Activation of Telefonica
+# Welcome to IoT Activation of Telefónica
 
 ![pic](tutorials/pictures/miscellaneous/IOT_Activation.png)
 
@@ -100,7 +100,7 @@ They may seem small, but the possibilities are immense!!
 
 # Blueprints
 
-From Iot-Activation we want to make your way easier.
+From Iot Activation we want to make your way easier.
 
 For this reason we don't just want to show you how to develop applications for your devices or how to connect to the cloud.
 We put at your disposal a powerful tool that will facilitate and improve the performance of your things connected to the Internet.
@@ -109,29 +109,24 @@ We also solve some of the most common problems you may encounter.
 
 
 
-**It is safe to use UPD on the internet?**
 
-**I can use a private network to connect my device to the cloud?**
-
-**I can easily configure several devices without investing time and effort?**
-
-**Can I locate my devices without using a GPS module?**
-
-
-<table style="width:10%" align="center">
+<table>
   <tr>
 	<th>
-		<a href="tutorials/BP_DataBridge.md" align="center" >
-			Data Bridge
-		</a>
+		<div>
+			Low power devices are awesome with out-the-grid situations
+		</div>
+		<div>
+			its integration with public clouds is surrounded by hazzle and really complicated challenges:
+		</div>
 	</th>
 	<th>
 		<img src="tutorials/pictures/portfolio/portfolio_white.png" width="75" height="1">
 	</th>
 	<th>
-		<a href="tutorials/BP_IPsec.md" align="center">
-			 Virtual Private Network (IPsec)
-		</a>
+		<div >
+			Due to devices hardware limitations, sometimes, security is fade into the background:
+		</div>
 	</th>
   </tr>
   	<th>
@@ -150,16 +145,19 @@ We also solve some of the most common problems you may encounter.
   </tr>
   <tr>
 	<th>
-		<a href="tutorials/BP_Asset_Tracking.md" align="center" >
-			Asset Tracking
-		</a>
+		<div>
+			Device location can be a key point in your business model 
+		</div>
+		<div>
+			It can be a challenge because of expensive sensors or energy consumption management:
+		</div>
 	</th>
 	<th>
 	</th>
 	<th>
-		<a href="tutorials/BP_Bootstraping.md" align="center">
-			 Bootstraping
-		</a>
+		<div>
+			Customize devices one by one can be expensive, challeging or impossible to manage:
+		</div>
 	</th>
   </tr>
   	<th>

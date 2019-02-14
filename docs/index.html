@@ -33,8 +33,8 @@
 
 <body>
 
-  <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
-<nav id="sidebar-wrapper">
+  <!--a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a-->
+<!--nav id="sidebar-wrapper">
   <ul class="sidebar-nav">
     <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
     <li class="sidebar-brand">
@@ -56,7 +56,7 @@
       <a href="#contact" onclick = $("#menu-close").click(); >Contact</a>
     </li>
   </ul>
-</nav>
+</nav-->
 
   <header id="top" class="header">
   <div class="text-vertical-center">
@@ -84,7 +84,7 @@
 </section>
 
   <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-<section id="services" class="services bg-primary">
+<section id="services" class="services bg-second_icon">
   <div class="container">
     <div class="row text-center">
       <div class="col-lg-10 col-lg-offset-1">
@@ -93,29 +93,39 @@
         <div class="row">
           <div class="col-md-3 col-sm-6">
             <div class="service-item">
+			  <div href="https://github.com/telefonicaid/iot-activation">
               <span class="fa-stack fa-4x">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fab fa-github-alt fa-stack-1x text-primary"></i>
-            </span>
+                 <i class="fa fa-circle fa-stack-2x"></i>
+                 <a href="https://github.com/telefonicaid/iot-activation"><i class="fab fa-github-alt fa-stack-1x text-primary"></i></a>
+              </span></div>
               <h4>
-                <strong>GitHub Repository </strong>
+                <strong>GitHub Repository</strong>
               </h4>
               <p>Start at IoT with us! Your Hello World never was so easy!</p>
-              <a href="#" class="btn btn-light">Learn More</a>
             </div>
           </div>
-          <div class="col-md-3 col-sm-6">
+          <div  class="col-md-3 col-sm-6">
             <div class="service-item">
               <span class="fa-stack fa-4x">
-              <i class="fa fa-circle fa-stack-2x"></i>
+                 <i  class="fa fa-circle fa-stack-2x"></i>
+                 <i class=""></i>
+                 <a href="https://m2m-movistar-es.telefonica.com"><i class="fas fa-broadcast-tower fa-stack-1x text-primary"></i></a>
+              </span>
+              <h4>
+                <strong>Global SIM</strong>
+              </h4>
+              <p>Manage your conenctivity. Always On!</p>              
+            </div>
+            <!--div class="service-item">
+              <span class="fa-stack fa-4x">
+              <i  class="fa fa-circle fa-stack-2x"></i>
               <i class="fas fa-broadcast-tower fa-stack-1x text-primary"></i>
             </span>
               <h4>
                 <strong>Global SIM</strong>
               </h4>
-              <p>Manage your conenctivity. Always On!</p>
-              <a href="#" class="btn btn-light">Learn More</a>
-            </div>
+              <p>Manage your conenctivity. Always On!</p>              
+            </div-->
           </div>
           <div class="col-md-3 col-sm-6">
             <div class="service-item">
@@ -126,8 +136,7 @@
               <h4>
                 <strong>Cloud Ready</strong>
               </h4>
-              <p>Empower your solution with Telefonica Network Capabilities</p>
-              <a href="#" class="btn btn-light">Learn More</a>
+              <p>Empower your solution with Telefonica Network Capabilities</p>              
             </div>
           </div>
           <div class="col-md-3 col-sm-6">
@@ -139,8 +148,7 @@
               <h4>
                 <strong>Security</strong>
               </h4>
-              <p>Protect your data integrity and security</p>
-              <a href="#" class="btn btn-light">Learn More</a>
+              <p>Protect your data integrity and security</p>              
             </div>
           </div>
         </div>
@@ -167,7 +175,7 @@
   <!-- /.container -->
 
 	<th>
-		<img src="pictures/portfolio/portfolio_white.png" width="1" height="25">
+		<img src="pictures/portfolio/portfolio_white.png" width="1" height="0">
 	</th>
 
   <table align="center">
@@ -192,16 +200,16 @@
   </tr>
   <tr>
 	<th>
-		<a href="RaspberryPiStarterKit.html" align="center">
+		<a href="RaspberryPiStarterKit.html" align="center" border="10">
 			<img src="pictures/portfolio/portfolio-Raspberry-Kit.png"
-			width="300" height="200">
+			width="300" height="200" style="border:3px solid #00edff">
 		</a>
 	</th>
 	<th></th>
 	<th>
 		<a href="ArduinoStarterKit.html" align="center">
 			<img src="pictures/portfolio/portfolio-Arduino-Kit.png"
-			width="300" height="200">
+			width="300" height="200" style="border:3px solid #991d98">
 		</a>
 	</th>
   </tr>
@@ -226,29 +234,29 @@
 	<th>
 		<a href="RaspberryPiHAT.html" align="center">
 			<img src="pictures/portfolio/portfolio-Raspberry-AWS.png"
-			width="300" height="200">
+			width="300" height="200" style="border:3px solid #00ff99">
 		</a>
 	</th>
 	<th></th>
 	<th>
 		<a href="ArduinoAWS.html" align="center">
 			<img src="pictures/portfolio/portfolio-Arduino-AWS.png"
-			width="300" height="200">
+			width="300" height="200" style="border:3px solid #ff7b00">
 		</a>
 	</th>
   </tr>
 </table>
 
 	<th>
-		<img src="pictures/portfolio/portfolio_white.png" width="1" height="75">
+		<img src="pictures/portfolio/portfolio_white.png" width="1" height="1">
 	</th>
 
-  <aside class="call-to-action bg-primary">
+  <aside class="call-to-action bg-second_blueprint">
   <div class="container">
     <div class="row">
       <div class="col-lg-10 col-lg-offset-1 text-center">
 				<h2>Blueprints</h2>
-				<p class="lead">  From Iot-Activation we want to make your way easier. </p>
+				<p class="lead">  From Iot Activation we want to make your way easier. </p>
 				<p class="lead">  
 				For this reason we don't just want to show you how to develop applications for your devices or how to connect to the cloud.
 				We put at your disposal some powerful tools that will facilitate and improve the performance of your things connected to the Internet.
@@ -259,86 +267,78 @@
   </div>
 </aside>
 
-<div class="col-lg-10 col-lg-offset-1 text-center">
-	<p class="lead">Low power devices are awesome with out-the-grid situations 
-					its integration with public clouds is surrounded by hazzle and really complicated challenges:</p>
-	<h3>Data Bridge</h3>
-
-	<p class="lead">Due to devices hardware limitations, sometimes, security is fade into the background:</p>
-	<h3>Ipsec</h3>
-
-	<p class="lead">Device location can be a key point in your business model 
-					It can be a challenge because of expensive sensors or energy consumption management:</p>
-	<h3>Asset Tracking</h3>
-</div>
 
 <tr>
-	<img src="pictures/portfolio/portfolio_white.png" width="1" height="100">
+	<img src="pictures/portfolio/portfolio_white.png" width="1" height="1">
 </tr>
 
   <table style="width:50%" align="center">
   
   <tr>
 	<th>
-		<div class="col-lg-10 col-lg-offset-1 text-center">
-			<a href="BPDataBridge.html" align="center" >
-				Data Bridge
-			</a>
+		<div >
+			Low power devices are awesome with out-the-grid situations 
+			its integration with public clouds is surrounded by hazzle and really complicated challenges:
 		</div>
 	</th>
 	<th>
-		<img src="pictures/portfolio/portfolio_white.png" width="75" height="1">
+		<img src="pictures/portfolio/portfolio_white.png" width="75" height="90">
 	</th>
 	<th>
-		<div class="col-lg-10 col-lg-offset-1 text-center">
-			<a href="BPIPsec.html" align="center">
-				 Virtual Private Network (IPsec)
-			</a>
+		<div >
+			Due to devices hardware limitations, sometimes, security is fade into the background:
 		</div>
 	</th>
-  </tr>
+	</tr>
+	
   	<th>
 		<a href="BPDataBridge.html" align="center">
 			<img src="pictures/portfolio/portfolio_bp_databridge.png"
-			width="350" height="225">
+			width="350" height="225" style="border:3px solid #00edff"> 
 		</a>
 	</th>
 	<th></th>
 	<th>
 		<a href="BPIPsec.html" align="center">
 			<img src="pictures/portfolio/portfolio_bp_ipsec.png"
-			width="350" height="225">
+			width="350" height="225" style="border:3px solid #991d98">
 		</a>
 	</th>
   </tr>
   <tr>
+		<th></th>
+		<th>
+			<img src="pictures/portfolio/portfolio_white.png" width="1" height="1">
+		</th>
+		<th></th>
+	</tr>
+  <tr>
 	<th>
-		<div class="col-lg-10 col-lg-offset-1 text-center">
-			<a href="BPAssetTracking.html" align="center" >
-				Asset Tracking
-			</a>
+		<div>
+			Device location can be a key point in your business model 
+			It can be a challenge because of expensive sensors or energy consumption management:
 		</div>
 	</th>
-	<th></th>
 	<th>
-		<div class="col-lg-10 col-lg-offset-1 text-center">
-			<a href="BPBootstraping.html" align="center">
-				 Bootstraping
-			</a>
+		<img src="pictures/portfolio/portfolio_white.png" width="75" height="90">
+	</th>
+	<th>
+		<div>
+			Customize devices one by one can be expensive, challeging or impossible to manage:
 		</div>
 	</th>
   </tr>
   	<th>
 		<a href="BPAssetTracking.html" align="center">
 			<img src="pictures/portfolio/portfolio_bp_Asset_Tracking.png"
-			width="350" height="225">
+			width="350" height="225" style="border:3px solid #00ff99">
 		</a>
 	</th>
 	<th></th>
 	<th>
 		<a href="BPBootstraping.html" align="center">
 			<img src="pictures/portfolio/portfolio_bp_bootstraping.png"
-			width="350" height="225">
+			width="350" height="225" style="border:3px solid #ff7b00">
 		</a>
 	</th>
   </tr>
@@ -350,19 +350,17 @@
   <!-- /.container -->
 </section>
 
-  <aside class="call-to-action bg-primary">
+  <aside class="call-to-action bg-second_end">
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <!--h3>The buttons below are impossible to resist.</h3>
-        <a href="#" class="btn btn-lg btn-light">Click Me!</a>
-        <a href="#" class="btn btn-lg btn-dark">Look at Me!</a-->
+        <img src="pictures/portfolio/IoT_banner.png">
       </div>
     </div>
   </div>
 </aside>
 
-  <section id="map" class="map">
+  <!--section id="map" class="map">
   <iframe id="map_iframe"
     width="100%"
     height="100%"
@@ -375,31 +373,25 @@
   </iframe>
   <br>
  
-</section>
+</section-->
+
+
   <footer>
   <div class="container">
     <div class="row">
       <div class="col-lg-10 col-lg-offset-1 text-center">
-        <h4><strong></strong>
-        </h4>
-        <p>
-          
-          <br>
-          
-          <br>
-          
-        </p>
-        
-        <br>
         <ul class="list-inline">
           <li>
-            <a href="https://facebook.com/telefonicaid"><i class="fab fa-facebook fa-fw fa-3x"></i></a>
+            <a href="https://iot.telefonica.com/blog"><i class="fas fa-rss fa-fw fa-3x"></i></a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/showcase/telefonicaiot/"><i class="fab fa-linkedin fa-fw fa-3x"></i></a>
           </li>
           <li>
             <a href="https://twitter.com/telefonicaiot"><i class="fab fa-twitter fa-fw fa-3x"></i></a>
           </li>
           <li>
-            <a href="https://iot.telefonica.com/"><i class="fas fa-globe fa-fw fa-3x"></i></a>
+            <a href="https://www.youtube.com/user/m2mtelefonica/featured"><i class="fab fa-youtube fa-fw fa-3x"></i></a>
           </li>
         </ul>
         <hr class="small">

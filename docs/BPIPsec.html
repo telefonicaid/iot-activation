@@ -12,7 +12,8 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="canonical" href="http://localhost:4000/BPIPsec.html">
   <link href="/favicon.png" rel="icon">
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <!--link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="alternate" type="application/atom+xml" title="IoT Activation" href="http://localhost:4000/atom.xml" />
 </head>
 
@@ -33,7 +34,7 @@
             
           
             
-              <li><a href="/about/">About</a></li>
+              <!-- li><a href="/about.html">About</a></li-->
             
           
             
@@ -48,7 +49,7 @@
               
             
               
-                <li><a href="/about/" style="text-transform : uppercase;">About</a></li>
+                <li><a href="/about.html" style="text-transform : uppercase;">About</a></li>
               
             
               
@@ -60,10 +61,11 @@
  -->        </ul>
        
         <ul class="nav navbar-nav navbar-right left-syms">
-          <li><a href="https://facebook.com/telefonicaid" target="_blank"><i class="fa fa-facebook-square"></i> <span>Facebook</span></a></li>
-          <li><a href="http://github.com/telefonicaid/iot-activation" target="_blank"><i class="fa fa-github"></i> <span>Github</span></a></li>
+          <li><a href="https://iot.telefonica.com/blog" target="_blank"><i class="fa fa-rss"></i> <span>Blog</span></a></li>
+          <li><a href="https://www.linkedin.com/showcase/telefonicaiot/" target="_blank"><i class="fa fa-linkedin"></i> <span>linkedin</span></a></li>
           <li><a href="//twitter.com/TelefonicaIoT" target="_blank"><i class="fa fa-twitter"></i> <span>Twitter</span></a></li>
-          <li><a href="http://localhost:4000/atom.xml" target="_blank"><i class="fa fa-rss"></i> <span>RSS Feed</span></a></li>
+          <li><a href="https://www.youtube.com/user/m2mtelefonica/featured" target="_blank"><i class="fa fa-youtube"></i> <span>Youtube</span></a></li>
+          <li><a href="http://github.com/telefonicaid/iot-activation" target="_blank"><i class="fa fa-github"></i> <span>Github</span></a></li>
         </ul>
       </div>
     </div>
@@ -76,7 +78,7 @@
             <div class="jumbotron jumb-bot-jumbu col-md-10">
 
               <h1>IoT Activation</h1>
-              <p>Welcome to IoT</p>
+              <p>Welcome to the Revolu<strong>IOT</strong>n</p>
             </div>            
             <div class="col-md-1"></div>
           </div>
@@ -109,7 +111,7 @@
   </li>
   <li><a href="#how-to-make-your-own-ipsec-vpn">How to make your own IPsec VPN!</a>
     <ul>
-      <li><a href="#request-private-apn-to-telefonica">Request private APN to Telefonica</a></li>
+      <li><a href="#request-private-apn-to-telefonica">Request private APN to Telefónica</a></li>
       <li><a href="#table-of-contents-ipsec-in-aws">IPsec step by step in AWS</a></li>
     </ul>
   </li>
@@ -130,13 +132,13 @@ It also includes a series of protocols to establish authentication between netwo
 <h2 id="what-will-you-need">What will you need?</h2>
 
 <ul>
-  <li>Telefonica SIM with private APN (IPsec)</li>
+  <li>Telefónica SIM with private APN (IPsec)</li>
   <li>A Cloud IPsec: AWS</li>
 </ul>
 
 <h2 id="what-it-does">What it does?</h2>
 
-<p>When you request your SIMs from Telefonica, you can request a private APN, which includes your SIMs in your oun new network.
+<p>When you request your SIMs from Telefónica, you can request a private APN, which includes your SIMs in your oun new network.
 The goal is to establish a direct connection between this new network and the Cloud network.</p>
 
 <p>The IPsec provides a secure connection that will function as if the devices of both networks are on the same network.</p>
@@ -148,9 +150,9 @@ The goal is to establish a direct connection between this new network and the Cl
 <p>We believe in the importance of your data and the need to provide a safe network.
 For this reason, we provide all the necessary steps for you to create your own network</p>
 
-<h2 id="request-private-apn-to-telefonica">Request private APN to Telefonica</h2>
+<h2 id="request-private-apn-to-telefónica">Request private APN to Telefónica</h2>
 
-<p>As we will assume if you are following this tutorial with us is because you have decided to make your connection through Telefonica coverage.</p>
+<p>As we will assume if you are following this tutorial with us is because you have decided to make your connection through Telefónica coverage.</p>
 
 <p>It is important for you to know that when you apply for new SIMS you can request the creation of your own APN (Access Point Name).</p>
 
@@ -214,12 +216,12 @@ Although this already depends on the Cloud. For AWS you can follow the tutorial<
 <h1 id="configure-ipsec-step-by-step-in-aws">Configure IPsec step by step in AWS</h1>
 
 <p>In the Amazon nomenclature the client servers are located in the virtual machines of the client’s Virtual Private Cloud, 
-while Telefonica’s network will act as “Local Network”.</p>
+while Telefónica’s network will act as “Local Network”.</p>
 
 <p>In other words, the IP pools of the IoT mobile devices belong to the Address Space of the client’s Local Network.</p>
 
 <p>On Amazon, IPsec tunnels are created using VPN Connections. When a VPN connection is created between the Virtual Private Gateway 
-in the cloud and the Customer Gateway (Telefonica Encrypter), Amazon, to provide redundancy on its side, 
+in the cloud and the Customer Gateway (Telefónica Encrypter), Amazon, to provide redundancy on its side, 
 automatically assigns two public IPs to its Virtual Private Gateway which will be the peer IPsec on the Amazon side.</p>
 
 <p>For more details see the following diagram</p>
@@ -227,7 +229,7 @@ automatically assigns two public IPs to its Virtual Private Gateway which will b
 <p><img src="pictures/IPsec/IPsec_AWS_00_Overview.png" alt="pic" /></p>
 
 <p>The following tutorial intends to be a simple guide to configure the IPsec between an EC2 machine and your pool of SIMs 
-from the Telefonica’s network.</p>
+from the Telefónica’s network.</p>
 
 <p><a href="#table-of-contents-ipsec-in-aws"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
@@ -316,7 +318,7 @@ Now you can see route propagate to <strong>YES</strong></p>
 
 <h2 id="4-create-2-custom-gateway">4. Create 2 Custom Gateway</h2>
 
-<p>To be able to connect to the Telefonica network it is necessary to establish 2 Gateway with the 2 Telefonica Encrypters.</p>
+<p>To be able to connect to the Telefónica network it is necessary to establish 2 Gateway with the 2 Telefónica Encrypters.</p>
 
 <p>Go to <strong>VPC Dashboard / Virtual Private Network (VPN) / Customer Gateway /</strong> Select: <strong>Create Customer Gateway</strong>
 <img src="pictures/IPsec/IPsec_AWS_04_VPCdashboard_CustomerGateway_CreateCG.png" alt="pic" /></p>
@@ -342,7 +344,7 @@ Now you can see route propagate to <strong>YES</strong></p>
 
 <p><img src="pictures/IPsec/IPsec_AWS_04_VPCdashboard_CustomerGateway_CreateCG_config.png" alt="pic" /></p>
 
-<p>Once the Customers Gateway corresponding to the Telefonica Encrypters have been created, they appear as shown below:</p>
+<p>Once the Customers Gateway corresponding to the Telefónica Encrypters have been created, they appear as shown below:</p>
 
 <p><img src="pictures/IPsec/IPsec_AWS_04_VPCdashboard_CustomerGateway_CreateCG_config_done.png" alt="pic" /></p>
 
@@ -350,7 +352,7 @@ Now you can see route propagate to <strong>YES</strong></p>
 
 <h2 id="5-create-2-vpn-connection">5. Create 2 VPN Connection</h2>
 
-<p>You must create a VPN connection for each of the two customer gateways corresponding to Telefonica’s two encryption devices.</p>
+<p>You must create a VPN connection for each of the two customer gateways corresponding to Telefónica’s two encryption devices.</p>
 
 <p>Go to <strong>VPC Dashboard / Virtual Private Network (VPN)  / Site-to-Site VPN /</strong> Select: <strong>Create VPN Connection</strong></p>
 
@@ -388,12 +390,12 @@ Now you can see route propagate to <strong>YES</strong></p>
 
 <p>Now you can read in the tab <strong>Tunnel Detail</strong> the status in red <strong>DOWN</strong></p>
 
-<p>This will hold, until you talk to Telefonica and send them the configuration.</p>
+<p>This will hold, until you talk to Telefónica and send them the configuration.</p>
 
 <h3 id="51-download-configuration">5.1. Download Configuration</h3>
 
 <p>Amazon offers the possibility of downloading a configuration file from the Customer Gateway, 
-as it is necessary to facilitate configuration to Telefonica.</p>
+as it is necessary to facilitate configuration to Telefónica.</p>
 
 <p>Clicking on each encrypter, select the tab <strong>Download Configuration</strong> and complete like the following example
 <img src="pictures/IPsec/IPsec_AWS_05_VPCdashboard_VPNconnection_createVPNc_config_download.png" alt="pic" /></p>

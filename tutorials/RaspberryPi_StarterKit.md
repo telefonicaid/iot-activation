@@ -13,9 +13,9 @@ categories: tutorial
     + [Raspberry Pi Camera V2](#raspberry-pi-camera-v2)
     + [Raspberry Pi Sense HAT](#raspberry-pi-sense-hat)
     + [Huawei MS2131 USB Stick](#huawei-ms2131-usb-stick)
-    + [Telefonica SIM Card](#telefonica-sim-card)
+    + [Telefónica SIM Card](#telefonica-sim-card)
 - [Getting started with your Raspberry](#getting-started-with-your-raspberry)
-  * [Install SO (Raspbian)](#install-so-raspbian)
+  * [Install OS (Raspbian)](#install-os-raspbian)
   * [Connect with your Wi-Fi](#connect-with-your-wi-fi-and-update-the-software)
   * [Tenefonica's Connection.](#tenefonicas-connection)        
   * [Use a remote access](#use-a-remote-access-enable-ssh-server-on-raspbian)      
@@ -137,7 +137,7 @@ Also has the possibility to be connected to an external antenna via his CRC9 con
 	  width="600" height="250">
 </p>
 
-### Telefonica SIM Card
+### Telefónica SIM Card
 this little one makes you enjoy all the advantages of the Telefonica network. 
 Take care of her, she will be your partner into the IoT world.
 
@@ -150,7 +150,7 @@ Take care of her, she will be your partner into the IoT world.
 
 # Getting started with your Raspberry
 
-## Install SO (Raspbian)
+## Install OS (Raspbian)
 
 You will start the OS installation, prepare the following material:
 
@@ -249,8 +249,8 @@ Create the USB Stick connection in a command line
 sudo nmcli con add type gsm ifname "*" con-name USBStick apn TelefonicaSIM_APN user telefonica password telefonica
 ```
 
-:heavy_exclamation_mark:  The field **TelefonicaSIM_APN** must be replaced by the APN address of your Telefonica SIM card.
-In this case, the APN of your SIM card will be provided by Telefonica. 
+:heavy_exclamation_mark:  The field **TelefonicaSIM_APN** must be replaced by the APN address of your Telefónica SIM card.
+In this case, the APN of your SIM card will be provided by Telefónica. 
 However, you will be able to identify it through access to [Kite.](Kite_Platform.md)
 
 If your SIM uses a PIN code, add to the end of the command: `pin 0000`

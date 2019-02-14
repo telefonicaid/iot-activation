@@ -75,8 +75,8 @@ An electrical device that supplies electric power to your Arduino board
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
-### Telefonica SIM Card
-This little one makes you enjoy all the advantages of the Telefonica network. 
+### Telefónica SIM Card
+This little one makes you enjoy all the advantages of the Telefónica network. 
 Take care of her, she will be your partner into the IoT world.
 
 :heavy_exclamation_mark:  Note that to insert it into the Arduino board you will need the microSIM format
