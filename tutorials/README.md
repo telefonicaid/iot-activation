@@ -11,7 +11,7 @@ categories: tutorial
 
 ### Table of Contents
 
-- [Welcome to IoT-Activation of Telefonica](#welcome-to-iot-activation-of-telefonica)
+- [Welcome to IoT Activation of Telefónica](#welcome-to-iot-activation-of-telefonica)
   * [Raspberry Starter-kit](#what-can-you-find-in-the-raspberry-starter-kit)
   * [Arduino  Starter-kit](#and-in-the-arduino-kit)
 - [What do you need to know?](#before-starting-with-the-iot-activation-program-what-do-you-need-to-know)
@@ -29,7 +29,7 @@ categories: tutorial
   * [AWS-IoT](#amazon-web-services-and-aws-iot)
 - [Why are we different? Kite Platform](#why-are-we-different-kite-platform)
 
-# Welcome to IoT-Activation of Telefonica
+# Welcome to IoT Activation of Telefónica
 
 
 ## What can you find in the Raspberry Starter-kit?
@@ -41,7 +41,7 @@ categories: tutorial
 - Raspberry Pi Camera V2
 - Raspberry Pi Sense HAT
 - Huawei USB Stick
-- Telefonica SIM Card
+- Telefónica SIM Card
 	
 To learn how to configure your device and start developing your applications check out the following tutorial 
 [Raspberry Pi StarterKit guide](RaspberryPi_StarterKit.md)
@@ -60,7 +60,7 @@ In your Arduino Starterkit you can find the next components:
 - Arduino MKR NB-1500
 - Arduino Antenna GSM
 - Power Supply 
-- Telefonica SIM Card
+- Telefónica SIM Card
 
 To learn how to configure your device and start developing your applications check out the following tutorial 
 [Arduino StarterKit guide](Arduino_StarterKit.md)

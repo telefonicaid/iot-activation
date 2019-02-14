@@ -42,7 +42,7 @@ But if you continue reading you will appreciate all the work that the Bridge can
 - It publishes in AWS the message received through UDP message
 - It returns an answer with the result of the publication
 - It receives commands from the cloud
-- A Telefonica network and your own security VPN
+- A Telefónica network and your own security VPN
 
 ## What's it gonna do next?
 
@@ -62,7 +62,7 @@ But if you continue reading you will appreciate all the work that the Bridge can
   - requests
   - boto3 (AWS)
 - [KITE Platform](Kite_Platform.md#access-step-by-step-using-the-curl-command) Certificates files
-- A Telefonica Internet Protocol security [(IPsec)](BP_IPsec.md)
+- A Telefónica Internet Protocol security [(IPsec)](BP_IPsec.md)
 
 If you use a SIM from the Thinx laboratory you will not have access to the Kite Platform.
 

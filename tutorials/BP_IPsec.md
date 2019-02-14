@@ -10,7 +10,7 @@ categories: tutorial
   * [What will you need?](#what-will-you-need)
   * [What it does?](#what-it-does)
 - [How to make your own IPsec VPN!](#how-to-make-your-own-ipsec-vpn)
-  * [Request private APN to Telefonica](#request-private-apn-to-telefonica)
+  * [Request private APN to Telefónica](#request-private-apn-to-telefonica)
   * [IPsec step by step in AWS](#table-of-contents-ipsec-in-aws)
 
 
@@ -28,12 +28,12 @@ It's main use is to create Private Networks (VPN).
 
 ## What will you need?
 
-- Telefonica SIM with private APN (IPsec)
+- Telefónica SIM with private APN (IPsec)
 - A Cloud IPsec: AWS
 
 ## What it does?
 
-When you request your SIMs from Telefonica, you can request a private APN, which includes your SIMs in your oun new network.
+When you request your SIMs from Telefónica, you can request a private APN, which includes your SIMs in your oun new network.
 The goal is to establish a direct connection between this new network and the Cloud network. 
 
 The IPsec provides a secure connection that will function as if the devices of both networks are on the same network.
@@ -45,9 +45,9 @@ The IPsec provides a secure connection that will function as if the devices of b
 We believe in the importance of your data and the need to provide a safe network.
 For this reason, we provide all the necessary steps for you to create your own network
 
-## Request private APN to Telefonica
+## Request private APN to Telefónica
 
-As we will assume if you are following this tutorial with us is because you have decided to make your connection through Telefonica coverage.
+As we will assume if you are following this tutorial with us is because you have decided to make your connection through Telefónica coverage.
 
 It is important for you to know that when you apply for new SIMS you can request the creation of your own APN (Access Point Name).
 
@@ -90,12 +90,12 @@ other clouds tutorials under development ...
 # Configure IPsec step by step in AWS
 
 In the Amazon nomenclature the client servers are located in the virtual machines of the client's Virtual Private Cloud, 
-while Telefonica's network will act as "Local Network". 
+while Telefónica's network will act as "Local Network". 
 
 In other words, the IP pools of the IoT mobile devices belong to the Address Space of the client's Local Network.
 
 On Amazon, IPsec tunnels are created using VPN Connections. When a VPN connection is created between the Virtual Private Gateway 
-in the cloud and the Customer Gateway (Telefonica Encrypter), Amazon, to provide redundancy on its side, 
+in the cloud and the Customer Gateway (Telefónica Encrypter), Amazon, to provide redundancy on its side, 
 automatically assigns two public IPs to its Virtual Private Gateway which will be the peer IPsec on the Amazon side.
 
 For more details see the following diagram
@@ -103,7 +103,7 @@ For more details see the following diagram
 ![pic](pictures/IPsec/IPsec_AWS_00_Overview.png)
 
 The following tutorial intends to be a simple guide to configure the IPsec between an EC2 machine and your pool of SIMs 
-from the Telefonica's network.
+from the Telefónica's network.
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents-ipsec-in-aws)
 
@@ -192,7 +192,7 @@ Now you can see route propagate to **YES**
 
 ## 4. Create 2 Custom Gateway
 
-To be able to connect to the Telefonica network it is necessary to establish 2 Gateway with the 2 Telefonica Encrypters.
+To be able to connect to the Telefónica network it is necessary to establish 2 Gateway with the 2 Telefónica Encrypters.
 
 Go to **VPC Dashboard / Virtual Private Network (VPN) / Customer Gateway /** Select: **Create Customer Gateway**
 ![pic](pictures/IPsec/IPsec_AWS_04_VPCdashboard_CustomerGateway_CreateCG.png)
@@ -213,7 +213,7 @@ complete the fields with the following information:
 
 ![pic](pictures/IPsec/IPsec_AWS_04_VPCdashboard_CustomerGateway_CreateCG_config.png)
 
-Once the Customers Gateway corresponding to the Telefonica Encrypters have been created, they appear as shown below:
+Once the Customers Gateway corresponding to the Telefónica Encrypters have been created, they appear as shown below:
 
 ![pic](pictures/IPsec/IPsec_AWS_04_VPCdashboard_CustomerGateway_CreateCG_config_done.png)
 
@@ -221,7 +221,7 @@ Once the Customers Gateway corresponding to the Telefonica Encrypters have been 
 
 ## 5. Create 2 VPN Connection
 
-You must create a VPN connection for each of the two customer gateways corresponding to Telefonica's two encryption devices.
+You must create a VPN connection for each of the two customer gateways corresponding to Telefónica's two encryption devices.
 
 Go to **VPC Dashboard / Virtual Private Network (VPN)  / Site-to-Site VPN /** Select: **Create VPN Connection**
 
@@ -259,12 +259,12 @@ Click on **Create VPN Connection**
 
 Now you can read in the tab **Tunnel Detail** the status in red **DOWN**
 
-This will hold, until you talk to Telefonica and send them the configuration.
+This will hold, until you talk to Telefónica and send them the configuration.
 
 ### 5.1. Download Configuration
 
 Amazon offers the possibility of downloading a configuration file from the Customer Gateway, 
-as it is necessary to facilitate configuration to Telefonica.
+as it is necessary to facilitate configuration to Telefónica.
 
 Clicking on each encrypter, select the tab **Download Configuration** and complete like the following example
 ![pic](pictures/IPsec/IPsec_AWS_05_VPCdashboard_VPNconnection_createVPNc_config_download.png)

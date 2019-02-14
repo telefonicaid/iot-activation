@@ -47,8 +47,8 @@ For this project, we will take different values from the Arduino board and publi
 - Arduino IDE
 - AWS account
 - [KITE Platform](Kite_Platform.md#access-step-by-step-using-the-curl-command) Certificates files
-- Telefonica SIMs with private APN [(IPsec)](BP_IPsec.md)
-- Telefonica [data Bridge](BP_DataBridge.md)
+- Telefónica SIMs with private APN [(IPsec)](BP_IPsec.md)
+- Telefónica [data Bridge](BP_DataBridge.md)
 
 If you have successfully completed the Arduino Starterkit tutorial, all the necessary software is already updated.
 
