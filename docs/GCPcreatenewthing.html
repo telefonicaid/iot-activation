@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>AWS-IoT Create Device Thing</title>
+  <meta name="description" content="Create device thing in AWS-IoT  Sign in to the AWS Management Console, and then open the AWS IoT console at https://console.aws.amazon.com/iot  Go to the Mon...">
+  <meta name="google-translate-customization" content="b9870a0c7376df54-aa35852016e6a5cc-ga0a0d80f6c171f17-e"></meta>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="canonical" href="http://localhost:4000/GCPcreatenewthing.html">
+  <link href="/favicon.png" rel="icon">
+  <!--link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="alternate" type="application/atom+xml" title="IoT Activation" href="http://localhost:4000/atom.xml" />
+</head>
+
+
+  <body>
+         <div class="col-md-12 navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">IoT Activation</a>
+      </div>
+      <div class="navbar-collapse collapse navbar-inverse-collapse">
+        <ul class="nav navbar-nav">
+          
+            
+          
+            
+              <!-- li><a href="/about.html">About</a></li-->
+            
+          
+            
+          
+            
+          
+          
+<!--           <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+            
+              
+            
+              
+                <li><a href="/about.html" style="text-transform : uppercase;">About</a></li>
+              
+            
+              
+            
+              
+            
+            </ul>
+          </li>
+ -->        </ul>
+       
+        <ul class="nav navbar-nav navbar-right left-syms">
+          <li><a href="https://iot.telefonica.com/blog" target="_blank"><i class="fa fa-rss"></i> <span>Blog</span></a></li>
+          <li><a href="https://www.linkedin.com/showcase/telefonicaiot/" target="_blank"><i class="fa fa-linkedin"></i> <span>linkedin</span></a></li>
+          <li><a href="//twitter.com/TelefonicaIoT" target="_blank"><i class="fa fa-twitter"></i> <span>Twitter</span></a></li>
+          <li><a href="https://www.youtube.com/user/m2mtelefonica/featured" target="_blank"><i class="fa fa-youtube"></i> <span>Youtube</span></a></li>
+          <li><a href="http://github.com/telefonicaid/iot-activation" target="_blank"><i class="fa fa-github"></i> <span>Github</span></a></li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="col-md-12 blog-theme-class">
+          <!-- Top Blog Header -->
+          <div class="row jumb-bot">
+            <div class="col-md-1"></div>
+            <div class="jumbotron jumb-bot-jumbu col-md-10">
+
+              <h1>IoT Activation</h1>
+              <p>Welcome to the Revolu<strong>IOT</strong>n</p>
+            </div>            
+            <div class="col-md-1"></div>
+          </div>
+    </div>
+    <div class="col-md-12">
+        <div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+
+	  	
+	    <h1>AWS-IoT Create Device Thing</h1>
+	    <!--<div id="google_translate_element" style="padding-right: 27px;float: left;"></div><script type="text/javascript">
+			function googleTranslateElementInit() {
+  				new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+				}
+		</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+		-->
+	    <p class="post-meta">Dec 19, 2018</p>
+
+	   
+	  	<article class="blog-post-small blog-post-content">
+	    	<h2 id="create-device-thing-in-aws-iot">Create device thing in AWS-IoT</h2>
+
+<ol>
+  <li>Sign in to the AWS Management Console, and then open the AWS IoT console at https://console.aws.amazon.com/iot</li>
+  <li>Go to the Monitor page. In the left navigation panel, choose Manage, and then choose Things.
+<img src="pictures/AWS/AWS_Console.png" alt="pic" /></li>
+  <li>You don’t have a thing created yet. Choose Register a thing.
+<img src="pictures/AWS/AWS_Console_Manage_Register.png" alt="pic" /></li>
+  <li>On the Creating AWS IoT things page, choose Create a single thing.
+<img src="pictures/AWS/AWS_Console_Manage_Register_things.png" alt="pic" /></li>
+  <li>Enter a name for the device, leave the default values for all the other fields, and then choose Next.
+<img src="pictures/AWS/AWS_Console_Manage_Register_Device.png" alt="pic" /></li>
+  <li>Now generates the certificates.
+<img src="pictures/AWS/AWS_Console_Manage_Certificates.png" alt="pic" /></li>
+  <li>Download your public and private keys, certificate, and root certificate authority (CA)on your PC. 
+<img src="pictures/AWS/AWS_Console_Manage_Certificates_Download.png" alt="pic" /></li>
+  <li>Download your root certificate authority a new window is open for select a CA to download
+<img src="pictures/AWS/AWS_Console_Manage_Certificates_Download_CA.png" alt="pic" /></li>
+  <li>Don’t forget to save these files, you need them to set the connection</li>
+  <li>Returns to the previous window and <strong>Activate</strong></li>
+  <li>Select <strong>Attach a policy</strong>
+<img src="pictures/AWS/AWS_Console_Manage_Certificates_Download.png" alt="pic" /></li>
+  <li>Close this window, before you need to create and attach a new policy to the certificate
+<img src="pictures/AWS/AWS_Console_Manage_Certificates_AttachPolicy.png" alt="pic" /></li>
+  <li>Open the AWS IoT console again https://console.aws.amazon.com/iot</li>
+  <li>In the left navigation panel, choose <strong>Secure</strong>, and then choose <strong>Policies</strong>.</li>
+  <li>Select <strong>Create a Policy</strong>
+<img src="pictures/AWS/AWS_Console_Secure_Policies.png" alt="pic" /></li>
+  <li>Enter a Name for the policy:
+    <ul>
+      <li><strong>Action</strong>        enter <strong>iot:</strong>*</li>
+      <li><strong>Resource ARN</strong>  enter <strong>*</strong></li>
+      <li><strong>Effect</strong>        choose <strong>Allow</strong>
+Select Create. This policy allows your Device to publish messages to AWS IoT.
+<img src="pictures/AWS/AWS_Console_Secure_Policies_Create_Device.png" alt="pic" /></li>
+    </ul>
+  </li>
+  <li>In the AWS IoT console, choose <strong>Manage</strong>, <strong>Things</strong>. On the Things page, choose your Thing
+<img src="pictures/AWS/AWS_Console_Manage_Things_Device.png" alt="pic" /></li>
+  <li>On the thing’s <strong>Details</strong> page, in the left navigation panel, choose <strong>Interact</strong>.
+Make a note of the REST API endpoint. You need it to connect to your device shadow.
+<img src="pictures/AWS/AWS_Console_Manage_Things_Details_Interact_Device.png" alt="pic" /></li>
+  <li>Now select <strong>Security</strong>, and choose the certificate that you created earlier. 
+<img src="pictures/AWS/AWS_Console_Manage_Things_Details_Security_Device.png" alt="pic" /></li>
+  <li>In Actions, choose Attach policy
+<img src="pictures/AWS/AWS_Console_Manage_Things_Details_Security_Policy_Device.png" alt="pic" /></li>
+  <li>Select your new policy and then choose Attach 
+<img src="pictures/AWS/AWS_Console_Manage_Things_Details_Security_Policy_Attach_Device.png" alt="pic" /></li>
+</ol>
+
+	  	</article>
+	  	
+	  	
+	  	
+<!-- Output author details if some exist. -->
+   
+
+    <!--ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="iot-activation/AWScreatenewthing.html" title="Previous Post:
+        AWS-IoT Create Device Thing">&laquo; AWS-IoT Create Device Thing</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+      <li class="next"><a class="basic-alignment right" 
+	    href="iot-activation/RaspberryPiPython.html" title="Next Post: 
+		Your first python Script">Your first python Script
+        &raquo;</a></li>
+      
+    </ul-->
+	</div>
+	<div class="col-md-1"></div>
+</div>
+    </div>
+    <div class="col-md-12 share-div">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          
+<div class="fb_share">
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=354997024639145&version=v2.0";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+<div class="fb-share-button" data-layout="button_count"></div>
+</div>
+
+
+
+<div class="twitter_share">
+	<a href="https://twitter.com/share" class="twitter-share-button" data-via="TelefonicaIoT" data-hashtags="sailsjs">Tweet</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+</div>
+
+
+
+<div class="linkedin_share">
+	<script src="//platform.linkedin.com/in.js" type="text/javascript">
+	  lang: en_US
+	</script>
+	<script type="IN/Share" data-counter="right"></script>
+</div>
+
+
+
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="col-md-12">
+    
+    </div>
+    <div class="col-md-12">
+    			<div class="row end_footer">
+              <div class="col-md-1"></div>
+              <div class="col-md-6">
+                
+              </div>
+              <div class="col-md-4"></div>
+              <div class="col-md-1"></div>
+            </div>
+    </div>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/prettify.js"></script>
+    <script>
+      [].forEach.call(document.getElementsByTagName("pre"), function(el) {
+        el.classList.add("prettyprint");
+      });
+
+      prettyPrint();
+    </script>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+
+    <style>
+      pre.prettyprint {
+
+        font-size: 13px;
+        font-family: "Open Sans";
+        padding: 8px 12px;
+        border: 1px solid #bbb;
+        border-radius: 4px;
+      }
+    </style>
+
+  </body>
+
+</html>

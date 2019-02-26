@@ -7,8 +7,9 @@ categories: tutorial
 ### Table of Contents
 
 - [What is Asset Tracking?](#what-is-asset-tracking)
+  * [Why do we need Asset Tracking?](#why-do-we-need-asset-tracking)
   * [What will you need?](#what-will-you-need)
-  * [What it does?](#what-it-does)
+  * [What does it do?](#what-does-it-do)
 - [How to get started](#how-to-get-started)
   * [How Activate Location Service](#how-activate-location-service)
   * [How to run it](#how-to-run-it)
@@ -26,7 +27,7 @@ Now let's be honest, not only do customers benefit from these new technologies,
 more and more companies are investing money and effort in being able to locate the location of their assets.
 It is not only necessary to know the state of our devices, also to be able to locate them quickly.
 
-**What is the problem with geolocation?**
+## Why do we need Asset Tracking?
 
 The technology has greatly facilitated us to have GPS modules easy to install in any device, 
 but for small devices of low consumption, not only cause us an increase in the final price of the 

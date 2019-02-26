@@ -7,8 +7,9 @@ categories: tutorial
 ### Table of Contents
 
 - [Bootstraping](#bootstraping)
+  * [Why do we need Bootstraping?](#why-do-we-need-bootstraping)
   * [What will you need?](#what-will-you-need)
-  * [What it does?](#what-it-does)
+  * [What does it do?](#what-does-it-do)
 - [How to get started](#how-to-get-started)
 
 
@@ -22,6 +23,8 @@ Would it change anything?
 This could be very helpful, if you control a wide variety of devices.
 
 IoT-Activation offers you this possibility!!
+
+## Why do we need Bootstraping?
 
 Imagine making all your devices completely the same and configuring their operation only through the connection they use. 
 In case of failure, you will only need to replace the old SIM in your new device. 

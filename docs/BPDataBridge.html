@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width initial-scale=1">
 
   <title>Data Bridge</title>
-  <meta name="description" content="Table of Contents  What is Data Bridge?          What our bridge is already doing      What’s it gonna do next?      What will you need?      What it does?  ...">
+  <meta name="description" content="Table of Contents  What is Data Bridge?          Why do we need Data Bridge?      What our bridge is already doing      What’s it gonna do next?      What wi...">
   <meta name="google-translate-customization" content="b9870a0c7376df54-aa35852016e6a5cc-ga0a0d80f6c171f17-e"></meta>
   <link rel="stylesheet" href="css/main.css">
   <link rel="canonical" href="http://localhost:4000/BPDataBridge.html">
@@ -105,12 +105,14 @@
 <ul>
   <li><a href="#what-is-data-bridge">What is Data Bridge?</a>
     <ul>
+      <li><a href="#why-do-we-need-data-bridge">Why do we need Data Bridge?</a></li>
       <li><a href="#what-our-bridge-is-already-doing">What our bridge is already doing</a></li>
       <li><a href="#whats-it-gonna-do-next">What’s it gonna do next?</a></li>
       <li><a href="#what-will-you-need">What will you need?</a></li>
-      <li><a href="#what-it-does">What it does?</a>
+      <li><a href="#what-does-it-do">What does it do?</a>
         <ul>
           <li><a href="#aws-options">AWS Options</a></li>
+          <li><a href="#google-cloud-options">Google Cloud Options</a></li>
           <li><a href="#responses-codes">Responses codes</a></li>
         </ul>
       </li>
@@ -124,6 +126,7 @@
           <li><a href="#configure-the-udp-socket">Configure the UDP socket</a></li>
           <li><a href="#configure-the-kite-platform-connection">Configure the Kite Platform connection</a></li>
           <li><a href="#aws-configuration-file">AWS Configuration file</a></li>
+          <li><a href="#google-cloud-configuration-file">Google Cloud Configuration file</a></li>
         </ul>
       </li>
       <li><a href="#how-to-run-it">How to run it</a></li>
@@ -143,6 +146,24 @@ Using the same connection to return a response with the result of the procedure.
 <p>In addition the Bridge will use the Kite access to determine the identity of the device and decide the publishing option.</p>
 
 <p>But if you continue reading you will appreciate all the work that the Bridge can do for you.</p>
+
+<h2 id="why-do-we-need-data-bridge">Why do we need Data Bridge?</h2>
+
+<p>Within the communication protocols, MQTT stands out for its simplicity and allow to guarantee security through a TLS context. 
+In a way, this proves a relatively “expensive” connection.</p>
+
+<p>You could eliminate authentication. But would this be the right thing to do?</p>
+
+<p>You may not think your data is valuable enough. But still data bridge can be your solution.</p>
+
+<p>And if you have any doubt about the advantages over consumption, 
+we show you a couple of graphs where you can see the differences in consumption in a device.</p>
+
+<p><img src="pictures/miscellaneous/consumption_chart_NB_MQTTTLS.png" alt="pic" /></p>
+
+<p><strong>Energy consumption of a MQTT shipment with TLS-certified vs UDP shipment</strong></p>
+
+<p><img src="pictures/miscellaneous/consumption_chart_NB_UDP.png" alt="pic" /></p>
 
 <h2 id="what-our-bridge-is-already-doing">What our bridge is already doing</h2>
 
@@ -186,34 +207,13 @@ Using the same connection to return a response with the result of the procedure.
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
-<h2 id="what-it-does">What it does?</h2>
+<h2 id="what-does-it-do">What does it do??</h2>
 
 <p>You can review the following flow chart, but you will understand it better if you read our comments we have written for you.</p>
 
 <p><img src="pictures/Bridge/Bridge_overview_AWS.png" alt="pic" /></p>
 
 <p>Each time you receive a UDP datagrams , it will be accompanied by the sender ip address of.</p>
-
-<p><strong>Why we need IPsec?</strong></p>
-
-<p>As you know every device connected to the internet needs an IP address, being necessary that this IP is unique for each device. 
-And without many accounts it is easy to conclude that if this were true there would not be enough addresses for all devices in the world.</p>
-
-<p>with a 32-bit for each address only 4,294,967,296 devices could be connected. A ridiculous number for the current size of the internet.
-The NAT protocol (Network Address Translation) was created to find a solution.</p>
-
-<p><strong>How NAT works?</strong></p>
-
-<p>When a packet leaves your device for the internet it has an IP address that belongs to a smaller network. 
-So this address is translated to an IP valid for the Internet.</p>
-
-<p>When the next machine receives this packet, it identifies the new IP as	 the packet origin.</p>
-
-<p><strong>How to solve it?</strong></p>
-
-<p>The solution is to create a virtual network to which both the source and destination machines belong, 
-so that both machines can identify each other using their IP address.
-And as you have deduced this is possible thanks to the IPsec protocol.</p>
 
 <p>The Bridge uses this ip to identify the SIM from which the information comes and retrieves the information provided in Kite.
 To do this you must inform the Custom Field of the SIM:</p>
@@ -288,6 +288,12 @@ It will create a new thing from the given name of high the Kite.</p>
 <p>But if you still tell them to create it manually you can follow these <a href="AWScreatenewthing.html">steps</a></p>
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h3 id="google-cloud-options">Google Cloud Options</h3>
+
+<ul>
+  <li><a href="#gcp-option-1-publish-in-a-default-topic">GCP Option 1: publish in a default topic</a></li>
+</ul>
 
 <h3 id="responses-codes">Responses codes</h3>
 
@@ -383,9 +389,6 @@ At the moment only the AWS connection is available, but we cannot predict the fu
 
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">cloud</span><span class="pi">:</span> <span class="s">AWS</span>
 <span class="na">region</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xx-xxxx-x"</span>
-<span class="na">IAM_user</span><span class="pi">:</span>
-  <span class="na">access_key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">XXXXXXXXXXXXXXXXXXXX"</span>
-  <span class="na">secret_key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"</span>
 <span class="na">MQTT</span><span class="pi">:</span>
   <span class="na">topic</span><span class="pi">:</span>
     <span class="na">update</span><span class="pi">:</span> <span class="s2">"</span><span class="s">$aws/things/&lt;DEVICE_NAME&gt;/shadow/update"</span>
@@ -427,9 +430,45 @@ Since to simplify access to the cloud has been used AWS development library for 
   <li>reserved: this parameter indicates that the name is a AWS standard topic.</li>
 </ul>
 
+<h3 id="google-cloud-configuration-file">Google Cloud Configuration file</h3>
+
+<p>Here is an example of a configuration file for Google Cloud connection 
+<a href="../scripts/Data_Bridge/config/Configuration_GCP.yaml">Configuration_GCP.yaml</a></p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">base_url</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://cloudiotdevice.googleapis.com/v1"</span>
+
+<span class="na">project_id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xxxxxxxxxx"</span>
+<span class="na">cloud_region</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xxxx-xxxx"</span>
+<span class="na">registry_id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xxxxxxxx"</span>
+<span class="na">service_account_json</span><span class="pi">:</span> <span class="s2">"</span><span class="s">service_account.json"</span>
+
+<span class="na">algorithm</span><span class="pi">:</span> <span class="s2">"</span><span class="s">RS256"</span>
+<span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">CA/"</span>
+<span class="na">ca_certs</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://pki.google.com/roots.pem"</span>
+<span class="na">private_key_file</span><span class="pi">:</span> <span class="s">GCP_rsa_private.pem</span>
+<span class="na">public_key_file</span><span class="pi">:</span> <span class="s">GCP_rsa_public.pem</span>
+</code></pre></div></div>
+
+<h4 id="project-configuration">Project configuration</h4>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">project_id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xxxxxxxxxx"</span>
+<span class="na">cloud_region</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xxxx-xxxx"</span>
+<span class="na">registry_id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xxxxxxxx"</span>
+<span class="na">service_account_json</span><span class="pi">:</span> <span class="s2">"</span><span class="s">service_account.json"</span>
+</code></pre></div></div>
+
+<h4 id="certificates-configuration">Certificates configuration</h4>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">algorithm</span><span class="pi">:</span> <span class="s2">"</span><span class="s">RS256"</span>
+<span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">CA/"</span>
+<span class="na">ca_certs</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://pki.google.com/roots.pem"</span>
+<span class="na">private_key_file</span><span class="pi">:</span> <span class="s">GCP_rsa_private.pem</span>
+<span class="na">public_key_file</span><span class="pi">:</span> <span class="s">GCP_rsa_public.pem</span>
+</code></pre></div></div>
+
 <h2 id="how-to-run-it">How to run it</h2>
 
-<p>Now that you know how to configure the parameters, use it !!!.</p>
+<p>Now that you know how to configure the parameters, you can run it !!!.</p>
 
 <p>If you have faithfully followed the steps of the IPsec tutorial, right now you will have an instance of an EC2 machine 
 where you can run your Bridge.</p>

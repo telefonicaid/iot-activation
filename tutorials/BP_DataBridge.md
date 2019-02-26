@@ -7,11 +7,13 @@ categories: tutorial
 ### Table of Contents
 
 - [What is Data Bridge?](#what-is-data-bridge)
+  * [Why do we need Data Bridge?](#why-do-we-need-data-bridge)
   * [What our bridge is already doing](#what-our-bridge-is-already-doing)
   * [What's it gonna do next?](#whats-it-gonna-do-next)
   * [What will you need?](#what-will-you-need)
-  * [What it does?](#what-it-does)
+  * [What does it do?](#what-does-it-do)
     + [AWS Options](#aws-options)
+    + [Google Cloud Options](#google-cloud-options)
     + [Responses codes](#responses-codes)
 - [Deploy and defend your Bridge!](#now-deploy-and-defend-your-bridge)
   * [How to configure it](#how-to-configure-it)
@@ -19,6 +21,7 @@ categories: tutorial
     + [Configure the UDP socket](#configure-the-udp-socket)
     + [Configure the Kite Platform connection](#configure-the-kite-platform-connection)
     + [AWS Configuration file](#aws-configuration-file)
+    + [Google Cloud Configuration file](#google-cloud-configuration-file)
   * [How to run it](#how-to-run-it)
 
 
@@ -35,6 +38,24 @@ In addition the Bridge will use the Kite access to determine the identity of the
 
 But if you continue reading you will appreciate all the work that the Bridge can do for you.
 
+## Why do we need Data Bridge?
+
+Within the communication protocols, MQTT stands out for its simplicity and allow to guarantee security through a TLS context. 
+In a way, this proves a relatively "expensive" connection.
+
+You could eliminate authentication. But would this be the right thing to do?
+
+You may not think your data is valuable enough. But still data bridge can be your solution.
+
+And if you have any doubt about the advantages over consumption, 
+we show you a couple of graphs where you can see the differences in consumption in a device.
+
+![pic](pictures/miscellaneous/consumption_chart_NB_MQTTTLS.png)
+
+**Energy consumption of a MQTT shipment with TLS-certified vs UDP shipment**
+
+![pic](pictures/miscellaneous/consumption_chart_NB_UDP.png)
+
 ## What our bridge is already doing
 
 - It accesses Kite Platform to retrieve your custom information (the device name and topic)
@@ -46,7 +67,7 @@ But if you continue reading you will appreciate all the work that the Bridge can
 
 ## What's it gonna do next?
 
-- Compatibility with other clouds
+- Compatibility with other clouds 
 - It will have more versatility in identifying problems.
 - Better integration with Kite Platform 
 
@@ -68,34 +89,13 @@ If you use a SIM from the Thinx laboratory you will not have access to the Kite 
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
-## What it does?
+## What does it do??
 
 You can review the following flow chart, but you will understand it better if you read our comments we have written for you.
 
 ![pic](pictures/Bridge/Bridge_overview_AWS.png)
 
 Each time you receive a UDP datagrams , it will be accompanied by the sender ip address of. 
-
-**Why we need IPsec?**
-
-As you know every device connected to the internet needs an IP address, being necessary that this IP is unique for each device. 
-And without many accounts it is easy to conclude that if this were true there would not be enough addresses for all devices in the world.
-
-with a 32-bit for each address only 4,294,967,296 devices could be connected. A ridiculous number for the current size of the internet.
-The NAT protocol (Network Address Translation) was created to find a solution.
-
-**How NAT works?**
-
-When a packet leaves your device for the internet it has an IP address that belongs to a smaller network. 
-So this address is translated to an IP valid for the Internet.
-
-When the next machine receives this packet, it identifies the new IP as	 the packet origin.
-
-**How to solve it?**
-
-The solution is to create a virtual network to which both the source and destination machines belong, 
-so that both machines can identify each other using their IP address.
-And as you have deduced this is possible thanks to the IPsec protocol.
 
 
 The Bridge uses this ip to identify the SIM from which the information comes and retrieves the information provided in Kite.
@@ -171,6 +171,9 @@ But if you still tell them to create it manually you can follow these [steps](AW
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
+### Google Cloud Options
+
+- [GCP Option 1: publish in a default topic](#gcp-option-1-publish-in-a-default-topic)
 
 ### Responses codes
 
@@ -251,9 +254,6 @@ Here is an example of a configuration file for Amazon Web Services connection
 ```yaml
 cloud: AWS
 region: "xx-xxxx-x"
-IAM_user:
-  access_key: "XXXXXXXXXXXXXXXXXXXX"
-  secret_key: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 MQTT:
   topic:
     update: "$aws/things/<DEVICE_NAME>/shadow/update"
@@ -297,9 +297,49 @@ MQTT:
 - reserved: this parameter indicates that the name is a AWS standard topic.
 
 
+### Google Cloud Configuration file
+
+Here is an example of a configuration file for Google Cloud connection 
+[Configuration_GCP.yaml](../scripts/Data_Bridge/config/Configuration_GCP.yaml)
+
+```yaml
+base_url: "https://cloudiotdevice.googleapis.com/v1"
+
+project_id: "xxxxxxxxxx"
+cloud_region: "xxxx-xxxx"
+registry_id: "xxxxxxxx"
+service_account_json: "service_account.json"
+
+algorithm: "RS256"
+path: "CA/"
+ca_certs: "https://pki.google.com/roots.pem"
+private_key_file: GCP_rsa_private.pem
+public_key_file: GCP_rsa_public.pem
+```
+
+
+#### Project configuration
+
+```yaml
+project_id: "xxxxxxxxxx"
+cloud_region: "xxxx-xxxx"
+registry_id: "xxxxxxxx"
+service_account_json: "service_account.json"
+```
+
+#### Certificates configuration
+
+```yaml
+algorithm: "RS256"
+path: "CA/"
+ca_certs: "https://pki.google.com/roots.pem"
+private_key_file: GCP_rsa_private.pem
+public_key_file: GCP_rsa_public.pem
+```
+
 ## How to run it
 
-Now that you know how to configure the parameters, use it !!!.
+Now that you know how to configure the parameters, you can run it !!!.
 
 If you have faithfully followed the steps of the IPsec tutorial, right now you will have an instance of an EC2 machine 
 where you can run your Bridge.

@@ -17,8 +17,8 @@ categories: tutorial
 - [Getting started with your Raspberry](#getting-started-with-your-raspberry)
   * [Install OS (Raspbian)](#install-os-raspbian)
   * [Connect with your Wi-Fi](#connect-with-your-wi-fi-and-update-the-software)
-  * [Tenefonica's Connection.](#tenefonicas-connection)        
-  * [Use a remote access](#use-a-remote-access-enable-ssh-server-on-raspbian)      
+  * [Telefónica's Connection.](#telefonicas-connection)
+  * [Use a remote access](#use-a-remote-access-enable-ssh-server-on-raspbian)
 
 # Raspberry Pi Starterkit for IoT-Activation
 
@@ -236,7 +236,7 @@ sudo apt-get install crontab
 sudo apt-get install realvnc-vnc-server realvnc-vnc-viewer
 ```
 
-## Tenefonica's Connection.
+## Telefonica's connection.
 Connect the USB modem MS2131 to the Raspberry's usb.
 
 Once connected, you can check that your raspberry recognizes the device using the command `lsusb`.

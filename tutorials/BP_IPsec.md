@@ -7,8 +7,9 @@ categories: tutorial
 ### Table of Contents
 
 - [What is IPsec?](#what-is-ipsec)
+  * [Why do we need IPsec?](#why-do-we-need-ipsec)
   * [What will you need?](#what-will-you-need)
-  * [What it does?](#what-it-does)
+  * [What does it do?](#what-does-it-do)
 - [How to make your own IPsec VPN!](#how-to-make-your-own-ipsec-vpn)
   * [Request private APN to Telefónica](#request-private-apn-to-telefonica)
   * [IPsec step by step in AWS](#table-of-contents-ipsec-in-aws)
@@ -26,12 +27,33 @@ It's main use is to create Private Networks (VPN).
 
 ![pic](pictures/schematics/IPsec_diagram.png)
 
+## Why do we need IPsec?
+
+As you know every device connected to the internet needs an IP address, being necessary that this IP is unique for each device. 
+And without many accounts it is easy to conclude that if this were true there would not be enough addresses for all devices in the world.
+
+with a 32-bit for each address only 4,294,967,296 devices could be connected. A ridiculous number for the current size of the internet.
+The NAT protocol (Network Address Translation) was created to find a solution.
+
+**How NAT works?**
+
+When a packet leaves your device for the internet it has an IP address that belongs to a smaller network. 
+So this address is translated to an IP valid for the Internet.
+
+When the next machine receives this packet, it identifies the new IP as	 the packet origin.
+
+**How to solve it?**
+
+The solution is to create a virtual network to which both the source and destination machines belong, 
+so that both machines can identify each other using their IP address.
+And as you have deduced this is possible thanks to the IPsec protocol.
+
 ## What will you need?
 
 - Telefónica SIM with private APN (IPsec)
 - A Cloud IPsec: AWS
 
-## What it does?
+## What does it do?
 
 When you request your SIMs from Telefónica, you can request a private APN, which includes your SIMs in your oun new network.
 The goal is to establish a direct connection between this new network and the Cloud network. 

@@ -11,20 +11,23 @@ categories: tutorial
   * [Manage your SIMs](#manage-your-sims)
     + [SIM inventory](#sim-inventory)
       - [SIM inventory bottom menu](#sim-inventory-bottom-menu)
-        * [Assign lines to subscription group](#assign-lines-to-subscription-group)
-        * [Change life cycle state](#change-life-cycle-state)
-        * [Activate data traffic](#activate-data-traffic)
     + [SIM details](#sim-details)
-  * [Commercial Management](#commercial-management)
+- [How to get started with your SIM](#how-to-get-started-with-your-sim)
 - [What is Kite Platform API?](#what-is-kite-platform-api)
   * [How to access Kite Platform API?](#how-to-access-kite-platform-api)
     + [Extract your credentials files](#extract-your-credentials-files)
     + [Access API using a command](#access-api-using-a-command)
-- [How it's made!](#how-its-made)
-    + [How Activate Location Service](#how-activate-location-service)
+- [How it's made](#how-its-made)
+    + [Activate Data traffic](#activate-data-traffic)
+    + [Activate Location Service](#activate-location-service)
+    + [Activate LTE / NB (4G)](#activate-lte-nb-4g)
+    + [Assign Subscription group](#assign-subscription-group)
+    + [Change life cycle state](#change-life-cycle-state)
+    + [Edit Custom Field](#edit-custom-field)
+    + [Select APN](#select-apn)
+    + [Deactivate any Service](#deactivate-any-service)
 
 [![IMAGE ALT TEXT HERE](pictures/Kite/Kite.png)](https://www.youtube.com/watch?v=Kr5aICVJxSA)
-
 
 # This is KITE!
 Kite Platform improves productivity globally in the M2M sphere, providing tools to
@@ -77,23 +80,11 @@ Some of them may be deactivated, and you may need to change their status. In the
 
 #### SIM inventory bottom menu
 
-![pic](pictures/Kite/Kite_interface_SIM_select_1Assign.png)
-![pic](pictures/Kite/Kite_interface_SIM_select_2Change.png)
-![pic](pictures/Kite/Kite_interface_SIM_select_3Activate.png)
-![pic](pictures/Kite/Kite_interface_SIM_select_4Desactivate.png)
+![pic](pictures/Kite/Kite_interface_SIM_select_bottom_menu.png)
 
-##### Assign lines to subscription group
-First of all, your SIM must be assigned to a subscription group. 
-If this is not the case you should contact your local SIM distributor.
 
-![pic](pictures/Kite/Kite_interface_SIM_select_1Assign_subscription_group.png)
-
-##### Change life cycle state
+##### life cycle state
 In order for a SIM to be operational, it must be activated.
-
-![pic](pictures/Kite/Kite_interface_SIM_select_2Change_life_cycle.png)
-
-![pic](pictures/Kite/Kite_interface_SIM_LifeCycle2.png)
 
 - Inactive new, initial state of any SIM card. The card will remain in this state until you 
 assign a Subscription Group to it (including a commercial plan).
@@ -127,12 +118,6 @@ Provider is authorized to perform manual transitions to and from this state.
 retired. This state can only be reached if the card is suspended. Once in this state,
 there is no going back to the previously defined states.
 
-##### Activate data traffic
-And lastly you must make sure that the SIM has the traffic activated.
-
-![pic](pictures/Kite/Kite_interface_SIM_select_3Activate_data_traffic.png)
-
-[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
 ### SIM details
 
@@ -185,9 +170,14 @@ indicates whether they are activated
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
-## Commercial Management
+# How to get started with your SIM
 
-[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+1. First of all, your SIM must be [assigned to a subscription group](#assign-subscription-group)
+2. In order for a SIM to be operational, it must be [activated](#change-life-cycle-state)
+3. And lastly you must make sure that the SIM has the [data traffic activated](#activate-data-traffic)
+
+There are many more options and services available for your SIM, but if they're not available 
+you should contact your local SIM distributor.
 
 # What is Kite Platform API?
 The Kite Platform offers you an API that allows you to integrate it with all your systems. 
@@ -210,7 +200,6 @@ these will be issued on demand and will be exclusive to you. Take good care of i
 Remember that it is the gateway to all your SIM data.
 
 ### Extract your credentials files
-
 
 If you have requested access to the Kite Platform API, the support team will have provided you with an encrypted file.pfx
 containing both the key and the certificate for the SSL context of your connection. It will also provide you 
@@ -249,11 +238,44 @@ sudo curl --cert ./your_customer_certificate.cer --key ./your_customer_certifica
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
-# How it's made!
 
-    + [How Activate Location Service](#how-activate-location-service)
+# How it's made
 
-### How Activate Location Service
+- [Activate Data traffic](#activate-data-traffic)
+- [Activate Location Service](#activate-location-service)
+- [Activate LTE / NB (4G)](#activate-lte-nb-4g)
+- [Assign Subscription group](#assign-subscription-group)
+- [Change life cycle state](#change-life-cycle-state)
+- [Edit Custom Field](#edit-custom-field)
+- [Select APN](#select-apn)
+- [Deactivate any Service](#deactivate-any-service)
+
+:heavy_exclamation_mark:
+Some services will only be available if they are included in your data plan.
+
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
+### Activate Data traffic
+
+First Go to **SIM Inventory** / **Select your SIM** / and Press **Activate** on the bottom-menu
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Activate_Service.png)
+
+find the opction **Activate Data traffic (home/roaming)** and click it.
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Activate_Service_datatraffic.png)
+
+A new window is open! Click in **Activation**
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Activate_Service_datatraffic_config.png)
+
+Now the service is activate, click on **Finish**
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Activate_Service_datatraffic_done.png)
+
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
+### Activate Location Service
 
 First Go to **SIM Inventory** / **Select your SIM** / and Press **Activate** on the bottom-menu
 
@@ -267,8 +289,134 @@ A new window is open! Click in **Activation**
 
 ![pic](pictures/Kite/Kite_HowTo_SIM_Activate_Service_location_config.png)
 
-Now the service is activate click on **Finish**
+Now the service is activate, click on **Finish**
 
 ![pic](pictures/Kite/Kite_HowTo_SIM_Activate_Service_location_config_done.png)
 
-[![pic](pictures/utils/arrow_up.png)](#how-its-made)
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
+### Activate LTE / NB (4G)
+
+First Go to **SIM Inventory** / **Select your SIM** / and Press **Activate** on the bottom-menu
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Activate_Service.png)
+
+find the opction **Activate LTE** and click it.
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Activate_Service_lte.png)
+
+A new window is open! Click in **Activation**
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Activate_Service_lte_config.png)
+
+Now the service is activate, click on **Finish**
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Activate_Service_lte_done.png)
+
+
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
+### Assign Subscription group
+
+Go to **SIM Inventory** / **Select your SIM** / and Press **Assign** on the bottom-menu
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Assign.png)
+
+find the opction **Assign to subscription group** and click it.
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Assign_subscriptiongroup.png)
+
+A new window is open! Choose the new Subscription group name and click in **Proceed**
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Assign_subscriptiongroup_config.png)
+
+Select **Assign** to continue
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Assign_subscriptiongroup_config1.png)
+
+Now your SIM is subscribed to the group, click on **Finish**
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Assign_subscriptiongroup_done.png)
+
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
+### Change life cycle state
+
+First Go to **SIM Inventory** / **Select your SIM** / and Press **Change** on the bottom-menu
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Change.png)
+
+find the opction **Change life cycle state** and click it.
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Change_lifecyclestate.png)
+
+A new window is open! Choose the new state name and select **Proceed**
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Change_lifecyclestate_config.png)
+
+Select **Change** to continue
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Change_lifecyclestate_config1.png)
+
+Now the state is changed, click on **Finish**
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Change_lifecyclestate_done.png)
+
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
+
+
+### Edit Custom Field
+
+First Go to **SIM Inventory** / **Select your SIM** 
+
+![pic](pictures/Kite/Kite_HowTo_SIM_open.png)
+
+double Click on your SIM
+
+![pic](pictures/Kite/Kite_HowTo_SIM_open_menu.png)
+
+find the opction **SIM identification** unfold the tab and select **Edit**
+
+![pic](pictures/Kite/Kite_HowTo_SIM_open_menu_simidentification.png)
+
+Edit the information and click on **Save**
+
+![pic](pictures/Kite/Kite_HowTo_SIM_open_menu_simidentification_edit_customfield.png)
+
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
+### Select APN
+
+First Go to **SIM Inventory** / **Select your SIM** / and Press **Change** on the bottom-menu
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Change.png)
+
+find the opction **Change dynamic APNs** and click it.
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Change_dynamic_apn.png)
+
+A new window is open! Choose the new APN name and Select the action **Add/Delete**
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Change_dynamic_apn_config.png)
+
+Select **Add APN** to continue
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Change_dynamic_apn_config1.png)
+
+Now the APN is added, click on **Finish**
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Change_dynamic_apn_done.png)
+
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
+### Deactivate any Service
+
+Follow the same steps as to activate, but from the tab **Deactivate**
+
+First Go to **SIM Inventory** / **Select your SIM** / and Press **Deactivate** on the bottom-menu
+
+![pic](pictures/Kite/Kite_HowTo_SIM_Deactivate_Service.png)
+
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
