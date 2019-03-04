@@ -19,15 +19,14 @@ categories: tutorial
   * [Check the Shadow](#check-the-shadow)
   * [Send a command](#send-a-command)
 
- 
+
 # Arduino: MKR NB-1500 to AWS-IoT
 
 For this project, we will take different values from the Arduino board and publish them in AWS. 
 
-<p align="center">      
+<p align="center">
 	  <img  title="Project_ard" src="pictures/schematics/overview_arduino_AWS.png"
-	  href="docs/Arduino_AWS.md" 
-	  >	  
+	  href="docs/Arduino_AWS.md">
 </p>
 
 ## Getting started with the MKR NB-1500
@@ -37,7 +36,7 @@ For this project, we will take different values from the Arduino board and publi
 - Control Arduino board MKR NB-1500 using the Arduino IDE
 - Register a device on AWS
 - Generate credentials for AWS
-- Build a bridge between UDP and MQTT with Python
+- Build a bridge between UDP and AWS
 
 #### What will you need?
 

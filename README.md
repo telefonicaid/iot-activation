@@ -32,6 +32,7 @@ They may seem small, but the possibilities are immense!!
 
 # Your first workbench
 
+[Activate you SIM](tutorials/Kite_Platform.md#how-to-get-started-with-your-sim)
 
 <table style="width:10%" align="center">
   <tr>

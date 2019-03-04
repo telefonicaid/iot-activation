@@ -48,13 +48,31 @@ You could eliminate authentication. But would this be the right thing to do?
 You may not think your data is valuable enough. But still data bridge can be your solution.
 
 And if you have any doubt about the advantages over consumption, 
-we show you a couple of graphs where you can see the differences in consumption in a device.
+we show you a couple of graphs where you can see the differences in consumption in a device sending a 300 bytes packet.
 
-![pic](pictures/miscellaneous/consumption_chart_NB_MQTTTLS.png)
-
-**Energy consumption of a MQTT shipment with TLS-certified vs UDP shipment**
-
-![pic](pictures/miscellaneous/consumption_chart_NB_UDP.png)
+<table>
+  <tr>
+	<th><a>Consumption MQTT with TLS</a></th>
+	<th><a>Consumption MQTT</a></th>
+	<th><a>Consumption UDP</a></th>
+  </tr>
+  <tr>
+	<th>
+		<img src="pictures/miscellaneous/consumption_chart_NB_MQTTTLS.png" width="300" height="200">
+	</th>
+	<th>
+		<img src="pictures/miscellaneous/consumption_chart_NB_MQTT.png" width="300" height="200">
+	</th>
+	<th>
+		<img src="pictures/miscellaneous/consumption_chart_NB_UDP.png" width="300" height="200">
+	</th>
+  </tr>
+    <tr>
+	<th><a>safe</a></th>
+	<th><a>It's not safe (30% savings)</a></th>
+	<th><a>safe, using the data Bridge (50% savings)</a></th>
+  </tr>
+</table>
 
 ## What our bridge is already doing
 
@@ -62,7 +80,7 @@ we show you a couple of graphs where you can see the differences in consumption 
 - It uses the IP address device to connect to the Cloud
 - It publishes in AWS the message received through UDP message
 - It returns an answer with the result of the publication
-- It receives commands from the cloud
+- It return commands from the cloud
 - A Telefónica network and your own security VPN
 
 ## What's it gonna do next?
@@ -85,7 +103,8 @@ we show you a couple of graphs where you can see the differences in consumption 
 - [KITE Platform](Kite_Platform.md#access-step-by-step-using-the-curl-command) Certificates files
 - A Telefónica Internet Protocol security [(IPsec)](BP_IPsec.md)
 
-If you use a SIM from the Thinx laboratory you will not have access to the Kite Platform.
+If you use a SIM from the Thinx testing network you will not have access to the Kite Platform, 
+it is not currently available.
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
@@ -195,7 +214,8 @@ By means of the following list of codes we try to reflect all the possible situa
 
 We have tried to make this as simple as possible.
 
-So you'll only need to fill in a few fields in the configuration file  [Configuration.yaml](../scripts/Data_Bridge/config/Configuration.yaml)
+So you'll only need to fill in a few fields in the configuration file 
+[Configuration.yaml](https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge/config/Configuration.yaml)
 
 
 ### Configure the Cloud
@@ -249,7 +269,7 @@ Also verify that the address of the urls matches the one of your access to Kite
 Even if it is possible to modify all the parameters, this is not necessary, since some of them are predefined for AWS.
 
 Here is an example of a configuration file for Amazon Web Services connection 
-[Configuration_AWS.yaml](../scripts/Data_Bridge/config/Configuration_AWS.yaml)
+[Configuration_AWS.yaml](https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge/config/Configuration_AWS.yaml)
 
 ```yaml
 cloud: AWS
@@ -300,7 +320,7 @@ MQTT:
 ### Google Cloud Configuration file
 
 Here is an example of a configuration file for Google Cloud connection 
-[Configuration_GCP.yaml](../scripts/Data_Bridge/config/Configuration_GCP.yaml)
+[Configuration_GCP.yaml](https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge/config/Configuration_GCP.yaml)
 
 ```yaml
 base_url: "https://cloudiotdevice.googleapis.com/v1"
@@ -361,7 +381,7 @@ To attach an IAM role to an instance that has no role, the instance can be in th
 3. Select the instance, choose Actions, Instance Settings, Attach/Replace IAM role.
 4. Select the IAM role to attach to your instance, and choose Apply.
 
-Now you can download the [Bridge code](../scripts/Data_Bridge)
+Now you can download the [Bridge code](https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge)
 
 Place the files in it and execute with the following command
 
@@ -374,20 +394,20 @@ sudo nohup python main.py &
 
 Example of the contents of a log file
 ```
-2019-01-28 17:25:32,803 - INFO : ################################# waiting for a new message #################################
-2019-01-28 17:26:38,640 - INFO : Message Received [ {"v":33,"a":28} ] from [ 10.5.0.5 ] : [ 4114 ]
-2019-01-28 17:26:39,065 - INFO : KITE Response status code [ 200 ]
-2019-01-28 17:26:39,066 - INFO : GET information related to [ 10.5.0.5 ] from  KITE Platform
-2019-01-28 17:26:39,066 - INFO : Found device cloud name [ MyDevice ] and topic [  ] in KITE Platform
-2019-01-28 17:26:39,066 - INFO : Select Option 1: DEVICE [ MyDevice ] and DEFAULT TOPIC
-2019-01-28 17:26:39,066 - INFO : Publish message [ {"v":33,"a":28} ] into topic [ tlm/MyDevice/raw ]
-2019-01-28 17:26:39,468 - INFO : Publish Accepted code [ 200 ]
-2019-01-28 17:26:39,468 - INFO : Sent MESSAGE [ {"msg": "OK: msg published", "code": 200} ] to [ 10.5.0.5 ] : [ 4114 ]
-2019-01-28 17:26:39,468 - INFO : ################################# waiting for a new message #################################
-2019-01-28 17:39:29,432 - INFO : Message Received [ aaa ] from [ 84.78.20.223 ] : [ 19117 ]
-2019-01-28 17:39:29,910 - INFO : KITE Response status code [ 204 ]
-2019-01-28 17:39:29,910 - INFO : GET information related to [ 84.78.20.223 ] from  KITE Platform
-2019-01-28 17:39:29,910 - INFO : Sent MESSAGE [ {"msg": "ERROR: connection with Kite not established", "code": 404} ] to [ 84.78.20.223 ] : [ 19117 ]
+INFO : ################################# waiting for a new message #################################
+INFO : Message Received [ {"v":33,"a":28} ] from [ 10.5.0.5 ] : [ 4114 ]
+INFO : KITE Response status code [ 200 ]
+INFO : GET information related to [ 10.5.0.5 ] from  KITE Platform
+INFO : Found device cloud name [ MyDevice ] and topic [  ] in KITE Platform
+INFO : Select Option 1: DEVICE [ MyDevice ] and DEFAULT TOPIC
+INFO : Publish message [ {"v":33,"a":28} ] into topic [ tlm/MyDevice/raw ]
+INFO : Publish Accepted code [ 200 ]
+INFO : Sent MESSAGE [ {"msg": "OK: msg published", "code": 200} ] to [ 10.5.0.5 ] : [ 4114 ]
+INFO : ################################# waiting for a new message #################################
+INFO : Message Received [ aaa ] from [ 00.00.00.00 ] : [ 4114 ]
+INFO : KITE Response status code [ 204 ]
+INFO : GET information related to [ 00.00.00.00 ] from  KITE Platform
+INFO : Sent MESSAGE [{"msg":"ERROR:connection with Kite not established","code":404}] to [ 84.78.20.223 ]:[4114]
 ```
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)

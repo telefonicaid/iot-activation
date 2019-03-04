@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width initial-scale=1">
 
-  <title>IoT Activation</title>
-  <meta name="description" content="Welcome to the Revolu<strong>IOT</strong>n">
+  <title>Arduino to Google Cloud</title>
+  <meta name="description" content="Table of Contents  Arduino: MKR NB-1500 to AWS-IoT          Getting started with the MKR NB-1500                  What will you learn?          What will you...">
   <meta name="google-translate-customization" content="b9870a0c7376df54-aa35852016e6a5cc-ga0a0d80f6c171f17-e"></meta>
   <link rel="stylesheet" href="css/main.css">
-  <link rel="canonical" href="http://localhost:4000/404.html">
+  <link rel="canonical" href="http://localhost:4000/ArduinoGCP.html">
   <link href="/favicon.png" rel="icon">
   <!--link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"-->
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -84,27 +84,142 @@
           </div>
     </div>
     <div class="col-md-12">
-        <style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-</style>
+        <div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
 
-<div class="container">
-  <h1>404</h1>
+	  	
+	    <h1>Arduino to Google Cloud</h1>
+	    <!--<div id="google_translate_element" style="padding-right: 27px;float: left;"></div><script type="text/javascript">
+			function googleTranslateElementInit() {
+  				new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+				}
+		</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+		-->
+	    <p class="post-meta">Feb 6, 2019</p>
 
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
+	   
+	  	<article class="blog-post-small blog-post-content">
+	    	<h3 id="table-of-contents">Table of Contents</h3>
+
+<ul>
+  <li><a href="#arduino-mkr-nb-1500-to-aws-iot">Arduino: MKR NB-1500 to AWS-IoT</a>
+    <ul>
+      <li><a href="#getting-started-with-the-mkr-nb-1500">Getting started with the MKR NB-1500</a>
+        <ul>
+          <li><a href="#what-will-you-learn">What will you learn?</a></li>
+          <li><a href="#what-will-you-need">What will you need?</a></li>
+        </ul>
+      </li>
+      <li><a href="#Generate-your-devices-keys">Generate your devices keys</a></li>
+      <li><a href="#how-to-comunicate-with-google-cloud">How to comunicate with Google Cloud</a></li>
+    </ul>
+  </li>
+  <li><a href="#how-to-start-with-the-project">How to Start with the project</a>
+    <ul>
+      <li><a href="#arduino-board-run-a-code-file">Arduino Board: Run a code file</a></li>
+      <li><a href="#udp-data-bridge-connecting-using-nb-iot-o-lte-m">UDP data Bridge: Connecting using NB-IoT o LTE-M</a></li>
+      <li><a href="#check-the-status">Check the Status</a></li>
+      <li><a href="#send-configuration">Send configuration</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="arduino-mkr-nb-1500-to-aws-iot">Arduino: MKR NB-1500 to AWS-IoT</h1>
+
+<p>For this project, we will take different values from the Arduino board and publish them in AWS.</p>
+
+<p align="center">
+	  <img title="Project_ard" src="pictures/schematics/overview_arduino_AWS.png" href="docs/ArduinoAWS.html" />
+</p>
+
+<h2 id="getting-started-with-the-mkr-nb-1500">Getting started with the MKR NB-1500</h2>
+
+<h4 id="what-will-you-learn">What will you learn</h4>
+
+<ul>
+  <li>Control Arduino board MKR NB-1500 using the Arduino IDE</li>
+  <li>Register a device on Google Cloud</li>
+  <li>Generate credentials for Google</li>
+  <li>Build a bridge between UDP and Google Cloud</li>
+</ul>
+
+<h4 id="what-will-you-need">What will you need?</h4>
+
+<ul>
+  <li>Finish successfully the Arduino Starterkit tutorial</li>
+  <li>Arduino board MKR NB-1500</li>
+  <li>Micro USB cable</li>
+  <li>Arduino IDE</li>
+  <li>GCP account</li>
+  <li><a href="KitePlatform.html#access-step-by-step-using-the-curl-command">KITE Platform</a> Certificates files</li>
+  <li>Telefónica SIMs with private APN <a href="BPIPsec.html">(IPsec)</a></li>
+  <li>Telefónica <a href="BPDataBridge.html">data Bridge</a></li>
+</ul>
+
+<p>If you have successfully completed the Arduino Starterkit tutorial, all the necessary software is already updated.</p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="generate-your-devices-keys">Generate your devices keys</h2>
+
+<p>To secure your devices, it is necessary to create a key pair (public/private) with which to validate any connection.</p>
+
+<p>The easiest way is to use openssl command in a unix console.</p>
+
+<p>the following example shows the commands with which to create the files with the keys</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl req <span class="nt">-x509</span> <span class="nt">-newkey</span> rsa:2048 <span class="nt">-days</span> 3650 <span class="nt">-keyout</span> rsa_private.pem <span class="nt">-nodes</span> <span class="nt">-out</span> rsa_cert.pem <span class="nt">-subj</span> <span class="s2">"/CN=unused"</span>
+openssl ecparam <span class="nt">-genkey</span> <span class="nt">-name</span> prime256v1 <span class="nt">-noout</span> <span class="nt">-out</span> ec_private.pem
+openssl ec <span class="nt">-in</span> ec_private.pem <span class="nt">-pubout</span> <span class="nt">-out</span> ec_public.pem
+</code></pre></div></div>
+<p>once you’ve executed the commands, you should have the following files:</p>
+
+<ul>
+  <li>rsa_private.pem</li>
+  <li>rsa_cert.pem</li>
+  <li>ec_public.pem</li>
+  <li>ec_private.pem</li>
+</ul>
+
+<p>Remember to keep them well, the safety of your devices depends on it.</p>
+
+<p>you need add the public key on the cloud and the private key in your device,
+but if you decide to use our Data Bridge, you can only store it on the server.</p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="how-to-comunicate-with-google-cloud">How to comunicate with Google Cloud</h2>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<p>GCP_IoTcore_menu.png</p>
+
+
+	  	</article>
+	  	
+	  	
+	  	
+<!-- Output author details if some exist. -->
+   
+
+    <!--ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="iot-activation/ArduinoAWS.html" title="Previous Post:
+        Arduino to AWS">&laquo; Arduino to AWS</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+      <li class="next"><a class="basic-alignment right" 
+	    href="iot-activation/ArduinoStarterKit.html" title="Next Post: 
+		Arduino Starterkit">Arduino Starterkit
+        &raquo;</a></li>
+      
+    </ul-->
+	</div>
+	<div class="col-md-1"></div>
 </div>
-
     </div>
     <div class="col-md-12 share-div">
         <div class="col-md-1"></div>

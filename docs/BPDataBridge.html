@@ -26,7 +26,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">IoT Activation</a>
+        <a class="navbar-brand" href="/iot-activation/">IoT Activation</a>
       </div>
       <div class="navbar-collapse collapse navbar-inverse-collapse">
         <ul class="nav navbar-nav">
@@ -159,11 +159,29 @@ In a way, this proves a relatively “expensive” connection.</p>
 <p>And if you have any doubt about the advantages over consumption, 
 we show you a couple of graphs where you can see the differences in consumption in a device.</p>
 
-<p><img src="pictures/miscellaneous/consumption_chart_NB_MQTTTLS.png" alt="pic" /></p>
-
-<p><strong>Energy consumption of a MQTT shipment with TLS-certified vs UDP shipment</strong></p>
-
-<p><img src="pictures/miscellaneous/consumption_chart_NB_UDP.png" alt="pic" /></p>
+<table>
+  <tr>
+	<th><a>Consumption MQTT with TLS</a></th>
+	<th><a>Consumption MQTT</a></th>
+	<th><a>Consumption UDP</a></th>
+  </tr>
+  <tr>
+	<th>
+		<img src="pictures/miscellaneous/consumption_chart_NB_MQTTTLS.png" width="300" height="200" />
+	</th>
+	<th>
+		<img src="pictures/miscellaneous/consumption_chart_NB_MQTT.png" width="300" height="200" />
+	</th>
+	<th>
+		<img src="pictures/miscellaneous/consumption_chart_NB_UDP.png" width="300" height="200" />
+	</th>
+  </tr>
+    <tr>
+	<th><a>safe</a></th>
+	<th><a>It's not safe (30% savings)</a></th>
+	<th><a>safe, using the data Bridge (50% savings)</a></th>
+  </tr>
+</table>
 
 <h2 id="what-our-bridge-is-already-doing">What our bridge is already doing</h2>
 
@@ -172,7 +190,7 @@ we show you a couple of graphs where you can see the differences in consumption 
   <li>It uses the IP address device to connect to the Cloud</li>
   <li>It publishes in AWS the message received through UDP message</li>
   <li>It returns an answer with the result of the publication</li>
-  <li>It receives commands from the cloud</li>
+  <li>It return commands from the cloud</li>
   <li>A Telefónica network and your own security VPN</li>
 </ul>
 
@@ -507,20 +525,20 @@ where you can run your Bridge.</p>
 </ul>
 
 <p>Example of the contents of a log file</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2019-01-28 17:25:32,803 - INFO : ################################# waiting for a new message #################################
-2019-01-28 17:26:38,640 - INFO : Message Received [ {"v":33,"a":28} ] from [ 10.5.0.5 ] : [ 4114 ]
-2019-01-28 17:26:39,065 - INFO : KITE Response status code [ 200 ]
-2019-01-28 17:26:39,066 - INFO : GET information related to [ 10.5.0.5 ] from  KITE Platform
-2019-01-28 17:26:39,066 - INFO : Found device cloud name [ MyDevice ] and topic [  ] in KITE Platform
-2019-01-28 17:26:39,066 - INFO : Select Option 1: DEVICE [ MyDevice ] and DEFAULT TOPIC
-2019-01-28 17:26:39,066 - INFO : Publish message [ {"v":33,"a":28} ] into topic [ tlm/MyDevice/raw ]
-2019-01-28 17:26:39,468 - INFO : Publish Accepted code [ 200 ]
-2019-01-28 17:26:39,468 - INFO : Sent MESSAGE [ {"msg": "OK: msg published", "code": 200} ] to [ 10.5.0.5 ] : [ 4114 ]
-2019-01-28 17:26:39,468 - INFO : ################################# waiting for a new message #################################
-2019-01-28 17:39:29,432 - INFO : Message Received [ aaa ] from [ 84.78.20.223 ] : [ 19117 ]
-2019-01-28 17:39:29,910 - INFO : KITE Response status code [ 204 ]
-2019-01-28 17:39:29,910 - INFO : GET information related to [ 84.78.20.223 ] from  KITE Platform
-2019-01-28 17:39:29,910 - INFO : Sent MESSAGE [ {"msg": "ERROR: connection with Kite not established", "code": 404} ] to [ 84.78.20.223 ] : [ 19117 ]
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INFO : ################################# waiting for a new message #################################
+INFO : Message Received [ {"v":33,"a":28} ] from [ 10.5.0.5 ] : [ 4114 ]
+INFO : KITE Response status code [ 200 ]
+INFO : GET information related to [ 10.5.0.5 ] from  KITE Platform
+INFO : Found device cloud name [ MyDevice ] and topic [  ] in KITE Platform
+INFO : Select Option 1: DEVICE [ MyDevice ] and DEFAULT TOPIC
+INFO : Publish message [ {"v":33,"a":28} ] into topic [ tlm/MyDevice/raw ]
+INFO : Publish Accepted code [ 200 ]
+INFO : Sent MESSAGE [ {"msg": "OK: msg published", "code": 200} ] to [ 10.5.0.5 ] : [ 4114 ]
+INFO : ################################# waiting for a new message #################################
+INFO : Message Received [ aaa ] from [ 00.00.00.00 ] : [ 4114 ]
+INFO : KITE Response status code [ 204 ]
+INFO : GET information related to [ 00.00.00.00 ] from  KITE Platform
+INFO : Sent MESSAGE [{"msg":"ERROR:connection with Kite not established","code":404}] to [ 84.78.20.223 ]:[4114]
 </code></pre></div></div>
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
