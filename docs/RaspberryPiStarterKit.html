@@ -121,7 +121,7 @@
     <ul>
       <li><a href="#install-os-raspbian">Install OS (Raspbian)</a></li>
       <li><a href="#connect-with-your-wi-fi-and-update-the-software">Connect with your Wi-Fi</a></li>
-      <li><a href="#telefonicas-connection">Telefónica’s Connection.</a></li>
+      <li><a href="#telefonicas-connection">Telefónica’s Connection</a></li>
       <li><a href="#use-a-remote-access-enable-ssh-server-on-raspbian">Use a remote access</a></li>
     </ul>
   </li>
@@ -151,11 +151,11 @@ these allows you to connect USB peripherals like mouse, keyboard, USB drive, mod
   </li>
   <li>
     <p><strong>SD card slot</strong>
-You will install the Operating System in a microSD card that will be allocated here. This card also keep all your files save.</p>
+You will install the Operating System in a microSD card that will be allocated here. This card also keeps all your files save.</p>
   </li>
   <li>
     <p><strong>Ethernet, Wifi and BL</strong>
-Three diferent interfaces, to enables different connection ways.</p>
+Three different interfaces, to enables different connection ways.</p>
   </li>
   <li>
     <p><strong>Audio jack</strong>
@@ -281,35 +281,36 @@ Take care of her, she will be your partner into the IoT world.</p>
   <li>Insert the microSD card into the slot on the Raspberry.</li>
   <li>Plug a keyboard and mouse in the Raspberry’s USB slot.</li>
   <li>Connect the USB Power Supply using the correct head from your country. 
-(Fot this step is necessary do previously the 2 first steps)</li>
+(For this step is necessary do previously the 2 first steps)</li>
   <li>Select the Raspbian option in the window.</li>
   <li>Select your language, and the corresponding keyboard type</li>
   <li>If you wish, you can now configure the wifi connection or wait for the next section.</li>
   <li>Press the install button.</li>
-  <li>Accepts the confirmation window and waits until the installation is complete .</li>
+  <li>Accepts the confirmation window and waits until the installation is complete.</li>
 </ol>
 
 <p><img src="pictures/Raspberry/Raspi_Install_NOOBS.png" alt="pic" /></p>
 
-<p>Congrats!, You have just started at the IoT world.
+<p>Congrats! You have just started at the IoT world.
 We will continue setting up your network interfaces.</p>
 
 <h2 id="connect-to-your-wi-fi-network-and-update-the-software">Connect to your Wi-Fi network and Update the Software</h2>
 
-<p>First of all, you should update all the packages and software running on your board. This process can consume a huge amount of data, so we highly recommend you to start setting up wifi interfaces.</p>
+<p>First of all, you should update all the packages and software running on your board. 
+This process can consume a huge amount of data. So, we highly recommend you, to start setting up wifi interfaces.</p>
 
 <p>Set <strong>Ctrl+Alt+T</strong> to open a Terminal.</p>
 
 <p><img src="pictures/Raspberry/Raspi_terminal.png" alt="pic" /></p>
 
 <p>Sometimes some errors may occur because the system dates are not update. 
-To avoid these errors you can update the Raspberry time with the following command.</p>
+To avoid these errors, you can update the Raspberry time with the following command.</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo date -s "05/23/2018 12:00:00"
 </code></pre></div></div>
 
-<p>For connect with your Wi-Fi network, press on the top right corner in the LAN icon and select your network with your password if is necesary.</p>
+<p>For connect with your Wi-Fi network, press on the top right corner in the LAN icon and select your network with your password if is necessary.</p>
 
-<p>If  wifi is disabled, you have to access to the Raspberry configuration.</p>
+<p>If wifi is disabled, you have to access to the Raspberry configuration.</p>
 
 <p>In this case open a terminal and type</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo raspi-config
@@ -321,7 +322,7 @@ To avoid these errors you can update the Raspberry time with the following comma
   <li>Select your country</li>
   <li>Now the wifi is activate</li>
   <li>Enter your <strong>SSID</strong> (Name of your wifi network)</li>
-  <li>Enter your <strong>password</strong> if is necesary</li>
+  <li>Enter your <strong>password</strong> if is necessary</li>
   <li>Chose <strong>FINISH</strong> with the tab key</li>
 </ol>
 
@@ -330,7 +331,7 @@ To avoid these errors you can update the Raspberry time with the following comma
 <p>Sometimes some corporate networks require additional validation. 
 In this case it will be necessary to proceed correctly or contact the network administrator.</p>
 
-<p>:thumbsup:  If you dont want to run out of data please set up the wi-fi connection, before running al these commands!</p>
+<p>:thumbsup:  If you don’t want to run out of data please set up the wifi connection, before running all these commands!</p>
 
 <p>Open a Terminal windows and update the repository with the command</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get update
@@ -374,14 +375,14 @@ Look at it with the command</p>
 </code></pre></div></div>
 <p><img src="pictures/Raspberry/Raspi_gsm_test.png" alt="pic" /></p>
 
-<p>the inet adrress label shows your Raspberry’s IP</p>
+<p>the inet address label shows your Raspberry’s IP</p>
 
 <h5 id="how-test-your-new-connection">How Test your new connection</h5>
 <p>:thumbsup: To make sure that the transmission is done through the USB modem, in this step we recommend disabling the wifi connection. 
 To deactivate the wifi connection click on the network symbol in the upper right corner 
 and press <strong>Turn off Wi-fi</strong>.</p>
 
-<p>A easiest way of test your connectivity is make ping a website.
+<p>An easiest way of test your connectivity is make ping a website.
 Use the next command</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ping www.telefonica.com
 </code></pre></div></div>
@@ -391,7 +392,7 @@ Use the next command</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://jsonplaceholder.typicode.com/todos/1
 </code></pre></div></div>
 
-<p>to check the downloaded file you can use the cat command</p>
+<p>to check the downloaded file, you can use the cat command</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat 1
 </code></pre></div></div>
@@ -471,7 +472,8 @@ default password 'raspberry'
 
 <p>There is a wide variety of SSH clients that you can use. Many of them are free!!</p>
 
-<p>But if you know which one to choose, we can recommend download Putty from www.putty.org and install it</p>
+<p>But if you know which one to choose, we are using Putty.
+Download it from www.putty.org and install it</p>
 
 <p>Open putty and write the Raspberry’s IP in the Host Name box
 Select SSH like Connection type and Port 22

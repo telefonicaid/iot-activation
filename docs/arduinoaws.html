@@ -112,8 +112,8 @@
         </ul>
       </li>
       <li><a href="#what-is-mqtt">What is MQTT</a></li>
+      <li><a href="#how-to-communicate-with-aws">How to communicate with AWS</a></li>
       <li><a href="#test-your-certificates-with-mqttfx">Test your Certificates with MQTT.fx</a></li>
-      <li><a href="#how-to-comunicate-with-aws">How to comunicate with AWS</a></li>
     </ul>
   </li>
   <li><a href="#how-to-start-with-the-project">How to Start with the project</a>
@@ -172,7 +172,7 @@ or it can be subscribed to a topic to receive messages</p>
 
 <p>AWS use this system to communicate with your devices</p>
 
-<p>If you access to AWS Management Console.In the left navigation panel, choose Manage, and then choose Things.
+<p>If you access to AWS Management Console. In the left navigation panel, choose Manage, and then choose Things.
 When choose a thing you can find out the different topic that you can subscribe/publish 
 Select <em>**Interact</em> to copy they</p>
 
@@ -196,80 +196,7 @@ Select <em>**Interact</em> to copy they</p>
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
-<h2 id="test-your-certificates-with-mqttfx">Test your Certificates with MQTT.fx</h2>
-
-<p>One of the best ways to make sure that certificates have been created correctly is to try connecting via a 
-MQTT client with graphical interface.</p>
-
-<p>We recommend you download MQTT.fx from the following link https://mqttfx.jensd.de/</p>
-
-<ol>
-  <li>Open MQTT.fx and create a new connection.</li>
-</ol>
-
-<p><img src="pictures/MQTT/MQTTFX_open.png" alt="pic" /></p>
-
-<ol>
-  <li>Configure the broker as shown in the image below.
-Remember to use the files you downloaded in the previous step. And configure the broker address associated to your device.</li>
-</ol>
-
-<p><img src="pictures/MQTT/MQTTFX_Broker_Connect.png" alt="pic" /></p>
-
-<ol>
-  <li>Now that you are connected to the broker, you need to subscribe to the topics to know the state of the shadow: 
-accepted and rejected.</li>
-</ol>
-
-<p>Every time a message is published in the topic to update the shadow, 
-you can check in these topics if the message has been <strong>accepted</strong> or <strong>rejected</strong>.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyDevice/shadow/update/accepted
-$aws/things/MyDevice/shadow/update/rejected
-</code></pre></div></div>
-
-<p><img src="pictures/MQTT/MQTTFX_Topic_Subscribe_Device.png" alt="pic" /></p>
-
-<ol>
-  <li>To update your device’s shadow, You should publish in the topic the following <strong>json file</strong>, 
-you can use the following link to validate it https://jsonlint.com/</li>
-</ol>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
-    "state": {
-        "reported" : { 
-            "voltage" : 22    
-        }
-    }
-}
-</code></pre></div></div>
-<p>This file will simulate the publishing of a device to make voltage measurements.</p>
-
-<p><img src="pictures/AWS/AWS_Console_Manage_Things_Details_Shadow_Device.png" alt="pic" /></p>
-
-<ol>
-  <li>Choose the topic to update your shadow.
-Be sure to select the service quality level as QoS 0, amazon doesn’t allow a different police.
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyDevice/shadow/update
-</code></pre></div>    </div>
-  </li>
-</ol>
-
-<p><img src="pictures/MQTT/MQTTFX_Topic_Publish_Device.png" alt="pic" /></p>
-
-<ol>
-  <li>If you want to delete the shadow’s document publish the next <strong>json file</strong>
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
- "state": null
-}
-</code></pre></div>    </div>
-  </li>
-  <li>Play with this, sending different values until you understand how it works.
-:thumbsup: Remember to check if your values has been accepted or rejected</li>
-</ol>
-
-<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
-
-<h2 id="how-to-comunicate-with-aws">How to comunicate with AWS</h2>
+<h2 id="how-to-communicate-with-aws">How to communicate with AWS</h2>
 
 <p>As you know, when you register a new device in AWS, several topics are created by default. Using them you can send data and receive information.</p>
 
@@ -313,6 +240,79 @@ This is the information that is published in the delta topic</li>
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
+<h2 id="test-your-certificates-with-mqttfx">Test your Certificates with MQTT.fx</h2>
+
+<p>One of the best ways to make sure that certificates have been created correctly is to try connecting via a 
+MQTT client with graphical interface.</p>
+
+<p>We recommend you download MQTT.fx from the following link https://mqttfx.jensd.de/</p>
+
+<ol>
+  <li>Open MQTT.fx and create a new connection.</li>
+</ol>
+
+<p><img src="pictures/MQTT/MQTTFX_open.png" alt="pic" /></p>
+
+<ol>
+  <li>Configure the broker as shown in the image below.
+Remember to use the files you downloaded in the previous step. And configure the broker address associated to your device.</li>
+</ol>
+
+<p><img src="pictures/MQTT/MQTTFX_Broker_Connect.png" alt="pic" /></p>
+
+<ol>
+  <li>Now that you are connected to the broker, you need to subscribe to the topics to know the state of the shadow: 
+accepted and rejected.</li>
+</ol>
+
+<p>Every time a message is published in the topic to update the shadow, 
+you can check in these topics if the message has been <strong>accepted</strong> or <strong>rejected</strong>.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyDevice/shadow/update/accepted
+$aws/things/MyDevice/shadow/update/rejected
+</code></pre></div></div>
+
+<p><img src="pictures/MQTT/MQTTFX_Topic_Subscribe_Device.png" alt="pic" /></p>
+
+<ol>
+  <li>To update your device’s shadow, you should publish in the topic the following <strong>json file</strong>, 
+you can use the following link to validate it https://jsonlint.com/</li>
+</ol>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "state": {
+        "reported" : { 
+            "voltage" : 22
+        }
+    }
+}
+</code></pre></div></div>
+<p>This file will simulate the publishing of a device to make voltage measurements.</p>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Things_Details_Shadow_Device.png" alt="pic" /></p>
+
+<ol>
+  <li>Choose the topic to update your shadow.
+Be sure to select the service quality level as QoS 0, amazon doesn’t allow different police.
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyDevice/shadow/update
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p><img src="pictures/MQTT/MQTTFX_Topic_Publish_Device.png" alt="pic" /></p>
+
+<ol>
+  <li>If you want to delete the shadow’s document publish the next <strong>json file</strong>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+ "state": null
+}
+</code></pre></div>    </div>
+  </li>
+  <li>Play with this, sending different values until you understand how it works.
+:thumbsup: Remember to check if your values has been accepted or rejected</li>
+</ol>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
 <h1 id="how-to-start-with-the-project">How to Start with the project</h1>
 
 <p>We will explain it to you later in detail how to play with it step by step, 
@@ -320,8 +320,7 @@ In this tutorial you need to be familiar with the following concepts</p>
 
 <ul>
   <li>Run a code file on your Arduino Board</li>
-  <li>Run a python server with the credentials manager</li>
-  <li>Upload the credentials files to a Server</li>
+  <li>Run a python server with</li>
   <li>Use MQTT.fx to post messages in a topic</li>
   <li>Get the shadow from AWS core</li>
 </ul>
@@ -400,23 +399,23 @@ the corresponding AWS MQTT broker.</p>
 <p>This <a href="BPDataBridge.html">bridge</a>
 is the easiest way to connect to AWS using only one UDP send</p>
 
-<p>:heavy_exclamation_mark: If you’re running the connection tests in The Thinx lab. 
+<p>:heavy_exclamation_mark: If you’re running the connection tests in The Thinx lab.
 The SIM you use will not have connectivity with the Kite platform. So you will not be able to use the connection through our Bridge. 
 Even so you have access to the internet and you will be able to perform any test on your infrastructure.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">"################################# waiting for a new message #################################"</span><span class="p">)</span>
-            <span class="n">udp_msg</span><span class="p">,</span> <span class="n">udp_ip</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
-            <span class="n">ip</span> <span class="o">=</span> <span class="n">udp_ip</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">"################################# waiting for a new message #################################"</span><span class="p">)</span>
+ <span class="n">udp_msg</span><span class="p">,</span> <span class="n">udp_ip</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+ <span class="n">ip</span> <span class="o">=</span> <span class="n">udp_ip</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">"Message Received [ </span><span class="si">%</span><span class="s">s ] from [ </span><span class="si">%</span><span class="s">s ] : [ </span><span class="si">%</span><span class="s">s ]"</span> <span class="o">%</span> <span class="p">(</span><span class="n">udp_msg</span><span class="p">,</span> <span class="n">udp_ip</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">udp_ip</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">))</span>
+ <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">"Message Received [ </span><span class="si">%</span><span class="s">s ] from [ </span><span class="si">%</span><span class="s">s ] : [ </span><span class="si">%</span><span class="s">s ]"</span> <span class="o">%</span> <span class="p">(</span><span class="n">udp_msg</span><span class="p">,</span> <span class="n">udp_ip</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">udp_ip</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">))</span>
 
-            <span class="n">response</span> <span class="o">=</span> <span class="n">bridge_routine</span><span class="p">(</span><span class="n">udp_msg</span><span class="p">,</span> <span class="n">udp_ip</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">config_cloud</span><span class="p">)</span>
+ <span class="n">response</span> <span class="o">=</span> <span class="n">bridge_routine</span><span class="p">(</span><span class="n">udp_msg</span><span class="p">,</span> <span class="n">udp_ip</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">config_cloud</span><span class="p">)</span>
 
-            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">"Generate ACK payload [ </span><span class="si">%</span><span class="s">s ]"</span> <span class="o">%</span> <span class="n">response</span><span class="p">)</span>
-            <span class="n">ack_msg</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+ <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">"Generate ACK payload [ </span><span class="si">%</span><span class="s">s ]"</span> <span class="o">%</span> <span class="n">response</span><span class="p">)</span>
+ <span class="n">ack_msg</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">"Sent MESSAGE [ </span><span class="si">%</span><span class="s">s ] to [ </span><span class="si">%</span><span class="s">s ] : [ </span><span class="si">%</span><span class="s">s ]"</span> <span class="o">%</span> <span class="p">(</span><span class="n">ack_msg</span><span class="p">,</span> <span class="n">udp_ip</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">udp_ip</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-            <span class="n">sock</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">ack_msg</span><span class="p">,</span> <span class="n">udp_ip</span><span class="p">)</span>
+ <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">"Sent MESSAGE [ </span><span class="si">%</span><span class="s">s ] to [ </span><span class="si">%</span><span class="s">s ] : [ </span><span class="si">%</span><span class="s">s ]"</span> <span class="o">%</span> <span class="p">(</span><span class="n">ack_msg</span><span class="p">,</span> <span class="n">udp_ip</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">udp_ip</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+ <span class="n">sock</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">ack_msg</span><span class="p">,</span> <span class="n">udp_ip</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
@@ -431,10 +430,11 @@ This updated the shadow with each shipment of the device every few seconds.</p>
 
 <h2 id="send-a-command">Send a command</h2>
 
-<p>To send a command to the device you must use the MQTT as explained in the previous section through the json that we provide. 
+<p>To send a command to the device you must use the MQTT as explained in the previous section through the json that we provide.
 You can change this instruction as many times as needed.</p>
 
-<p>In this example you can turn off and endend the small LED on the board, but you are free to program your own instructions. Feel free!</p>
+<p>In this example you can turn on and off the small LED on the board, but you are unrestricted to program
+your own instructions. Feel free!</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span><span class="w"> </span><span class="err">Turn</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">led</span><span class="w">
 </span><span class="p">{</span><span class="w">

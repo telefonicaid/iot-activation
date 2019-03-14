@@ -13,7 +13,7 @@ you must ensure that both devices are configured for the same network.
 The easiest way is to set up a static IP. In order to do this, 
 we will assign an IP of our choice to the configuration that you assign for the configuration.
 
-Open a terminal windows use the next command 'sudo ifconfig -a'
+Open a terminal window use the next command 'sudo ifconfig -a'
 
 If you are connected by cable you will see an IP address assigned.
 This IP has been assigned automatically and will change whenever you establish a new connection.

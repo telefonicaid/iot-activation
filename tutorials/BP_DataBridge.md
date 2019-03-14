@@ -34,7 +34,7 @@ When the Bridge starts running, it will establish a UDP socket and will keep lis
 for any UDP messages sent to this IP address using a configured port.
 Using the same connection to return a response with the result of the procedure.
 
-In addition the Bridge will use the Kite access to determine the identity of the device and decide the publishing option.
+In addition, the Bridge will use the Kite access to determine the identity of the device and decide the publishing option.
 
 But if you continue reading you will appreciate all the work that the Bridge can do for you.
 
@@ -52,9 +52,9 @@ we show you a couple of graphs where you can see the differences in consumption 
 
 <table>
   <tr>
-	<th><a>Consumption MQTT with TLS</a></th>
-	<th><a>Consumption MQTT</a></th>
-	<th><a>Consumption UDP</a></th>
+	<th><div align="center">Consumption MQTT with TLS</div></th>
+	<th><div align="center">Consumption MQTT</div></th>
+	<th><div align="center">Consumption UDP</div></th>
   </tr>
   <tr>
 	<th>
@@ -67,10 +67,16 @@ we show you a couple of graphs where you can see the differences in consumption 
 		<img src="pictures/miscellaneous/consumption_chart_NB_UDP.png" width="300" height="200">
 	</th>
   </tr>
-    <tr>
-	<th><a>safe</a></th>
-	<th><a>It's not safe (30% savings)</a></th>
-	<th><a>safe, using the data Bridge (50% savings)</a></th>
+	<tr>
+	<th><div align="center">
+			Secure data transfer <br>
+			with high power consumption</div></th>
+	<th><div align="center">
+			Unsecured data transfer <br>
+			(30% savings compared to TLS)</div></th>
+	<th><div align="center">
+			Security provided by Telefónica's network <br>
+			(50% savings compared to MQTT + TLS)</div></th>
   </tr>
 </table>
 
@@ -80,7 +86,7 @@ we show you a couple of graphs where you can see the differences in consumption 
 - It uses the IP address device to connect to the Cloud
 - It publishes in AWS the message received through UDP message
 - It returns an answer with the result of the publication
-- It return commands from the cloud
+- It returns commands from the cloud
 - A Telefónica network and your own security VPN
 
 ## What's it gonna do next?
@@ -92,14 +98,16 @@ we show you a couple of graphs where you can see the differences in consumption 
 ## What will you need?
 
 - Server with Python 2.7 and Static IP (We've used an Amazon EC2 Instance)
-- Python libraries:
   - socket
+- Python libraries:
   - json
   - yaml
   - paho.mqtt.client
   - ssl
   - requests
   - boto3 (AWS)
+  - ...
+
 - [KITE Platform](Kite_Platform.md#access-step-by-step-using-the-curl-command) Certificates files
 - A Telefónica Internet Protocol security [(IPsec)](BP_IPsec.md)
 
@@ -110,11 +118,11 @@ it is not currently available.
 
 ## What does it do??
 
-You can review the following flow chart, but you will understand it better if you read our comments we have written for you.
+You can review the following flow chart, but you will understand it better if you read our comments, we have written for you.
 
 ![pic](pictures/Bridge/Bridge_overview_AWS.png)
 
-Each time you receive a UDP datagrams , it will be accompanied by the sender ip address of. 
+Each time you receive a UDP datagrams, it will be accompanied by the sender ip address of. 
 
 
 The Bridge uses this ip to identify the SIM from which the information comes and retrieves the information provided in Kite.
@@ -177,7 +185,7 @@ In this way you will be able to control if the publication has been done correct
 
 Another advantage of using the AWS shadow is the interaction with the device, 
 as it allows to retrieve shadow information, allowing the reception of commands.
-because next to the response code, the contents of the field **delta**  in the shadow will be returned in json format.
+because next to the response code, the contents of the field **delta** in the shadow will be returned in json format.
 
 ![pic](pictures/Bridge/Bridge_overview_AWS_option3.png)
 
@@ -214,7 +222,7 @@ By means of the following list of codes we try to reflect all the possible situa
 
 We have tried to make this as simple as possible.
 
-So you'll only need to fill in a few fields in the configuration file 
+So, you'll only need to fill in a few fields in the configuration file 
 [Configuration.yaml](https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge/config/Configuration.yaml)
 
 
@@ -224,15 +232,16 @@ This parameter is used to identify the cloud and select the configuration file.
 At the moment only the AWS connection is available, but we cannot predict the future...
 
 ```yaml
-cloud: AWS
+cloud: XXX
 ```
 
 allowed values:
-- AWS
+- AWS (Amazon Web Services)
+- GCP (Google Cloud Platform)
 
 ### Configure the UDP socket
 
-Here you can choose the port through which you will receive the UDP frames and the ip of the source device.
+Here you can choose the port through which you will receive the UDP frames and the IP of the source device.
 
 ```yaml
 UDP:
@@ -337,6 +346,7 @@ private_key_file: GCP_rsa_private.pem
 public_key_file: GCP_rsa_public.pem
 ```
 
+Currently the access keys must be configured via the configuration file and stored on the server.
 
 #### Project configuration
 
@@ -345,9 +355,29 @@ project_id: "xxxxxxxxxx"
 cloud_region: "xxxx-xxxx"
 registry_id: "xxxxxxxx"
 service_account_json: "service_account.json"
+
+```
+- **service_account.json:** A file that establish the identity of the service account
+
+```json
+{
+"type": "service_account",
+"project_id": "[PROJECT-ID]",
+"private_key_id": "[KEY-ID]",
+"private_key": "-----BEGIN PRIVATE KEY-----\n[PRIVATE-KEY]\n-----END PRIVATE KEY-----\n",
+"client_email": "[SERVICE-ACCOUNT-EMAIL]",
+"client_id": "[CLIENT-ID]",
+"auth_uri": "https://accounts.google.com/o/oauth2/auth",
+"token_uri": "https://accounts.google.com/o/oauth2/token",
+"auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+"client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/[SERVICE-ACCOUNT-EMAIL]"
+}
 ```
 
 #### Certificates configuration
+
+These are the parameters that will guarantee the security of your devices.
+if you want to know how to generate them access the [tutorial](Arduino_GCP.md#-generate-your-devices-keys)
 
 ```yaml
 algorithm: "RS256"
@@ -356,6 +386,10 @@ ca_certs: "https://pki.google.com/roots.pem"
 private_key_file: GCP_rsa_private.pem
 public_key_file: GCP_rsa_public.pem
 ```
+
+- **GCP_rsa_private.pem:** The private key that must be securely stored on the device and used to sign the authentication.
+- **GCP_rsa_public.pem:** The public key that must be stored in Cloud IoT Core and used to verify the signature of the authentication.
+
 
 ## How to run it
 
@@ -392,7 +426,50 @@ sudo nohup python main.py &
 - **nohup** It'll keep running even when you close the session.
 - **python main.py** will execute the code
 
+
+When you run it for the first time, it is almost certain that it will fail when you miss one of the python libraries.
+You can install them by following these commands:
+
+```
+sudo yum install openssl-devel 
+sudo yum install gcc
+
+sudo pip install pyJWT 
+sudo pip install google-api-python-client
+sudo pip install google-oauth -t
+sudo pip install google-auth -t
+sudo pip install google-auth-httplib2
+sudo pip install google-cloud
+sudo pip install google-cloud-pubsub
+sudo pip install pyOpenSSL cryptography
+sudo pip install pyOpenSSL 
+
+sudo pip install paho.mqtt.client
+sudo pip install json
+sudo pip install yaml
+sudo pip install ssl
+sudo pip install requests
+sudo pip install boto3 
+```
+
+But you must have some considerations:
+
+Some libraries like boto3 can cause problems when finding files, so it will be necessary 
+to install them directly in the folder where the bridge code is located. 
+To do this, you add at the end of the command the following expression `-t ./`
+
+```
+sudo pip install boto3 -t ./
+```
+
+When it is running it will register the sendings in the log file. You can monitor it with the following command 
+
+```
+tail -f log/data_bridge.log
+```
+
 Example of the contents of a log file
+
 ```
 INFO : ################################# waiting for a new message #################################
 INFO : Message Received [ {"v":33,"a":28} ] from [ 10.5.0.5 ] : [ 4114 ]

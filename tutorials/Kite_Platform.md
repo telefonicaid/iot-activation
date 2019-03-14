@@ -1,13 +1,13 @@
 ---
 layout: post
-title:  "Kite_Platform"
+title:  "Kite Platform"
 date:   2019-02-06 12:00:00 +00:00
 categories: tutorial
 ---
 ### Table of Contents
 
 - [This is KITE!](#this-is-kite)
-- [Quick view to Kite Grafic Interface](#quick-view-to-kite-grafic-interface)
+- [Quick view to Kite Graphic Interface](#quick-view-to-kite-graphic-interface)
   * [Manage your SIMs](#manage-your-sims)
     + [SIM inventory](#sim-inventory)
       - [SIM inventory bottom menu](#sim-inventory-bottom-menu)
@@ -44,9 +44,9 @@ the product functionalities in the Customer's systems. Those APIs description is
 available in the Help menu in the web portal.
 
 
-# Quick view to Kite Grafic Interface
+# Quick view to Kite Graphic Interface
 
-The grafic interface of Kite is organised in three sections:
+The graphic interface of Kite is organised in three sections:
 
 - 1 Configuration menu
 - 2 Main menu
@@ -123,7 +123,7 @@ indicates whether they are activated
 There are many more options and services available for your SIM, 
 (#how-its-made)
 
-##### lear about life cycle state
+##### learn about life cycle state
 In order for a SIM to be operational, it must be activated. follow the diagram below
 
 ![pic](pictures/Kite/Kite_interface_SIM_LifeCycle.png)
@@ -215,7 +215,7 @@ also you will need your password here.
 
 The Curl command is used to transfer files from a server, it supports various protocols such as HTTP, FTP ...
 
-There is an example about the access to the Commercial Plans API REST using the CURL command
+There is an example about the access to the Commercial Plan API REST using the CURL command
 
 ```
 sudo curl --cert ./your_customer_certificate.cer --key ./your_customer_certificate.key \

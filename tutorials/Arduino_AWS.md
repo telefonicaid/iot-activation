@@ -11,8 +11,8 @@ categories: tutorial
     - [What will you learn?](#what-will-you-learn)
     - [What will you need?](#what-will-you-need)
   * [What is MQTT](#what-is-mqtt)
+  * [How to communicate with AWS](#how-to-communicate-with-aws)
   * [Test your Certificates with MQTT.fx](#test-your-certificates-with-mqttfx)
-  * [How to comunicate with AWS](#how-to-comunicate-with-aws)
 - [How to Start with the project](#how-to-start-with-the-project)
   * [Arduino Board: Run a code file](#arduino-board-run-a-code-file)
   * [UDP data Bridge: Connecting using NB-IoT o LTE-M](#udp-data-bridge-connecting-using-nb-iot-o-lte-m)
@@ -64,7 +64,7 @@ or it can be subscribed to a topic to receive messages
 
 AWS use this system to communicate with your devices
 
-If you access to AWS Management Console.In the left navigation panel, choose Manage, and then choose Things.
+If you access to AWS Management Console. In the left navigation panel, choose Manage, and then choose Things.
 When choose a thing you can find out the different topic that you can subscribe/publish 
 Select ***Interact* to copy they
 
@@ -86,72 +86,8 @@ $aws/things/MyDevice/shadow/update/rejected
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
-## Test your Certificates with MQTT.fx
 
-One of the best ways to make sure that certificates have been created correctly is to try connecting via a 
-MQTT client with graphical interface.
-
-We recommend you download MQTT.fx from the following link https://mqttfx.jensd.de/
-
-1. Open MQTT.fx and create a new connection.
-
-![pic](pictures/MQTT/MQTTFX_open.png)
-
-2. Configure the broker as shown in the image below.
-Remember to use the files you downloaded in the previous step. And configure the broker address associated to your device.
-
-![pic](pictures/MQTT/MQTTFX_Broker_Connect.png)
-
-3. Now that you are connected to the broker, you need to subscribe to the topics to know the state of the shadow: 
-accepted and rejected.
-
-Every time a message is published in the topic to update the shadow, 
-you can check in these topics if the message has been **accepted** or **rejected**.
-```
-$aws/things/MyDevice/shadow/update/accepted
-$aws/things/MyDevice/shadow/update/rejected
-```
-
-![pic](pictures/MQTT/MQTTFX_Topic_Subscribe_Device.png)
-
-4. To update your device's shadow, You should publish in the topic the following **json file**, 
-you can use the following link to validate it https://jsonlint.com/
-
-```
-{
-    "state": {
-        "reported" : { 
-            "voltage" : 22    
-        }
-    }
-}
-```
-This file will simulate the publishing of a device to make voltage measurements.
-
-![pic](pictures/AWS/AWS_Console_Manage_Things_Details_Shadow_Device.png)
-
-5. Choose the topic to update your shadow.
-Be sure to select the service quality level as QoS 0, amazon doesn't allow a different police.
-```
-$aws/things/MyDevice/shadow/update
-```
-
-![pic](pictures/MQTT/MQTTFX_Topic_Publish_Device.png)
-
-6. If you want to delete the shadow's document publish the next **json file**
-```
-{
-    "state": null
-}
-```
-
-7. Play with this, sending different values until you understand how it works.
-:thumbsup: Remember to check if your values has been accepted or rejected
-
-[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
-
-
-## How to comunicate with AWS
+## How to communicate with AWS
 
 As you know, when you register a new device in AWS, several topics are created by default. Using them you can send data and receive information.
 
@@ -196,14 +132,77 @@ This is the information that is published in the delta topic
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
+## Test your Certificates with MQTT.fx
+
+One of the best ways to make sure that certificates have been created correctly is to try connecting via a 
+MQTT client with graphical interface.
+
+We recommend you download MQTT.fx from the following link https://mqttfx.jensd.de/
+
+1. Open MQTT.fx and create a new connection.
+
+![pic](pictures/MQTT/MQTTFX_open.png)
+
+2. Configure the broker as shown in the image below.
+Remember to use the files you downloaded in the previous step. And configure the broker address associated to your device.
+
+![pic](pictures/MQTT/MQTTFX_Broker_Connect.png)
+
+3. Now that you are connected to the broker, you need to subscribe to the topics to know the state of the shadow: 
+accepted and rejected.
+
+Every time a message is published in the topic to update the shadow, 
+you can check in these topics if the message has been **accepted** or **rejected**.
+```
+$aws/things/MyDevice/shadow/update/accepted
+$aws/things/MyDevice/shadow/update/rejected
+```
+
+![pic](pictures/MQTT/MQTTFX_Topic_Subscribe_Device.png)
+
+4. To update your device's shadow, you should publish in the topic the following **json file**, 
+you can use the following link to validate it https://jsonlint.com/
+
+```
+{
+    "state": {
+        "reported" : { 
+            "voltage" : 22
+        }
+    }
+}
+```
+This file will simulate the publishing of a device to make voltage measurements.
+
+![pic](pictures/AWS/AWS_Console_Manage_Things_Details_Shadow_Device.png)
+
+5. Choose the topic to update your shadow.
+Be sure to select the service quality level as QoS 0, amazon doesn't allow different police.
+```
+$aws/things/MyDevice/shadow/update
+```
+
+![pic](pictures/MQTT/MQTTFX_Topic_Publish_Device.png)
+
+6. If you want to delete the shadow's document publish the next **json file**
+```
+{
+    "state": null
+}
+```
+
+7. Play with this, sending different values until you understand how it works.
+:thumbsup: Remember to check if your values has been accepted or rejected
+
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
 # How to Start with the project
 
 We will explain it to you later in detail how to play with it step by step, 
 In this tutorial you need to be familiar with the following concepts
 
 - Run a code file on your Arduino Board
-- Run a python server with the credentials manager
-- Upload the credentials files to a Server
+- Run a python server with
 - Use MQTT.fx to post messages in a topic
 - Get the shadow from AWS core
 
@@ -281,24 +280,24 @@ Just make sure to add the name of the thing as one of the fields of the SIM in K
 This [bridge](BP_DataBridge.md)
 is the easiest way to connect to AWS using only one UDP send
 
-:heavy_exclamation_mark: If you're running the connection tests in The Thinx lab. 
+:heavy_exclamation_mark: If you're running the connection tests in The Thinx lab.
 The SIM you use will not have connectivity with the Kite platform. So you will not be able to use the connection through our Bridge. 
 Even so you have access to the internet and you will be able to perform any test on your infrastructure.
 
 ```python
-            logger.info("################################# waiting for a new message #################################")
-            udp_msg, udp_ip = sock.recvfrom(1024)
-            ip = udp_ip[0]
+ logger.info("################################# waiting for a new message #################################")
+ udp_msg, udp_ip = sock.recvfrom(1024)
+ ip = udp_ip[0]
 
-            logger.info("Message Received [ %s ] from [ %s ] : [ %s ]" % (udp_msg, udp_ip[0],udp_ip[1] ))
+ logger.info("Message Received [ %s ] from [ %s ] : [ %s ]" % (udp_msg, udp_ip[0],udp_ip[1] ))
 
-            response = bridge_routine(udp_msg, udp_ip[0], config_cloud)
+ response = bridge_routine(udp_msg, udp_ip[0], config_cloud)
 
-            logger.debug("Generate ACK payload [ %s ]" % response)
-            ack_msg = json.dumps(response)
+ logger.debug("Generate ACK payload [ %s ]" % response)
+ ack_msg = json.dumps(response)
 
-            logger.info("Sent MESSAGE [ %s ] to [ %s ] : [ %s ]" % (ack_msg, udp_ip[0], udp_ip[1]))
-            sock.sendto(ack_msg, udp_ip)
+ logger.info("Sent MESSAGE [ %s ] to [ %s ] : [ %s ]" % (ack_msg, udp_ip[0], udp_ip[1]))
+ sock.sendto(ack_msg, udp_ip)
 ```
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
@@ -314,10 +313,11 @@ This updated the shadow with each shipment of the device every few seconds.
 
 ## Send a command
 
-To send a command to the device you must use the MQTT as explained in the previous section through the json that we provide. 
+To send a command to the device you must use the MQTT as explained in the previous section through the json that we provide.
 You can change this instruction as many times as needed.
 
-In this example you can turn off and endend the small LED on the board, but you are free to program your own instructions. Feel free!
+In this example you can turn on and off the small LED on the board, but you are unrestricted to program
+your own instructions. Feel free!
 
 ```json
 # Turn on led

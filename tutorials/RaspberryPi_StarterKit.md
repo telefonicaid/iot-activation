@@ -17,7 +17,7 @@ categories: tutorial
 - [Getting started with your Raspberry](#getting-started-with-your-raspberry)
   * [Install OS (Raspbian)](#install-os-raspbian)
   * [Connect with your Wi-Fi](#connect-with-your-wi-fi-and-update-the-software)
-  * [Telefónica's Connection.](#telefonicas-connection)
+  * [Telefónica's Connection](#telefonicas-connection)
   * [Use a remote access](#use-a-remote-access-enable-ssh-server-on-raspbian)
 
 # Raspberry Pi Starterkit for IoT-Activation
@@ -41,10 +41,10 @@ This is the Broadcom chip used in the Raspberry Pi 3 with a quad-core ARM Cortex
 these allows you to connect USB peripherals like mouse, keyboard, USB drive, modem 3G ...
 
 - **SD card slot**
-You will install the Operating System in a microSD card that will be allocated here. This card also keep all your files save.
+You will install the Operating System in a microSD card that will be allocated here. This card also keeps all your files save.
 
 - **Ethernet, Wifi and BL**
-Three diferent interfaces, to enables different connection ways.  
+Three different interfaces, to enables different connection ways.  
 
 - **Audio jack**
 You can connect headphones or speakers
@@ -166,35 +166,36 @@ To begin, carefully follow the instructions below.
 2. Insert the microSD card into the slot on the Raspberry.
 3. Plug a keyboard and mouse in the Raspberry's USB slot.
 4. Connect the USB Power Supply using the correct head from your country. 
-(Fot this step is necessary do previously the 2 first steps)
+(For this step is necessary do previously the 2 first steps)
 4. Select the Raspbian option in the window. 
 5. Select your language, and the corresponding keyboard type
-6. If you wish, you can now configure the wifi connection or wait for the next section. 
+6. If you wish, you can now configure the wifi connection or wait for the next section.
 7. Press the install button.
-8. Accepts the confirmation window and waits until the installation is complete .
+8. Accepts the confirmation window and waits until the installation is complete.
 
 ![pic](pictures/Raspberry/Raspi_Install_NOOBS.png)
 
-Congrats!, You have just started at the IoT world.
+Congrats! You have just started at the IoT world.
 We will continue setting up your network interfaces.
 
 ## Connect to your Wi-Fi network and Update the Software
 
-First of all, you should update all the packages and software running on your board. This process can consume a huge amount of data, so we highly recommend you to start setting up wifi interfaces.
+First of all, you should update all the packages and software running on your board. 
+This process can consume a huge amount of data. So, we highly recommend you, to start setting up wifi interfaces.
 
 Set **Ctrl+Alt+T** to open a Terminal.
 
 ![pic](pictures/Raspberry/Raspi_terminal.png)
 
 Sometimes some errors may occur because the system dates are not update. 
-To avoid these errors you can update the Raspberry time with the following command.
+To avoid these errors, you can update the Raspberry time with the following command.
 ```
 sudo date -s "05/23/2018 12:00:00"
 ```
 
-For connect with your Wi-Fi network, press on the top right corner in the LAN icon and select your network with your password if is necesary.
+For connect with your Wi-Fi network, press on the top right corner in the LAN icon and select your network with your password if is necessary.
 
-If  wifi is disabled, you have to access to the Raspberry configuration.
+If wifi is disabled, you have to access to the Raspberry configuration.
 
 In this case open a terminal and type 
 ```
@@ -206,7 +207,7 @@ This command will open a window like the one in the following image.
 3. Select your country
 4. Now the wifi is activate 
 5. Enter your **SSID** (Name of your wifi network)
-6. Enter your **password** if is necesary
+6. Enter your **password** if is necessary
 7. Chose **FINISH** with the tab key
 
 ![pic](pictures/Raspberry/Raspi_config_wifi.png)
@@ -214,7 +215,7 @@ This command will open a window like the one in the following image.
 Sometimes some corporate networks require additional validation. 
 In this case it will be necessary to proceed correctly or contact the network administrator.
  
-:thumbsup:  If you dont want to run out of data please set up the wi-fi connection, before running al these commands!
+:thumbsup:  If you don't want to run out of data please set up the wifi connection, before running all these commands!
 
 Open a Terminal windows and update the repository with the command 
 ```
@@ -262,14 +263,14 @@ ifconfig ppp0
 ```
 ![pic](pictures/Raspberry/Raspi_gsm_test.png)
 
-the inet adrress label shows your Raspberry's IP
+the inet address label shows your Raspberry's IP
 
 ##### How Test your new connection
 :thumbsup: To make sure that the transmission is done through the USB modem, in this step we recommend disabling the wifi connection. 
 To deactivate the wifi connection click on the network symbol in the upper right corner 
 and press **Turn off Wi-fi**.
 
-A easiest way of test your connectivity is make ping a website.
+An easiest way of test your connectivity is make ping a website.
 Use the next command
 ````
 ping www.telefonica.com
@@ -281,7 +282,7 @@ Another way to test it, It is downloading a file from a server and read it.
 wget https://jsonplaceholder.typicode.com/todos/1
 ````
 
-to check the downloaded file you can use the cat command
+to check the downloaded file, you can use the cat command
 
 ```
 cat 1
@@ -367,7 +368,8 @@ ssh –p 22 pi@00.00.00.00 -> Raspberry IP
 
 There is a wide variety of SSH clients that you can use. Many of them are free!!
 
-But if you know which one to choose, we can recommend download Putty from www.putty.org and install it
+But if you know which one to choose, we are using Putty.
+Download it from www.putty.org and install it
 
 Open putty and write the Raspberry's IP in the Host Name box
 Select SSH like Connection type and Port 22

@@ -111,11 +111,10 @@
           <li><a href="#what-will-you-need">What will you need?</a></li>
         </ul>
       </li>
-      <li><a href="#open-an-account-at-aws-iot">Open an account at AWS-IoT</a></li>
       <li><a href="#create-raspberry-pi-thing-in-aws-iot">Create Raspberry Pi thing in AWS-IoT</a></li>
       <li><a href="#what-is-mqtt">What is MQTT</a></li>
       <li><a href="#test-your-certificates-with-mqttfx">Test your Certificates with MQTT.fx</a></li>
-      <li><a href="#how-to-comunicate-with-aws">How to comunicate with AWS</a></li>
+      <li><a href="#how-to-communicate-with-aws">How to communicate with AWS</a></li>
     </ul>
   </li>
   <li><a href="#how-to-start-with-the-project">How to Start with the project</a>
@@ -171,10 +170,10 @@ just follow our tutorial below to get started!</p>
 <h4 id="what-will-you-need">What will you need?</h4>
 
 <ul>
-  <li>Complet succeesfully the Raspberry Pi Starterkit tutorial</li>
+  <li>Complete successfully the Raspberry Pi <a href="RaspberryPiStarterKit.html">Starterkit tutorial</a></li>
   <li>Raspberry Pi with Raspbian</li>
   <li>Raspberry Pi Sense HAT</li>
-  <li>Keyboar and monitor or SSH connection</li>
+  <li>Keyboard and monitor or SSH connection</li>
   <li>AWS account</li>
 </ul>
 
@@ -192,18 +191,13 @@ If you have any questions about how to run your code, do not forget to visit our
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
-<h2 id="open-an-account-at-aws-iot">Open an account at AWS-IoT</h2>
-<p>(Soon ..)</p>
-
-<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
-
 <h2 id="create-raspberry-pi-thing-in-aws-iot">Create Raspberry Pi thing in AWS-IoT</h2>
 
 <ol>
   <li>Sign in to the AWS Management Console, and then open the AWS IoT console at https://console.aws.amazon.com/iot</li>
-  <li>Go to the Monitor page. In the left navigation panel, choose Manage, and then choose Things.
+  <li>Go to the Monitor page. In the left navigation panel, choose Manage, and then select Things.
 <img src="pictures/AWS/AWS_Console.png" alt="pic" /></li>
-  <li>You don’t have any things yet page. Choose Register a thing.
+  <li>You don’t have any things yet. Choose Register a thing.
 <img src="pictures/AWS/AWS_Console_Manage_Register.png" alt="pic" /></li>
   <li>On the Creating AWS IoT things page, choose Create a single thing.
 <img src="pictures/AWS/AWS_Console_Manage_Register_things.png" alt="pic" /></li>
@@ -235,11 +229,11 @@ Select Create. This policy allows your Raspberry Pi to publish messages to AWS I
 <img src="pictures/AWS/AWS_Console_Secure_Policies_Create.png" alt="pic" /></li>
     </ul>
   </li>
-  <li>In the AWS IoT console, choose <strong>Manage</strong>, <strong>Things</strong>. On the Things page, choose your Thing
+  <li>In the AWS IoT console, choose <strong>Manage</strong>, <strong>Things</strong>. On the Things page, select your Thing
 <img src="pictures/AWS/AWS_Console_Manage_Things.png" alt="pic" /></li>
   <li>On the thing’s <strong>Details</strong> page, in the left navigation panel, choose <strong>Interact</strong>.
 Make a note of the REST API endpoint. You need it to connect to your device shadow.
-It is the Broker Addres for MQTT connection.
+It is the Broker Address for MQTT connection.
 <img src="pictures/AWS/AWS_Console_Manage_Things_Details_Interact.png" alt="pic" /></li>
   <li>Now select <strong>Security</strong>, and choose the certificate that you created earlier. 
 <img src="pictures/AWS/AWS_Console_Manage_Things_Details_Security.png" alt="pic" /></li>
@@ -261,7 +255,7 @@ or it can be subscribed to a topic to receive messages</p>
 
 <p>AWS use this system to communicate with your devices</p>
 
-<p>If you access to AWS Management Console.In the left navigation panel, choose Manage, and then choose Things.
+<p>If you access to AWS Management Console. In the left navigation panel, choose Manage, and then choose Things.
 When choose a thing you can find out the different topic that you can subscribe/publish 
 Select <strong>*Interact</strong> to copy they.
 Don’t forget to copy also the Rest API, you will need it as a broker address.</p>
@@ -270,15 +264,15 @@ Don’t forget to copy also the Rest API, you will need it as a broker address.<
 
 <p>At the moment, you only need to know three topics:</p>
 <ul>
-  <li>Update to this thing shadow
+  <li>Publish to update the thing shadow
     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyRaspberryPi/shadow/update
 </code></pre></div>    </div>
   </li>
-  <li>Update to this thing shadow was accepted
+  <li>Update of this topic when the publishing was accepted
     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyRaspberryPi/shadow/update/accepted
 </code></pre></div>    </div>
   </li>
-  <li>Update to this thing shadow was rejected
+  <li>Update of this topic when the publishing was rejected
     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyRaspberryPi/shadow/update/rejected
 </code></pre></div>    </div>
   </li>
@@ -338,7 +332,7 @@ you can use the following link to validate it https://jsonlint.com/</li>
 
 <ol>
   <li>Of course, you need to choose the topics in which you can update your shadow.
-Be sure to select the service quality level as QoS 0, amazon doesn’t allow a different police.
+Be sure to select the service quality level as QoS 0, amazon doesn’t allow different levels.
     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyRaspberryPi/shadow/update
 </code></pre></div>    </div>
   </li>
@@ -359,9 +353,9 @@ Be sure to select the service quality level as QoS 0, amazon doesn’t allow a d
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
-<h2 id="how-to-comunicate-with-aws">How to comunicate with AWS</h2>
+<h2 id="how-to-communicate-with-aws">How to communicate with AWS</h2>
 
-<p>As you know, when you register a new device in AWS. A topics are created by default.
+<p>As you know, when you register a new device in AWS. A multiple topics are created by default.
 These topics are the way of communication. In them you can send data and receive information.</p>
 
 <p>At the moment you only need to know two of them:</p>
@@ -370,7 +364,7 @@ These topics are the way of communication. In them you can send data and receive
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyRaspberryPi/shadow/update
 </code></pre></div></div>
 <p>this topic is where you publish the status of the device,
-in this tutorial this information is composed by the values of the sensors as the current color of the LED display.</p>
+in this tutorial this information is composed by the values of the sensors as the current colour of the LED display.</p>
 
 <p>topic Delta</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyRaspberryPi/shadow/update/delta
@@ -525,7 +519,7 @@ sudo pip install yaml -t ./
 with AWS and monitor all communications between AWS and the device.
 Use it whenever you have a problem or simply verify the content of a post.</p>
 
-<p>Connect withe the broker and configure it for publis in update and suscribe to delta.</p>
+<p>Connect with the broker and configure it for publish in update and subscribe to delta.</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyRaspberryPi/shadow/update
 $aws/things/MyRaspberryPi/shadow/update/accepted
 $aws/things/MyRaspberryPi/shadow/update/rejected
@@ -538,9 +532,9 @@ is established or rejected by the broker.</p>
 <p>Publish the following json file to send a command to your Raspberry. 
 When the broker receives it, it will update the shadow of the device. 
 Generating a delta message that will be used by your raspberry to update his status. 
-Showing the command and RGB color on the LED display.</p>
+Showing the command and RGB colour on the LED display.</p>
 
-<p>Play trying new messages and colors. This can be very useful!</p>
+<p>Play trying new messages and colours. This can be very useful!</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
 	</span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -577,7 +571,7 @@ Showing the command and RGB color on the LED display.</p>
 
 <h4 id="check-the-shadow-state">Check the Shadow state</h4>
 
-<p>Before starting the execution you will see how your shadow is empty. 
+<p>Before starting the execution, you will see how your shadow is empty. 
 With this script you can make temperature and humidity measurements on the board.
 This updated the shadow with each shipment of the device, showing the same values as shown on the screen.</p>
 
@@ -595,16 +589,16 @@ being able to modify even the message by the configuration file.</p>
       <span class="na">min</span><span class="pi">:</span> <span class="s">0</span>            <span class="c1"># value with minimum light intensity</span>
 </code></pre></div></div>
 
-<p>The display is able to show up to different states, temperature, humidity and a 
+<p>The display is able to show up to different states, temperature, humidity and a
 third state to visualize the received command.</p>
 
 <h4 id="send-a-command">Send a command</h4>
 
-<p>To send a command to the device you must use the MQTT as explained in the previous section 
-through the json that we provide. you can change both the message and the background color 
+<p>To send a command to the device you must use the MQTT as explained in the previous section
+through the json that we provide. you can change both the message and the background colour
 using an RGB encoding (Red, Green, Blue).</p>
 
-<p>You can change this instruction as many times as needed.</p>
+<p>You can change this instruction as many times as necessary.</p>
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 

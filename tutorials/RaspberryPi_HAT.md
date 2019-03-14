@@ -10,11 +10,10 @@ categories: tutorial
   * [Getting started with the Sense HAT](#getting-started-with-the-sense-hat)
       - [What will you learn?](#what-will-you-learn)
       - [What will you need?](#what-will-you-need)
-  * [Open an account at AWS-IoT](#open-an-account-at-aws-iot)
   * [Create Raspberry Pi thing in AWS-IoT](#create-raspberry-pi-thing-in-aws-iot)
   * [What is MQTT](#what-is-mqtt)
   * [Test your Certificates with MQTT.fx](#test-your-certificates-with-mqttfx)
-  * [How to comunicate with AWS](#how-to-comunicate-with-aws)
+  * [How to communicate with AWS](#how-to-communicate-with-aws)
 - [How to Start with the project](#how-to-start-with-the-project)
   * [Execute the code in your Raspberry](#execute-the-code-in-your-raspberry)
   * [Send command from MQTT.fx](#send-command-from-mqttfx)
@@ -62,10 +61,10 @@ just follow our tutorial below to get started!
 
 #### What will you need?
 
-- Complet succeesfully the Raspberry Pi Starterkit tutorial
+- Complete successfully the Raspberry Pi [Starterkit tutorial](RaspberryPi_StarterKit.md)
 - Raspberry Pi with Raspbian
 - Raspberry Pi Sense HAT
-- Keyboar and monitor or SSH connection
+- Keyboard and monitor or SSH connection
 - AWS account
 
 
@@ -82,20 +81,14 @@ If you have any questions about how to run your code, do not forget to visit our
 	</a>
 </p>
 
-
-[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
-
-## Open an account at AWS-IoT
-(Soon ..)
-
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
 ## Create Raspberry Pi thing in AWS-IoT
 
 1. Sign in to the AWS Management Console, and then open the AWS IoT console at https://console.aws.amazon.com/iot
-2. Go to the Monitor page. In the left navigation panel, choose Manage, and then choose Things.
+2. Go to the Monitor page. In the left navigation panel, choose Manage, and then select Things.
 ![pic](pictures/AWS/AWS_Console.png)
-3. You don't have any things yet page. Choose Register a thing.
+3. You don't have any things yet. Choose Register a thing.
 ![pic](pictures/AWS/AWS_Console_Manage_Register.png)
 4. On the Creating AWS IoT things page, choose Create a single thing.
 ![pic](pictures/AWS/AWS_Console_Manage_Register_things.png)
@@ -124,11 +117,11 @@ copy the content into a file and call it for example **AmazonRootCA1.pem**
     - **Effect**        choose **Allow** 
 Select Create. This policy allows your Raspberry Pi to publish messages to AWS IoT.
 ![pic](pictures/AWS/AWS_Console_Secure_Policies_Create.png)
-17. In the AWS IoT console, choose **Manage**, **Things**. On the Things page, choose your Thing
+17. In the AWS IoT console, choose **Manage**, **Things**. On the Things page, select your Thing
 ![pic](pictures/AWS/AWS_Console_Manage_Things.png)
 18. On the thing's **Details** page, in the left navigation panel, choose **Interact**.
 Make a note of the REST API endpoint. You need it to connect to your device shadow.
-It is the Broker Addres for MQTT connection.
+It is the Broker Address for MQTT connection.
 ![pic](pictures/AWS/AWS_Console_Manage_Things_Details_Interact.png)
 19. Now select **Security**, and choose the certificate that you created earlier. 
 ![pic](pictures/AWS/AWS_Console_Manage_Things_Details_Security.png)
@@ -149,7 +142,7 @@ or it can be subscribed to a topic to receive messages
 
 AWS use this system to communicate with your devices
 
-If you access to AWS Management Console.In the left navigation panel, choose Manage, and then choose Things.
+If you access to AWS Management Console. In the left navigation panel, choose Manage, and then choose Things.
 When choose a thing you can find out the different topic that you can subscribe/publish 
 Select ***Interact** to copy they.
 Don't forget to copy also the Rest API, you will need it as a broker address.
@@ -157,15 +150,15 @@ Don't forget to copy also the Rest API, you will need it as a broker address.
 ![pic](pictures/AWS/AWS_Console_Manage_Things_Details_Interact_MQTT.png)
 
 At the moment, you only need to know three topics:
-- Update to this thing shadow
+- Publish to update the thing shadow
 ```
 $aws/things/MyRaspberryPi/shadow/update
 ```
-- Update to this thing shadow was accepted
+- Update of this topic when the publishing was accepted
 ```
 $aws/things/MyRaspberryPi/shadow/update/accepted
 ```
-- Update to this thing shadow was rejected
+- Update of this topic when the publishing was rejected
 ```
 $aws/things/MyRaspberryPi/shadow/update/rejected
 ```
@@ -217,7 +210,7 @@ This file will simulate the publishing of a device to make temperature measureme
 ![pic](pictures/AWS/AWS_Console_Manage_Things_Details_Shadow.png)
 
 5. Of course, you need to choose the topics in which you can update your shadow.
-Be sure to select the service quality level as QoS 0, amazon doesn't allow a different police.
+Be sure to select the service quality level as QoS 0, amazon doesn't allow different levels.
 ```
 $aws/things/MyRaspberryPi/shadow/update
 ```
@@ -237,9 +230,9 @@ $aws/things/MyRaspberryPi/shadow/update
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
 
-## How to comunicate with AWS
+## How to communicate with AWS
 
-As you know, when you register a new device in AWS. A topics are created by default.
+As you know, when you register a new device in AWS. A multiple topics are created by default.
 These topics are the way of communication. In them you can send data and receive information.
 
 At the moment you only need to know two of them:
@@ -249,7 +242,7 @@ topic Update
 $aws/things/MyRaspberryPi/shadow/update
 ```
 this topic is where you publish the status of the device,
-in this tutorial this information is composed by the values of the sensors as the current color of the LED display.
+in this tutorial this information is composed by the values of the sensors as the current colour of the LED display.
 
 topic Delta
 ```
@@ -405,7 +398,7 @@ The first thing you need to know is that MQTT is a powerful tool that allows you
 with AWS and monitor all communications between AWS and the device.
 Use it whenever you have a problem or simply verify the content of a post.
 
-Connect withe the broker and configure it for publis in update and suscribe to delta.
+Connect with the broker and configure it for publish in update and subscribe to delta.
 ```
 $aws/things/MyRaspberryPi/shadow/update
 $aws/things/MyRaspberryPi/shadow/update/accepted
@@ -419,9 +412,9 @@ is established or rejected by the broker.
 Publish the following json file to send a command to your Raspberry. 
 When the broker receives it, it will update the shadow of the device. 
 Generating a delta message that will be used by your raspberry to update his status. 
-Showing the command and RGB color on the LED display. 
+Showing the command and RGB colour on the LED display. 
 
-Play trying new messages and colors. This can be very useful!
+Play trying new messages and colours. This can be very useful!
 
 ```json
 {
@@ -462,11 +455,11 @@ Open the cron Table with de command `crontab -e` and copy the next line in the f
 
 #### Check the Shadow state
 
-Before starting the execution you will see how your shadow is empty. 
+Before starting the execution, you will see how your shadow is empty. 
 With this script you can make temperature and humidity measurements on the board.
 This updated the shadow with each shipment of the device, showing the same values as shown on the screen.
 
-####  watch the LED screen 
+#### watch the LED screen 
 
 As you will be visualizing in your display, different messages are shown for the temperature and other 
 sensor measurements varying the intensity of the luminosity according to the measured value, 
@@ -481,16 +474,16 @@ Sense_HAT:
       min: 0            # value with minimum light intensity
 ```
 
-The display is able to show up to different states, temperature, humidity and a 
+The display is able to show up to different states, temperature, humidity and a
 third state to visualize the received command. 
 
 #### Send a command
 
-To send a command to the device you must use the MQTT as explained in the previous section 
-through the json that we provide. you can change both the message and the background color 
+To send a command to the device you must use the MQTT as explained in the previous section
+through the json that we provide. you can change both the message and the background colour
 using an RGB encoding (Red, Green, Blue).
 
-You can change this instruction as many times as needed.
+You can change this instruction as many times as necessary.
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 

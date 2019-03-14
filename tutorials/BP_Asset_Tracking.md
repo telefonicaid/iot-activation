@@ -63,7 +63,7 @@ First Go to **SIM Inventory** / **Select your SIM** / and Press **Activate** on 
 
 ![pic](pictures/Kite/Kite_HowTo_SIM_Activate_Service.png)
 
-find the opction **Activate Location** and click it.
+find the option **Activate Location** and click it.
 
 ![pic](pictures/Kite/Kite_HowTo_SIM_Activate_Service_location.png)
 
@@ -71,7 +71,7 @@ A new window is open! Click in **Activation**
 
 ![pic](pictures/Kite/Kite_HowTo_SIM_Activate_Service_location_config.png)
 
-Now the service is activate click on **Finish**
+Now the service is activated click on **Finish**
 
 ![pic](pictures/Kite/Kite_HowTo_SIM_Activate_Service_location_config_done.png)
 

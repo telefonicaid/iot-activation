@@ -38,9 +38,9 @@ The NAT protocol (Network Address Translation) was created to find a solution.
 **How NAT works?**
 
 When a packet leaves your device for the internet it has an IP address that belongs to a smaller network. 
-So this address is translated to an IP valid for the Internet.
+So, this address is translated to an IP valid for the Internet.
 
-When the next machine receives this packet, it identifies the new IP as	 the packet origin.
+When the next machine receives this packet, it identifies the new IP as the packet origin.
 
 **How to solve it?**
 
@@ -55,7 +55,7 @@ And as you have deduced this is possible thanks to the IPsec protocol.
 
 ## What does it do?
 
-When you request your SIMs from Telefónica, you can request a private APN, which includes your SIMs in your oun new network.
+When you request your SIMs from Telefónica, you can request a private APN, which includes your SIMs in your own new network.
 The goal is to establish a direct connection between this new network and the Cloud network. 
 
 The IPsec provides a secure connection that will function as if the devices of both networks are on the same network.
@@ -80,7 +80,7 @@ An example of networks that you can request are the following:
 - Class B: up to 65535 devices    xxx.xxx.0.0/16
 - Class C: up to 255 devices      xxx.xxx.xxx.0/24
 
-where you can choose the desired range **192.164.0.0/24**  from 192.164.0.0 to 192.164.0.255 IP addres.
+where you can choose the desired range **192.164.0.0/24** from 192.164.0.0 to 192.164.0.255 IP address.
 
 In addition to the range you must facilitate the configuration of the 2 gateways of the Cloud network you are using.
 Although this already depends on the Cloud. For AWS you can follow the tutorial
@@ -103,7 +103,7 @@ other clouds tutorials under development ...
   * [4. Create 2 Custom Gateway](#4-create-2-custom-gateway)
   * [5. Create 2 VPN Connection](#5-create-2-vpn-connection)
     + [5.1. Download Configuration](#51-download-configuration)
-  * [6. Create a EC2 instance](#6-create-a-ec2-instance)
+  * [6. Create an EC2 instance](#6-create-an-ec2-instance)
     + [6.1. Launch EC2 instance](#61-launch-ec2-instance)
     + [6.2. Enable Internet Connection EC2 instance](#62-enable-internet-connection-ec2-instance)
 
@@ -139,7 +139,7 @@ This virtual network closely resembles a traditional network that you'd operate 
 Go to **VPC Dashboard / Virtual Private Cloud / Your VPCs /** Select: **Create VPC**
 ![pic](pictures/IPsec/IPsec_AWS_01_VPCdashboard_CreateVPC.png)
 
-Complet the next fields:
+Complete the next fields:
 
 **Name tag:** Select a name for identify your VPC in the next steps
 
@@ -180,7 +180,7 @@ Select your VPG:
 Select your VPC Name tag
 ![pic](pictures/IPsec/IPsec_AWS_02_VPCdashboard_CreateVPG_config_end_attach.png)
 
-Click on **Yes,Attach**
+Click on **Yes, Attach**
 
 wait a moment until it appears **attached**
 
@@ -214,7 +214,7 @@ Now you can see route propagate to **YES**
 
 ## 4. Create 2 Custom Gateway
 
-To be able to connect to the Telefónica network it is necessary to establish 2 Gateway with the 2 Telefónica Encrypters.
+To be able to connect to the Telefónica network it is necessary to establish 2 Gateway with the 2 Telefónica's Encrypters.
 
 Go to **VPC Dashboard / Virtual Private Network (VPN) / Customer Gateway /** Select: **Create Customer Gateway**
 ![pic](pictures/IPsec/IPsec_AWS_04_VPCdashboard_CustomerGateway_CreateCG.png)
@@ -235,7 +235,7 @@ complete the fields with the following information:
 
 ![pic](pictures/IPsec/IPsec_AWS_04_VPCdashboard_CustomerGateway_CreateCG_config.png)
 
-Once the Customers Gateway corresponding to the Telefónica Encrypters have been created, they appear as shown below:
+Once the Customers Gateway corresponding to the Telefónica's Encrypters have been created, they appear as shown below:
 
 ![pic](pictures/IPsec/IPsec_AWS_04_VPCdashboard_CustomerGateway_CreateCG_config_done.png)
 
@@ -245,7 +245,7 @@ Once the Customers Gateway corresponding to the Telefónica Encrypters have been
 
 You must create a VPN connection for each of the two customer gateways corresponding to Telefónica's two encryption devices.
 
-Go to **VPC Dashboard / Virtual Private Network (VPN)  / Site-to-Site VPN /** Select: **Create VPN Connection**
+Go to **VPC Dashboard / Virtual Private Network (VPN) / Site-to-Site VPN /** Select: **Create VPN Connection**
 
 ![pic](pictures/IPsec/IPsec_AWS_05_VPCdashboard_VPNconnection_createVPNc.png)
 
@@ -255,7 +255,7 @@ Go to **VPC Dashboard / Virtual Private Network (VPN)  / Site-to-Site VPN /** Se
 
 **Customer Gateway** Existing
 
-**Customer Gateway ID** Select each of the two Cusotmers Gateway created
+**Customer Gateway ID** Select each of the two Customers Gateway created
 
 **Routing Options** Dynamic
 
@@ -295,7 +295,7 @@ you keep these two files that they are necessary to configure the other end of t
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents-ipsec-in-aws)
 
-## 6. Create a EC2 instance
+## 6. Create an EC2 instance
 
 Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides secure, resizable compute capacity in the cloud. 
 It is designed to make web-scale cloud computing easier for developers.
@@ -348,7 +348,7 @@ Click **Next** until Step 6
 
 Click on **Create**
 
-Now your machine is running, but it is connected to a virtual network. You must configurate a internet gateway
+Now your machine is running, but it is connected to a virtual network. You must configurate an internet gateway
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents-ipsec-in-aws)
 

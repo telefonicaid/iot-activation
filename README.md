@@ -14,11 +14,11 @@ IoT technology will make it easier for you to collect data online, control remot
 allowing you to reduce costs and offer a better service, while improving quality.
 
 Along with this guide, you will also have received a box with a lot of gadgets that that you probably don't identify. 
-Don't worry,You will be playing with it in no time !
+Don't worry, you will be playing with it in no time!
 
 We will also teach you different technologies so you can decide which one works for your business.
 
-At the kit you will find different devices, Those are the first step to achive your bussiness goal. 
+At the kit you will find different devices, those are the first step to achieve your business goal. 
 The Raspberry and Arduino are very versatile devices that will offer you endless possibilities, 
 but take it easy... You'll never walk alone!
 
@@ -32,7 +32,16 @@ They may seem small, but the possibilities are immense!!
 
 # Your first workbench
 
-[Activate you SIM](tutorials/Kite_Platform.md#how-to-get-started-with-your-sim)
+<div align="center">
+    <h4>Activate your SIM</h4>
+</div>
+<p align="center">
+    <a href="tutorials/KitePlatform.md#how-to-get-started-with-your-sim" align="center" border="10">
+        <img src="tutorials/pictures/miscellaneous/Telefonica_SIM.png"
+        width="200" height="125">
+    </a>
+</p>
+
 
 <table style="width:10%" align="center">
   <tr>
@@ -94,6 +103,35 @@ They may seem small, but the possibilities are immense!!
 		</a>
 	</th>
   </tr>
+    <tr></tr>
+  <tr>
+	<th>
+		<a href="tutorials/Kite_Platform.md" align="center">
+			Kite Platform
+		</a>
+	</th>
+	<th></th>
+	<th>
+		<a href="tutorials/Arduino_GCP.md" align="center">
+			Arduino to Google Cloud
+		</a>
+	</th>
+  </tr>
+  <tr>
+	<th>		
+		<a href="tutorials/Kite_Platform.md" align="center">
+			<img src="tutorials/pictures/portfolio/portfolio-Kite.png"
+			width="300" height="200">
+		</a>
+	</th>
+	<th></th>
+	<th>
+		<a href="tutorials/Arduino_GCP.md" align="center">
+			<img src="tutorials/pictures/portfolio/portfolio-Arduino-GCP.png"
+			width="300" height="200">
+		</a>
+	</th>
+  </tr>
 </table>
 
 
@@ -103,7 +141,7 @@ They may seem small, but the possibilities are immense!!
 
 From Iot Activation we want to make your way easier.
 
-For this reason we don't just want to show you how to develop applications for your devices or how to connect to the cloud.
+For this reason, we don't just want to show you how to develop applications for your devices or how to connect to the cloud.
 We put at your disposal a powerful tool that will facilitate and improve the performance of your things connected to the Internet.
 
 We also solve some of the most common problems you may encounter.

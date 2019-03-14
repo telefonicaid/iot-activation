@@ -141,9 +141,9 @@ The NAT protocol (Network Address Translation) was created to find a solution.</
 <p><strong>How NAT works?</strong></p>
 
 <p>When a packet leaves your device for the internet it has an IP address that belongs to a smaller network. 
-So this address is translated to an IP valid for the Internet.</p>
+So, this address is translated to an IP valid for the Internet.</p>
 
-<p>When the next machine receives this packet, it identifies the new IP as	 the packet origin.</p>
+<p>When the next machine receives this packet, it identifies the new IP as the packet origin.</p>
 
 <p><strong>How to solve it?</strong></p>
 
@@ -160,7 +160,7 @@ And as you have deduced this is possible thanks to the IPsec protocol.</p>
 
 <h2 id="what-does-it-do">What does it do?</h2>
 
-<p>When you request your SIMs from Telefónica, you can request a private APN, which includes your SIMs in your oun new network.
+<p>When you request your SIMs from Telefónica, you can request a private APN, which includes your SIMs in your own new network.
 The goal is to establish a direct connection between this new network and the Cloud network.</p>
 
 <p>The IPsec provides a secure connection that will function as if the devices of both networks are on the same network.</p>
@@ -187,7 +187,7 @@ An example of networks that you can request are the following:</p>
   <li>Class C: up to 255 devices      xxx.xxx.xxx.0/24</li>
 </ul>
 
-<p>where you can choose the desired range <strong>192.164.0.0/24</strong>  from 192.164.0.0 to 192.164.0.255 IP addres.</p>
+<p>where you can choose the desired range <strong>192.164.0.0/24</strong> from 192.164.0.0 to 192.164.0.255 IP address.</p>
 
 <p>In addition to the range you must facilitate the configuration of the 2 gateways of the Cloud network you are using.
 Although this already depends on the Cloud. For AWS you can follow the tutorial</p>
@@ -223,7 +223,7 @@ Although this already depends on the Cloud. For AWS you can follow the tutorial<
           <li><a href="#51-download-configuration">5.1. Download Configuration</a></li>
         </ul>
       </li>
-      <li><a href="#6-create-a-ec2-instance">6. Create a EC2 instance</a>
+      <li><a href="#6-create-an-ec2-instance">6. Create an EC2 instance</a>
         <ul>
           <li><a href="#61-launch-ec2-instance">6.1. Launch EC2 instance</a></li>
           <li><a href="#62-enable-internet-connection-ec2-instance">6.2. Enable Internet Connection EC2 instance</a></li>
@@ -265,7 +265,7 @@ This virtual network closely resembles a traditional network that you’d operat
 <p>Go to <strong>VPC Dashboard / Virtual Private Cloud / Your VPCs /</strong> Select: <strong>Create VPC</strong>
 <img src="pictures/IPsec/IPsec_AWS_01_VPCdashboard_CreateVPC.png" alt="pic" /></p>
 
-<p>Complet the next fields:</p>
+<p>Complete the next fields:</p>
 
 <p><strong>Name tag:</strong> Select a name for identify your VPC in the next steps</p>
 
@@ -306,7 +306,7 @@ This virtual network closely resembles a traditional network that you’d operat
 <p>Select your VPC Name tag
 <img src="pictures/IPsec/IPsec_AWS_02_VPCdashboard_CreateVPG_config_end_attach.png" alt="pic" /></p>
 
-<p>Click on <strong>Yes,Attach</strong></p>
+<p>Click on <strong>Yes, Attach</strong></p>
 
 <p>wait a moment until it appears <strong>attached</strong></p>
 
@@ -340,7 +340,7 @@ Now you can see route propagate to <strong>YES</strong></p>
 
 <h2 id="4-create-2-custom-gateway">4. Create 2 Custom Gateway</h2>
 
-<p>To be able to connect to the Telefónica network it is necessary to establish 2 Gateway with the 2 Telefónica Encrypters.</p>
+<p>To be able to connect to the Telefónica network it is necessary to establish 2 Gateway with the 2 Telefónica’s Encrypters.</p>
 
 <p>Go to <strong>VPC Dashboard / Virtual Private Network (VPN) / Customer Gateway /</strong> Select: <strong>Create Customer Gateway</strong>
 <img src="pictures/IPsec/IPsec_AWS_04_VPCdashboard_CustomerGateway_CreateCG.png" alt="pic" /></p>
@@ -366,7 +366,7 @@ Now you can see route propagate to <strong>YES</strong></p>
 
 <p><img src="pictures/IPsec/IPsec_AWS_04_VPCdashboard_CustomerGateway_CreateCG_config.png" alt="pic" /></p>
 
-<p>Once the Customers Gateway corresponding to the Telefónica Encrypters have been created, they appear as shown below:</p>
+<p>Once the Customers Gateway corresponding to the Telefónica’s Encrypters have been created, they appear as shown below:</p>
 
 <p><img src="pictures/IPsec/IPsec_AWS_04_VPCdashboard_CustomerGateway_CreateCG_config_done.png" alt="pic" /></p>
 
@@ -376,7 +376,7 @@ Now you can see route propagate to <strong>YES</strong></p>
 
 <p>You must create a VPN connection for each of the two customer gateways corresponding to Telefónica’s two encryption devices.</p>
 
-<p>Go to <strong>VPC Dashboard / Virtual Private Network (VPN)  / Site-to-Site VPN /</strong> Select: <strong>Create VPN Connection</strong></p>
+<p>Go to <strong>VPC Dashboard / Virtual Private Network (VPN) / Site-to-Site VPN /</strong> Select: <strong>Create VPN Connection</strong></p>
 
 <p><img src="pictures/IPsec/IPsec_AWS_05_VPCdashboard_VPNconnection_createVPNc.png" alt="pic" /></p>
 
@@ -386,7 +386,7 @@ Now you can see route propagate to <strong>YES</strong></p>
 
 <p><strong>Customer Gateway</strong> Existing</p>
 
-<p><strong>Customer Gateway ID</strong> Select each of the two Cusotmers Gateway created</p>
+<p><strong>Customer Gateway ID</strong> Select each of the two Customers Gateway created</p>
 
 <p><strong>Routing Options</strong> Dynamic</p>
 
@@ -426,7 +426,7 @@ as it is necessary to facilitate configuration to Telefónica.</p>
 
 <p><a href="#table-of-contents-ipsec-in-aws"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
-<h2 id="6-create-a-ec2-instance">6. Create a EC2 instance</h2>
+<h2 id="6-create-an-ec2-instance">6. Create an EC2 instance</h2>
 
 <p>Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides secure, resizable compute capacity in the cloud. 
 It is designed to make web-scale cloud computing easier for developers.</p>
@@ -478,7 +478,7 @@ Click <strong>Next</strong></p>
 
 <p>Click on <strong>Create</strong></p>
 
-<p>Now your machine is running, but it is connected to a virtual network. You must configurate a internet gateway</p>
+<p>Now your machine is running, but it is connected to a virtual network. You must configurate an internet gateway</p>
 
 <p><a href="#table-of-contents-ipsec-in-aws"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
@@ -529,7 +529,7 @@ and select the internet gateway like target.
       
       <li class="next"><a class="basic-alignment right" 
 	    href="iot-activation/KitePlatform.html" title="Next Post: 
-		Kite_Platform">Kite_Platform
+		Kite Platform">Kite Platform
         &raquo;</a></li>
       
     </ul-->

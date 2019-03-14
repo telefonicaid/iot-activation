@@ -75,9 +75,9 @@ int setup_SaraR410M_movistar(){
   MODEM.waitForResponse(2000, &response);
 
   ////configure the APN if you know it
-  MODEM.sendf("AT+CGDCONT=1,\"IP\",\"m2mtrial.telefonica.com\"");
+  //MODEM.sendf("AT+CGDCONT=1,\"IP\",\"m2mtrial.telefonica.com\"");
   //MODEM.sendf("AT+CGDCONT=1,\"IP\",\"sm2m-apple.movistar.es\"");  
-  //MODEM.sendf("AT+CGDCONT=1,\"IP\",\"iotactivation.movistar.es\"");
+  MODEM.sendf("AT+CGDCONT=1,\"IP\",\"iotactivation.movistar.es\"");
   //MODEM.sendf("AT+CGDCONT=1,\"IP\",\"m2m.movistar.es\"");
   MODEM.waitForResponse(2000, &response);  
   

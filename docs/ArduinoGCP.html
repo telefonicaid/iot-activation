@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width initial-scale=1">
 
   <title>Arduino to Google Cloud</title>
-  <meta name="description" content="Table of Contents  Arduino: MKR NB-1500 to AWS-IoT          Getting started with the MKR NB-1500                  What will you learn?          What will you...">
+  <meta name="description" content="Table of Contents  Arduino: MKR NB-1500 to Google Cloud IoT          Getting started with the MKR NB-1500                  What will you learn?          What...">
   <meta name="google-translate-customization" content="b9870a0c7376df54-aa35852016e6a5cc-ga0a0d80f6c171f17-e"></meta>
   <link rel="stylesheet" href="css/main.css">
   <link rel="canonical" href="http://localhost:4000/ArduinoGCP.html">
@@ -103,7 +103,7 @@
 	    	<h3 id="table-of-contents">Table of Contents</h3>
 
 <ul>
-  <li><a href="#arduino-mkr-nb-1500-to-aws-iot">Arduino: MKR NB-1500 to AWS-IoT</a>
+  <li><a href="#arduino-mkr-nb-1500-to-google-cloud-iot">Arduino: MKR NB-1500 to Google Cloud IoT</a>
     <ul>
       <li><a href="#getting-started-with-the-mkr-nb-1500">Getting started with the MKR NB-1500</a>
         <ul>
@@ -111,8 +111,10 @@
           <li><a href="#what-will-you-need">What will you need?</a></li>
         </ul>
       </li>
+      <li><a href="#what-is-mqtt">What is MQTT</a></li>
       <li><a href="#Generate-your-devices-keys">Generate your devices keys</a></li>
-      <li><a href="#how-to-comunicate-with-google-cloud">How to comunicate with Google Cloud</a></li>
+      <li><a href="#how-to-communicate-with-google-cloud">How to communicate with Google Cloud</a></li>
+      <li><a href="#test-your-certificates-with-mqttfx">Test your Certificates with MQTT.fx</a></li>
     </ul>
   </li>
   <li><a href="#how-to-start-with-the-project">How to Start with the project</a>
@@ -125,12 +127,12 @@
   </li>
 </ul>
 
-<h1 id="arduino-mkr-nb-1500-to-aws-iot">Arduino: MKR NB-1500 to AWS-IoT</h1>
+<h1 id="arduino-mkr-nb-1500-to-google-cloud-iot">Arduino: MKR NB-1500 to Google Cloud IoT</h1>
 
-<p>For this project, we will take different values from the Arduino board and publish them in AWS.</p>
+<p>For this project, we will take different values from the Arduino board and publish them in Google Cloud.</p>
 
 <p align="center">
-	  <img title="Project_ard" src="pictures/schematics/overview_arduino_AWS.png" href="docs/ArduinoAWS.html" />
+	  <img title="Project_ard" src="pictures/schematics/overview_arduino_GCP.png" href="docs/ArduinoGCP.html" />
 </p>
 
 <h2 id="getting-started-with-the-mkr-nb-1500">Getting started with the MKR NB-1500</h2>
@@ -140,7 +142,7 @@
 <ul>
   <li>Control Arduino board MKR NB-1500 using the Arduino IDE</li>
   <li>Register a device on Google Cloud</li>
-  <li>Generate credentials for Google</li>
+  <li>Generate credentials for devices</li>
   <li>Build a bridge between UDP and Google Cloud</li>
 </ul>
 
@@ -161,25 +163,46 @@
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
+<h1 id="what-is-mqtt">What is MQTT</h1>
+
+<p>MQTT is a machine-to-machine (M2M)/”Internet of Things” connectivity protocol. 
+It was designed as an extremely lightweight publish/subscribe messaging transport.</p>
+
+<p>The first concept is the publish and subscribe system. 
+A device can publish a message on a topic, 
+or it can be subscribed to a topic to receive messages</p>
+
+<p>Google Cloud use this system to communicate with your devices,</p>
+
+<p>For each device, google allow you to subscribe to the config and command topic to receive information.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/devices/&lt;device_name&gt;/config
+/devices/&lt;device_name&gt;/command/#
+</code></pre></div></div>
+
+<p>And publish in a topic to report the device state</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/devices/&lt;device_name&gt;/state
+</code></pre></div></div>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
 <h2 id="generate-your-devices-keys">Generate your devices keys</h2>
 
 <p>To secure your devices, it is necessary to create a key pair (public/private) with which to validate any connection.</p>
 
 <p>The easiest way is to use openssl command in a unix console.</p>
 
-<p>the following example shows the commands with which to create the files with the keys</p>
+<p>the following example shows the commands with which to generate an RSA-256 private key with a 2048-bit key size.</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl req <span class="nt">-x509</span> <span class="nt">-newkey</span> rsa:2048 <span class="nt">-days</span> 3650 <span class="nt">-keyout</span> rsa_private.pem <span class="nt">-nodes</span> <span class="nt">-out</span> rsa_cert.pem <span class="nt">-subj</span> <span class="s2">"/CN=unused"</span>
-openssl ecparam <span class="nt">-genkey</span> <span class="nt">-name</span> prime256v1 <span class="nt">-noout</span> <span class="nt">-out</span> ec_private.pem
-openssl ec <span class="nt">-in</span> ec_private.pem <span class="nt">-pubout</span> <span class="nt">-out</span> ec_public.pem
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl genrsa <span class="nt">-out</span> GCP_rsa_private.pem 2048
+openssl rsa <span class="nt">-in</span> GCP_rsa_private.pem <span class="nt">-pubout</span> <span class="nt">-out</span> GCP_rsa_public.pem
 </code></pre></div></div>
 <p>once you’ve executed the commands, you should have the following files:</p>
 
 <ul>
-  <li>rsa_private.pem</li>
-  <li>rsa_cert.pem</li>
-  <li>ec_public.pem</li>
-  <li>ec_private.pem</li>
+  <li><strong>GCP_rsa_private.pem:</strong> The private key that must be securely stored on the device and used to sign the authentication.</li>
+  <li><strong>GCP_rsa_public.pem:</strong> The public key that must be stored in Cloud IoT Core and used to verify the signature of the authentication.</li>
 </ul>
 
 <p>Remember to keep them well, the safety of your devices depends on it.</p>
@@ -189,12 +212,268 @@ but if you decide to use our Data Bridge, you can only store it on the server.</
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
-<h2 id="how-to-comunicate-with-google-cloud">How to comunicate with Google Cloud</h2>
+<h2 id="how-to-communicate-with-google-cloud">How to communicate with Google Cloud</h2>
+
+<p>To manage your IoT devices you must access the IoT Core of your project.</p>
+
+<p><img src="pictures/GCP/GCP_IoTcore_menu.png" alt="pic" /></p>
+
+<p>At a first glance you will be able to identify all your registries and create new ones if you need to.
+These records organize and classify your devices within the cloud, so you must have at least one created. 
+But don’t worry, later you will see how they can be created automatically using the data Bridge connection.</p>
+
+<p><img src="pictures/GCP/GCP_IoTcore_registry_new.png" alt="pic" /></p>
+
+<p>In the same way by accessing each registry, you can see the list of all the devices it contains.
+but in the same way accessing the Kite information will be able to create new devices automatically to detect new connections</p>
+
+<p><img src="pictures/GCP/GCP_IoTcore_device_new.png" alt="pic" /></p>
+
+<p>You can access into a device for check the state and update the configuration, in some cases, 
+it is possible to send commands to the device as long as it is subscribed to the corresponding topic.</p>
+
+<p><img src="pictures/GCP/GCP_IoTcore_device_new_config.png" alt="pic" /></p>
+
+<p>In order to guarantee the security, you will have to 
+associate the public keys created in the previous section.</p>
+
+<h4 id="check-history">check history</h4>
+
+<p>Google Cloud allows you to review up to a historical 10 previous states</p>
+
+<p><img src="pictures/GCP/GCP_IoTcore_device_status.png" alt="pic" /></p>
+
+<h4 id="update-state">update state</h4>
+
+<p>To publish in the device you will only have to publish in his corresponding topic. 
+Do not forget that you must connect using the private key associated with the key of each device.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/devices/&lt;device_name&gt;/state
+</code></pre></div></div>
+
+<h4 id="update-config">update config</h4>
+
+<p>Click on the button <strong>update configuration</strong> to store a configuration, each time the device is subscribed to the 
+topic will receive as a message the latest version of the configuration.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/devices/&lt;device_name&gt;/config
+</code></pre></div></div>
+
+<p><img src="pictures/GCP/GCP_IoTcore_device_config.png" alt="pic" /></p>
+
+<h4 id="send-command">send command</h4>
+
+<p>Click on the button <strong>send command</strong> to store a configuration, 
+If the device is subscribed to the correct topic, it will receive as a message the sent command</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/devices/&lt;device_name&gt;/command/#
+</code></pre></div></div>
+
+<p>but for this project we will use the configuration to send any command to the device.</p>
+
+<p><img src="pictures/GCP/GCP_IoTcore_device_command.png" alt="pic" /></p>
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
-<p>GCP_IoTcore_menu.png</p>
+<h2 id="test-your-certificates-with-mqttfx">Test your Certificates with MQTT.fx</h2>
 
+<p>One of the best ways to make sure that certificates have been created correctly is to try connecting via a 
+MQTT client with graphical interface.</p>
+
+<p>We recommend you download MQTT.fx from the following link https://mqttfx.jensd.de/</p>
+
+<ol>
+  <li>Open MQTT.fx and create a new connection.</li>
+</ol>
+
+<p><img src="pictures/MQTT/MQTTFX_GCP_open.png" alt="pic" /></p>
+
+<ol>
+  <li>Configure the connection as shown in the image below.
+Previously you need to have created a project and the respective registry and device,
+since unlike other clouds for the google connection you will need to indicate these parameters instead of the broker.</li>
+</ol>
+
+<p><strong>Host name:</strong> mqtt.googleapis.com</p>
+
+<p><img src="pictures/MQTT/MQTTFX_GCP_Connect.png" alt="pic" /></p>
+
+<p>note that you will need to convert the pem file format. Use the command line</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl pkcs8 -topk8 -inform PEM -outform DER -in GCP_rsa_private.pem -out GCP_rsa_private.pkcs8 -nocrypt
+</code></pre></div></div>
+
+<ol>
+  <li>
+    <p>Now that you are connected to the broker,
+but you will have a series of restrictions to subscribe only to the default topics of the device.</p>
+  </li>
+  <li>
+    <p>Publish a new state in the topic</p>
+  </li>
+</ol>
+
+<p><img src="pictures/MQTT/MQTTFX_GCP_Topic_Publish.png" alt="pic" /></p>
+
+<ol>
+  <li>Subscribe to Config and command topic</li>
+</ol>
+
+<p><img src="pictures/MQTT/MQTTFX_GCP_Topic_Subscribe.png" alt="pic" /></p>
+
+<h1 id="how-to-start-with-the-project">How to Start with the project</h1>
+
+<p>We will explain it to you later in detail how to play with it step by step, 
+In this tutorial you need to be familiar with the following concepts</p>
+
+<ul>
+  <li>Run a code file on your Arduino Board</li>
+  <li>Run a python server</li>
+  <li>Upload the credentials files to a Server</li>
+  <li>Update a configuration in IoT core console</li>
+  <li>Get the status from IoT core</li>
+</ul>
+
+<p>Now you can connect to the internet and send your data through the UDP protocol.</p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="arduino-board-run-a-code-file">Arduino Board: Run a code file</h2>
+
+<p>For this Arduino project, it is necessary that you include some of the classes we have prepared exclusively 
+for this tutorial. To do this, be sure to open the <strong>.ino</strong> file from the following 
+<a href="../scripts/Arduino/Connection_UDP_command">folder</a>.
+There are all the files you need.</p>
+
+<p>In the following code you can see the main structure of the program:</p>
+<ol>
+  <li>Measuring</li>
+  <li>Modem connection to the network</li>
+  <li>Sending of the measures</li>
+  <li>Disconnection of the modem to reduce power consumption</li>
+  <li>Sampling timeout
+```c
+}</li>
+</ol>
+
+<p>void loop() {
+  // put your main code here, to run repeatedly:</p>
+
+<p>Serial.println(“measuring…”);
+  data.measurement();
+  Serial.print(“- voltage: “);
+  Serial.println(data.get_voltage());
+  Serial.print(“- amperage: “); 
+  Serial.println(data.get_amperage());</p>
+
+<p>Serial.println(“Sending… “);
+  nbAccess.noLowPowerMode();
+  send_data_UDP(data.get_voltage(), data.get_amperage()); 
+  nbAccess.lowPowerMode();</p>
+
+<p>delay(polling);
+}</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>But first of all, don't forget to complete the configuration 
+[file](https://github.com/telefonicaid/iot-activation/blob/master/scripts/Arduino/Connection_UDP_command/configuration.h)
+
+In the you have to complete the necessary information to complete the sending of information to the UDP server.
+```c
+// COMPLETE your information
+#define SECRET_PINNUMBER ""
+
+#define LOCAL_PORT 4114
+#define IP_ADDRESS "XX.XX.XX.XX"
+
+// SET your sampling time
+#define POLL_TIME 10
+
+</code></pre></div></div>
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="udp-data-bridge-connecting-using-nb-iot-o-lte-m">UDP data Bridge: Connecting using NB-IoT o LTE-M</h2>
+
+<p>One of the advantages of an iot device, is to be able to stop the connection when it is not necessary 
+to decrease the energy consumption.</p>
+
+<p>From iot-activation we suggest you the deployment of a data bridge between the Arduino and the
+Google Cloud IoT Core.</p>
+
+<p>This allows you to increase the intelligence of your devices by integrating the Kite Platform into this server,
+and this add extra security in sending data over the network. 
+By updating your Kite SIM information, the data bridge recognizes the SIM and automatically connects to
+Google Cloud IoT core.</p>
+
+<p>Just make sure to add the name of the thing as one of the fields of the SIM in Kite.
+<a href="KitePlatform.html#sim-identification">Kite</a></p>
+
+<p>This <a href="BPDataBridge.html">bridge</a>
+is the easiest way to connect to Google Cloud using only one UDP send</p>
+
+<p>:heavy_exclamation_mark: If you’re running the connection tests in The Thinx lab.
+The SIM you use will not have connectivity with the Kite platform. So you will not be able to use the connection through our Bridge. 
+Even so you have access to the internet and you will be able to perform any test on your infrastructure.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">"################################# waiting for a new message #################################"</span><span class="p">)</span>
+ <span class="n">udp_msg</span><span class="p">,</span> <span class="n">udp_ip</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+ <span class="n">ip</span> <span class="o">=</span> <span class="n">udp_ip</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+ <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">"Message Received [ </span><span class="si">%</span><span class="s">s ] from [ </span><span class="si">%</span><span class="s">s ] : [ </span><span class="si">%</span><span class="s">s ]"</span> <span class="o">%</span> <span class="p">(</span><span class="n">udp_msg</span><span class="p">,</span> <span class="n">udp_ip</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">udp_ip</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">))</span>
+
+ <span class="n">response</span> <span class="o">=</span> <span class="n">bridge_routine</span><span class="p">(</span><span class="n">udp_msg</span><span class="p">,</span> <span class="n">udp_ip</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">config_cloud</span><span class="p">)</span>
+
+ <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">"Generate ACK payload [ </span><span class="si">%</span><span class="s">s ]"</span> <span class="o">%</span> <span class="n">response</span><span class="p">)</span>
+ <span class="n">ack_msg</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+ <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">"Sent MESSAGE [ </span><span class="si">%</span><span class="s">s ] to [ </span><span class="si">%</span><span class="s">s ] : [ </span><span class="si">%</span><span class="s">s ]"</span> <span class="o">%</span> <span class="p">(</span><span class="n">ack_msg</span><span class="p">,</span> <span class="n">udp_ip</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">udp_ip</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+ <span class="n">sock</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">ack_msg</span><span class="p">,</span> <span class="n">udp_ip</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="check-the-events">Check the events</h2>
+
+<p>With this script you can send voltage and current values that you will can saw</p>
+
+<p>In order to do this, it is necessary to create a subscription on the topic associated to each registry.</p>
+
+<p><img src="pictures/GCP/GCP_PubSub_topic_subscriptions_new.png" alt="pic" /></p>
+
+<p><img src="pictures/GCP/GCP_PubSub_subscriptions_new.png" alt="pic" /></p>
+
+<p>Open a google cloud terminal and run the following command to check</p>
+
+<p><img src="pictures/GCP/GCP_PubSub_subscriptions_new_console.png" alt="pic" /></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcloud pubsub subscriptions pull projects/&lt;project_id&gt;/subscriptions/&lt;subscriptions_name&gt; --auto-ack --limit=100
+</code></pre></div></div>
+
+<p>Before starting the execution you will see how his events are empty, and then the shipments 
+of the registry devices will appear continuously.</p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="send-configuration">Send configuration</h2>
+
+<p>To comunicate with the device you must use the configuration as explained in the previous section.
+You can change this instruction as many times as needed.</p>
+
+<p>In this example you can turn off and endend the small LED on the board, but you are unrestricted to program
+your own instructions. Feel free!</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span><span class="w"> </span><span class="err">Turn</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">led</span><span class="w">
+</span><span class="p">{</span><span class="w">
+	</span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">#</span><span class="w"> </span><span class="err">Turn</span><span class="w"> </span><span class="err">off</span><span class="w"> </span><span class="err">led</span><span class="w">
+</span><span class="p">{</span><span class="w">
+	</span><span class="mi">2</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div></div>
+
+<p><img src="pictures/GCP/GCP_project_send_command.png" alt="pic" /></p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
 	  	</article>
 	  	

@@ -20,19 +20,19 @@ categories: tutorial
 
 ## What is Arduino?
 Arduino is an open-source electronics platform based on easy-to-use hardware. 
-The Arduino software is easy for beginners an flexible enough for advanced users
+The Arduino software is easy for beginners and flexible enough for advanced users
 
 ### Arduino MKR NB-1500
-The MKR branch of the Arduino board family is dedicated to the IoT so it tries to provide 
-solutions for devices in remote locations without a high speed Internet connection, or in situations in which power isn't available. 
+The MKR branch of the Arduino board family is dedicated to the IoT solutions. It tries to provide 
+solutions for devices in remote locations without a high-speed Internet connection, or in situations in which power isn't available. 
 
-The Arduino MKR NB 1500 adds the wireless connectivity  Narrow Band IoT and LTE CAT M1 to the Arduino platform. 
+The Arduino MKR NB 1500 adds the wireless connectivity Narrow Band IoT and LTE CAT M1 to the Arduino platform. 
 It is a learning and development board which contains the ATMEL SAMD21 micro controller, 
 designed to integrate the core's low power-consumption and high performance with the Arduino's ease-of-use. 
 The MKR NB 1500 brings the Arduino Zero functionalities in the smaller form factor.
 
 <p align="center">
-      <img  title="Arduino_NB1500" src="pictures/Arduino/Arduino_NB1500.jpg"
+      <img title="Arduino_NB1500" src="pictures/Arduino/Arduino_NB1500.jpg"
 	  >
 </p>
 
@@ -41,7 +41,7 @@ The MKR NB 1500 brings the Arduino Zero functionalities in the smaller form fact
 This LED is connected to the 5V input from either USB or VIN
 
 ##### Reset button 
-This button allows you to reset the program contained on the board so that it runs again from the init.
+This button allows you to reset the program contained on the board. It runs again from the init.
 
 ##### Onboard LED 
 The onboard LED is connected to pin D6 
@@ -92,7 +92,7 @@ Take care of her, she will be your partner into the IoT world.
 
 ## Configure Arduino IDE
 
-Arduino platform provides a Integrated Development Environment (IDE). 
+Arduino platform provides an Integrated Development Environment (IDE). 
 The first step to get started with the kit is to download the Arduino IDE from their web https://www.arduino.cc/en/Main/Software
 
 ![pic](pictures/Arduino/Arduino_IDE.png)
@@ -128,7 +128,7 @@ The entry that disappears should be the Arduino board. Reconnect the board and s
 
 ![pic](pictures/Arduino/Arduino_IDE_com.png)
 
-If this is your first time using the board, it is likely that when copiling you will not find some libraries.
+If this is your first time using the board, it is likely that when compiling you will not find some libraries.
 
 To avoid this error when using the connection libraries, you can import them by following these steps:
 
@@ -170,8 +170,7 @@ However, it has the same tools to locate the available libraries.
 ![pic](pictures/Arduino/Arduino_WEB_editor_library_manager_MKRNB.png)
 
 To download the code on your board, you must follow the same process as with the IDE, 
-however being an online tool allows new options such as sharing the sketch using a url
-
+however, being an online tool allows new options such as sharing the sketch using a url
 
 ![pic](pictures/Arduino/Arduino_WEB_editor_code_menu_upload.png)
 
@@ -211,11 +210,11 @@ void loop() {
   delay(2000);
 }
 ```
-Great, now you should be able to see something like that.
+Great, you should be able to see something like that.
 
 ![pic](pictures/Arduino/Arduino_IDE_code.png)
 
-Now, We are gonna run the last test. Compile and upload your code to the board.
+Let's do the last test. Compile and upload your code on the board.
 But you're lucky, the IDE will do  this for you. If an error occurs, It will appear at the console below
 
 To do this press the **Upload** button that you will find below the menu. 
@@ -226,7 +225,7 @@ If everything goes well, your software is already running on the board, and will
 
 But what the hell, your Arduino doesn't have a screen where display text!
 This is not a problem, as you have previously set up a serial connection to send the message.
-So your board is sending this message through the usb that connects to your pc.
+So, your board is sending this message through the USB that connects to your pc.
 
 Effectively! again your Arduino IDE does this for you.
 You can open a terminal to display all messages sent from the Arduino via serial communication.
@@ -248,7 +247,7 @@ you won't be able to make the connection.
 The SIM card must be in microSIM format, and must be fully inserted, with the metal face of the 
 connector towards the inside of the board.
 
-To plug in the GSM antenna, carefully press the connector and lock it in parallel.
+To plug-in the GSM antenna, carefully press the connector and lock it in parallel.
 
 ## NB-IoT and LTE-M: Setup and Connection 
 
@@ -273,12 +272,13 @@ the previous configuration in the case of not modifying it.
 Before preparing the script, you should know that the communication between the board and the module is done 
 by means of a series of instructions known as AT commands.
 
-These AT commands allow you, among other things, to select if you connect to NB or LTE, as well as to configure
+These AT commands allow you, among other options, to select if you connect to NB or LTE, as well as to configure
 the band to which you must connect. This varies according to your territorial zone.
  
-Here you will only learn the basic commands to make a correct connection with the Movistar network.
+Here you will only learn the basic commands to make a correct connection with the Telefonica network.
 
-Here you can see an example of a [setup file](..\scripts\Arduino\Connection\setup_SaraR410M_movistar.h), 
+Here you can see an example of a [setup file]
+(https://github.com/telefonicaid/iot-activation/blob/master/scripts/Arduino/Connection/setup_SaraR410M_movistar.h), 
 but we'll show you what those commands mean and how to select the appropriate parameters.
 
 ```c
@@ -393,7 +393,7 @@ This configuration is done through a bitmask. So you will have to configure both
 
 But how do you calculate the mask for each band? this is very simple.
 
-look at it with this examples.
+look at it with these examples.
 
 for example, if you want to activate the European band (B20), you will make sure that the mask has bit 20 activated.
 
@@ -423,7 +423,7 @@ But if you'd like to consider it an explanation. You can always use a calculator
 
 ##### Configure the consumption:
 
-One of the main goals from de device pespective is the battery energy consumption. 
+One of the main goals from de device perspective  is the battery energy consumption. 
 
 ###### Extended Discontinuous Reception 
 
@@ -445,16 +445,14 @@ Using AT commands, you can activate this mode to determine the schedule times. `
 
 these consumption modes are really important as they can improve the battery life in IoT devices.
 
-
-
-Now that you know a little more about energy modes. You'll see how these are integrated into the communication proccess.
+Now that you know a little more about energy modes. You'll see how these are integrated into the communication process.
 Out of the box, the device will perform an Attachment stage to connect to the mobile network. This step will be performed 
 whenever the device is reconnected to the network, resulting in a process with a very high power consumption.
 
 Once the Attachment is done and the data is sent, the device will keep waiting for a few seconds depending on the connection 
 technology  (NB-IoT or LTE-M) go through the IDLE stage.
 During the IDLE stage, the device will maintain the connection to the network. 
-This connection is maintained by swaping short periods of data exchange with the network with periods of workless. 
+This connection is maintained by swapping short periods of data exchange with the network with periods of workless. 
 If you review the consumption graph, you can see how during the IDLE stage a series of square pulses appears.
 
 ![pic](pictures/schematics/LTE_transmision.png)
@@ -475,7 +473,7 @@ so the network will keep the configuration of the device even if the antenna is 
 At the end, the device will alert the network again of its connection but without the need to 
 perform Attachment again, which saves time and energy.
 
-Using the AT command it is possible to determine the total cycle time, 
+Using the AT command, it is possible to determine the total cycle time, 
 which contains both the IDLE connection time and the workless time.
 
 ![pic](pictures/schematics/LTE_transmision_PSM.png)
@@ -495,7 +493,7 @@ as well as configure their cycle times.
 
 You can disable it with command `AT+CEDRXS=0,4` in LTE-M or with command `AT+CEDRXS=0,5` for NB-IoT.
 
-Effectively the code 4 or 5 will serve you to identify the type of connection you want to configure !!
+Effectively the code 4 or 5 will serve you to identify the type of connection you want to configure!!
 
 To activate it you must do exactly the same thing, but changing the 0 for a 2, 
 although this time you will have to add a code of 4 digits to configure the cycle time.
@@ -522,7 +520,7 @@ you can check the rest of the values in the table
 Disable with command `AT+CPSMS=0`
 
 To activate the PSM, you only have to select the value to one and configure 
-the time of the cicle (IDLE + PSM) and time of conection (IDLE) copying the codes that there are in the table. 
+the time of the cycle (IDLE + PSM) and time of connection (IDLE) copying the codes that there are in the table. 
 ```AT
 ** Activate PSM: 1h of cycle / 5m resting"
 AT+CPSMS=1,"00100001","00100101"
@@ -565,8 +563,9 @@ if you need, you can use a binary online calculator: https://www.rapidtables.com
 
 Now that you know how to configure your modem to make a correct connection.
 
-You will be able to execute the following [code](../scripts/Arduino/Connection) 
-with which to connect to the Movistar network. Let the games begin!
+You will be able to execute the following [code]
+(https://github.com/telefonicaid/iot-activation/tree/master/scripts/Arduino/Connection) 
+with which to connect to the Telefonica network. Let the games begin!
 
 ```c
 void setup() {
@@ -618,9 +617,6 @@ Scanning Networks:
 Try Connecting....
 Connected
 END setup
-Connected
-Connected
-Connected
 Connected
 Connected
 [...]

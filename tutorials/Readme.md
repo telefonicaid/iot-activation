@@ -13,7 +13,7 @@ categories: tutorial
 
 - [Welcome to IoT Activation of Telefónica](#welcome-to-iot-activation-of-telefonica)
   * [Raspberry Starter-kit](#what-can-you-find-in-the-raspberry-starter-kit)
-  * [Arduino  Starter-kit](#and-in-the-arduino-kit)
+  * [Arduino Starter-kit](#and-in-the-arduino-kit)
 - [What do you need to know?](#before-starting-with-the-iot-activation-program-what-do-you-need-to-know)
   * [What is NB-IoT or LTE-M?](#what-is-nb-iot-or-lte-m)
     + [NB-IoT](#narrowband-iot-nb-iot)
@@ -55,7 +55,7 @@ To learn how to configure your device and start developing your applications che
 	
 ## And in the Arduino kit? 
 
-In your Arduino Starterkit you can find the next components:
+In your Arduino Starter-kit you can find the next components:
 
 - Arduino MKR NB-1500
 - Arduino Antenna GSM
@@ -78,7 +78,7 @@ To learn how to configure your device and start developing your applications che
 
 ## What is NB-IoT or LTE-M?
 
-Surely you are already wondering how to connect these devices to intenet, 
+Surely you are already wondering how to connect these devices to internet, 
 and if there is a specific technology for it. The answer to these questions is yes. 
 
 In the last few years, different radio communication technologies have been developed 
@@ -92,7 +92,7 @@ we can highlight NB-IoT and LTE-M as the most entrenched for this purpose.
 Narrowband IoT is a radio technology standard.
 It enables a wide range of simultaneous connections of a low power devices.
 
-NB-IoT does not need a high speed connection on the other hand it needs a stable connection. 
+NB-IoT does not need a high-speed connection on the other hand it needs a stable connection. 
 It focuses specifically on indoor coverage.
  
 low power consumption enables a battery life of several years.
@@ -135,7 +135,7 @@ After analysing the similarities and differences between LTE-M and NB-IoT, you s
 | low cost | low cost |
 
 
-If you have any doubt about what type of connection you should use for your devices we can clarify that 
+If you have any doubt about what type of connection, you should use for your devices we can clarify that 
 the choice between LTE-M and NB-IoT depends on the amount of data and the frequency your application needs. 
 
 Choose LTE-M if you need real-time communication, on the other hand if you need many devices or sensors and do not need  
@@ -188,7 +188,7 @@ Although it is a slow process, TCP guarantees that all data has been received co
 UDP is one of the simplest and fastest protocols used for communication between devices over the Internet. 
 Unlike other protocols, UDP only divides the information into packets and sends them to the destination.
 
-For this reason it is not necessary to wait for a confirmation. 
+For this reason, it is not necessary to wait for a confirmation. 
 UDP is limited to sending the packets no matter what happens.
 
 Although simple and fast, this protocol doesn't guarantee that the data will be received correctly.
@@ -202,8 +202,8 @@ Although simple and fast, this protocol doesn't guarantee that the data will be 
 | Error checking and quality guarantee for shipment  | Error checking without recovery |
 
 For these reasons when choosing one of the protocols, it is necessary to assess the needs of the application.
-If we need the data transmission to be reliable we will choose TCP, 
-however if we need a fast data transmission and we can afford the loss of some of this, UDP is our best option.
+If we need the data transmission to be reliable, we will choose TCP, 
+however, if we need a fast data transmission and we can afford the loss of some of this, UDP is our best option.
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 

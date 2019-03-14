@@ -14,7 +14,7 @@ It provides constructs that enable clear programming on both small and large sca
 
 # How to program using the Terminal Window
 
-Opena a terminal widows with keys **Ctrl+Alt+T**
+Open a terminal widow with keys **Ctrl+Alt+T**
 
 Create a new file
 type `nano` in the command line to open the text editor.
@@ -29,7 +29,7 @@ You can also find it here [HelloWorld.py](../scripts/HelloWorld.py)
 #! /usr/bin/python
 
 #this is a comment
-#import the librery time
+#import the library time
 import time
 print("Hello IoT World")
 time.sleep(5)
