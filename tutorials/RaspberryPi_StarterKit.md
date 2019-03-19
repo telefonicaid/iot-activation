@@ -122,7 +122,8 @@ It is a board that includes different devices and sensors
 	</a>
 </p>
 
-:pill: Did you know that it was made especially for being launched to the International Space Station in December 2015?
+&#x1F48A;
+Did you know that it was made especially for being launched to the International Space Station in December 2015?
 
 ### Huawei MS2131 USB Stick
 The Huawei USB Modem MS2131i-8 is a robust USB stick designed for industrial.
@@ -250,7 +251,8 @@ Create the USB Stick connection in a command line
 sudo nmcli con add type gsm ifname "*" con-name USBStick apn TelefonicaSIM_APN user telefonica password telefonica
 ```
 
-:heavy_exclamation_mark:  The field **TelefonicaSIM_APN** must be replaced by the APN address of your Telefónica SIM card.
+&#x1F4CD;
+The field **TelefonicaSIM_APN** must be replaced by the APN address of your Telefónica SIM card.
 In this case, the APN of your SIM card will be provided by Telefónica. 
 However, you will be able to identify it through access to [Kite.](Kite_Platform.md)
 

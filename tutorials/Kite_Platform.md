@@ -172,7 +172,7 @@ The API is available on the Internet, in the address m2m-api.telefonica.com,
 through port 8010. Therefore, the services this API exhibits can be used from any
 system having access to the Internet. 
 
-:heavy_exclamation_mark: 
+&#x1F4CD;
 All your API requests must use the HTTPS protocol. This guarantees the confidentiality of your data. 
 
 To ensure your confidentiality, you will use the SSL (Secure Sockets Layer) protocol. 
@@ -209,7 +209,8 @@ your_customer_certificate.key -password pass:xxxxxxxx
 ```
 also you will need your password here.
 
-:heavy_exclamation_mark:  Remember, keep these new files in a safe place!!
+&#x1F4CD;
+Remember, keep these new files in a safe place!!
 
 ### Access API using a command
 
@@ -235,7 +236,7 @@ https://m2m-api.telefonica.com:8010/services/REST/GlobalM2M/ServicePacks/v2/r12/
 - [Select APN](#select-apn)
 - [Deactivate any Service](#deactivate-any-service)
 
-:heavy_exclamation_mark:
+&#x1F4CD;
 Some services will only be available if they are included in your data plan.
 But if they're not available you should contact your local SIM distributor.
 

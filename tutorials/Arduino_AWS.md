@@ -280,7 +280,8 @@ Just make sure to add the name of the thing as one of the fields of the SIM in K
 This [bridge](BP_DataBridge.md)
 is the easiest way to connect to AWS using only one UDP send
 
-:heavy_exclamation_mark: If you're running the connection tests in The Thinx lab.
+&#x1F4CD;
+If you're running the connection tests in The Thinx lab.
 The SIM you use will not have connectivity with the Kite platform. So you will not be able to use the connection through our Bridge. 
 Even so you have access to the internet and you will be able to perform any test on your infrastructure.
 

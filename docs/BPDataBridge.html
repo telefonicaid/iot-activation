@@ -238,10 +238,6 @@ it is not currently available.</p>
 
 <h2 id="what-does-it-do">What does it do??</h2>
 
-<p>You can review the following flow chart, but you will understand it better if you read our comments, we have written for you.</p>
-
-<p><img src="pictures/Bridge/Bridge_overview_AWS.png" alt="pic" /></p>
-
 <p>Each time you receive a UDP datagrams, it will be accompanied by the sender ip address of.</p>
 
 <p>The Bridge uses this ip to identify the SIM from which the information comes and retrieves the information provided in Kite.
@@ -255,7 +251,8 @@ To do this you must inform the Custom Field of the SIM:</p>
 
 <p>To choose between the different options you just have to configure the information of the SIM in the <a href="KitePlatform.html#sim-identification">Custom Field</a></p>
 
-<p>:heavy_exclamation_mark: The device name must always be. If it is not given, an error code will be returned, 
+<p>📍
+The device name must always be. If it is not given, an error code will be returned, 
 because in this way we do not know the device of the Cloud in which we want to publish.</p>
 
 <p>Here you have a list with the different options to configure the information in Kite Platform:</p>
@@ -274,13 +271,11 @@ because in this way we do not know the device of the Cloud in which we want to p
 
 <p>The default topic has this structure:  **tlm/<DEVICE_NAME_IN_KITE>/raw**</DEVICE_NAME_IN_KITE></p>
 
-<p><img src="pictures/Bridge/Bridge_overview_AWS_option1.png" alt="pic" /></p>
-
 <h4 id="aws-option-2-publish-in-a-custom-topic">AWS Option 2: publish in a custom topic</h4>
 
 <p>Use the second field to write in the topic in which you want to publish the information.</p>
 
-<p><img src="pictures/Bridge/Bridge_overview_AWS_option2.png" alt="pic" /></p>
+<p><img src="pictures/Bridge/Bridge_overview_AWS_option1y2.png" alt="pic" /></p>
 
 <h4 id="aws-option-3-publish-in-the-shadow">AWS Option 3: publish in the shadow</h4>
 
@@ -307,7 +302,7 @@ In this way you will be able to control if the publication has been done correct
 as it allows to retrieve shadow information, allowing the reception of commands.
 because next to the response code, the contents of the field <strong>delta</strong> in the shadow will be returned in json format.</p>
 
-<p><img src="pictures/Bridge/Bridge_overview_AWS_option3.png" alt="pic" /></p>
+<p><img src="pictures/Bridge/Bridge_overview_AWS_option_shadow.png" alt="pic" /></p>
 
 <h5 id="what-happens-if-we-publish-in-a-thing-that-doesnt-exist">What happens if we publish in a thing that doesn’t exist?</h5>
 

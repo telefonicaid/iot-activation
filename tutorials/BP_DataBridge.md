@@ -118,12 +118,7 @@ it is not currently available.
 
 ## What does it do??
 
-You can review the following flow chart, but you will understand it better if you read our comments, we have written for you.
-
-![pic](pictures/Bridge/Bridge_overview_AWS.png)
-
 Each time you receive a UDP datagrams, it will be accompanied by the sender ip address of. 
-
 
 The Bridge uses this ip to identify the SIM from which the information comes and retrieves the information provided in Kite.
 To do this you must inform the Custom Field of the SIM:
@@ -134,7 +129,8 @@ Depending on the content of the fields the Bridge will act differently.
 
 To choose between the different options you just have to configure the information of the SIM in the [Custom Field](Kite_Platform.md#sim-identification)
 
-:heavy_exclamation_mark: The device name must always be. If it is not given, an error code will be returned, 
+&#x1F4CD;
+The device name must always be. If it is not given, an error code will be returned, 
 because in this way we do not know the device of the Cloud in which we want to publish.
 
 Here you have a list with the different options to configure the information in Kite Platform:
@@ -151,15 +147,12 @@ This option is the easiest to configure. Just leave the second fields empty, and
 
 The default topic has this structure:  **tlm/<DEVICE_NAME_IN_KITE>/raw**
 
-![pic](pictures/Bridge/Bridge_overview_AWS_option1.png)
-
 
 #### AWS Option 2: publish in a custom topic
 
 Use the second field to write in the topic in which you want to publish the information.
 
-![pic](pictures/Bridge/Bridge_overview_AWS_option2.png)
-
+![pic](pictures/Bridge/Bridge_overview_AWS_option1y2.png)
 
 #### AWS Option 3: publish in the shadow
 
@@ -187,7 +180,7 @@ Another advantage of using the AWS shadow is the interaction with the device,
 as it allows to retrieve shadow information, allowing the reception of commands.
 because next to the response code, the contents of the field **delta** in the shadow will be returned in json format.
 
-![pic](pictures/Bridge/Bridge_overview_AWS_option3.png)
+![pic](pictures/Bridge/Bridge_overview_AWS_option_shadow.png)
 
 ##### What happens if we publish in a thing that doesn't exist?
 

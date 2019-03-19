@@ -79,7 +79,8 @@ An electrical device that supplies electric power to your Arduino board
 This little one makes you enjoy all the advantages of the Telefónica network. 
 Take care of her, she will be your partner into the IoT world.
 
-:heavy_exclamation_mark:  Note that to insert it into the Arduino board you will need the microSIM format
+&#x1F4CD;
+Note that to insert it into the Arduino board you will need the microSIM format
 
 <p align="center">
       <img title="Telefonica_SIM" src="pictures/miscellaneous/Telefonica_SIM.png"
