@@ -6,23 +6,22 @@
 
 ![pic](tutorials/pictures/miscellaneous/IOT_Activation.png)
 
-Welcome to The IoT World. 
-With this tutorial you will not only learn how to start in the world of IoT, 
-it also aims to be a guide to assist you in your beginnings and resolve any doubts that may arise.
-
-IoT technology will make it easier for you to collect data online, control remotely and automate processes, 
-allowing you to reduce costs and offer a better service, while improving quality.
+We welcome you to The IoT World.
+These tutorials are designed to assist you in your beginnings and resolve any doubts that may arise you.
+With this guide you will discover the advantages of IoT devices.
+You'll learn how to collect data online, remotely control your devices and automate deployment processes.
+IoT will allow you to reduce costs and offer a better service, while improving quality.
 
 Along with this guide, you will also have received a box with a lot of gadgets that that you probably don't identify. 
 Don't worry, you will be playing with it in no time!
 
-We will also teach you different technologies so you can decide which one works for your business.
-
-At the kit you will find different devices, those are the first step to achieve your business goal. 
+To start you can choose between several kits, those are the first step to achieve your business goal.
 The Raspberry and Arduino are very versatile devices that will offer you endless possibilities, 
 but take it easy... You'll never walk alone!
 
 They may seem small, but the possibilities are immense!!
+
+We will also teach you different technologies so you can decide which one works best for your business.
 
 [Everything you need to know about IoT](tutorials/README.md)
 
@@ -36,7 +35,7 @@ They may seem small, but the possibilities are immense!!
     <h4>Activate your SIM</h4>
 </div>
 <p align="center">
-    <a href="tutorials/KitePlatform.md#how-to-get-started-with-your-sim" align="center" border="10">
+    <a href="tutorials/Kite_Platform.md#how-to-get-started-with-your-sim" align="center" border="10">
         <img src="tutorials/pictures/miscellaneous/Telefonica_SIM.png"
         width="200" height="125">
     </a>
@@ -139,13 +138,11 @@ They may seem small, but the possibilities are immense!!
 
 # Blueprints
 
-From Iot Activation we want to make your way easier.
+During your development you will find stones in the road. Don't worry.
+Iot Activation want to make your way easier. We will remove them.
 
-For this reason, we don't just want to show you how to develop applications for your devices or how to connect to the cloud.
-We put at your disposal a powerful tool that will facilitate and improve the performance of your things connected to the Internet.
-
-We also solve some of the most common problems you may encounter.
-
+Learn about the most common problems you can find.
+We are developing a set of tools to do the hard work.
 
 
 
@@ -153,10 +150,10 @@ We also solve some of the most common problems you may encounter.
   <tr>
 	<th>
 		<div>
-			Low power devices are awesome with out-the-grid situations
+			Low power devices are awesome with off-the-grid situations:
 		</div>
 		<div>
-			its integration with public clouds is surrounded by hazzle and really complicated challenges:
+			The device integration in public clouds is a challenge.
 		</div>
 	</th>
 	<th>
@@ -164,7 +161,10 @@ We also solve some of the most common problems you may encounter.
 	</th>
 	<th>
 		<div >
-			Due to devices hardware limitations, sometimes, security is fade into the background:
+			Due to devices hardware limitations, sometimes security is fade into the background:
+		</div>
+		<div >
+			It is necessary to guarantee a secure end to end.
 		</div>
 	</th>
   </tr>
@@ -185,17 +185,20 @@ We also solve some of the most common problems you may encounter.
   <tr>
 	<th>
 		<div>
-			Device location can be a key point in your business model 
+			Device location can be a key point in your business model:
 		</div>
 		<div>
-			It can be a challenge because of expensive sensors or energy consumption management:
+			Save on energy and avoid expensive sensors.
 		</div>
 	</th>
 	<th>
 	</th>
 	<th>
 		<div>
-			Customize devices one by one can be expensive, challeging or impossible to manage:
+			Customize devices one by one can be expensive or impossible to manage:
+		</div>
+		<div>
+			Deploy a common layout and tailor it later.
 		</div>
 	</th>
   </tr>

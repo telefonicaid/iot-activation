@@ -103,61 +103,27 @@
 	    	<h3 id="table-of-contents">Table of Contents</h3>
 
 <ul>
-  <li><a href="#what-is-data-bridge">What is Data Bridge?</a>
+  <li><a href="#what-is-the-data-bridge">What is Data Bridge?</a>
     <ul>
-      <li><a href="#why-do-we-need-data-bridge">Why do we need Data Bridge?</a></li>
+      <li><a href="#why-do-we-need-the-data-bridge">Why do we need Data Bridge?</a></li>
       <li><a href="#what-our-bridge-is-already-doing">What our bridge is already doing</a></li>
       <li><a href="#whats-it-gonna-do-next">What’s it gonna do next?</a></li>
       <li><a href="#what-will-you-need">What will you need?</a></li>
-      <li><a href="#what-does-it-do">What does it do?</a>
-        <ul>
-          <li><a href="#aws-options">AWS Options</a></li>
-          <li><a href="#google-cloud-options">Google Cloud Options</a></li>
-          <li><a href="#responses-codes">Responses codes</a></li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><a href="#now-deploy-and-defend-your-bridge">Deploy and defend your Bridge!</a>
-    <ul>
-      <li><a href="#how-to-configure-it">How to configure it</a>
-        <ul>
-          <li><a href="#configure-the-cloud">Configure the Cloud</a></li>
-          <li><a href="#configure-the-udp-socket">Configure the UDP socket</a></li>
-          <li><a href="#configure-the-kite-platform-connection">Configure the Kite Platform connection</a></li>
-          <li><a href="#aws-configuration-file">AWS Configuration file</a></li>
-          <li><a href="#google-cloud-configuration-file">Google Cloud Configuration file</a></li>
-        </ul>
-      </li>
-      <li><a href="#how-to-run-it">How to run it</a></li>
     </ul>
   </li>
 </ul>
 
-<h1 id="what-is-data-bridge">What is Data Bridge?</h1>
+<h1 id="what-is-the-data-bridge">What is The Data Bridge?</h1>
 
-<p>Data Bridge is a program written in python that can be executed in any machine as a server,
-that allows you the possibility to connect directly to the Cloud only sending a UDP message.</p>
+<p>Data Bridge is a Python script. It can be deployed in any machine as a server.
+It enables the connection between public clouds IoT Core services and UDP messages.
+As a result, It will send back a message to the device with the publish code.</p>
 
-<p>When the Bridge starts running, it will establish a UDP socket and will keep listening continuously 
-for any UDP messages sent to this IP address using a configured port.
-Using the same connection to return a response with the result of the procedure.</p>
+<h2 id="why-do-we-need-the-data-bridge">Why do we need the Data Bridge?</h2>
 
-<p>In addition, the Bridge will use the Kite access to determine the identity of the device and decide the publishing option.</p>
+<p>Among the communication protocols, MQTT is well known due to it is really easy to use and it secures the communication through a TLS context, although from the energetic perspective it is quite aggressive. You shouldn’t choose between security and battery… so the Data Bridge will make your day :).</p>
 
-<p>But if you continue reading you will appreciate all the work that the Bridge can do for you.</p>
-
-<h2 id="why-do-we-need-data-bridge">Why do we need Data Bridge?</h2>
-
-<p>Within the communication protocols, MQTT stands out for its simplicity and allow to guarantee security through a TLS context. 
-In a way, this proves a relatively “expensive” connection.</p>
-
-<p>You could eliminate authentication. But would this be the right thing to do?</p>
-
-<p>You may not think your data is valuable enough. But still data bridge can be your solution.</p>
-
-<p>And if you have any doubt about the advantages over consumption, 
-we show you a couple of graphs where you can see the differences in consumption in a device sending a 300 bytes packet.</p>
+<p>We wanna show you a energy consumption comparison: We sent 300 bytes packet with the same device and the result looks as follows …</p>
 
 <table>
   <tr>
@@ -192,429 +158,51 @@ we show you a couple of graphs where you can see the differences in consumption 
 <h2 id="what-our-bridge-is-already-doing">What our bridge is already doing</h2>
 
 <ul>
-  <li>It accesses Kite Platform to retrieve your custom information (the device name and topic)</li>
-  <li>It uses the IP address device to connect to the Cloud</li>
-  <li>It publishes in AWS the message received through UDP message</li>
-  <li>It returns an answer with the result of the publication</li>
-  <li>It returns commands from the cloud</li>
-  <li>A Telefónica network and your own security VPN</li>
+  <li>It accesses to Kite Platform to retrieve your custom information (the device name and topic)</li>
+  <li>It received a UDP message and it publishes in the Cloud.</li>
+  <li>It returns a message with the process result and commands</li>
 </ul>
 
 <h2 id="whats-it-gonna-do-next">What’s it gonna do next?</h2>
 
 <ul>
   <li>Compatibility with other clouds</li>
-  <li>It will have more versatility in identifying problems.</li>
-  <li>Better integration with Kite Platform</li>
+  <li>Deploy your Bridge in One Click</li>
 </ul>
 
 <h2 id="what-will-you-need">What will you need?</h2>
 
 <ul>
-  <li>Server with Python 2.7 and Static IP (We’ve used an Amazon EC2 Instance)
-    <ul>
-      <li>socket</li>
-    </ul>
-  </li>
-  <li>Python libraries:
-    <ul>
-      <li>json</li>
-      <li>yaml</li>
-      <li>paho.mqtt.client</li>
-      <li>ssl</li>
-      <li>requests</li>
-      <li>boto3 (AWS)</li>
-      <li>…</li>
-    </ul>
-  </li>
+  <li>A Linux instance on a Public Cloud</li>
+  <li>Python Interpreter</li>
   <li><a href="KitePlatform.html#access-step-by-step-using-the-curl-command">KITE Platform</a> Certificates files</li>
-  <li>A Telefónica Internet Protocol security <a href="BPIPsec.html">(IPsec)</a></li>
+  <li>IpSec Service provided by Telefonica <a href="BPIPsec.html">(IPsec)</a></li>
 </ul>
-
-<p>If you use a SIM from the Thinx testing network you will not have access to the Kite Platform, 
-it is not currently available.</p>
-
-<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
-
-<h2 id="what-does-it-do">What does it do??</h2>
-
-<p>Each time you receive a UDP datagrams, it will be accompanied by the sender ip address of.</p>
-
-<p>The Bridge uses this ip to identify the SIM from which the information comes and retrieves the information provided in Kite.
-To do this you must inform the Custom Field of the SIM:</p>
-<ul>
-  <li>Field 1 : Device Name (required)</li>
-  <li>Field 2 : name of the topic in which you want to publish (optional)</li>
-</ul>
-
-<p>Depending on the content of the fields the Bridge will act differently.</p>
-
-<p>To choose between the different options you just have to configure the information of the SIM in the <a href="KitePlatform.html#sim-identification">Custom Field</a></p>
 
 <p>📍
-The device name must always be. If it is not given, an error code will be returned, 
-because in this way we do not know the device of the Cloud in which we want to publish.</p>
-
-<p>Here you have a list with the different options to configure the information in Kite Platform:</p>
-
-<h3 id="aws-options">AWS Options:</h3>
-
-<ul>
-  <li><a href="#aws-option-1-publish-in-a-default-topic">AWS Option 1: publish in a default topic</a></li>
-  <li><a href="#aws-option-2-publish-in-a-custom-topic">AWS Option 2: publish in a custom topic</a></li>
-  <li><a href="#aws-option-3-publish-in-the-shadow">AWS Option 3: publish in the shadow</a></li>
-</ul>
-
-<h4 id="aws-option-1-publish-in-a-default-topic">AWS Option 1: publish in a default topic</h4>
-
-<p>This option is the easiest to configure. Just leave the second fields empty, and the Bridge will do all the work.</p>
-
-<p>The default topic has this structure:  **tlm/<DEVICE_NAME_IN_KITE>/raw**</DEVICE_NAME_IN_KITE></p>
-
-<h4 id="aws-option-2-publish-in-a-custom-topic">AWS Option 2: publish in a custom topic</h4>
-
-<p>Use the second field to write in the topic in which you want to publish the information.</p>
-
-<p><img src="pictures/Bridge/Bridge_overview_AWS_option1y2.png" alt="pic" /></p>
-
-<h4 id="aws-option-3-publish-in-the-shadow">AWS Option 3: publish in the shadow</h4>
-
-<p>If you are using AWS as a cloud to connect your devices and you want to use shadow systems, this is undoubtedly your choice.</p>
-
-<p>The configuration is quite simple, just identify the topic update of your device and copy it into the second custom field.
-The structure will be similar to that of the next topic: **$aws/things/<DEVICE_NAME_IN_KITE>/shadow/update**</DEVICE_NAME_IN_KITE></p>
-
-<p>The bridge will quickly detect that this is an AWS reserved topic and will implement the appropriate logic for the connection.</p>
-
-<p>The data sent will be published in the shadow in the <strong>raw</strong> field as shown in the following example.</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">  
-  </span><span class="s2">"reported"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"raw"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;MESSAGE SENT HERE&gt;"</span><span class="p">,</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<p>In addition to the connection, the Bridge will subscribe to the Accepted and Rejected topics. 
-In this way you will be able to control if the publication has been done correctly or has been rejected by the broker.</p>
-
-<p>Another advantage of using the AWS shadow is the interaction with the device, 
-as it allows to retrieve shadow information, allowing the reception of commands.
-because next to the response code, the contents of the field <strong>delta</strong> in the shadow will be returned in json format.</p>
-
-<p><img src="pictures/Bridge/Bridge_overview_AWS_option_shadow.png" alt="pic" /></p>
-
-<h5 id="what-happens-if-we-publish-in-a-thing-that-doesnt-exist">What happens if we publish in a thing that doesn’t exist?</h5>
-
-<p>Absolutely nothing! The Bridge will create it before publishing so you don’t have to.
-It will create a new thing from the given name of high the Kite.</p>
-
-<p>But if you still tell them to create it manually you can follow these <a href="AWScreatenewthing.html">steps</a></p>
+For the time being, If you use a SIM from the Thinx, you will not have access to the Kite Platform.</p>
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
-<h3 id="google-cloud-options">Google Cloud Options</h3>
-
-<ul>
-  <li><a href="#gcp-option-1-publish-in-a-default-topic">GCP Option 1: publish in a default topic</a></li>
-</ul>
-
-<h3 id="responses-codes">Responses codes</h3>
-
-<p>Whenever a message is received the Bridge will return a code indicating the status.</p>
-
-<p>By means of the following list of codes we try to reflect all the possible situations that could happen.</p>
+<h3 id="to-continue-with-the-installation-select-your-public-cloud">To continue with the installation select your Public Cloud</h3>
 
 <table>
-  <thead>
-    <tr>
-      <th style="text-align: center"><strong>CODE</strong></th>
-      <th style="text-align: left"><strong>MSG</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center">200</td>
-      <td style="text-align: left">OK: msg published accepted</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">401</td>
-      <td style="text-align: left">ERROR: Try to publish in an unauthorized topic</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">404</td>
-      <td style="text-align: left">ERROR: connection with Kite not established</td>
-    </tr>
-  </tbody>
+  <tr>
+	<th>
+		<a href="BPDataBridgeAWS.html" align="center">
+			<img src="pictures/AWS/AWS_logo.png" width="350" height="225" />
+		</a>
+	</th>
+	<th>
+		<img src="pictures/portfolio/portfolio_white.png" width="75" height="1" />
+	</th>
+	<th>
+		<a href="BPDataBridgeGoogleCloud.html" align="center">
+			<img src="pictures/GCP/GCP_logo.png" width="350" height="225" />
+		</a>
+	</th>
+  </tr>
 </table>
-
-<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
-
-<h1 id="now-deploy-and-defend-your-bridge">Now, Deploy and defend your Bridge!</h1>
-
-<h2 id="how-to-configure-it">How to configure it</h2>
-
-<p>We have tried to make this as simple as possible.</p>
-
-<p>So, you’ll only need to fill in a few fields in the configuration file 
-<a href="https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge/config/Configuration.yaml">Configuration.yaml</a></p>
-
-<h3 id="configure-the-cloud">Configure the Cloud</h3>
-
-<p>This parameter is used to identify the cloud and select the configuration file. 
-At the moment only the AWS connection is available, but we cannot predict the future…</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">cloud</span><span class="pi">:</span> <span class="s">XXX</span>
-</code></pre></div></div>
-
-<p>allowed values:</p>
-<ul>
-  <li>AWS (Amazon Web Services)</li>
-  <li>GCP (Google Cloud Platform)</li>
-</ul>
-
-<h3 id="configure-the-udp-socket">Configure the UDP socket</h3>
-
-<p>Here you can choose the port through which you will receive the UDP frames and the IP of the source device.</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">UDP</span><span class="pi">:</span>
-  <span class="na">ip</span><span class="pi">:</span> <span class="s2">"</span><span class="s">0.0.0.0"</span>
-  <span class="na">port</span><span class="pi">:</span> <span class="s">4114</span>
-</code></pre></div></div>
-<p>allow any address</p>
-
-<p>allowed values:</p>
-<ul>
-  <li>ip: “0.0.0.0”    (allow any address)</li>
-  <li>ip: “X.X.X.X”	   (restrict to a single address)</li>
-</ul>
-
-<h3 id="configure-the-kite-platform-connection">Configure the Kite Platform connection</h3>
-
-<p>This parameter allows you to select the files the certificates to access the Kite Platform.</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">KITE</span><span class="pi">:</span>
-  <span class="na">url</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://m2m-api.telefonica.com"</span>
-  <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">CA/"</span>
-  <span class="na">certificate</span><span class="pi">:</span> <span class="s2">"</span><span class="s">your_customer_certificate.cer"</span>
-  <span class="na">private_key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">your_customer_certificate.key"</span>
-
-</code></pre></div></div>
-<p>Make sure both the path and file name are correct.</p>
-
-<p>Also verify that the address of the urls matches the one of your access to Kite</p>
-
-<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
-
-<h3 id="aws-configuration-file">AWS Configuration file</h3>
-
-<p>Even if it is possible to modify all the parameters, this is not necessary, since some of them are predefined for AWS.</p>
-
-<p>Here is an example of a configuration file for Amazon Web Services connection 
-<a href="https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge/config/Configuration_AWS.yaml">Configuration_AWS.yaml</a></p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">cloud</span><span class="pi">:</span> <span class="s">AWS</span>
-<span class="na">region</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xx-xxxx-x"</span>
-<span class="na">MQTT</span><span class="pi">:</span>
-  <span class="na">topic</span><span class="pi">:</span>
-    <span class="na">update</span><span class="pi">:</span> <span class="s2">"</span><span class="s">$aws/things/&lt;DEVICE_NAME&gt;/shadow/update"</span>
-    <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">tlm/&lt;DEVICE_NAME&gt;/raw"</span>
-    <span class="na">log_device</span><span class="pi">:</span> <span class="s2">"</span><span class="s">log/device/provision/new"</span>
-    <span class="na">reserved</span><span class="pi">:</span> <span class="s2">"</span><span class="s">$aws"</span>
-</code></pre></div></div>
-
-<p>The file is quite intuitive, however here you can see carefully how to configure each section</p>
-
-<h4 id="server-configuration">Server configuration</h4>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">cloud</span><span class="pi">:</span> <span class="s">AWS</span>
-<span class="na">region</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xx-xxxx-x"</span>
-</code></pre></div></div>
-<p>the cloud only assists the developer, in case it was completed incorrectly, the Bridge would correct it.<br />
-However, you must indicate the location of the server you are using in AWS.</p>
-
-<h4 id="topic-configuration">Topic configuration</h4>
-
-<p>Optionally as part of the code library is included the publication in the shadow using the protocol MQTT. 
-Since to simplify access to the cloud has been used AWS development library for python.</p>
-
-<p>So if you want you can modify the source code to make the access through MQTT.</p>
-
-<p>At the moment you only have to keep the fields as is</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">MQTT</span><span class="pi">:</span>
-  <span class="na">topic</span><span class="pi">:</span>
-    <span class="na">update</span><span class="pi">:</span> <span class="s2">"</span><span class="s">$aws/things/&lt;DEVICE_NAME&gt;/shadow/update"</span>
-    <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">tlm/&lt;DEVICE_NAME&gt;/raw"</span>
-    <span class="na">log_device</span><span class="pi">:</span> <span class="s2">"</span><span class="s">log/device/provision/new"</span>
-    <span class="na">reserved</span><span class="pi">:</span> <span class="s2">"</span><span class="s">$aws"</span>
-</code></pre></div></div>
-<ul>
-  <li>update: this topic is the specific of AWS. It doesn’t make any sense to modify it.</li>
-  <li>default: configure this field to select the default topic name</li>
-  <li>log_device: topic name in which the new things creations are reported</li>
-  <li>reserved: this parameter indicates that the name is a AWS standard topic.</li>
-</ul>
-
-<h3 id="google-cloud-configuration-file">Google Cloud Configuration file</h3>
-
-<p>Here is an example of a configuration file for Google Cloud connection 
-<a href="https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge/config/Configuration_GCP.yaml">Configuration_GCP.yaml</a></p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">base_url</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://cloudiotdevice.googleapis.com/v1"</span>
-
-<span class="na">project_id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xxxxxxxxxx"</span>
-<span class="na">cloud_region</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xxxx-xxxx"</span>
-<span class="na">registry_id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xxxxxxxx"</span>
-<span class="na">service_account_json</span><span class="pi">:</span> <span class="s2">"</span><span class="s">service_account.json"</span>
-
-<span class="na">algorithm</span><span class="pi">:</span> <span class="s2">"</span><span class="s">RS256"</span>
-<span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">CA/"</span>
-<span class="na">ca_certs</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://pki.google.com/roots.pem"</span>
-<span class="na">private_key_file</span><span class="pi">:</span> <span class="s">GCP_rsa_private.pem</span>
-<span class="na">public_key_file</span><span class="pi">:</span> <span class="s">GCP_rsa_public.pem</span>
-</code></pre></div></div>
-
-<p>Currently the access keys must be configured via the configuration file and stored on the server.</p>
-
-<h4 id="project-configuration">Project configuration</h4>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">project_id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xxxxxxxxxx"</span>
-<span class="na">cloud_region</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xxxx-xxxx"</span>
-<span class="na">registry_id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xxxxxxxx"</span>
-<span class="na">service_account_json</span><span class="pi">:</span> <span class="s2">"</span><span class="s">service_account.json"</span>
-
-</code></pre></div></div>
-<ul>
-  <li><strong>service_account.json:</strong> A file that establish the identity of the service account</li>
-</ul>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-</span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"service_account"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"project_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[PROJECT-ID]"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"private_key_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[KEY-ID]"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"private_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-----BEGIN PRIVATE KEY-----</span><span class="se">\n</span><span class="s2">[PRIVATE-KEY]</span><span class="se">\n</span><span class="s2">-----END PRIVATE KEY-----</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"client_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[SERVICE-ACCOUNT-EMAIL]"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[CLIENT-ID]"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"auth_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://accounts.google.com/o/oauth2/auth"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"token_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://accounts.google.com/o/oauth2/token"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"auth_provider_x509_cert_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.googleapis.com/oauth2/v1/certs"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"client_x509_cert_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.googleapis.com/robot/v1/metadata/x509/[SERVICE-ACCOUNT-EMAIL]"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<h4 id="certificates-configuration">Certificates configuration</h4>
-
-<p>These are the parameters that will guarantee the security of your devices.
-if you want to know how to generate them access the <a href="ArduinoGCP.html#-generate-your-devices-keys">tutorial</a></p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">algorithm</span><span class="pi">:</span> <span class="s2">"</span><span class="s">RS256"</span>
-<span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">CA/"</span>
-<span class="na">ca_certs</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://pki.google.com/roots.pem"</span>
-<span class="na">private_key_file</span><span class="pi">:</span> <span class="s">GCP_rsa_private.pem</span>
-<span class="na">public_key_file</span><span class="pi">:</span> <span class="s">GCP_rsa_public.pem</span>
-</code></pre></div></div>
-
-<ul>
-  <li><strong>GCP_rsa_private.pem:</strong> The private key that must be securely stored on the device and used to sign the authentication.</li>
-  <li><strong>GCP_rsa_public.pem:</strong> The public key that must be stored in Cloud IoT Core and used to verify the signature of the authentication.</li>
-</ul>
-
-<h2 id="how-to-run-it">How to run it</h2>
-
-<p>Now that you know how to configure the parameters, you can run it !!!.</p>
-
-<p>If you have faithfully followed the steps of the IPsec tutorial, right now you will have an instance of an EC2 machine 
-where you can run your Bridge.</p>
-
-<p>Although first it will be convenient to assign permissions to the instance to access your AWS account.</p>
-
-<p>To create an IAM role using the IAM console</p>
-
-<ol>
-  <li>Open the IAM console at https://console.aws.amazon.com/iam/.</li>
-  <li>In the navigation pane, choose Roles, Create role.</li>
-  <li>On the Select role type page, choose EC2 and the EC2 use case. Choose Next: Permissions.</li>
-  <li>On the Attach permissions policy page, select an AWS managed policy that grants your instances access to the resources that they need.</li>
-  <li>On the Review page, type a name for the role and choose Create role.</li>
-</ol>
-
-<p>To attach an IAM role to an instance that has no role, the instance can be in the stopped or running state.</p>
-
-<ol>
-  <li>Open the Amazon EC2 console at https://console.aws.amazon.com/ec2/.</li>
-  <li>In the navigation pane, choose Instances.</li>
-  <li>Select the instance, choose Actions, Instance Settings, Attach/Replace IAM role.</li>
-  <li>Select the IAM role to attach to your instance, and choose Apply.</li>
-</ol>
-
-<p>Now you can download the <a href="https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge">Bridge code</a></p>
-
-<p>Place the files in it and execute with the following command</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo nohup python main.py &amp;
-</code></pre></div></div>
-<ul>
-  <li><strong>sudo</strong> Execute the instruction as if you were the administrator.</li>
-  <li><strong>nohup</strong> It’ll keep running even when you close the session.</li>
-  <li><strong>python main.py</strong> will execute the code</li>
-</ul>
-
-<p>When you run it for the first time, it is almost certain that it will fail when you miss one of the python libraries.
-You can install them by following these commands:</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo yum install openssl-devel 
-sudo yum install gcc
-
-sudo pip install pyJWT 
-sudo pip install google-api-python-client
-sudo pip install google-oauth -t
-sudo pip install google-auth -t
-sudo pip install google-auth-httplib2
-sudo pip install google-cloud
-sudo pip install google-cloud-pubsub
-sudo pip install pyOpenSSL cryptography
-sudo pip install pyOpenSSL 
-
-sudo pip install paho.mqtt.client
-sudo pip install json
-sudo pip install yaml
-sudo pip install ssl
-sudo pip install requests
-sudo pip install boto3 
-</code></pre></div></div>
-
-<p>But you must have some considerations:</p>
-
-<p>Some libraries like boto3 can cause problems when finding files, so it will be necessary 
-to install them directly in the folder where the bridge code is located. 
-To do this, you add at the end of the command the following expression <code class="highlighter-rouge">-t ./</code></p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo pip install boto3 -t ./
-</code></pre></div></div>
-
-<p>When it is running it will register the sendings in the log file. You can monitor it with the following command</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tail -f log/data_bridge.log
-</code></pre></div></div>
-
-<p>Example of the contents of a log file</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INFO : ################################# waiting for a new message #################################
-INFO : Message Received [ {"v":33,"a":28} ] from [ 10.5.0.5 ] : [ 4114 ]
-INFO : KITE Response status code [ 200 ]
-INFO : GET information related to [ 10.5.0.5 ] from  KITE Platform
-INFO : Found device cloud name [ MyDevice ] and topic [  ] in KITE Platform
-INFO : Select Option 1: DEVICE [ MyDevice ] and DEFAULT TOPIC
-INFO : Publish message [ {"v":33,"a":28} ] into topic [ tlm/MyDevice/raw ]
-INFO : Publish Accepted code [ 200 ]
-INFO : Sent MESSAGE [ {"msg": "OK: msg published", "code": 200} ] to [ 10.5.0.5 ] : [ 4114 ]
-INFO : ################################# waiting for a new message #################################
-INFO : Message Received [ aaa ] from [ 00.00.00.00 ] : [ 4114 ]
-INFO : KITE Response status code [ 204 ]
-INFO : GET information related to [ 00.00.00.00 ] from  KITE Platform
-INFO : Sent MESSAGE [{"msg":"ERROR:connection with Kite not established","code":404}] to [ 84.78.20.223 ]:[4114]
-</code></pre></div></div>
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
@@ -634,8 +222,8 @@ INFO : Sent MESSAGE [{"msg":"ERROR:connection with Kite not established","code":
       <li><a href="/blog/archives">Blog Archives</a></li>
       
       <li class="next"><a class="basic-alignment right" 
-	    href="iot-activation/BPIPsec.html" title="Next Post: 
-		IPsec">IPsec
+	    href="iot-activation/BPDataBridgeAWS.html" title="Next Post: 
+		Data Bridge on AWS">Data Bridge on AWS
         &raquo;</a></li>
       
     </ul-->

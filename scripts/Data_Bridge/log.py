@@ -18,7 +18,7 @@
 #                                                                                                                      #
 ########################################################################################################################
 from __future__ import print_function
-import logging
+import logging.handlers
 import uuid
 import sys
 import os
@@ -40,6 +40,13 @@ try:
     log_format = logging.Formatter("%(asctime)s - %(levelname)s : %(message)s")
     handler.setFormatter(log_format)
     logger.addHandler(handler)
+
+    filename = "log/data_bridge.log"
+    loghandler = logging.handlers.TimedRotatingFileHandler(filename, when='midnight', backupCount=7)
+    log_format = logging.Formatter("%(asctime)s - %(levelname)s : %(message)s")
+    loghandler.setFormatter(log_format)
+    logger.addHandler(loghandler)
+
     logger.info("Setting log ")
 
 except Exception as e:

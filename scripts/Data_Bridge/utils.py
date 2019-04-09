@@ -20,7 +20,7 @@
 from __future__ import print_function
 from log import *
 import yaml
-import traceback
+import tempfile
 
 # Keywords
 CODE_CLOUD_NOT_FOUND = 404
@@ -63,4 +63,28 @@ def read_config (file):
     f.close()
     return config
 
+
+def read_config (file_name):
+    """ Load a yaml configuration file in a dictionary
+
+    :param file: file name
+    :return: dictionary with the file structure
+    """
+    logger.debug('Reading file')
+    logger.debug(file)
+    with open(file_name, 'r') as f:
+        config = yaml.load(f)
+    f.close()
+    return config
+
+
+def tmp_file(file_content):
+
+    fd_key, temp_path = tempfile.mkstemp()
+    temp_file = open(temp_path, 'w')
+    temp_file.write(file_content)
+    temp_file.close()
+    os.close(fd_key)
+
+    return temp_path
 

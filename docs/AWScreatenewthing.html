@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width initial-scale=1">
 
   <title>AWS-IoT Create Device Thing</title>
-  <meta name="description" content="Create device thing in AWS-IoT  Sign in to the AWS Management Console, and then open the AWS IoT console at https://console.aws.amazon.com/iot  Go to the Mon...">
+  <meta name="description" content="Create device thing in AWS-IoT      Sign in to the AWS Management Console, and then open the AWS IoT console at https://console.aws.amazon.com/iot        Go ...">
   <meta name="google-translate-customization" content="b9870a0c7376df54-aa35852016e6a5cc-ga0a0d80f6c171f17-e"></meta>
   <link rel="stylesheet" href="css/main.css">
   <link rel="canonical" href="http://localhost:4000/AWScreatenewthing.html">
@@ -103,52 +103,129 @@
 	    	<h2 id="create-device-thing-in-aws-iot">Create device thing in AWS-IoT</h2>
 
 <ol>
-  <li>Sign in to the AWS Management Console, and then open the AWS IoT console at https://console.aws.amazon.com/iot</li>
-  <li>Go to the Monitor page. In the left navigation panel, choose Manage, and then choose Things.
-<img src="pictures/AWS/AWS_Console.png" alt="pic" /></li>
-  <li>You don’t have a thing created yet. Choose Register a thing.
-<img src="pictures/AWS/AWS_Console_Manage_Register.png" alt="pic" /></li>
-  <li>On the Creating AWS IoT things page, choose Create a single thing.
-<img src="pictures/AWS/AWS_Console_Manage_Register_things.png" alt="pic" /></li>
-  <li>Enter a name for the device, leave the default values for all the other fields, and then choose Next.
-<img src="pictures/AWS/AWS_Console_Manage_Register_Device.png" alt="pic" /></li>
-  <li>Now generates the certificates.
-<img src="pictures/AWS/AWS_Console_Manage_Certificates.png" alt="pic" /></li>
-  <li>Download your public and private keys, certificate, and root certificate authority (CA)on your PC. 
-<img src="pictures/AWS/AWS_Console_Manage_Certificates_Download.png" alt="pic" /></li>
-  <li>Download your root certificate authority a new window is open for select a CA to download
-<img src="pictures/AWS/AWS_Console_Manage_Certificates_Download_CA.png" alt="pic" /></li>
-  <li>Don’t forget to save these files, you need them to set the connection</li>
-  <li>Returns to the previous window and <strong>Activate</strong></li>
-  <li>Select <strong>Attach a policy</strong>
-<img src="pictures/AWS/AWS_Console_Manage_Certificates_Download.png" alt="pic" /></li>
-  <li>Close this window, before you need to create and attach a new policy to the certificate
-<img src="pictures/AWS/AWS_Console_Manage_Certificates_AttachPolicy.png" alt="pic" /></li>
-  <li>Open the AWS IoT console again https://console.aws.amazon.com/iot</li>
-  <li>In the left navigation panel, choose <strong>Secure</strong>, and then choose <strong>Policies</strong>.</li>
-  <li>Select <strong>Create a Policy</strong>
-<img src="pictures/AWS/AWS_Console_Secure_Policies.png" alt="pic" /></li>
+  <li>
+    <p>Sign in to the AWS Management Console, and then open the AWS IoT console at https://console.aws.amazon.com/iot</p>
+  </li>
+  <li>
+    <p>Go to the Monitor page. In the left navigation panel, choose Manage, and then choose Things.</p>
+  </li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console.png" alt="pic" /></p>
+
+<ol>
+  <li>You don’t have a thing created yet. Choose Register a thing.</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Register.png" alt="pic" /></p>
+
+<ol>
+  <li>On the Creating AWS IoT things page, choose Create a single thing.</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Register_things.png" alt="pic" /></p>
+
+<ol>
+  <li>Enter a name for the device, leave the default values for all the other fields, and then choose Next.</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Register_Device.png" alt="pic" /></p>
+
+<ol>
+  <li>Now you should generate the certificates.</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Certificates.png" alt="pic" /></p>
+
+<ol>
+  <li>Download your public and private keys, certificate, and root certificate authority (CA)on your PC.</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Certificates_Download.png" alt="pic" /></p>
+
+<ol>
+  <li>Download your root certificate authority, a new window will open for select a CA to download.</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Certificates_Download_CA.png" alt="pic" /></p>
+
+<ol>
+  <li>
+    <p>Don’t forget to save these files, you need them to set the connection</p>
+  </li>
+  <li>
+    <p>Returns to the previous window and <strong>Activate</strong></p>
+  </li>
+  <li>
+    <p>Select <strong>Attach a policy</strong></p>
+  </li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Certificates_Download.png" alt="pic" /></p>
+
+<ol>
+  <li>Close this window. Before, you need to create and attach a new policy to the certificate</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Certificates_AttachPolicy.png" alt="pic" /></p>
+
+<ol>
+  <li>
+    <p>Open the AWS IoT console again https://console.aws.amazon.com/iot</p>
+  </li>
+  <li>
+    <p>In the left navigation panel, choose <strong>Secure</strong>, and then choose <strong>Policies</strong>.</p>
+  </li>
+  <li>
+    <p>Select <strong>Create a Policy</strong></p>
+  </li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Secure_Policies.png" alt="pic" /></p>
+
+<ol>
   <li>Enter a Name for the policy:
     <ul>
       <li><strong>Action</strong>        enter <strong>iot:</strong>*</li>
       <li><strong>Resource ARN</strong>  enter <strong>*</strong></li>
       <li><strong>Effect</strong>        choose <strong>Allow</strong>
-Select Create. This policy allows your Device to publish messages to AWS IoT.
-<img src="pictures/AWS/AWS_Console_Secure_Policies_Create_Device.png" alt="pic" /></li>
+Select Create. This policy allows your Device to publish messages to AWS IoT.</li>
     </ul>
   </li>
-  <li>In the AWS IoT console, choose <strong>Manage</strong>, <strong>Things</strong>. On the Things page, choose your Thing
-<img src="pictures/AWS/AWS_Console_Manage_Things_Device.png" alt="pic" /></li>
-  <li>On the thing’s <strong>Details</strong> page, in the left navigation panel, choose <strong>Interact</strong>.
-Make a note of the REST API endpoint. You need it to connect to your device shadow.
-<img src="pictures/AWS/AWS_Console_Manage_Things_Details_Interact_Device.png" alt="pic" /></li>
-  <li>Now select <strong>Security</strong>, and choose the certificate that you created earlier. 
-<img src="pictures/AWS/AWS_Console_Manage_Things_Details_Security_Device.png" alt="pic" /></li>
-  <li>In Actions, choose Attach policy
-<img src="pictures/AWS/AWS_Console_Manage_Things_Details_Security_Policy_Device.png" alt="pic" /></li>
-  <li>Select your new policy and then choose Attach 
-<img src="pictures/AWS/AWS_Console_Manage_Things_Details_Security_Policy_Attach_Device.png" alt="pic" /></li>
 </ol>
+
+<p><img src="pictures/AWS/AWS_Console_Secure_Policies_Create_Device.png" alt="pic" /></p>
+
+<ol>
+  <li>In the AWS IoT console, choose <strong>Manage</strong>, <strong>Things</strong>. On the Things page, choose your Thing</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Things_Device.png" alt="pic" /></p>
+
+<ol>
+  <li>On the thing’s <strong>Details</strong> page, in the left navigation panel, choose <strong>Interact</strong>.
+Make a note of the REST API endpoint. You need it to connect to your device shadow.</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Things_Details_Interact_Device.png" alt="pic" /></p>
+
+<ol>
+  <li>Now select <strong>Security</strong>, and choose the certificate that you created earlier.</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Things_Details_Security_Device.png" alt="pic" /></p>
+
+<ol>
+  <li>In Actions, choose Attach policy</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Things_Details_Security_Policy_Device.png" alt="pic" /></p>
+
+<ol>
+  <li>Select your new policy and then choose Attach</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Things_Details_Security_Policy_Attach_Device.png" alt="pic" /></p>
 
 	  	</article>
 	  	

@@ -25,10 +25,10 @@ import json
 import socket
 from kite_platform import *
 from cloud_selector import *
-from cloud_selector_aws import *
 
 
-def bridge_routine(udp_msg, ip, config_cloud):
+
+def bridge_routine(udp_msg, ip, config, config_cloud):
     """ this function get the ip message and configuration and do the magic!
 
             response["code"] = 000
@@ -45,28 +45,35 @@ def bridge_routine(udp_msg, ip, config_cloud):
         response["msg"] = MSG_ERROR_DEFAULT
 
         # KITE
+        kite_file_key = cloud_get_parameter(config["KITE"]["private_key"], config_cloud)
+        kite_file_cer = cloud_get_parameter(config["KITE"]["certificate"], config_cloud)
+
         logger.debug("PARSER: KITE:")
-        kite = Kite(ip)
+        kite = Kite(ip, kite_file_cer, kite_file_key)
         logger.info("GET information related to [ %s ] from  KITE Platform" % kite.ip)
 
-
-        # if KITE is OK then PUBLISH and GET_SHADOW
         if kite.status_ok:
             logger.info("Found device cloud name [ %s ] and topic [ %s ] in KITE Platform" %(kite.device_name, kite.cloud_topic))
             if kite.device_name != '':
 
                 logger.debug('PARSER: publishing:')
-                response_publication = cloud_publish(kite.device_name, kite.cloud_topic, udp_msg, config_cloud)
 
-                response = response_publication
-                # response["code"] = response_publication
-                # response["msg"] = response_shadow
+                if "location" in config and config["location"] == True:
+                    location = {"longitude": kite.longitude, "latitude": kite.latitude}
+                    json_msg = json.loads(udp_msg)
+                    json_msg["location"]=location
+                    msg = json.dumps(json_msg)
+                else:
+                    msg = udp_msg
+
+                response = cloud_publish(kite.device_name, kite.cloud_topic, msg, config_cloud)
 
             else: #kite.device_name != '':
-                logger.error("Not found device cloud name in KITE Platform")
+                logger.warning("Not Found device Cloud Name in KITE Platform")
                 response["code"] = CODE_ERROR_KITE_CLOUD_ID
                 response["msg"] = MSG_ERROR_KITE_CLOUD_ID
         else: # if kite.status_ok:
+            logger.error("Not Connected to KITE Platform")
             response["code"] = CODE_ERROR_KITE_CONNECTION
             response["msg"] = MSG_ERROR_KITE_CONNECTION
 

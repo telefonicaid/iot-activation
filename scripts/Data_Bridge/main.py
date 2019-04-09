@@ -22,17 +22,14 @@ from __future__ import print_function
 from log import *
 from utils import *
 from bridge import *
-import uuid
 import time
 import socket
 import threading
 import json
-
-id = uuid.uuid1()
+import random
+import string
 
 if __name__ == '__main__':
-
-    
 
     try:
 
@@ -47,22 +44,17 @@ if __name__ == '__main__':
 
         while True:
 
-            logger.info("################################# waiting for a new message #################################")
+            logger.info("################################# Waiting for a New Message #################################")
 
             udp_msg, udp_ip = sock.recvfrom(1024)
-            ip = udp_ip[0]
-
             logger.info("Message Received [ %s ] from [ %s ] : [ %s ]" % (udp_msg, udp_ip[0],udp_ip[1] ))
 
-            response = bridge_routine(udp_msg, udp_ip[0], config_cloud)
-
-            logger.debug("Generate ACK payload [ %s ]" % response)
+            response = bridge_routine(udp_msg, udp_ip[0],config_file, config_cloud)
             ack_msg = json.dumps(response)
+            logger.info("Generate ACK payload [ %s ]" % response)
 
             logger.info("Sent MESSAGE [ %s ] to [ %s ] : [ %s ]" % (ack_msg, udp_ip[0], udp_ip[1]))
             sock.sendto(ack_msg, udp_ip)
-
-            logger.debug("ACK sent")
 
     except Exception as e:
         logger.error("exception main()")

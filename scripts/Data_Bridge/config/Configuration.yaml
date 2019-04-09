@@ -1,5 +1,3 @@
-# List of connection settings
-
 cloud: AWS
 
 UDP:
@@ -8,8 +6,11 @@ UDP:
 
 
 KITE:
-  url:"https://m2m-api.telefonica.com"    
-  path: "CA/"
-  certificate: "your_customer_certificate.cer"
-  private_key: "your_customer_certificate.key"
+  url: "https://m2m-api.telefonica.com"
+  certificate: "cer_file"
+  private_key: "key_file"
+
+
+location: True
+
 

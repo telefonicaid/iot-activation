@@ -130,16 +130,16 @@
 
 <h2 id="what-is-arduino">What is Arduino?</h2>
 <p>Arduino is an open-source electronics platform based on easy-to-use hardware. 
-The Arduino software is easy for beginners and flexible enough for advanced users</p>
+The Arduino software is easy for beginners and flexible enough for advanced users.</p>
 
 <h3 id="arduino-mkr-nb-1500">Arduino MKR NB-1500</h3>
-<p>The MKR branch of the Arduino board family is dedicated to the IoT solutions. It tries to provide 
-solutions for devices in remote locations without a high-speed Internet connection, or in situations in which power isn’t available.</p>
+<p>The MKR branch of the Arduino board family is dedicated to the IoT solutions. It provides 
+solutions for devices in remote locations without a high-speed Internet connection, or in situations where a power source isn’t available.</p>
 
-<p>The Arduino MKR NB 1500 adds the wireless connectivity Narrow Band IoT and LTE CAT M1 to the Arduino platform. 
-It is a learning and development board which contains the ATMEL SAMD21 micro controller, 
-designed to integrate the core’s low power-consumption and high performance with the Arduino’s ease-of-use. 
-The MKR NB 1500 brings the Arduino Zero functionalities in the smaller form factor.</p>
+<p>The Arduino MKR NB 1500 adds wireless connectivity, Narrow Band IoT and LTE CAT M1, to the Arduino family. 
+It is a  development board which contains the ATMEL SAMD21 micro controller, 
+designed to integrate a low power-consumption core and a high performance.
+The MKR NB 1500 brings the Arduino Zero functionalities in a smaller form factor.</p>
 
 <p align="center">
       <img title="Arduino_NB1500" src="pictures/Arduino/Arduino_NB1500.jpg" />
@@ -149,19 +149,19 @@ The MKR NB 1500 brings the Arduino Zero functionalities in the smaller form fact
 <p>This LED is connected to the 5V input from either USB or VIN</p>
 
 <h5 id="reset-button">Reset button</h5>
-<p>This button allows you to reset the program contained on the board. It runs again from the init.</p>
+<p>This button allows you to reset the program contained in the board. It will make it run again from the beginning</p>
 
 <h5 id="onboard-led">Onboard LED</h5>
 <p>The onboard LED is connected to pin D6</p>
 
 <h5 id="battery-connector">Battery connector</h5>
-<p>If you want to connect a battery to your board be sure to search one with female 2 pin JST PHR2 Type connector.</p>
+<p>If you want to connect a battery to your board be sure to attach it a female 2 pin JST PHR2 Type connector.</p>
 
 <h5 id="led-charge">LED charge</h5>
-<p>The indicator lights when the board receives 5V from VIN or USB, and the chip starts charging the Li-Po battery connected to the JST connector.</p>
+<p>The indicator will remain on when the board receives 5V from VIN or USB, and the chip starts charging the Li-Po battery connected to the JST connector.</p>
 
 <h5 id="antenna-connector">Antenna connector</h5>
-<p>Allows you to connect an external antenna to receive and send the RF signal</p>
+<p>Allows you to connect an external antenna to receive and send RF signal</p>
 
 <h3 id="arduino-antenna-gsm">Arduino Antenna GSM</h3>
 
@@ -182,10 +182,10 @@ The MKR NB 1500 brings the Arduino Zero functionalities in the smaller form fact
 
 <h3 id="telefónica-sim-card">Telefónica SIM Card</h3>
 <p>This little one makes you enjoy all the advantages of the Telefónica network. 
-Take care of her, she will be your partner into the IoT world.</p>
+Take care of it, It will be your partner into the IoT world.</p>
 
 <p>📍
-Note that to insert it into the Arduino board you will need the microSIM format</p>
+Note that to insert it into the Arduino board you will need a microSIM.</p>
 
 <p align="center">
       <img title="Telefonica_SIM" src="pictures/miscellaneous/Telefonica_SIM.png" width="300" height="210" />
@@ -207,50 +207,50 @@ It is also your tool to download your files to the device.</p>
 
 <p>This development environment provides support for the different Arduino boards.
 For this reason, before loading your software, you must select your board type.
-If you want to program your MKR NB 1500 you need to install the Arduino Desktop IDE and add the Atmel SAMD Core to it. 
-This simple procedure is done selecting <strong>Tools</strong> menu, then <strong>Boards</strong> and last <strong>Boards Manager</strong>,</p>
+If you want to program your MKR NB 1500 you need to install the Arduino Desktop IDE and add the Atmel SAMD Core. 
+This simple procedure is done selecting <strong>Tools</strong> menu, then <strong>Boards</strong> and finally <strong>Boards Manager</strong>,</p>
 
 <p><img src="pictures/Arduino/Arduino_IDE_boards_manager.png" alt="pic" /></p>
 
-<p>Here you can search MKR NB 1500 to find the core. Click on its box and click on the install button. 
-On the bottom bar of the window you can follow the download and install procedure, including the installation of the proper driver, needed by the operating system to use the board</p>
+<p>Here you can search MKR NB 1500 to find the core. Click on its box and click the install button. 
+Follow the download and install procedure, including the suitable drivers for your operating system to use the board.</p>
 
 <p><img src="pictures/Arduino/Arduino_IDE_boards_manager_NB.png" alt="pic" /></p>
 
-<p>Now that the SAMD Core is installed. All you have to do is select the corresponding Board.
-Select the entry in the <strong>Tools &gt; Board menu</strong> that corresponds to <strong>Arduino MKR NB-1500</strong>.</p>
+<p>Now that the SAMD Core is installed. NOw you are ready to select the corresponding Board.
+Select the entry in the <strong>Tools &gt; Board menu</strong> that matchs to <strong>Arduino MKR NB-1500</strong>.</p>
 
 <p><img src="pictures/Arduino/Arduino_IDE_board.png" alt="pic" /></p>
 
 <p>The first time you connect your board, your computer will recognize it as a new device. 
-However, you must configure the environment to indicate the port to which it has been connected.</p>
+However, you must configure the environment to indicate the port it has been connected.</p>
 
-<p>Connect your board to your computer you need a micro USB cable, and wait a moment until your computer recognizes it.
-Select the serial device port from the <strong>Tools &gt; Serial Port menu</strong>. 
-This is likely to be <strong>COMx</strong> (COM1 and COM2 are usually reserved). 
+<p>Connect your board to your computer you need a micro USB cable, and wait until your computer recognizes it.
+Select the serial device port from  <strong>Tools &gt; Serial Port menu</strong>. 
+It should be something like <strong>COMx</strong> (COM1 and COM2 are usually reserved). 
 if you can’t find the port used, you should disconnect your board and re-open the menu.
 The entry that disappears should be the Arduino board. Reconnect the board and select that serial port.</p>
 
 <p><img src="pictures/Arduino/Arduino_IDE_com.png" alt="pic" /></p>
 
-<p>If this is your first time using the board, it is likely that when compiling you will not find some libraries.</p>
+<p>If It is your first time using the board, maybe during the compiling process some libraries could be not found.</p>
 
-<p>To avoid this error when using the connection libraries, you can import them by following these steps:</p>
+<p>To avoid this error  you can import them by following these steps:</p>
 
 <p>Go to the menu <strong>sketch</strong> and select <strong>Include library</strong> to enter the <strong>Manage libraries…</strong></p>
 
 <p><img src="pictures/Arduino/Arduino_IDE_library_manager.png" alt="pic" /></p>
 
-<p>Search by board name <strong>MKR NB</strong> to find the necessary libraries.</p>
+<p>Search by board name <strong>MKR NB</strong> to find the needed libraries.</p>
 
 <p><img src="pictures/Arduino/Arduino_IDE_library_manager_MKRNB.png" alt="pic" /></p>
 
-<p>Now everything is ready to run your first script</p>
+<p>Now everything is ready to run your first script.</p>
 
 <h2 id="use-arduino-web-editor">Use Arduino web editor</h2>
 
-<p>Another alternative for development on Arduino boards without download anything, it is its new web editor 
-https://create.arduino.cc/editor allowing the same development as on the desktop editor.</p>
+<p>Another alternative for development on Arduino boards without download anything, it is the new web editor 
+https://create.arduino.cc/editor allowing the same development that on the desktop editor.</p>
 
 <p>If you want to use this online tool, you only need to register on the Arduino website and create a user account.</p>
 
@@ -260,7 +260,7 @@ https://create.arduino.cc/editor allowing the same development as on the desktop
 
 <p><img src="pictures/Arduino/Arduino_WEB_editor.png" alt="pic" /></p>
 
-<p>The web editor is ready to use, you just have to select your board and make sure you have an internet connection.
+<p>The web editor is ready to use, you have to select your board and make sure you have an internet connection.
 Because it will not be necessary to manage the libraries and the boards.</p>
 
 <p><img src="pictures/Arduino/Arduino_WEB_editor_board.png" alt="pic" /></p>
@@ -269,12 +269,12 @@ Because it will not be necessary to manage the libraries and the boards.</p>
 
 <p><img src="pictures/Arduino/Arduino_WEB_editor_board_NB.png" alt="pic" /></p>
 
-<p>As we mentioned, you will not need to manage the installed libraries, because the editor has access to the Arduino repository. 
-However, it has the same tools to locate the available libraries.</p>
+<p>As we mentioned before, you won’t need to manage the installed libraries, because the editor has access to the Arduino repository. 
+However, it has the same tools to add the available libraries.</p>
 
 <p><img src="pictures/Arduino/Arduino_WEB_editor_library_manager_MKRNB.png" alt="pic" /></p>
 
-<p>To download the code on your board, you must follow the same process as with the IDE, 
+<p>To upload the code to your board, you should follow the same process that you would follow when you were using the IDE, 
 however, being an online tool allows new options such as sharing the sketch using a url</p>
 
 <p><img src="pictures/Arduino/Arduino_WEB_editor_code_menu_upload.png" alt="pic" /></p>
@@ -285,7 +285,7 @@ however, being an online tool allows new options such as sharing the sketch usin
 
 <p>The Arduino programming language is based on Wiring, creating a simplified version of the C++ language.</p>
 
-<p>here you can see the typical structure of a program. This structure is created automatically when you open a new file</p>
+<p>We show you  the typical structure of a program. This structure is created automatically when you open a new file</p>
 
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// Put your setup code here:</span>
@@ -313,11 +313,11 @@ however, being an online tool allows new options such as sharing the sketch usin
   <span class="n">delay</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></div>
-<p>Great, you should be able to see something like that.</p>
+<p>Great, you should be able to see something like this.</p>
 
 <p><img src="pictures/Arduino/Arduino_IDE_code.png" alt="pic" /></p>
 
-<p>Let’s do the last test. Compile and upload your code on the board.
+<p>Let’s do the last test. Compile and upload your code to the board.
 But you’re lucky, the IDE will do  this for you. If an error occurs, It will appear at the console below</p>
 
 <p>To do this press the <strong>Upload</strong> button that you will find below the menu.</p>
@@ -327,16 +327,16 @@ But you’re lucky, the IDE will do  this for you. If an error occurs, It will a
 <p>If everything goes well, your software is already running on the board, and will restart every time you turn it on.</p>
 
 <p>But what the hell, your Arduino doesn’t have a screen where display text!
-This is not a problem, as you have previously set up a serial connection to send the message.
-So, your board is sending this message through the USB that connects to your pc.</p>
+This is not a problem, as you have previously set up a serial connection to send messages.
+So, your board is sending those messages through the USB cable connected to your pc.</p>
 
-<p>Effectively! again your Arduino IDE does this for you.
+<p>Effectively! again your Arduino IDE does it for you.
 You can open a terminal to display all messages sent from the Arduino via serial communication.
 Click on the lens icon to open it.</p>
 
 <p><img src="pictures/Arduino/Arduino_IDE_code_menu_serial_console.png" alt="pic" /></p>
 
-<p>Now you can see that the message <strong>“Hello world”</strong> is sent every 2 seconds.</p>
+<p>Now you can check that the message <strong>“Hello world”</strong> is sent every 2 seconds.</p>
 
 <p><img src="pictures/Arduino/Arduino_IDE_serial_console.png" alt="pic" /></p>
 
@@ -361,24 +361,22 @@ It is a Ultra-compact LTE Cat M1 / NB1 and GPRS modules with multi-regional cove
 <p>Not only allows you to select the type of network you want to connect to, 
 but also to prepare the appropriate configuration to connect to the Movistar network in your country.</p>
 
-<p>Arduino will provide you with different examples and tools to perform the initial configuration of the SARA module. 
-But we’ll help you by going one step further. You’ll learn how to create your own configuration code. 
-This way you will be able to run it at the start of each new script.</p>
+<p>Arduino will provide you with different examples and tools to perform the initial SARA’s module configuration. 
+But we’ll teach you how to create your own configuration code.So you will be able to run it at the beginning of each new script.</p>
 
 <p><img src="pictures/Arduino/Arduino_IDE_examples_mkrnb_tool.png" alt="pic" /></p>
 
-<p>:thumbsup: make sure that you correctly configure each device before each program. since the module will maintain 
+<p>:thumbsup: make sure that you had correctly configure the device before run the program due to the module will maintain 
 the previous configuration in the case of not modifying it.</p>
 
 <h3 id="setup">Setup</h3>
 
 <p>Before preparing the script, you should know that the communication between the board and the module is done 
-by means of a series of instructions known as AT commands.</p>
+by a lsit of instructions known as AT commands.</p>
 
-<p>These AT commands allow you, among other options, to select if you connect to NB or LTE, as well as to configure
-the band to which you must connect. This varies according to your territorial zone.</p>
+<p>These AT commands allow you, among other options, to select for example if you wanna connect to NB or LTE, or the band configuration the module should connect. This parameters will change according to your country.</p>
 
-<p>Here you will only learn the basic commands to make a correct connection with the Telefonica network.</p>
+<p>Here you will learn the basic commands to attach to Telefonica network.</p>
 
 <p>Here you can see an example of a [setup file]
 (https://github.com/telefonicaid/iot-activation/blob/master/scripts/Arduino/Connection/setup_SaraR410M_movistar.h), 
@@ -469,9 +467,9 @@ but we’ll show you what those commands mean and how to select the appropriate 
 <p>RAT is the underlying physical connection method for a radio based communication network.</p>
 
 <p>The SARA module of your Arduino allows you to select different technologies such as GSM, LTE/NB …
-Even select several technologies in case the primary technology is not available.</p>
+and a fallback technology in case the primary one won’t be available.</p>
 
-<p>Although for our purpose we will focus on the lowest consumption technologies such as LTE and NB, 
+<p>For our purpose we will focus on the lowest consumption technologies such as LTE and NB, 
 as they are specific technologies for use in IoT.</p>
 
 <p>This configuration will be done using the AT command <code class="highlighter-rouge">AT+URAT=&lt;value&gt;</code></p>
@@ -499,7 +497,7 @@ as they are specific technologies for use in IoT.</p>
 
 <p>But how do you calculate the mask for each band? this is very simple.</p>
 
-<p>look at it with these examples.</p>
+<p>Take a look to these examples.</p>
 
 <p>for example, if you want to activate the European band (B20), you will make sure that the mask has bit 20 activated.</p>
 
@@ -516,30 +514,30 @@ B20  -&gt;  2^(20-1) = 524288
 </code></pre></div></div>
 <p>and so on ….</p>
 
-<p>Is also very easy if you need to activate multiple bands. Sum them all!</p>
+<p>It is also very easy if you need to activate multiple bands. Sum them all!</p>
 
 <p>for bands 3 and 4 simultaneously:</p>
 
 <p><code class="highlighter-rouge">B3 &amp; B4  -&gt;  2^( 4-1) + 2^( 3-1) = 12</code></p>
 
-<p>But if you’d like to consider it an explanation. You can always use a calculator!</p>
+<p>You can always use a calculator!</p>
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
 <h5 id="configure-the-consumption">Configure the consumption:</h5>
 
-<p>One of the main goals from de device perspective  is the battery energy consumption.</p>
+<p>One of the main goals from de device perspective is the battery energy consumption.</p>
 
 <h6 id="extended-discontinuous-reception">Extended Discontinuous Reception</h6>
 
-<p>try with a complete example discontinuous reception (eDRX) is a way that mobile communication are used to save the battery of the mobile device.</p>
+<p>Extended discontinuous reception (eDRX) is a way that mobile communication are used to save the battery of the mobile device.</p>
 
 <p>The mobile device and the network negotiate in each data transfer. 
 from time to time the device turns off goes into a low power state.</p>
 
 <p>You can activate and configure this option using one of the AT commands <code class="highlighter-rouge">AT+CEDRXS=</code></p>
 
-<p>Although the network has the final word, it is possible to configure the modem to select eDRX times.</p>
+<p>Although the network will decice it, it is possible to configure the modem to select eDRX times.</p>
 
 <h6 id="power-saving-mode">Power Saving Mode</h6>
 
@@ -550,33 +548,32 @@ so it will turn the radio interface after a while.</p>
 
 <p>these consumption modes are really important as they can improve the battery life in IoT devices.</p>
 
-<p>Now that you know a little more about energy modes. You’ll see how these are integrated into the communication process.
-Out of the box, the device will perform an Attachment stage to connect to the mobile network. This step will be performed 
+<p>Now that you are an expert about energy modes. You’ll learn how these are integrated into the communication process.
+Out of the box, the device will perform an attachment stage to connect to the mobile network. This step will be performed 
 whenever the device is reconnected to the network, resulting in a process with a very high power consumption.</p>
 
-<p>Once the Attachment is done and the data is sent, the device will keep waiting for a few seconds depending on the connection 
-technology  (NB-IoT or LTE-M) go through the IDLE stage.
+<p>Once the attachment is done and the data was sent, the device will keep waiting for a few seconds depending on the connection 
+technology  (NB-IoT or LTE-M) and it will go to the IDLE stage.
 During the IDLE stage, the device will maintain the connection to the network. 
 This connection is maintained by swapping short periods of data exchange with the network with periods of workless. 
-If you review the consumption graph, you can see how during the IDLE stage a series of square pulses appears.</p>
+If you review the consumption graph, you can notice how during the IDLE stage a series of square pulses appears.</p>
 
 <p><img src="pictures/schematics/LTE_transmision.png" alt="pic" /></p>
 
 <p>But how do these savings modes fit into the cycle? As expected, both modes are involved in the IDLE stage.
 The device will remain in this stage for most of the cycle.</p>
 
-<p>If you activate the eDRX, a new cycle will be established during the IDLE stage, which will be repeated continuously, 
-maintaining a resting stage during part of the cycle. With the AT command you can select both the total time of the new cycle 
+<p>If you activate the eDRX, a new cycle will be established during the IDLE stage,It will be repeated continuously, 
+maintaining a resting stage during part of the cycle. With the AT command, you can select both, the total time of the new cycle 
 and the time during which the communication takes place.</p>
 
 <p><img src="pictures/schematics/LTE_transmision_eDRX.png" alt="pic" /></p>
 
 <p>When the PSM is activated, the device will perform the IDLE stage and then turn off the antenna. 
-But as we mentioned earlier, every time we connect to the network, Attachment will happen again. 
-Well! the advantage of the PSM is that when you configured it, the device warns the network of the time it remains deactivated, 
+But as we mentioned earlier, every time we connect to the network, attachment will be done again. 
+Well! the advantage of the PSM is that when you configured it, the device warns the network  the time it remains deactivated, 
 so the network will keep the configuration of the device even if the antenna is off. 
-At the end, the device will alert the network again of its connection but without the need to 
-perform Attachment again, which saves time and energy.</p>
+Finally, the device will alert the network again of its connection but without the attachment process, so It saves time and energy.</p>
 
 <p>Using the AT command, it is possible to determine the total cycle time, 
 which contains both the IDLE connection time and the workless time.</p>
@@ -589,8 +586,8 @@ where you do not need continuous communication.</p>
 <p><img src="pictures/schematics/LTE_transmision_eDRX_PSM.png" alt="pic" /></p>
 
 <h5 id="how-to-set-the-timers">How to set the timers:</h5>
-<p>Although the configuration of the modes is a negotiation with the network, 
-where the network has the final decision, using the AT command you can activate/deactivate both modes 
+<p>Although the mode configuration is a negotiation between device and network, 
+the network has the final decision, using the AT command you can activate/deactivate both modes 
 as well as configure their cycle times.</p>
 
 <h6 id="--edrx">- eDRX</h6>
@@ -623,7 +620,7 @@ although this time you will have to add a code of 4 digits to configure the cycl
 <p>Disable with command <code class="highlighter-rouge">AT+CPSMS=0</code></p>
 
 <p>To activate the PSM, you only have to select the value to one and configure 
-the time of the cycle (IDLE + PSM) and time of connection (IDLE) copying the codes that there are in the table.</p>
+the time of the cycle (IDLE + PSM) and time of connection (IDLE) copying the codes from the table.</p>
 <pre><code class="language-AT">** Activate PSM: 1h of cycle / 5m resting"
 AT+CPSMS=1,"00100001","00100101"
 </code></pre>
@@ -646,25 +643,34 @@ with the last 5 digits with are the multiplying factor in binary code</p>
 //IDLE + PSM:
 001 00001 -&gt; 1 hour * 1 = 1 hour
 //IDLE:
-001 00101 -&gt; 1 min  * 5 = 5 min
+101 00101 -&gt; 1 min  * 5 = 5 min
 //PSM
-1hour - 5 min = 45 min
+1hour - 5 min = 55 min
 
 AT+CPSMS=1,"00100001","00100101"
 </code></pre>
 
-<p>if you need, you can use a binary online calculator: https://www.rapidtables.com/convert/number/decimal-to-binary.html</p>
-
 <p><img src="pictures/schematics/LTE_table_value_PSM.png" alt="pic" /></p>
+
+<p>📍
+For the current Arduino board it is not recommended to use the PSM mode. 
+The board doesn’t have a reset system. If the board is switched off during the PSM, the module will remain off.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// (default and factory-programmed value): disable the use of PSM.</span>
+<span class="n">AT</span><span class="o">+</span><span class="n">CPSMS</span><span class="o">=</span><span class="mi">0</span>
+
+<span class="c1">// disable the use of PSM and reset all parameters for PSM to factory-programmed values.</span>
+<span class="n">AT</span><span class="o">+</span><span class="n">CPSMS</span><span class="o">=</span><span class="mi">2</span>
+</code></pre></div></div>
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
 <h3 id="connection">Connection</h3>
 
-<p>Now that you know how to configure your modem to make a correct connection.</p>
+<p>Now that you know how to configure your modem to perform a correct connection.</p>
 
-<p>You will be able to execute the following [code]
-(https://github.com/telefonicaid/iot-activation/tree/master/scripts/Arduino/Connection) 
+<p>You will be able to execute the following 
+<a href="https://github.com/telefonicaid/iot-activation/tree/master/scripts/Arduino/Connection">code</a> 
 with which to connect to the Telefonica network. Let the games begin!</p>
 
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
@@ -695,11 +701,10 @@ with which to connect to the Telefonica network. Let the games begin!</p>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>With this test software, you will be able to check the connection of your SIM card and check
+<p>With this software test, you will be able to check the connection of your SIM card and check
 the access to the NB-IoT network.</p>
 
-<p>Open the Arduino IDE Serial Monitor to check by messages 
-if the connection to the module and the network is correct</p>
+<p>Open the Arduino IDE Serial Monitor to check if the connection between the module and the network is correct</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>START setup
 Testing Modem:
 - Starting modem test...

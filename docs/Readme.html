@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width initial-scale=1">
 
-  <title>Welcome to IoT-Activation</title>
+  <title>Welcome to IoT Activation</title>
   <meta name="description" content="      ">
   <meta name="google-translate-customization" content="b9870a0c7376df54-aa35852016e6a5cc-ga0a0d80f6c171f17-e"></meta>
   <link rel="stylesheet" href="css/main.css">
@@ -89,7 +89,7 @@
 	<div class="col-md-10">
 
 	  	
-	    <h1>Welcome to IoT-Activation</h1>
+	    <h1>Welcome to IoT Activation</h1>
 	    <!--<div id="google_translate_element" style="padding-right: 27px;float: left;"></div><script type="text/javascript">
 			function googleTranslateElementInit() {
   				new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
@@ -135,7 +135,13 @@
           <li><a href="#what-is-the-difference-between-tcp-and-udp">TCP vs UDP?</a></li>
         </ul>
       </li>
-      <li><a href="#amazon-web-services-and-aws-iot">AWS-IoT</a></li>
+      <li><a href="#public-cloud">Public Cloud</a>
+        <ul>
+          <li><a href="#amazon-web-services-and-aws-iot">AWS IoT</a></li>
+          <li><a href="#google-cloud-platform-and-iot-core">Google Cloud IoT</a></li>
+          <li><a href="#azure-iot">Azure IoT</a></li>
+        </ul>
+      </li>
     </ul>
   </li>
   <li><a href="#why-are-we-different-kite-platform">Why are we different? Kite Platform</a></li>
@@ -231,6 +237,7 @@ It focuses specifically on indoor coverage.</p>
 </p>
 
 <h3 id="nb-iot-vs-lte-m">NB-IoT vs LTE-M</h3>
+
 <p>Both standards are focus in wireless communication between devices.
 They are good connectivity options to take advantage of Low Power Wide Area Network</p>
 
@@ -281,7 +288,7 @@ a precision tracking data, you should choose NB-IoT.</p>
 <h2 id="connectivity-2g-and-3g">Connectivity 2G and 3G</h2>
 
 <p>Surely more than once you have read acronyms such as 2G, 3G, 4G, GPRS, HDSPA or LTE among others 
-on the screen of your mobile. If you don’t know exactly what they mean, 
+on the screen of your mobile.
 If you don’t know exactly what they mean, we’ll explain the differences between 2G and 3G 
 so you don’t get stuck with the doubt.</p>
 
@@ -295,28 +302,31 @@ is that 3G offers a higher transmission speed.</p>
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
 <h2 id="tcp-and-udp">TCP and UDP</h2>
-<p>As you know, when two devices need to communicate with each other, it is logical for them to do so over the Internet. 
+
+<p>As you know, when two devices need to communicate with each other, it’s logical that they do it over the Internet. 
 What you may not know is that in establishing this data exchange, 
 there is a set of rules and regulations known as Internet Protocols (IP). 
-Although there is a diversity of them, which in turn are included within other protocols, t
-he most common protocols used in data transmission are TCP and UDP</p>
+Although there is a diversity of them, which in turn are included within other protocols,
+he most common protocols used in data transmission are TCP and UDP.</p>
 
 <p>At first glance it may not seem important to use them indistinctly, 
 but in the next section you will see the advantages and weaknesses of each protocol.</p>
 
 <h3 id="how-does-tcp-works">How does TCP works?</h3>
+
 <p>TCP is the main protocol on Internet and is a connection-based protocol. This means that before starting a transmission, 
 a device needs to connect to the receiver and confirm that the receiver is listening to them.</p>
 
 <p>Then the device divides the information into packets and sends them in order after confirming 
 that they have been received correctly.</p>
 
-<p>Each time the receiver receives one of the packets, it has the task of verifying if the content is correct 
+<p>Each time the addressee receives one of the packets, it has the task of verifying if the content is correct 
 and make the decision whether to request the shipment again or request the next packet until the shipment is complete.</p>
 
 <p>Although it is a slow process, TCP guarantees that all data has been received correctly.</p>
 
 <h3 id="how-does-udp-works">How does UDP works?</h3>
+
 <p>UDP is one of the simplest and fastest protocols used for communication between devices over the Internet. 
 Unlike other protocols, UDP only divides the information into packets and sends them to the destination.</p>
 
@@ -356,7 +366,13 @@ however, if we need a fast data transmission and we can afford the loss of some 
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
-<h2 id="amazon-web-services-and-aws-iot">Amazon Web Services and AWS-IoT</h2>
+<h2 id="public-cloud">Public Cloud</h2>
+
+<p>The public cloud is defined as computing services offered by third-party providers over the public Internet, 
+making them available to anyone who wants to use or purchase them. They may be free or sold on-demand, 
+allowing customers to pay only per usage for the CPU cycles, storage, or bandwidth they consume.</p>
+
+<h3 id="amazon-web-services-and-aws-iot">Amazon Web Services and AWS-IoT</h3>
 
 <p>Today Amazon Web Services is one of the largest providers of cloud computing services,
 and some of its products focus exclusively on the development of IoT technologies.</p>
@@ -364,6 +380,19 @@ and some of its products focus exclusively on the development of IoT technologie
 <p>AWS-IoT provides secure, two-way communication between multiple devices connected to the Internet.
 This allows you to collect and process telemetry from Internet-connected devices and control them remotely.
 You can create rules that define an action to be performed based on the message received.</p>
+
+<h3 id="google-cloud-platform-and-iot-core">Google Cloud Platform and IoT-Core</h3>
+
+<p>Google Cloud Internet of Things (IoT) Core is a fully managed service for securely connecting and managing IoT devices,
+from a few to millions. Ingest data from connected devices and build rich applications that integrate 
+with the other big data services of Google Cloud Platform.</p>
+
+<h3 id="azure-iot">Azure IoT</h3>
+
+<p>The Azure Internet of Things (IoT) is a collection of Microsoft-managed cloud services that connect, 
+monitor, and control billions of IoT assets.
+In simpler terms, an IoT solution is made up of one or more IoT devices and one or more back-end services 
+running in the cloud that communicate with each other.</p>
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
@@ -377,7 +406,7 @@ remote device resets and remote diagnostics.</p>
 
 <p>Cloud connectors that eases integration amongst the main public cloud platforms and apps.</p>
 
-<p>Discover Kite <a href="KitePlatform.html">here</a></p>
+<p>Discover Kite! <a href="KitePlatform.html">link</a></p>
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 

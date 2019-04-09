@@ -35,9 +35,15 @@ int apply(){
 
 int setup_SaraR410M_movistar(){
 
+  Serial.println("222222222222222222222222222");
+
   String response;
   MODEM.begin();
+
+  Serial.println("3333333333333333333333333333333333");
   while (!MODEM.noop());
+
+  Serial.println("444444444444444444444444444");
 
   //// Disconnecting from network
   //MODEM.sendf("AT+COPS=2"); 

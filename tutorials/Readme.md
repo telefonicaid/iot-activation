@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome to IoT-Activation"
+title:  "Welcome to IoT Activation"
 date:   2019-02-06 12:00:00 +00:00
 categories: tutorial
 ---
@@ -26,7 +26,10 @@ categories: tutorial
     + [TCP](#how-does-tcp-works)
     + [UDP](#how-does-udp-works)
     + [TCP vs UDP?](#what-is-the-difference-between-tcp-and-udp)
-  * [AWS-IoT](#amazon-web-services-and-aws-iot)
+  * [Public Cloud](#public-cloud)
+    + [AWS IoT](#amazon-web-services-and-aws-iot)
+    + [Google Cloud IoT](#google-cloud-platform-and-iot-core)
+    + [Azure IoT](#azure-iot)
 - [Why are we different? Kite Platform](#why-are-we-different-kite-platform)
 
 # Welcome to IoT Activation of Telefónica
@@ -52,7 +55,8 @@ To learn how to configure your device and start developing your applications che
 		width="250" height="75">
 	</a>
 </p>
-	
+
+
 ## And in the Arduino kit? 
 
 In your Arduino Starter-kit you can find the next components:
@@ -74,6 +78,7 @@ To learn how to configure your device and start developing your applications che
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
+
 # Before starting with the IoT-Activation program... What do you need to know?
 
 ## What is NB-IoT or LTE-M?
@@ -86,7 +91,8 @@ by different organizations.
 
 Amongst these new technologies developed for communication in the world of IoT 
 we can highlight NB-IoT and LTE-M as the most entrenched for this purpose.
- 
+
+
 ### Narrowband IoT (NB-IoT)
 
 Narrowband IoT is a radio technology standard.
@@ -120,6 +126,7 @@ It allows bigger rate of data enable a real-time communication voice included.
 </p>
 
 ### NB-IoT vs LTE-M
+
 Both standards are focus in wireless communication between devices.
 They are good connectivity options to take advantage of Low Power Wide Area Network 
 
@@ -134,7 +141,6 @@ After analysing the similarities and differences between LTE-M and NB-IoT, you s
 | focus in indoor coverage | focus in real-time communication |
 | low cost | low cost |
 
-
 If you have any doubt about what type of connection, you should use for your devices we can clarify that 
 the choice between LTE-M and NB-IoT depends on the amount of data and the frequency your application needs. 
 
@@ -148,7 +154,7 @@ But when dealing with moving devices you can use a multi-technology NBIoT/LTE-M 
 ## Connectivity 2G and 3G
 
 Surely more than once you have read acronyms such as 2G, 3G, 4G, GPRS, HDSPA or LTE among others 
-on the screen of your mobile. If you don't know exactly what they mean, 
+on the screen of your mobile.
 If you don't know exactly what they mean, we'll explain the differences between 2G and 3G 
 so you don't get stuck with the doubt.
 
@@ -162,29 +168,32 @@ is that 3G offers a higher transmission speed.
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
 ## TCP and UDP
-As you know, when two devices need to communicate with each other, it is logical for them to do so over the Internet. 
+
+As you know, when two devices need to communicate with each other, it's logical that they do it over the Internet. 
 What you may not know is that in establishing this data exchange, 
 there is a set of rules and regulations known as Internet Protocols (IP). 
-Although there is a diversity of them, which in turn are included within other protocols, t
-he most common protocols used in data transmission are TCP and UDP
+Although there is a diversity of them, which in turn are included within other protocols,
+he most common protocols used in data transmission are TCP and UDP.
 
 At first glance it may not seem important to use them indistinctly, 
 but in the next section you will see the advantages and weaknesses of each protocol.
 
 
 ### How does TCP works?
+
 TCP is the main protocol on Internet and is a connection-based protocol. This means that before starting a transmission, 
 a device needs to connect to the receiver and confirm that the receiver is listening to them.
 
 Then the device divides the information into packets and sends them in order after confirming 
 that they have been received correctly.
 
-Each time the receiver receives one of the packets, it has the task of verifying if the content is correct 
+Each time the addressee receives one of the packets, it has the task of verifying if the content is correct 
 and make the decision whether to request the shipment again or request the next packet until the shipment is complete.
 
 Although it is a slow process, TCP guarantees that all data has been received correctly.
 
 ### How does UDP works?
+
 UDP is one of the simplest and fastest protocols used for communication between devices over the Internet. 
 Unlike other protocols, UDP only divides the information into packets and sends them to the destination.
 
@@ -207,7 +216,14 @@ however, if we need a fast data transmission and we can afford the loss of some 
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
-## Amazon Web Services and AWS-IoT 
+
+## Public Cloud
+
+The public cloud is defined as computing services offered by third-party providers over the public Internet, 
+making them available to anyone who wants to use or purchase them. They may be free or sold on-demand, 
+allowing customers to pay only per usage for the CPU cycles, storage, or bandwidth they consume.
+
+### Amazon Web Services and AWS-IoT 
 
 Today Amazon Web Services is one of the largest providers of cloud computing services,
 and some of its products focus exclusively on the development of IoT technologies.
@@ -216,7 +232,21 @@ AWS-IoT provides secure, two-way communication between multiple devices connecte
 This allows you to collect and process telemetry from Internet-connected devices and control them remotely.
 You can create rules that define an action to be performed based on the message received.
 
+### Google Cloud Platform and IoT-Core
+
+Google Cloud Internet of Things (IoT) Core is a fully managed service for securely connecting and managing IoT devices,
+from a few to millions. Ingest data from connected devices and build rich applications that integrate 
+with the other big data services of Google Cloud Platform.
+
+### Azure IoT
+
+The Azure Internet of Things (IoT) is a collection of Microsoft-managed cloud services that connect, 
+monitor, and control billions of IoT assets.
+In simpler terms, an IoT solution is made up of one or more IoT devices and one or more back-end services 
+running in the cloud that communicate with each other.
+
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
 
 # Why are we different? Kite Platform
 
@@ -228,7 +258,7 @@ remote device resets and remote diagnostics.
 
 Cloud connectors that eases integration amongst the main public cloud platforms and apps.
 
-Discover Kite [here](Kite_Platform.md)
+Discover Kite! [link](Kite_Platform.md)
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 

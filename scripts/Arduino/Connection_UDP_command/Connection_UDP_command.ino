@@ -42,9 +42,21 @@ const int polling=POLL_TIME*1000;
 
 
 void setup() {
+
+  // enable the POW_ON pin
+  pinMode(SARA_PWR_ON, OUTPUT);
+  digitalWrite(SARA_PWR_ON, HIGH);
+  // reset the ublox module
+  pinMode(SARA_RESETN, OUTPUT);
+  digitalWrite(SARA_RESETN, HIGH);
+  delay(100);
+  digitalWrite(SARA_RESETN, LOW);
+  
+
   
   Serial.begin(9600);
   delay(2000);
+  Serial.println("11111111111111111111111111111111111111111");
   setup_SaraR410M_movistar();
   
   Serial.println("START setup");

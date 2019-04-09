@@ -228,8 +228,6 @@ The v2 Camera Module is provide with a Sony IMX219 8-megapixel sensor.</p>
   <li>Humidity</li>
 </ul>
 
-<p><a href="RaspberryPiHAT.html">Click</a> to learn how to use it</p>
-
 <p align="center">
 	<a href="RaspberryPiHAT.html">
 		<img src="pictures/Raspberry/Raspi_SenseHAT.png" />
@@ -252,7 +250,7 @@ Withstands high temperatures and humidity conditions.</p>
 </p>
 
 <h3 id="telefónica-sim-card">Telefónica SIM Card</h3>
-<p>this little one makes you enjoy all the advantages of the Telefonica network. 
+<p>This little one makes you enjoy all the advantages of the Telefonica network. 
 Take care of her, she will be your partner into the IoT world.</p>
 
 <p align="center">
@@ -309,7 +307,8 @@ To avoid these errors, you can update the Raspberry time with the following comm
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo date -s "05/23/2018 12:00:00"
 </code></pre></div></div>
 
-<p>For connect with your Wi-Fi network, press on the top right corner in the LAN icon and select your network with your password if is necessary.</p>
+<p>For connect with your Wi-Fi network, press on the top right corner in the LAN icon and select 
+your network name with your password if is necessary.</p>
 
 <p>If wifi is disabled, you have to access to the Raspberry configuration.</p>
 
@@ -329,10 +328,12 @@ To avoid these errors, you can update the Raspberry time with the following comm
 
 <p><img src="pictures/Raspberry/Raspi_config_wifi.png" alt="pic" /></p>
 
-<p>Sometimes some corporate networks require additional validation. 
+<p>📍
+Sometimes some corporate networks require additional validation. 
 In this case it will be necessary to proceed correctly or contact the network administrator.</p>
 
-<p>:thumbsup:  If you don’t want to run out of data please set up the wifi connection, before running all these commands!</p>
+<p>👍
+If you don’t want to run out of data please set up the wifi connection, before running all these commands!</p>
 
 <p>Open a Terminal windows and update the repository with the command</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get update
@@ -344,7 +345,7 @@ We recommend you write the lines on the console one by one and wait for it to be
 to continue with the next.</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get install network-manager
-sudo apt-get install gedit	
+sudo apt-get install gedit
 sudo apt-get install python
 sudo apt-get install sense-hat
 sudo apt-get install nmap
@@ -357,8 +358,8 @@ sudo apt-get install realvnc-vnc-server realvnc-vnc-viewer
 
 <p>Once connected, you can check that your raspberry recognizes the device using the command <code class="highlighter-rouge">lsusb</code>.</p>
 
-<p>This command lists all devices connected USB ports of your device, checks how when connecting and disconnecting 
-the modem the device appears and disappears from the list.</p>
+<p>This command lists all devices connected to the USB ports of your device. When connecting and disconnecting 
+the modem, the device appears and disappears, check it on the list.</p>
 
 <p>Create the USB Stick connection in a command line</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo nmcli con add type gsm ifname "*" con-name USBStick apn TelefonicaSIM_APN user telefonica password telefonica
@@ -367,7 +368,7 @@ the modem the device appears and disappears from the list.</p>
 <p>📍
 The field <strong>TelefonicaSIM_APN</strong> must be replaced by the APN address of your Telefónica SIM card.
 In this case, the APN of your SIM card will be provided by Telefónica. 
-However, you will be able to identify it through access to <a href="KitePlatform.html">Kite.</a></p>
+However, you will be able to identify it through access to <a href="KitePlatform.html">Kite</a>.</p>
 
 <p>If your SIM uses a PIN code, add to the end of the command: <code class="highlighter-rouge">pin 0000</code></p>
 
@@ -380,7 +381,8 @@ Look at it with the command</p>
 <p>the inet address label shows your Raspberry’s IP</p>
 
 <h5 id="how-test-your-new-connection">How Test your new connection</h5>
-<p>:thumbsup: To make sure that the transmission is done through the USB modem, in this step we recommend disabling the wifi connection. 
+<p>👍
+To make sure that the transmission is done through the USB modem, in this step we recommend disabling the wifi connection. 
 To deactivate the wifi connection click on the network symbol in the upper right corner 
 and press <strong>Turn off Wi-fi</strong>.</p>
 
@@ -394,7 +396,7 @@ Use the next command</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://jsonplaceholder.typicode.com/todos/1
 </code></pre></div></div>
 
-<p>to check the downloaded file, you can use the cat command</p>
+<p>to check the downloaded file, you can use the command:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat 1
 </code></pre></div></div>
@@ -408,16 +410,17 @@ Use the next command</p>
   </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
-<p>:thumbsup: To tidy up, 
-we recommend you delete the test file with the following command.</p>
+<p>👍
+To tidy up, we recommend you delete the test file with the following command.</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rm 1
 </code></pre></div></div>
+
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
 <p>If you have followed all these steps, there should be no problem. but if not, your SIM card may not be activated.</p>
 
 <p>Luckily you have access to the Kite Platform and you can manage its status
-check out our tutorial <a href="KitePlatform.html">here</a></p>
+check out our <a href="KitePlatform.html#how-to-get-started-with-your-sim">tutorial</a></p>
 
 <h2 id="use-a-remote-access-enable-ssh-server-on-raspbian">Use a remote access. Enable SSH server on Raspbian.</h2>
 
@@ -443,7 +446,7 @@ opens the menu with the following command.</p>
   <li>Chose <strong>FINISH</strong> with the tab</li>
 </ol>
 
-<p>If you reboot the device without changing the default user and password, 
+<p>If you reboot the device without changing the default user and password,
 with SSH connection enabled, a warning pop up message will appear showing risks involved.</p>
 
 <h5 id="change-user-password">Change user Password</h5>
@@ -458,10 +461,10 @@ default password 'raspberry'
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> passwd 
 </code></pre></div></div>
 <ol>
-  <li>Write the current-password ** ‘raspberry’ **</li>
+  <li>Write the current-password <strong>raspberry</strong></li>
   <li>Enter the <strong>new-password</strong></li>
   <li>Re-enter the <strong>new-password</strong></li>
-  <li>Your password has now been changed.</li>
+  <li>Your Password has been changed!</li>
 </ol>
 
 <p>Now for connect with your Raspberry you need installer a SSH client on your computer.</p>
@@ -487,9 +490,34 @@ use the Raspberry default user <strong>pi</strong> and the new-password selected
 
 <h4 id="control-your-raspberry-with-a-network-cable">Control your raspberry with a network cable</h4>
 
-<p>If you prefer it is also possible to control your Raspberry pi connected to your pc via a network cable (Ethernet)</p>
+<p>If you want to connect your Raspberry to your computer via a network cable (Ethernet),
+you must ensure that both devices (Raspberry and your PC) are configured for the same network.</p>
 
-<p><a href="SSHEthernet.html">How to connect via Ethernet</a></p>
+<p>The easiest way is to set up a static IP. In order to do this, 
+we will assign an IP of our choice to the configuration that you assign for the configuration.</p>
+
+<p>Open a terminal window use the next command ‘sudo ifconfig -a’</p>
+
+<p>If you are connected by cable you will see an IP address assigned.
+This IP has been assigned automatically and will change whenever you establish a new connection.</p>
+
+<p>To set a default IP address edit the file <strong>/etc/dhcpcd.conf</strong>
+use the command <code class="highlighter-rouge">sudo nano /etc/dhcpcd.conf</code> at the command prompt.
+Scroll to the bottom of the script, and add the following lines</p>
+
+<p>📍
+It is common for configuration files to contain commented examples.
+If you have any problem with the configuration, search and comment the example you need.
+It can save you a headache.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	interface eth0
+
+	static ip_address=192.168.0.2/24
+	static routers=192.168.0.1
+	static domain_name_servers=192.168.0.1
+</code></pre></div></div>
+<p>Save the file with <strong>Ctrl+O</strong>  and close it with <strong>Ctrl+X</strong>
+review the changes whit the command <code class="highlighter-rouge">cat /etc/dhcpcd.conf</code></p>
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
@@ -511,7 +539,7 @@ use the Raspberry default user <strong>pi</strong> and the new-password selected
       
       <li class="next"><a class="basic-alignment right" 
 	    href="iot-activation/Readme.html" title="Next Post: 
-		Welcome to IoT-Activation">Welcome to IoT-Activation
+		Welcome to IoT Activation">Welcome to IoT Activation
         &raquo;</a></li>
       
     </ul-->

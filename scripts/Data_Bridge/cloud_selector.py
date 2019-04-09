@@ -21,6 +21,7 @@ from __future__ import print_function
 from log import *
 from utils import *
 from cloud_selector_aws import *
+from cloud_selector_gcp import *
 
 
 def cloud_configure(config):
@@ -40,8 +41,13 @@ def cloud_configure(config):
             config_cloud=read_config('config/Configuration_AWS.yaml')
             config_cloud["cloud"] = "AWS"
         else:
-            logger.error("CLOUD: Cloud not defined")
-            config_cloud["code"] = CODE_CLOUD_NOT_FOUND
+            if config["cloud"] == "GCP":
+                logger.debug("CLOUD: Selected connect to Google Cloud:")
+                config_cloud = read_config('config/Configuration_GCP.yaml')
+                config_cloud["cloud"] = "GCP"
+            else:
+                logger.error("CLOUD: Cloud not defined")
+                config_cloud["code"] = CODE_CLOUD_NOT_FOUND
 
         return config_cloud
 
@@ -70,9 +76,13 @@ def cloud_publish(thing, topic, status, config_cloud):
             logger.debug("CLOUD: Selected Publish in AWS:")
             response = cloud_publish_aws(thing, topic, status, config_cloud)
         else:
-            logger.error("CLOUD: Cloud not defined")
-            response["code"] = CODE_ERROR_CLOUD_NOT_IMPLEMENTED
-            response["msg"] = MSG_ERROR_CLOUD_NOT_IMPLEMENTED
+            if config_cloud["cloud"] == "GCP":
+                logger.debug("CLOUD: Selected Publish in GCP:")
+                response = cloud_publish_gcp(thing, topic, status, config_cloud)
+            else:
+                logger.error("CLOUD: Cloud not defined")
+                response["code"] = CODE_ERROR_CLOUD_NOT_IMPLEMENTED
+                response["msg"] = MSG_ERROR_CLOUD_NOT_IMPLEMENTED
 
         return response
 
@@ -81,52 +91,22 @@ def cloud_publish(thing, topic, status, config_cloud):
         traceback.print_exc(file=sys.stdout)
 
 
-def cloud_get_shadow(thing, config_cloud):
-    """Invokes the get shadow function corresponding to the library of the selected cloud
-
-    :param thing: name
-    :param config_cloud: cloud configuration
-    :return: thing status
-    """
+def cloud_get_parameter(parameter_name, config_cloud):
     try:
-        response = {}
+        parameter = ""
 
         if config_cloud["cloud"] == "AWS":
-            response = cloud_get_shadow_aws(config_cloud, thing, config_cloud)
+            logger.debug("CLOUD: Selected get parameter for AWS:")
+            parameter = cloud_get_parameter_aws(parameter_name, config_cloud)
         else:
-            logger.error("CLOUD: Cloud not defined")
-            response["code"] = CODE_ERROR_CLOUD_NOT_IMPLEMENTED
-            response["msg"] = MSG_ERROR_CLOUD_NOT_IMPLEMENTED
+            if config_cloud["cloud"] == "GCP":
+                logger.debug("CLOUD: Selected Publish in GCP:")
 
-        return response
+            else:
+                logger.error("CLOUD: Cloud not defined")
+
+        return parameter
 
     except Exception as e:
-        logger.error("CLOUD: exception cloud_publish()")
+        logger.error("CLOUD: exception cloud_get_parameter()")
         traceback.print_exc(file=sys.stdout)
-
-
-def cloud_create_new_thing(thing, config_cloud):
-    """
-
-    :param thing:
-    :param config_cloud:
-    :return:
-    """
-    try:
-        response = {}
-
-        if config_cloud["cloud"] == "AWS":
-            logger.debug("CLOUD: Selected Publish in AWS:")
-            response = cloud_create_new_thing_aws(thing, config_cloud)
-        else:
-            logger.error("CLOUD: Cloud not defined")
-            response["code"] = CODE_ERROR_CLOUD_NOT_IMPLEMENTED
-            response["msg"] = MSG_ERROR_CLOUD_NOT_IMPLEMENTED
-
-        return response
-
-    except Exception as e:
-        logger.error("CLOUD: exception cloud_publish()")
-        traceback.print_exc(file=sys.stdout)
-
-

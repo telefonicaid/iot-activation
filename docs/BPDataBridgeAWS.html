@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>Data Bridge on AWS</title>
+  <meta name="description" content="Table of Contents  What does it do?          AWS Options:                  AWS Option 1: Telemetry          AWS Option 2: Telemetry and Commands             ...">
+  <meta name="google-translate-customization" content="b9870a0c7376df54-aa35852016e6a5cc-ga0a0d80f6c171f17-e"></meta>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="canonical" href="http://localhost:4000/BPDataBridgeAWS.html">
+  <link href="/favicon.png" rel="icon">
+  <!--link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="alternate" type="application/atom+xml" title="IoT Activation" href="http://localhost:4000/atom.xml" />
+</head>
+
+
+  <body>
+         <div class="col-md-12 navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/iot-activation/">IoT Activation</a>
+      </div>
+      <div class="navbar-collapse collapse navbar-inverse-collapse">
+        <ul class="nav navbar-nav">
+          
+            
+          
+            
+              <!-- li><a href="/about.html">About</a></li-->
+            
+          
+            
+          
+            
+          
+          
+<!--           <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+            
+              
+            
+              
+                <li><a href="/about.html" style="text-transform : uppercase;">About</a></li>
+              
+            
+              
+            
+              
+            
+            </ul>
+          </li>
+ -->        </ul>
+       
+        <ul class="nav navbar-nav navbar-right left-syms">
+          <li><a href="https://iot.telefonica.com/blog" target="_blank"><i class="fa fa-rss"></i> <span>Blog</span></a></li>
+          <li><a href="https://www.linkedin.com/showcase/telefonicaiot/" target="_blank"><i class="fa fa-linkedin"></i> <span>linkedin</span></a></li>
+          <li><a href="//twitter.com/TelefonicaIoT" target="_blank"><i class="fa fa-twitter"></i> <span>Twitter</span></a></li>
+          <li><a href="https://www.youtube.com/user/m2mtelefonica/featured" target="_blank"><i class="fa fa-youtube"></i> <span>Youtube</span></a></li>
+          <li><a href="http://github.com/telefonicaid/iot-activation" target="_blank"><i class="fa fa-github"></i> <span>Github</span></a></li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="col-md-12 blog-theme-class">
+          <!-- Top Blog Header -->
+          <div class="row jumb-bot">
+            <div class="col-md-1"></div>
+            <div class="jumbotron jumb-bot-jumbu col-md-10">
+
+              <h1>IoT Activation</h1>
+              <p>Welcome to the Revolu<strong>IOT</strong>n</p>
+            </div>            
+            <div class="col-md-1"></div>
+          </div>
+    </div>
+    <div class="col-md-12">
+        <div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+
+	  	
+	    <h1>Data Bridge on AWS</h1>
+	    <!--<div id="google_translate_element" style="padding-right: 27px;float: left;"></div><script type="text/javascript">
+			function googleTranslateElementInit() {
+  				new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+				}
+		</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+		-->
+	    <p class="post-meta">Feb 6, 2019</p>
+
+	   
+	  	<article class="blog-post-small blog-post-content">
+	    	<h3 id="table-of-contents">Table of Contents</h3>
+
+<ul>
+  <li><a href="#what-does-it-do">What does it do?</a>
+    <ul>
+      <li><a href="#aws-options">AWS Options:</a>
+        <ul>
+          <li><a href="#aws-option-1-telemetry">AWS Option 1: Telemetry</a></li>
+          <li><a href="#aws-option-2-telemetry-and-commands">AWS Option 2: Telemetry and Commands</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#deploy-and-defend-your-bridge-on-aws">Deploy and defend your Bridge on AWS!</a>
+    <ul>
+      <li><a href="#what-will-you-need">What will you need?</a></li>
+      <li><a href="#data-bridge-python-code">Data Bridge python code</a></li>
+      <li><a href="#kite-platform-certificates">KITE Platform certificates</a></li>
+      <li><a href="#ipsec-tunnel-configuration-between-telefónica-and-aws">IPsec tunnel configuration between Telefónica and AWS</a></li>
+      <li><a href="#amazon-web-services-cloud-computing-services">Amazon Web Services Cloud Computing Services</a>
+        <ul>
+          <li><a href="#aws-identity-and-access-management-iam">AWS Identity and Access Management (IAM)</a></li>
+          <li><a href="#aws-systems-manager-parameter-store">AWS Systems Manager Parameter Store</a></li>
+          <li><a href="#aws-iot-core">AWS IoT Core</a></li>
+          <li><a href="#amazon-elastic-compute-cloud-ec2">Amazon Elastic Compute Cloud (EC2)</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#how-to-run-it">How to run it</a>
+    <ul>
+      <li><a href="#download-it">Download it</a></li>
+      <li><a href="#configure-it">Configure it</a></li>
+      <li><a href="#launch-it">Launch it</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="what-does-it-do">What does it do?</h1>
+
+<p>Each UDP message sent by a device, it is linked to several information such as source IP, destination IP and destination Port. 
+The Bridge will use the device source IP to gather all the sim information stored at Kite platform.</p>
+
+<p>For the tutorial purpose you should pay attention to SIM’s custom fields, 
+that you can manage from your Kite Platform account.</p>
+
+<ul>
+  <li><strong>Field 1</strong> : Device Cloud Name (required) -&gt; this is the name that will appear at the cloud (shadow name, twin name …)</li>
+  <li><strong>Field 2</strong> : topic to publish (optional)</li>
+</ul>
+
+<p>Depending on the content of the fields, the Bridge will act differently.</p>
+
+<p>To choose between the different options you have to configure SIM information at the <a href="KitePlatform.html#edit-custom-field">Custom Field</a></p>
+
+<p>📍
+The device name is a mandatory field, otherwise an error code will be returned, because the bridge wouldn’t know the virtual representation of the physical device.</p>
+
+<p>As we said before, There are two ways of working depending on the information provided as custom parameter in Kite.</p>
+
+<h2 id="aws-options">AWS Options:</h2>
+
+<ul>
+  <li><a href="#aws-option-1-telemetry">AWS Option 1: Telemetry</a></li>
+  <li><a href="#aws-option-2-telemetry-and-commands">AWS Option 2: Telemetry and Commands</a></li>
+</ul>
+
+<h4 id="aws-option-1-telemetry">AWS Option 1: Telemetry</h4>
+
+<p>This is the most straight forward option. 
+You only have to provide a device cloud name at the first custom parameter in Kite. 
+As a result all the messages sent by your device will be published at the default topic.</p>
+
+<p>The default topic has this structure:  <strong>tlm/{DEVICE_NAME_IN_KITE}/raw</strong></p>
+
+<p>Otherwise, If you prefer to send your device messages to another topic, you should add it as a second custom field at Kite.</p>
+
+<p><img src="pictures/Bridge/Bridge_overview_AWS_option1y2.png" alt="pic" /></p>
+
+<h4 id="aws-option-2-telemetry-and-commands">AWS Option 2: Telemetry and Commands</h4>
+
+<p>The configuration is quite simple, you should identify the topic update of your device and copy it into the second custom field.
+It should look like this: <strong>$aws/things/{DEVICE_NAME_IN_KITE}/shadow/update</strong></p>
+
+<p>The bridge will recognize it as an AWS reserved topic and will use the appropriate logic for the connection.</p>
+
+<p>The data sent will be published in the shadow in the <strong>raw</strong> field as shown in the following example.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">  
+  </span><span class="s2">"reported"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"raw"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;MESSAGE SENT HERE&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Moreover, the Bridge will subscribe to the Accepted and Rejected topics, so you will be able to control if the publication has been done  or rejected by the broker.</p>
+
+<p>Another advantage of using the AWS shadows, is the communication with the device, it allows you to send commands to it.
+You have to complete the json raw data field at device shadow desired field.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">  
+  </span><span class="s2">"desired"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"raw"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;MESSAGE FOR THE DEVICE&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="pictures/Bridge/Bridge_overview_AWS_option_shadow.png" alt="pic" /></p>
+
+<p>If you try to publish into a shadow that it isn’t already provisioned the Data Bridge will create it before publishing so you don’t have to worry about it :).</p>
+
+<p>But if you still want to create it manually you can follow these <a href="AWScreatenewthing.html">steps</a></p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h1 id="deploy-and-defend-your-bridge-on-aws">Deploy and defend your Bridge on AWS!</h1>
+
+<h2 id="what-will-you-need">What will you need?</h2>
+
+<ul>
+  <li>Data Bridge <a href="https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge">code</a></li>
+  <li>KITE Platform <a href="KitePlatform.html#what-is-kite-platform-api">Certificates files</a></li>
+  <li>An IpSec Service provided by Telefónica <a href="BPIPsec.html#what-is-ipsec">(IPsec)</a></li>
+  <li>AWS account:
+    <ul>
+      <li>Identity and Access Management roles</li>
+      <li>AWS Systems Manager Parameter Store</li>
+      <li>Amazon Elastic Compute Cloud instance (EC2)</li>
+      <li>AWS IoT Core</li>
+    </ul>
+  </li>
+</ul>
+
+<p>📍
+For the time being, if you use a SIM from the Thinx testing network you will not have access to the Kite Platform.</p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="data-bridge-python-code">Data Bridge python code</h2>
+
+<p>You can download it from our <a href="https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge">repository</a></p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="kite-platform-certificates">KITE Platform certificates</h2>
+
+<p>One of the Data Bridge strong points, is the integration with Kite.
+Kite is the Telefónica’s IoT Connectivity Platform, and Kite provides an API interface for management via HTTPS.</p>
+
+<p>Ask your Telefonica’s local contact for the certificates associated to your account.</p>
+
+<p>Once you receive this certificate, you will need to extract the keys that the Bridge will use to validate the connection.
+If you want to see how to do it, you can follow our 
+<a href="KitePlatform.html#extract-your-credentials-files">documentation</a></p>
+
+<p>When you finish these steps, you should have a file with the certificate and another one with the access key:</p>
+<ul>
+  <li>your_customer_certificate.cer</li>
+  <li>your_customer_certificate.key</li>
+</ul>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="ipsec-tunnel-configuration-between-telefónica-and-aws">IPsec tunnel configuration between Telefónica and AWS</h2>
+
+<p>An IPsec tunnel is a direct connection between the mobile network of your SIM pool and the Data Bridge deployed in AWS.</p>
+
+<p>This connection not only creates a new network (VPN) but also guarantees the security of your data 
+by allowing communication only between the devices that belong to this network.</p>
+
+<p>Although its functioning is quite complex to explain. The configuration is quite simple if you follow our 
+<a href="BPIPsec.html#how-to-make-your-own-ipsec-vpn">tutorial</a></p>
+
+<p>When you finish this tutorial, you will also have created a EC2 machine. 
+This is the machine you will use to deploy your Data Bridge.</p>
+
+<p>Remember to keep both the private IP of your IPsec network and the public IP to remotely access the machine.</p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="amazon-web-services-cloud-computing-services">Amazon Web Services Cloud Computing Services</h2>
+
+<p>If you are using this tutorial is because you have chosen Amazon as your cloud.</p>
+
+<p>For this reason, we have tried that all the services provided in the Data Bridge are integrated at AWS platform.
+In the following steps we will explain how to configure these services.</p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h3 id="aws-identity-and-access-management-iam">AWS Identity and Access Management (IAM)</h3>
+
+<p>IAM is a service that allows you to manage access to AWS services and resources securely.
+This service will allow you to control users and their permissions. 
+But it will also allow you to manage access policies between the different Amazon services.</p>
+
+<p>You will need it in this tutorial because it is necessary to assign an access policy to the EC2 machine 
+that allows access to the other services.</p>
+
+<p>Your EC2 needs the following policies:</p>
+<ul>
+  <li>Access to IoT Core</li>
+  <li>Access to AWS Systems Manager Parameter store</li>
+</ul>
+
+<p>To attach an IAM role to an instance …</p>
+
+<ol>
+  <li>Open the Amazon EC2 console at https://console.aws.amazon.com/ec2/.</li>
+  <li>In the navigation pane, choose Instances.</li>
+  <li>Select the instance, choose Actions, Instance Settings, Attach/Replace IAM role.</li>
+  <li>Select the IAM role to attach to your instance, and choose Apply.</li>
+</ol>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h3 id="aws-systems-manager-parameter-store">AWS Systems Manager Parameter Store</h3>
+
+<p>AWS Systems Manager is a service that gives you visibility and control of your infrastructure.</p>
+
+<p>Among its resources, there is the Parameter Store. 
+This parameter storage allows the secure storage of certificates and passwords.</p>
+
+<p>For this example, we will use this service to store the content of the Kite certificates files.</p>
+
+<p>In the AWS Console.</p>
+
+<p>Go to Systems Manager / Parameter Store / Select: Create parameter</p>
+
+<p><img src="pictures/AWS/AWS_Console_SystemsManager_ParameterStore_create.png" alt="pic" /></p>
+
+<p>Select a name for the parameter. And copy the contents of the file in the <strong>value</strong> field.</p>
+
+<p>Do this for each of the files:</p>
+<ul>
+  <li>your_customer_certificate.cer</li>
+  <li>your_customer_certificate.key</li>
+</ul>
+
+<p><img src="pictures/AWS/AWS_Console_SystemsManager_ParameterStore_create_config1.png" alt="pic" />
+<img src="pictures/AWS/AWS_Console_SystemsManager_ParameterStore_create_config2.png" alt="pic" /></p>
+
+<p>And click on the <strong>Create parameter</strong> button at the bottom of the page.</p>
+
+<p>Save the names of the parameters, they are necessary to configure the Bridge.</p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h3 id="aws-iot-core">AWS IoT Core</h3>
+
+<p>AWS IoT Core is a managed cloud service that lets connected devices easily and 
+securely interact with cloud applications and other devices.</p>
+
+<p>If you have not previously worked with IoT Core, we recommend that you familiarize with the environment. 
+And make sure you understand concepts like MQTT, Broker and Shadow.</p>
+
+<p>As for configuring a new device, you can do so by following these 
+<a href="AWScreatenewthing.html#create-device-thing-in-aws-iot">steps</a></p>
+
+<p>but if you’re too lazy for it. “No problemo” The Bridge will create it for you.</p>
+
+<p>Auto provisioning of new devices!!</p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h3 id="amazon-elastic-compute-cloud-ec2">Amazon Elastic Compute Cloud (EC2)</h3>
+
+<p>Amazon EC2 is a web service that provides secure, resizable compute capacity in the cloud.</p>
+
+<p>If you have carefully followed the steps to create the IPsec tunnel, you should already have created an instance.</p>
+
+<p>We have chosen an instance with linux, but if you prefer any other, 
+just make sure that the instance can execute code in python.</p>
+
+<p>To attach an IAM role to an instance that has no role, the instance can be in the stopped or running state.</p>
+
+<ol>
+  <li>Open the Amazon EC2 console at https://console.aws.amazon.com/ec2/.</li>
+  <li>In the navigation pane, choose Instances.</li>
+  <li>Select the instance, choose Actions, Instance Settings, Attach/Replace IAM role.</li>
+  <li>Select the IAM role to attach to your instance, and choose Apply.</li>
+</ol>
+
+<p>Requirements to connect to your EC2 instance with SSH</p>
+
+<ul>
+  <li>SSH <strong>file.pem</strong> provided by Amazon when you launch the instance</li>
+  <li><strong>IP-address</strong> assigned to your ec2 instance</li>
+  <li>The <strong>username</strong> on the instance distro</li>
+</ul>
+
+<p>On linux</p>
+
+<ol>
+  <li>Open a terminal</li>
+  <li>Type the SSH command
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh -i file.pem username@IP-address
+</code></pre></div>    </div>
+  </li>
+  <li>Now you’re connected</li>
+</ol>
+
+<p>On Windows</p>
+
+<ol>
+  <li>Install Putty https://www.putty.org/</li>
+  <li>Open PuttyGen</li>
+  <li>Select checkbox “RSA”</li>
+  <li>Click load and select your <strong>file.pem</strong></li>
+  <li>A message will prompt, click ok.</li>
+  <li>Click on save private key.</li>
+  <li>Then a message will prompt, select yes</li>
+  <li>Type a name for your key <strong>file.ppk</strong></li>
+  <li>Now close PuttyGen program and open Putty</li>
+  <li>Go to Connection/SSH section and double-click it.</li>
+  <li>Go to Auth section and select your <strong>file.ppk</strong></li>
+  <li>Go back at the top in the Session section. Fill the field Hostname <strong>IP-address</strong> and click open</li>
+  <li>A warning will prompt. Click yes.</li>
+  <li>Type your <strong>username</strong></li>
+  <li>Now you’re connected</li>
+</ol>
+
+<p>Upload files using FTP Client</p>
+
+<p>You can download Filezilla using the next link (https://filezilla-project.org/download.php)</p>
+
+<ol>
+  <li>Go to Edit/Settings/Connection/SFTP, Click “Add key file”</li>
+  <li>Browse to the location and select your <strong>file.pem</strong></li>
+  <li>A message box will appear to convert the file into .ppk. Click Yes, and store it.</li>
+  <li>If the new file is shown in the list of Keyfiles, then continue to the next step. If not, then click “Add keyfile…” and select the converted file.</li>
+  <li>Go to File/Site Manager/Add a new site with the following parameters:</li>
+</ol>
+
+<ul>
+  <li>Protocol: SFTP</li>
+  <li>Host: <strong>IP-address</strong></li>
+  <li>Logon Type: Key File</li>
+  <li>User: <strong>username</strong></li>
+</ul>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h1 id="how-to-run-it">How to run it</h1>
+
+<p>Now that you know how to configure AWS. You can run it in just 3 steps !!!</p>
+
+<h2 id="download-it">Download it</h2>
+
+<p>You can choose between several options:</p>
+
+<ul>
+  <li>option 1: Download the Github repository on the instance</li>
+</ul>
+
+<ol>
+  <li>Install git on the instace
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>yum upgrade
+<span class="nb">sudo </span>yum <span class="nb">install </span>git
+</code></pre></div>    </div>
+  </li>
+  <li>Clone the repository
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/telefonicaid/iot-activation.git
+</code></pre></div>    </div>
+  </li>
+  <li>Go to Bridge path: <strong>scripts/Data_Bridge/</strong></li>
+</ol>
+
+<ul>
+  <li>option 2: Upload the files from an FTP client</li>
+</ul>
+
+<ol>
+  <li>Download the Github repository</li>
+  <li>Open Filezilla client</li>
+  <li>Select the path scripts/Data_Bridge/</li>
+  <li>Upload all files and folders to the instance</li>
+</ol>
+
+<p>Now that you have the code in the machine you just have to install the python libraries.</p>
+
+<p>You can install them one by one. But the fastest way is to use the requirements file</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</code></pre></div></div>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="configure-it">Configure it</h2>
+
+<p>We have tried to make this as simple as possible.</p>
+
+<p>So, you’ll only need to fill in a few fields in the configuration file 
+<a href="https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge/config/Configuration.yaml">Configuration.yaml</a></p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">cloud</span><span class="pi">:</span> <span class="s">AWS</span>
+
+<span class="na">UDP</span><span class="pi">:</span>
+  <span class="na">ip</span><span class="pi">:</span> <span class="s2">"</span><span class="s">0.0.0.0"</span>
+  <span class="na">port</span><span class="pi">:</span> <span class="s">4114</span>
+
+<span class="na">KITE</span><span class="pi">:</span>
+  <span class="na">url</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://m2m-api.telefonica.com"</span>
+  <span class="na">certificate</span><span class="pi">:</span> <span class="s2">"</span><span class="s">cer_file"</span>
+  <span class="na">private_key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">key_file"</span>
+
+</code></pre></div></div>
+
+<h4 id="configure-the-cloud">Configure the Cloud</h4>
+
+<p>This parameter is used to identify the cloud and select the configuration file. 
+In this example you must select AWS</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">cloud</span><span class="pi">:</span> <span class="s">AWS</span>
+</code></pre></div></div>
+
+<h4 id="configure-the-udp-socket">Configure the UDP socket</h4>
+
+<p>Here you can choose the port through which you will receive the UDP messages and the allowed IP addresses</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">UDP</span><span class="pi">:</span>
+  <span class="na">ip</span><span class="pi">:</span> <span class="s2">"</span><span class="s">0.0.0.0"</span>
+  <span class="na">port</span><span class="pi">:</span> <span class="s">4114</span>
+</code></pre></div></div>
+<p>allow any address</p>
+
+<p>allowed values:</p>
+<ul>
+  <li>ip: “0.0.0.0”    (allow any address)</li>
+  <li>ip: “X.X.X.X”	   (restrict to a single address)</li>
+</ul>
+
+<h4 id="configure-the-kite-platform-connection">Configure the Kite Platform connection</h4>
+
+<p>This parameter allows you to select the files the certificates to access the Kite Platform.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">KITE</span><span class="pi">:</span>
+  <span class="na">url</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://m2m-api.telefonica.com"</span>
+  <span class="na">certificate</span><span class="pi">:</span> <span class="s2">"</span><span class="s">cer_file"</span>
+  <span class="na">private_key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">key_file"</span>
+</code></pre></div></div>
+
+<p>Do you remember the name of the parameters created in AWS?
+Now is the time to use them.</p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h4 id="configure-the-aws-file">Configure the AWS file</h4>
+
+<p>Here is an example of a configuration file for AWS connection 
+<a href="https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge/config/Configuration_AWS.yaml">Configuration_AWS.yaml</a></p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">cloud</span><span class="pi">:</span> <span class="s">AWS</span>
+<span class="na">region</span><span class="pi">:</span> <span class="s2">"</span><span class="s">eu-west-1"</span>
+<span class="na">MQTT</span><span class="pi">:</span>
+  <span class="na">topic</span><span class="pi">:</span>
+    <span class="na">update</span><span class="pi">:</span> <span class="s2">"</span><span class="s">$aws/things/&lt;DEVICE_NAME&gt;/shadow/update"</span>
+    <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">tlm/&lt;DEVICE_NAME&gt;/raw"</span>
+    <span class="na">log_device</span><span class="pi">:</span> <span class="s2">"</span><span class="s">log/device/provision/new"</span>
+    <span class="na">reserved</span><span class="pi">:</span> <span class="s2">"</span><span class="s">$aws"</span>
+</code></pre></div></div>
+
+<p>The file is quite intuitive, however here you can see carefully how to configure each section</p>
+
+<h5 id="server-configuration">Server configuration</h5>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">cloud</span><span class="pi">:</span> <span class="s">AWS</span>
+<span class="na">region</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xx-xxxx-x"</span>
+</code></pre></div></div>
+
+<h5 id="topic-configuration">Topic configuration</h5>
+
+<p>At the moment you only have to keep the fields as is</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">MQTT</span><span class="pi">:</span>
+  <span class="na">topic</span><span class="pi">:</span>
+    <span class="na">update</span><span class="pi">:</span> <span class="s2">"</span><span class="s">$aws/things/&lt;DEVICE_NAME&gt;/shadow/update"</span>
+    <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">tlm/&lt;DEVICE_NAME&gt;/raw"</span>
+    <span class="na">log_device</span><span class="pi">:</span> <span class="s2">"</span><span class="s">log/device/provision/new"</span>
+    <span class="na">reserved</span><span class="pi">:</span> <span class="s2">"</span><span class="s">$aws"</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>update</strong>: this topic is the specific of AWS. It doesn’t make any sense to modify it.</li>
+  <li><strong>default</strong>: configure this field to select the default topic name.</li>
+  <li><strong>log_device</strong>: topic name in which the new things creations are reported.</li>
+  <li><strong>reserved</strong>: this parameter indicates that the name is a AWS standard topic.</li>
+</ul>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="launch-it">Launch it</h2>
+
+<p>Go to Bridge path and execute this command</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo nohup </span>python main.py &amp;
+</code></pre></div></div>
+<ul>
+  <li><strong>sudo</strong> Execute the instruction as if you were the administrator.</li>
+  <li><strong>nohup</strong> It’ll keep running even when you close the session.</li>
+  <li><strong>python main.py</strong> will execute the code</li>
+</ul>
+
+<p>When the Bridge is running, it will record all UDP messages he receives in a log file. 
+You can monitor the last lines of the file with this command:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tail</span> <span class="nt">-f</span> log/data_bridge.log
+</code></pre></div></div>
+
+<p>This is a log file example.</p>
+
+<pre><code class="language-log">INFO : ################################# waiting for a new message #################################
+INFO : Message Received [ {"v":33,"a":28} ] from [ 10.5.0.5 ] : [ 4114 ]
+INFO : KITE Response status code [ 200 ]
+INFO : GET information related to [ 10.5.0.5 ] from  KITE Platform
+INFO : Found device cloud name [ MyDevice ] and topic [  ] in KITE Platform
+INFO : Select Option 1: DEVICE [ MyDevice ] and DEFAULT TOPIC
+INFO : Publish message [ {"v":33,"a":28} ] into topic [ tlm/MyDevice/raw ]
+INFO : Publish Accepted code [ 200 ]
+INFO : Sent MESSAGE [ {"msg": "OK: msg published", "code": 200} ] to [ 10.5.0.5 ] : [ 4114 ]
+INFO : ################################# waiting for a new message #################################
+INFO : Message Received [ aaa ] from [ 00.00.00.00 ] : [ 4114 ]
+INFO : KITE Response status code [ 204 ]
+INFO : GET information related to [ 00.00.00.00 ] from  KITE Platform
+INFO : Sent MESSAGE [{"msg":"ERROR:connection with Kite not established","code":404}] to [ 84.78.20.223 ]:[4114]
+</code></pre>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+
+	  	</article>
+	  	
+	  	
+	  	
+<!-- Output author details if some exist. -->
+   
+
+    <!--ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="iot-activation/BPDataBridge.html" title="Previous Post:
+        Data Bridge">&laquo; Data Bridge</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+      <li class="next"><a class="basic-alignment right" 
+	    href="iot-activation/BPDataBridgeGoogleCloud.html" title="Next Post: 
+		Data Bridge on Google Cloud">Data Bridge on Google Cloud
+        &raquo;</a></li>
+      
+    </ul-->
+	</div>
+	<div class="col-md-1"></div>
+</div>
+    </div>
+    <div class="col-md-12 share-div">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          
+<div class="fb_share">
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=354997024639145&version=v2.0";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+<div class="fb-share-button" data-layout="button_count"></div>
+</div>
+
+
+
+<div class="twitter_share">
+	<a href="https://twitter.com/share" class="twitter-share-button" data-via="TelefonicaIoT" data-hashtags="sailsjs">Tweet</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+</div>
+
+
+
+<div class="linkedin_share">
+	<script src="//platform.linkedin.com/in.js" type="text/javascript">
+	  lang: en_US
+	</script>
+	<script type="IN/Share" data-counter="right"></script>
+</div>
+
+
+
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="col-md-12">
+    
+    </div>
+    <div class="col-md-12">
+    			<div class="row end_footer">
+              <div class="col-md-1"></div>
+              <div class="col-md-6">
+                
+              </div>
+              <div class="col-md-4"></div>
+              <div class="col-md-1"></div>
+            </div>
+    </div>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/prettify.js"></script>
+    <script>
+      [].forEach.call(document.getElementsByTagName("pre"), function(el) {
+        el.classList.add("prettyprint");
+      });
+
+      prettyPrint();
+    </script>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+
+    <style>
+      pre.prettyprint {
+
+        font-size: 13px;
+        font-family: "Open Sans";
+        padding: 8px 12px;
+        border: 1px solid #bbb;
+        border-radius: 4px;
+      }
+    </style>
+
+  </body>
+
+</html>

@@ -111,6 +111,7 @@
           <li><a href="#what-will-you-need">What will you need?</a></li>
         </ul>
       </li>
+      <li><a href="#create-a-device-thing-in-aws-iot">Create a device thing in AWS-IoT</a></li>
       <li><a href="#what-is-mqtt">What is MQTT</a></li>
       <li><a href="#how-to-communicate-with-aws">How to communicate with AWS</a></li>
       <li><a href="#test-your-certificates-with-mqttfx">Test your Certificates with MQTT.fx</a></li>
@@ -128,7 +129,8 @@
 
 <h1 id="arduino-mkr-nb-1500-to-aws-iot">Arduino: MKR NB-1500 to AWS-IoT</h1>
 
-<p>For this project, we will take different values from the Arduino board and publish them in AWS.</p>
+<p>For this project, we’re going to use a Arduino board to take measures and publish their values in AWS.
+You will also be able to send commands for turn the board led on/off.</p>
 
 <p align="center">
 	  <img title="Project_ard" src="pictures/schematics/overview_arduino_AWS.png" href="docs/ArduinoAWS.html" />
@@ -136,59 +138,199 @@
 
 <h2 id="getting-started-with-the-mkr-nb-1500">Getting started with the MKR NB-1500</h2>
 
-<h4 id="what-will-you-learn">What will you learn</h4>
+<p>The Arduino MKR NB 1500 adds wireless connectivity, Narrow Band IoT and LTE CAT M1, to the Arduino family. 
+It is a  development board which contains the ATMEL SAMD21 micro controller, 
+designed to integrate a low power-consumption core and a high performance.</p>
+
+<h4 id="what-will-you-learn-">What will you learn ?</h4>
 
 <ul>
   <li>Control Arduino board MKR NB-1500 using the Arduino IDE</li>
   <li>Register a device on AWS</li>
   <li>Generate credentials for AWS</li>
+  <li>Take measurements</li>
   <li>Build a bridge between UDP and AWS</li>
+  <li>Send commands to the device</li>
 </ul>
 
 <h4 id="what-will-you-need">What will you need?</h4>
 
 <ul>
-  <li>Finish successfully the Arduino Starterkit tutorial</li>
+  <li>Have successfully completed the Arduino <a href="ArduinoStarterKit.html">Starterkit tutorial</a></li>
   <li>Arduino board MKR NB-1500</li>
   <li>Micro USB cable</li>
   <li>Arduino IDE</li>
   <li>AWS account</li>
-  <li><a href="KitePlatform.html#access-step-by-step-using-the-curl-command">KITE Platform</a> Certificates files</li>
   <li>Telefónica SIMs with private APN <a href="BPIPsec.html">(IPsec)</a></li>
+  <li><a href="KitePlatform.html#access-step-by-step-using-the-curl-command">KITE Platform</a> Certificates files</li>
   <li>Telefónica <a href="BPDataBridge.html">data Bridge</a></li>
 </ul>
 
-<p>If you have successfully completed the Arduino Starterkit tutorial, all the necessary software is already updated.</p>
+<p>If you had successfully completed the Arduino Starterkit tutorial, all the necessary software is already updated.</p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h2 id="create-a-device-thing-in-aws-iot">Create a device thing in AWS-IoT</h2>
+
+<ol>
+  <li>
+    <p>Sign in to the AWS Management Console, and then open the AWS IoT console at https://console.aws.amazon.com/iot</p>
+  </li>
+  <li>
+    <p>Go to the Monitor page. In the left navigation panel, choose Manage, and then choose Things.</p>
+  </li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console.png" alt="pic" /></p>
+
+<ol>
+  <li>You don’t have a thing created yet. Choose Register a thing.</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Register.png" alt="pic" /></p>
+
+<ol>
+  <li>On the Creating AWS IoT things page, choose Create a single thing.</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Register_things.png" alt="pic" /></p>
+
+<ol>
+  <li>Enter a name for the device, leave the default values for all the other fields, and then choose Next.</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Register_Device.png" alt="pic" /></p>
+
+<ol>
+  <li>Now you should generate the certificates.</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Certificates.png" alt="pic" /></p>
+
+<ol>
+  <li>Download your public and private keys, certificate, and root certificate authority (CA)on your PC.</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Certificates_Download.png" alt="pic" /></p>
+
+<ol>
+  <li>Download your root certificate authority, a new window will open for select a CA to download.</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Certificates_Download_CA.png" alt="pic" /></p>
+
+<ol>
+  <li>
+    <p>Don’t forget to save these files, you need them to set the connection</p>
+  </li>
+  <li>
+    <p>Returns to the previous window and <strong>Activate</strong></p>
+  </li>
+  <li>
+    <p>Select <strong>Attach a policy</strong></p>
+  </li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Certificates_Download.png" alt="pic" /></p>
+
+<ol>
+  <li>Close this window. Before, you need to create and attach a new policy to the certificate</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Certificates_AttachPolicy.png" alt="pic" /></p>
+
+<ol>
+  <li>
+    <p>Open the AWS IoT console again https://console.aws.amazon.com/iot</p>
+  </li>
+  <li>
+    <p>In the left navigation panel, choose <strong>Secure</strong>, and then choose <strong>Policies</strong>.</p>
+  </li>
+  <li>
+    <p>Select <strong>Create a Policy</strong></p>
+  </li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Secure_Policies.png" alt="pic" /></p>
+
+<ol>
+  <li>Enter a Name for the policy:
+    <ul>
+      <li><strong>Action</strong>        enter <strong>iot:</strong>*</li>
+      <li><strong>Resource ARN</strong>  enter <strong>*</strong></li>
+      <li><strong>Effect</strong>        choose <strong>Allow</strong>
+Select Create. This policy allows your Device to publish messages to AWS IoT.</li>
+    </ul>
+  </li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Secure_Policies_Create_Device.png" alt="pic" /></p>
+
+<ol>
+  <li>In the AWS IoT console, choose <strong>Manage</strong>, <strong>Things</strong>. On the Things page, choose your Thing</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Things_Device.png" alt="pic" /></p>
+
+<ol>
+  <li>On the thing’s <strong>Details</strong> page, in the left navigation panel, choose <strong>Interact</strong>.
+Make a note of the REST API endpoint. You need it to connect to your device shadow.</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Things_Details_Interact_Device.png" alt="pic" /></p>
+
+<ol>
+  <li>Now select <strong>Security</strong>, and choose the certificate that you created earlier.</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Things_Details_Security_Device.png" alt="pic" /></p>
+
+<ol>
+  <li>In Actions, choose Attach policy</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Things_Details_Security_Policy_Device.png" alt="pic" /></p>
+
+<ol>
+  <li>Select your new policy and then choose Attach</li>
+</ol>
+
+<p><img src="pictures/AWS/AWS_Console_Manage_Things_Details_Security_Policy_Attach_Device.png" alt="pic" /></p>
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
 <h2 id="what-is-mqtt">What is MQTT</h2>
-<p>MQTT is a machine-to-machine (M2M)/”Internet of Things” connectivity protocol. 
+<p>MQTT is a machine-to-machine (M2M)/”Internet of Things” connectivity protocol.
 It was designed as an extremely lightweight publish/subscribe messaging transport.</p>
 
-<p>The first concept is the publish and subscribe system. 
-A device can publish a message on a topic, 
+<p>The first concept is the publish and subscribe system.
+A device can publish a message on a topic,
 or it can be subscribed to a topic to receive messages</p>
 
-<p>AWS use this system to communicate with your devices</p>
+<p>AWS use this system to communicate with your devices.</p>
 
-<p>If you access to AWS Management Console. In the left navigation panel, choose Manage, and then choose Things.
-When choose a thing you can find out the different topic that you can subscribe/publish 
-Select <em>**Interact</em> to copy they</p>
+<p>Access to IoT Core in AWS Management Console and go to the left navigation pane. Select Manage, and then choose Things.</p>
+
+<p>When you pick a thing you can find out the different topic that you can subscribe/publish</p>
+
+<p>Select <strong>Interact</strong> to inspect them.</p>
+
+<p>📍
+Don’t forget to copy also the Rest API, you will need it as a broker address.</p>
 
 <p><img src="pictures/AWS/AWS_Console_Manage_Things_Details_Interact_MQTT_Device.png" alt="pic" /></p>
 
 <p>At the moment, you only need to know three topics:</p>
 <ul>
-  <li>Update to this thing shadow
+  <li>Publish in this topic to update the thing shadow
     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyDevice/shadow/update
 </code></pre></div>    </div>
   </li>
-  <li>Update to this thing shadow was accepted
+  <li>Subscribe to this topic to check if the report was accepted
     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyDevice/shadow/update/accepted
 </code></pre></div>    </div>
   </li>
-  <li>Update to this thing shadow was rejected
+  <li>Subscribe to this topic to check if the report was rejected
     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyDevice/shadow/update/rejected
 </code></pre></div>    </div>
   </li>
@@ -198,24 +340,38 @@ Select <em>**Interact</em> to copy they</p>
 
 <h2 id="how-to-communicate-with-aws">How to communicate with AWS</h2>
 
-<p>As you know, when you register a new device in AWS, several topics are created by default. Using them you can send data and receive information.</p>
+<p>As you know, when you register a new device in AWS, his reserved Topics are created by default,
+You can use these topics for send data and receive information from the shadow.</p>
 
-<p>For the time being,  you only need to know a couple of them:</p>
+<p>For the time being, you only need to know a couple of them:</p>
 
-<p>topic Update</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyDevice/shadow/update
-</code></pre></div></div>
-<p>this topic is where you publish the status of the device,
-in this tutorial this information is composed by the values of the sensors as the current color of the LED display.</p>
+<ul>
+  <li>topic Update
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyDevice/shadow/update
+</code></pre></div>    </div>
+    <p>this topic is where you publish the status of the device for update the shadow,
+in this tutorial this information is composed of values sent by the Arduino with the label <strong>reported</strong></p>
+  </li>
+</ul>
 
-<p>topic Delta</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyDevice/shadow/update/delta
-</code></pre></div></div>
-<p>This is the channel that AWS uses to communicate the <strong>desired</strong> changes to the device.
-In this case we use the MQTT.fx to communicate these changes to AWS and to report the change to the device.</p>
+<p>You’ll also use the topic to communicate the desires to the shadow.
+You must publish in the shadow like the Arduion, but using the label <strong>desired.</strong>
+In this case we use MQTT.fx to communicate these desires to AWS and to report the change to the device.</p>
 
-<p>All these changes are recorded in the <strong>shadow</strong> of the device. 
-To see the current status just access the AWS core as you saw in the previous section.</p>
+<ul>
+  <li>topic Delta
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyDevice/shadow/update/delta
+</code></pre></div>    </div>
+    <p>This is the channel that AWS uses to communicate to the device 
+the difference between the reported status and the desired status.
+It is necessary that the device is subscribed to the topic.</p>
+  </li>
+</ul>
+
+<p>All these status are recorded in the <strong>shadow</strong> of the device. 
+To check the current status, you should access the AWS IoT core as we taught you at the previous section.</p>
+
+<p>Here you have an example:</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"desired"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -230,19 +386,19 @@ To see the current status just access the AWS core as you saw in the previous se
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
-<p>As you notice in the previous file, there are three main keys:</p>
+<p>As you can read in the above example, there are three main keys:</p>
 <ul>
-  <li>“desired”: Contains the desired state, sent from the MQTT.fx</li>
-  <li>“reported”: Contains the status information reported by the device</li>
-  <li>“delta”: contains the differences between the reported status and the desired status. 
-This is the information that is published in the delta topic</li>
+  <li>“desired”: It contains the desired state sent from the MQTT.fx</li>
+  <li>“reported”: It contains the status information reported by the device</li>
+  <li>“delta”: It contains the differences between the reported status and the desired status. 
+This is the information that is published in the delta topic.</li>
 </ul>
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
 <h2 id="test-your-certificates-with-mqttfx">Test your Certificates with MQTT.fx</h2>
 
-<p>One of the best ways to make sure that certificates have been created correctly is to try connecting via a 
+<p>One of the best ways to make sure that certificates had been created correctly, it is to try connecting via a 
 MQTT client with graphical interface.</p>
 
 <p>We recommend you download MQTT.fx from the following link https://mqttfx.jensd.de/</p>
@@ -261,11 +417,10 @@ Remember to use the files you downloaded in the previous step. And configure the
 <p><img src="pictures/MQTT/MQTTFX_Broker_Connect.png" alt="pic" /></p>
 
 <ol>
-  <li>Now that you are connected to the broker, you need to subscribe to the topics to know the state of the shadow: 
-accepted and rejected.</li>
+  <li>Now that you are connected to the broker, you need to subscribe to the topics accepted and rejected.</li>
 </ol>
 
-<p>Every time a message is published in the topic to update the shadow, 
+<p>When a message is published, 
 you can check in these topics if the message has been <strong>accepted</strong> or <strong>rejected</strong>.</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyDevice/shadow/update/accepted
 $aws/things/MyDevice/shadow/update/rejected
@@ -286,12 +441,12 @@ you can use the following link to validate it https://jsonlint.com/</li>
     }
 }
 </code></pre></div></div>
-<p>This file will simulate the publishing of a device to make voltage measurements.</p>
+<p>This example simulates the publication of voltage measurements made by the device.</p>
 
 <p><img src="pictures/AWS/AWS_Console_Manage_Things_Details_Shadow_Device.png" alt="pic" /></p>
 
 <ol>
-  <li>Choose the topic to update your shadow.
+  <li>Select the topic to update your shadow.
 Be sure to select the service quality level as QoS 0, amazon doesn’t allow different police.
     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$aws/things/MyDevice/shadow/update
 </code></pre></div>    </div>
@@ -307,22 +462,24 @@ Be sure to select the service quality level as QoS 0, amazon doesn’t allow dif
 }
 </code></pre></div>    </div>
   </li>
-  <li>Play with this, sending different values until you understand how it works.
-:thumbsup: Remember to check if your values has been accepted or rejected</li>
+  <li>Play with this, sending different values until you understand how it works.</li>
 </ol>
+
+<p>👍
+Remember to check if your values has been accepted or rejected</p>
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
 <h1 id="how-to-start-with-the-project">How to Start with the project</h1>
 
-<p>We will explain it to you later in detail how to play with it step by step, 
-In this tutorial you need to be familiar with the following concepts</p>
+<p>We will explain it to you later in detail. but in this tutorial,
+first you need to be familiar with the following concepts</p>
 
 <ul>
   <li>Run a code file on your Arduino Board</li>
-  <li>Run a python server with</li>
+  <li>Run a python code</li>
   <li>Use MQTT.fx to post messages in a topic</li>
-  <li>Get the shadow from AWS core</li>
+  <li>Review the shadow from AWS core</li>
 </ul>
 
 <p>Now you can connect to the internet and send your data through the UDP protocol.</p>
@@ -331,69 +488,70 @@ In this tutorial you need to be familiar with the following concepts</p>
 
 <h2 id="arduino-board-run-a-code-file">Arduino Board: Run a code file</h2>
 
-<p>For this Arduino project, it is necessary that you include some of the classes we have prepared exclusively 
-for this tutorial. To do this, be sure to open the <strong>.ino</strong> file from the following 
-<a href="../scripts/Arduino/Connection_UDP_command">folder</a>. 
-There are all the files you need.</p>
+<p>For this Arduino project, it is necessary that you include some of the files that we have exclusively prepared 
+for this tutorial.</p>
 
-<p>In the following code you can see the main structure of the program:</p>
+<p>To do this, be sure to open the <strong>.ino</strong> file from the following 
+<a href="https://github.com/telefonicaid/iot-activation/tree/master/scripts/Arduino/Connection_UDP_command">folder</a>. 
+There are all the files that you will need.</p>
+
+<p>In the following code you can check the main structure of the program:</p>
 <ol>
   <li>Measuring</li>
   <li>Modem connection to the network</li>
   <li>Sending of the measures</li>
   <li>Disconnection of the modem to reduce power consumption</li>
-  <li>Sampling timeout
-```c
-}</li>
+  <li>Sampling timeout</li>
 </ol>
 
-<p>void loop() {
-  // put your main code here, to run repeatedly:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">}</span>
 
-<p>Serial.println(“measuring…”);
-  data.measurement();
-  Serial.print(“- voltage: “);
-  Serial.println(data.get_voltage());
-  Serial.print(“- amperage: “); 
-  Serial.println(data.get_amperage());</p>
+<span class="kt">void</span> <span class="n">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// put your main code here, to run repeatedly:</span>
+    
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"measuring..."</span><span class="p">);</span>
+  <span class="n">data</span><span class="p">.</span><span class="n">measurement</span><span class="p">();</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"- voltage: "</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">get_voltage</span><span class="p">());</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"- amperage: "</span><span class="p">);</span> 
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">get_amperage</span><span class="p">());</span>
 
-<p>Serial.println(“Sending… “);   <br />
-  nbAccess.noLowPowerMode();
-  send_data_UDP(data.get_voltage(),data.get_amperage()); 
-  nbAccess.lowPowerMode();</p>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"Sending... "</span><span class="p">);</span>     
+  <span class="n">nbAccess</span><span class="p">.</span><span class="n">noLowPowerMode</span><span class="p">();</span>
+  <span class="n">send_data_UDP</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">get_voltage</span><span class="p">(),</span><span class="n">data</span><span class="p">.</span><span class="n">get_amperage</span><span class="p">());</span> 
+  <span class="n">nbAccess</span><span class="p">.</span><span class="n">lowPowerMode</span><span class="p">();</span>
+  
+  <span class="n">delay</span><span class="p">(</span><span class="n">polling</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>But first of all, don’t forget to complete the configuration 
+<a href="https://github.com/telefonicaid/iot-activation/blob/master/scripts/Arduino/Connection_UDP_command/configuration.h">file</a></p>
 
-<p>delay(polling);
-}</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>But first of all, don't forget to complete the configuration [file](../scripts/Arduino/Connection_UDP/configuration.h)
-
-In the you have to complete the necessary information to complete the sending of information to the UDP server.
-```c
-// COMPLETE your information
-#define SECRET_PINNUMBER ""
-
-#define LOCAL_PORT 4114
+<p>You have to complete necessary information to connect to the UDP server.</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// COMPLETE your information</span>
+<span class="cp">#define SECRET_PINNUMBER ""
+</span>
+<span class="cp">#define LOCAL_PORT 4114
 #define IP_ADDRESS "XX.XX.XX.XX"
-
-// SET your sampling time
-#define POLL_TIME 10
-
+</span>
+<span class="c1">// SET your sampling time</span>
+<span class="cp">#define POLL_TIME 10
+</span>
 </code></pre></div></div>
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
 <h2 id="udp-data-bridge-connecting-using-nb-iot-o-lte-m">UDP data Bridge: Connecting using NB-IoT o LTE-M</h2>
 
-<p>One of the advantages of an iot device, is to be able to stop the connection when it is not necessary 
-to decrease the energy consumption.</p>
-
-<p>From iot-activation we suggest you the deployment of a data bridge between the Arduino and the 
+<p>One of the advantages of an iot device, is to be able to stop the connection when it is not necessary.
+This option decrease the energy consumption. So, we suggest you, the deployment of a data bridge between the Arduino and the 
 AWS IoT Core.</p>
 
-<p>This allows you to increase the intelligence of your devices by integrating the Kite Platform into this server,
-and this add extra security in sending data over the network. 
-By updating your Kite SIM information, the data bridge recognizes the SIM and automatically connects to 
-the corresponding AWS MQTT broker.</p>
+<p>Data Bridge will help you with the connection between UDP devices and the public clouds.
+After the bridge deployment, it will gather your SIM information from KIte platform.
+The data bridge recognizes the SIM and automatically and connects to the corresponding 
+AWS MQTT broker based on the configuration you provide it.</p>
 
-<p>Just make sure to add the name of the thing as one of the fields of the SIM in Kite.
+<p>You just make sure to add the name of the thing as one of the fields of the SIM in Kite.
 <a href="KitePlatform.html#sim-identification">Kite</a></p>
 
 <p>This <a href="BPDataBridge.html">bridge</a>
@@ -401,7 +559,8 @@ is the easiest way to connect to AWS using only one UDP send</p>
 
 <p>📍
 If you’re running the connection tests in The Thinx lab.
-The SIM you use will not have connectivity with the Kite platform. So you will not be able to use the connection through our Bridge. 
+The SIM you use will not have connectivity with the Kite platform.
+So you will not be able to use the connection through our Bridge. 
 Even so you have access to the internet and you will be able to perform any test on your infrastructure.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">"################################# waiting for a new message #################################"</span><span class="p">)</span>
@@ -423,36 +582,41 @@ Even so you have access to the internet and you will be able to perform any test
 
 <h2 id="check-the-shadow">Check the Shadow</h2>
 
-<p>Before starting the execution you will see how your shadow is empty. 
-With this script you can send voltage and current values
-This updated the shadow with each shipment of the device every few seconds.</p>
+<p>Before starting the execution you will check how your shadow is empty. 
+With this Arduino script you can send voltage and current values to the shadow.
+The shadow will be updated with every message received from the device.</p>
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
 <h2 id="send-a-command">Send a command</h2>
 
-<p>To send a command to the device you must use the MQTT as explained in the previous section through the json that we provide.
+<p>To send a command to the device, you must use the MQTT as explained in the previous section through the json that we provide you.
 You can change this instruction as many times as needed.</p>
 
 <p>In this example you can turn on and off the small LED on the board, but you are unrestricted to program
 your own instructions. Feel free!</p>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span><span class="w"> </span><span class="err">Turn</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">led</span><span class="w">
-</span><span class="p">{</span><span class="w">
-	</span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-		</span><span class="s2">"desired"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-			</span><span class="s2">"raw"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-		</span><span class="p">}</span><span class="w">
-	</span><span class="p">}</span><span class="w">
+<ul>
+  <li>Turn on led
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"desired"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"raw"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span><span class="err">#</span><span class="w"> </span><span class="err">Turn</span><span class="w"> </span><span class="err">off</span><span class="w"> </span><span class="err">led</span><span class="w">
-</span><span class="p">{</span><span class="w">
-	</span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-		</span><span class="s2">"desired"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-			</span><span class="s2">"raw"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
-		</span><span class="p">}</span><span class="w">
-	
-</span></code></pre></div></div>
+</span></code></pre></div>    </div>
+  </li>
+  <li>Turn off led
+```json
+{
+  “state”: {
+      “desired”: {
+          “raw”: 2
+      }</li>
+</ul>
+
+<p>```</p>
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 

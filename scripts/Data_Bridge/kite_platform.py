@@ -21,6 +21,7 @@
 from __future__ import print_function
 from log import *
 from utils import *
+from os import remove
 import requests
 import json
 
@@ -41,7 +42,7 @@ def get_info_from_ip(url, certificate, key, ipAddress):
 
     """
     url_api = url + KITE_API_IP
-    kite_response = requests.get(url_api % ipAddress,cert=(certificate, key))
+    kite_response = requests.get(url_api % ipAddress,cert=(certificate, key), verify=False)
 
     return kite_response
 
@@ -57,7 +58,7 @@ def get_info_from_icc(url, certificate, key, iccNumber):
 
     """
     url_api = url + KITE_API_ICC
-    kite_response = requests.get(url_api % iccNumber, cert=(certificate, key))
+    kite_response = requests.get(url_api % iccNumber, cert=(certificate, key), verify=False)
 
     return kite_response
 
@@ -73,7 +74,7 @@ def get_info_from_alias(url, certificate, key, alias_name):
 
     """
     url_api = url + KITE_API_ALIAS
-    kite_response = requests.get(url_api % alias_name,cert=(certificate, key))
+    kite_response = requests.get(url_api % alias_name, cert=(certificate, key), verify=False)
 
     return kite_response
 
@@ -93,6 +94,8 @@ def kite_get_custom_parameters(url, certificate, key, ipAddress):
 
     thing_name = ""
     thing_topic = ""
+    thing_latitude = ""
+    thing_longitude = ""
 
     logger.info("KITE Response status code [ %s ]" % kite_response.status_code )
 
@@ -101,14 +104,20 @@ def kite_get_custom_parameters(url, certificate, key, ipAddress):
         json_kite_response = json.loads(kite_response.text)
         thing_name = json_kite_response["subscriptionData"][0]["customField1"]
         thing_topic = json_kite_response["subscriptionData"][0]["customField2"]
-
         logger.debug("KITE: Reading thing name [ %s ]" % thing_name)
         logger.debug("KITE: Reading thing topic [ %s ]" % thing_topic)
+
+        if json_kite_response["subscriptionData"][0]["supplServices"]["location"]:
+            thing_latitude = json_kite_response["subscriptionData"][0]["automaticLocation"]["coordinates"]["latitude"]
+            thing_longitude = json_kite_response["subscriptionData"][0]["manualLocation"]["coordinates"]["longitude"]
+            logger.debug("KITE: Reading latitude [ %s ]" % thing_latitude)
+            logger.debug("KITE: Reading longitude [ %s ]" % thing_longitude)
+
 
     else:
         connected = False
 
-    return connected, thing_name, thing_topic, kite_response.status_code
+    return connected, thing_name, thing_topic, kite_response.status_code, thing_latitude, thing_longitude
 
 class Kite:
     """ Contains the information of the SIM in Kite.
@@ -118,10 +127,11 @@ class Kite:
     ip = ''
     device_name = ''
     cloud_topic = ''
+    latitude = ''
+    longitude = ''
     code = 0
 
-
-    def __init__(self, ipAddress):
+    def __init__(self, ip_address, certificate, private_key):
         """ Class Kite Constructor.
 
         :param ipAddress: SIM's IP Address
@@ -130,11 +140,33 @@ class Kite:
         logger.debug("KITE: Reading config file")
         config_file = read_config('config/Configuration.yaml')
         url = config_file["KITE"]["url"]
-        path = config_file["KITE"]["path"]
-        certificate = path + config_file["KITE"]["certificate"]
-        private_key = path + config_file["KITE"]["private_key"]
-        self.ip = ipAddress
-        self.status_ok, self.device_name, self.cloud_topic, self.code = kite_get_custom_parameters(url, certificate, private_key, ipAddress)
-        logger.debug("KITE: Readed")
+
+        '''fd_cert, temp_path_cert = tempfile.mkstemp()
+        temp_file_cert = open(temp_path_cert, 'w')
+        temp_file_cert.write(certificate)
+        temp_file_cert.close()
+
+        fd_key, temp_path_key = tempfile.mkstemp()
+        temp_file_key = open(temp_path_key, 'w')
+        temp_file_key.write(private_key)
+        temp_file_key.close()'''
+
+        temp_path_cert = tmp_file(certificate)
+        temp_path_key = tmp_file(private_key)
+
+        try:
+
+            self.ip = ip_address
+            self.status_ok, self.device_name, self.cloud_topic, self.code, self.latitude, self.longitude = \
+                kite_get_custom_parameters(url, temp_path_cert, temp_path_key, ip_address)
+
+            os.remove(temp_path_cert)
+            os.remove(temp_path_key)
+
+        except Exception as e:
+            os.remove(temp_path_cert)
+            os.remove(temp_path_key)
+
+        logger.debug("KITE: Readed ")
 
 
