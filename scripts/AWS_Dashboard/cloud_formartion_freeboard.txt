@@ -1,0 +1,103 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: 'AWS::Serverless-2016-10-31'
+Parameters:
+  BucketNameDesired:
+    Type: String
+    AllowedPattern: '[a-zA-Z0-9]+'
+Globals:
+  Function:
+    Timeout: 90
+Resources:
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName:
+        Ref: BucketNameDesired
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: error.html
+  BucketPolicy:
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      PolicyDocument:
+        Id: MyPolicy
+        Version: 2012-10-17
+        Statement:
+          - Sid: PublicReadForGetBucketObjects
+            Effect: Allow
+            Principal: '*'
+            Action: 's3:GetObject'
+            Resource: !Join 
+              - ''
+              - - 'arn:aws:s3:::'
+                - !Ref S3Bucket
+                - /*
+      Bucket: !Ref S3Bucket
+  DeployDashboardFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Role: !GetAtt LambdaRoleS3.Arn
+      CodeUri:
+        Bucket: lambda-for-deploy
+        Key: !Sub lambda.zip
+      Environment:
+        Variables:
+          bucket_name:
+            Ref: BucketNameDesired
+      Handler: app.lambda_handler
+      Runtime: python3.7
+  LambdaRoleS3:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+  RolePolicies:
+    Type: 'AWS::IAM::Policy'
+    Properties:
+      PolicyName: Lambda-to-S3
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action: '*'
+            Resource: 'arn:aws:s3:::*'
+      Roles:
+        - Ref: LambdaRoleS3
+  TriggerLambda:
+    Type: 'Custom::DeployDashboardFunction'
+    Properties:
+      ServiceToken: !GetAtt 
+        - DeployDashboardFunction
+        - Arn
+    DependsOn:
+      - DeployDashboardFunction
+      - LambdaRoleS3
+      - S3Bucket
+Outputs:
+  DeployDashboardFunction:
+    Description: Deploy Dashboard Lambda Function ARN
+    Value: !GetAtt DeployDashboardFunction.Arn
+  DeployDashboardFunctionIamRole:
+    Description: Implicit IAM Role created for Deploy Dashboard function
+    Value: LambdaRoleS3
+  WebsiteURL:
+    Value: !GetAtt 
+      - S3Bucket
+      - WebsiteURL
+    Description: URL for website hosted on S3
+  S3BucketSecureURL:
+    Value: !Join 
+      - ''
+      - - 'https://'
+        - !GetAtt 
+          - S3Bucket
+          - DomainName
+    Description: Name of S3 bucket to hold website content

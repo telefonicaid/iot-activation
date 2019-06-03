@@ -1,4 +1,246 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-09T10:54:58+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">IoT Activation</title><subtitle>Welcome to the Revolu&lt;strong&gt;IOT&lt;/strong&gt;n</subtitle><entry><title type="html">Arduino to AWS</title><link href="http://localhost:4000/ArduinoAWS.html" rel="alternate" type="text/html" title="Arduino to AWS" /><published>2019-02-06T13:00:00+01:00</published><updated>2019-02-06T13:00:00+01:00</updated><id>http://localhost:4000/ArduinoAWS</id><content type="html" xml:base="http://localhost:4000/ArduinoAWS.html">&lt;h3 id=&quot;table-of-contents&quot;&gt;Table of Contents&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-05-20T11:12:33+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">IoT Activation</title><subtitle>Welcome to the Revolu&lt;strong&gt;IOT&lt;/strong&gt;n</subtitle><entry><title type="html">AWS CloudFormation IPsec</title><link href="http://localhost:4000/AWSCFIPsec.html" rel="alternate" type="text/html" title="AWS CloudFormation IPsec" /><published>2019-02-06T13:00:00+01:00</published><updated>2019-02-06T13:00:00+01:00</updated><id>http://localhost:4000/AWSCFIPsec</id><content type="html" xml:base="http://localhost:4000/AWSCFIPsec.html">&lt;h3 id=&quot;table-of-contents&quot;&gt;Table of Contents&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#ipsec-vpn-one-click-away&quot;&gt;IPsec VPN one click away&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#aws-cloudformation&quot;&gt;AWS CloudFormation&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#ec2-key-pair&quot;&gt;EC2 Key Pair&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#cloud-formation-create-new-stack&quot;&gt;Cloud Formation create new stack&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#download-configuration&quot;&gt;Download Configuration&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;ipsec-vpn-one-click-away&quot;&gt;IPsec VPN one click away&lt;/h1&gt;
+
+&lt;p&gt;if you prefer, you can configure the AWS IPsec following the next tutorial step by step.
+But if this is not the case. We have this one click solution for you!!&lt;/p&gt;
+
+&lt;h2 id=&quot;aws-cloudformation&quot;&gt;AWS CloudFormation&lt;/h2&gt;
+
+&lt;p&gt;CloudFormation provides a common language for you to describe and provision 
+all the infrastructure resources in your cloud environment.&lt;/p&gt;
+
+&lt;p&gt;It allows you to use a simple text file to build and rebuild your infrastructure.&lt;/p&gt;
+
+&lt;h3 id=&quot;ec2-key-pair&quot;&gt;EC2 Key Pair&lt;/h3&gt;
+
+&lt;p&gt;Before starting, you need create a Key Pair for secure access to the EC2 machine.&lt;/p&gt;
+
+&lt;p&gt;For it, go to EC2 AWS console / &lt;strong&gt;NETWORK &amp;amp; SECURITY&lt;/strong&gt; / &lt;strong&gt;Key Pairs&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;and click on &lt;strong&gt;Create Key Pair&lt;/strong&gt; button.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/AWS/AWS_Console_EC2_KeyPair_create.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Type a Key Pair name:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/AWS/AWS_Console_EC2_KeyPair_create_name.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A new .pem file is created. Use this file to connect EC2 machine using a SSH client.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;cloud-formation-create-new-stack&quot;&gt;Cloud Formation create new stack&lt;/h3&gt;
+
+&lt;p&gt;To begin with, Go to CloudFormation Console:&lt;/p&gt;
+
+&lt;p&gt;Click on &lt;strong&gt;Create Stack&lt;/strong&gt; button&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/AWS/AWS_Console_CloudFormation_Stack_create.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the new window that opens, fill the form with the &lt;a href=&quot;https://github.com/telefonicaid/iot-activation/tree/master/scripts/Cloud_Formation/IPsec.txt&quot;&gt;file&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/AWS/AWS_Console_CloudFormation_Stack_create_config_file.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Click &lt;strong&gt;Next&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Choose a name for your Stack and select your EC2 Key Pair created in the previous step.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;awscloudformationipsec
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/AWS/AWS_Console_CloudFormation_Stack_create_config_ipsec.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Click &lt;strong&gt;Next&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;In the next window, you don’t need to configure any options&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/AWS/AWS_Console_CloudFormation_Stack_create_config_option.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Click &lt;strong&gt;Next&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now the wizard shows you a stack review.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/AWS/AWS_Console_CloudFormation_Stack_create_config_review_ipsec1.png&quot; alt=&quot;pic&quot; /&gt;
+&lt;img src=&quot;pictures/AWS/AWS_Console_CloudFormation_Stack_create_config_review_ipsec2.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Click on the &lt;strong&gt;Execute&lt;/strong&gt; button.&lt;/p&gt;
+
+&lt;p&gt;It can take several minutes for deploy all the services.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/AWS/AWS_Console_CloudFormation_Stack_create_running_ipsec.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;wait for a few minutes&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/AWS/AWS_Console_CloudFormation_Stack_create_running_ipsec_ok.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, all you infrastructure are created. It just needs a last step.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;download-configuration&quot;&gt;Download Configuration&lt;/h3&gt;
+
+&lt;p&gt;To Configure the IPsec connection with Telefonica’s network you must send a configuration file.
+This file can be download from AWS console.&lt;/p&gt;
+
+&lt;p&gt;Go to VPC console / &lt;strong&gt;Virtual Private Network (VPN)&lt;/strong&gt; / &lt;strong&gt;Site-to-Site VPN&lt;/strong&gt; / 
+And Select your VPN connections&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/AWS/AWS_Console_VPC_VPNconnection_download_ipsec.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;complete the information as in the image below and click &lt;strong&gt;Download&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/AWS/AWS_Console_VPC_VPNconnection_download_config_ipsec.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Amazon provide a redundant connection. You have to download and send the two VPN connection files.&lt;/p&gt;</content><author><name></name></author><summary type="html">Table of Contents IPsec VPN one click away AWS CloudFormation EC2 Key Pair Cloud Formation create new stack Download Configuration IPsec VPN one click away if you prefer, you can configure the AWS IPsec following the next tutorial step by step. But if this is not the case. We have this one click solution for you!! AWS CloudFormation CloudFormation provides a common language for you to describe and provision all the infrastructure resources in your cloud environment. It allows you to use a simple text file to build and rebuild your infrastructure. EC2 Key Pair Before starting, you need create a Key Pair for secure access to the EC2 machine. For it, go to EC2 AWS console / NETWORK &amp;amp; SECURITY / Key Pairs and click on Create Key Pair button. Type a Key Pair name: A new .pem file is created. Use this file to connect EC2 machine using a SSH client. Cloud Formation create new stack To begin with, Go to CloudFormation Console: Click on Create Stack button In the new window that opens, fill the form with the file Click Next. Choose a name for your Stack and select your EC2 Key Pair created in the previous step. awscloudformationipsec Click Next. In the next window, you don’t need to configure any options Click Next. Now the wizard shows you a stack review. Click on the Execute button. It can take several minutes for deploy all the services. wait for a few minutes Now, all you infrastructure are created. It just needs a last step. Download Configuration To Configure the IPsec connection with Telefonica’s network you must send a configuration file. This file can be download from AWS console. Go to VPC console / Virtual Private Network (VPN) / Site-to-Site VPN / And Select your VPN connections complete the information as in the image below and click Download Amazon provide a redundant connection. You have to download and send the two VPN connection files.</summary></entry><entry><title type="html">AWS Dashboard</title><link href="http://localhost:4000/AWSdashboard.html" rel="alternate" type="text/html" title="AWS Dashboard" /><published>2019-02-06T13:00:00+01:00</published><updated>2019-02-06T13:00:00+01:00</updated><id>http://localhost:4000/AWSdashboard</id><content type="html" xml:base="http://localhost:4000/AWSdashboard.html">&lt;h3 id=&quot;table-of-contents&quot;&gt;Table of Contents&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#display-your-dashboard-in-less-than-3-minutes-one-click-away&quot;&gt;Display your dashboard&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#aws-cloudformation&quot;&gt;AWS CloudFormation&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#freeboard&quot;&gt;Freeboard&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#load-a-freeboard&quot;&gt;load a freeboard&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;display-your-dashboard-in-less-than-3-minutes-one-click-away&quot;&gt;Display your dashboard in less than 3 minutes. One click away!!&lt;/h1&gt;
+
+&lt;p&gt;Storing your values in the shade is a great solution, but sometimes your clients become far more demanding.
+In these cases, you need to develop a custom dashboard.&lt;/p&gt;
+
+&lt;p&gt;We’ve thought in this case. We have this one click solution for you!!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/freeboard/freeboard_init_dashboard.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;aws-cloudformation&quot;&gt;AWS CloudFormation&lt;/h2&gt;
+
+&lt;p&gt;CloudFormation provides a common language for you to describe and provision 
+all the infrastructure resources in your cloud environment.&lt;/p&gt;
+
+&lt;p&gt;It allows you to use a simple text file to build and rebuild your infrastructure.&lt;/p&gt;
+
+&lt;p&gt;To begin with, Go to CloudFormation Console:&lt;/p&gt;
+
+&lt;p&gt;Click on &lt;strong&gt;Create Stack&lt;/strong&gt; button&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/AWS/AWS_Console_CloudFormation_Stack_create.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the new window that opens, fill the form with the link below:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://s3-eu-west-1.amazonaws.com/lambda-for-deploy/cloud_formartion_freeboard.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In the link you can see a public s3 bucket with our CloudFormation template.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/AWS/AWS_Console_CloudFormation_Stack_create_config.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Click &lt;strong&gt;Next&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Select a name for your Stack and use the same for name your s3 bucket:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;iotactivationdashboard
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/AWS/AWS_Console_CloudFormation_Stack_create_config_name.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Click &lt;strong&gt;Next&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;In the next window, you don’t need to configure any options&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/AWS/AWS_Console_CloudFormation_Stack_create_config_option.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Click &lt;strong&gt;Next&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now the wizard will warn you about the capabilities. Just tick the boxes.&lt;/p&gt;
+
+&lt;p&gt;Finally, click on &lt;strong&gt;Create Change Set&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/AWS/AWS_Console_CloudFormation_Stack_create_config_review.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Click on the &lt;strong&gt;Execute&lt;/strong&gt; button.&lt;/p&gt;
+
+&lt;p&gt;It can take several minutes for deploy all the services.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/AWS/AWS_Console_CloudFormation_Stack_create_running.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As a result, when it’s finishes you will get a new link for display your dashboard.&lt;/p&gt;
+
+&lt;p&gt;Go to &lt;strong&gt;Output&lt;/strong&gt; tab an click on the Website URL&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/AWS/AWS_Console_CloudFormation_Stack_create_ok.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You’ll already have your freeboard created.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/freeboard/freeboard_init.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;freeboard&quot;&gt;Freeboard&lt;/h2&gt;
+
+&lt;p&gt;Freeboard is a simple dashboards for your devices.
+It allow you build real-time, interactive dashboards and visualizations in minutes using the intuitive interface.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/freeboard/freeboard_init_add.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To add a new source, you must select and set up an AWS account and fill the fields with your broker and thing topic.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/freeboard/freeboard_init_aws.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;All you have to do is add new panes. Let your imagination fly!!!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;load-a-freeboard&quot;&gt;load a freeboard&lt;/h3&gt;
+
+&lt;p&gt;One simple example is the dashboard designed for this shadow.&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;reported&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;raw&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+			&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;sensor1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+			&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;text1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;TZEUXBZPZN&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+			&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;sensor2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;76&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+			&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;location&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+				&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;latitude&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;40.431948&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+				&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;longitude&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;-3.666315&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+			&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+			&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;time&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Thu Mar 21 12:39:24 2019&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/freeboard/freeboard_init_dashboard.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You can load it from this &lt;a href=&quot;https://github.com/telefonicaid/iot-activation/tree/master/scripts/AWS_Dashboard/freeboard.json&quot;&gt;file&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/freeboard/freeboard_init_load.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the same way, you can export your freeboard. It is an important step to recover your configuration. 
+It is lost every time you refresh the web.&lt;/p&gt;
+
+&lt;p&gt;📍
+Be careful, you don’t share this file. It contains your account access key.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Table of Contents Display your dashboard AWS CloudFormation Freeboard load a freeboard Display your dashboard in less than 3 minutes. One click away!! Storing your values in the shade is a great solution, but sometimes your clients become far more demanding. In these cases, you need to develop a custom dashboard. We’ve thought in this case. We have this one click solution for you!! AWS CloudFormation CloudFormation provides a common language for you to describe and provision all the infrastructure resources in your cloud environment. It allows you to use a simple text file to build and rebuild your infrastructure. To begin with, Go to CloudFormation Console: Click on Create Stack button In the new window that opens, fill the form with the link below: https://s3-eu-west-1.amazonaws.com/lambda-for-deploy/cloud_formartion_freeboard.txt In the link you can see a public s3 bucket with our CloudFormation template. Click Next. Select a name for your Stack and use the same for name your s3 bucket: iotactivationdashboard Click Next. In the next window, you don’t need to configure any options Click Next. Now the wizard will warn you about the capabilities. Just tick the boxes. Finally, click on Create Change Set. Click on the Execute button. It can take several minutes for deploy all the services. As a result, when it’s finishes you will get a new link for display your dashboard. Go to Output tab an click on the Website URL You’ll already have your freeboard created. Freeboard Freeboard is a simple dashboards for your devices. It allow you build real-time, interactive dashboards and visualizations in minutes using the intuitive interface. To add a new source, you must select and set up an AWS account and fill the fields with your broker and thing topic. All you have to do is add new panes. Let your imagination fly!!! load a freeboard One simple example is the dashboard designed for this shadow. { &quot;reported&quot;: { &quot;raw&quot;: { &quot;sensor1&quot;: 3, &quot;text1&quot;: &quot;TZEUXBZPZN&quot;, &quot;sensor2&quot;: 76, &quot;location&quot;: { &quot;latitude&quot;: 40.431948, &quot;longitude&quot;: -3.666315 }, &quot;time&quot;: &quot;Thu Mar 21 12:39:24 2019&quot; } } } You can load it from this file In the same way, you can export your freeboard. It is an important step to recover your configuration. It is lost every time you refresh the web. 📍 Be careful, you don’t share this file. It contains your account access key.</summary></entry><entry><title type="html">Arduino to AWS</title><link href="http://localhost:4000/ArduinoAWS.html" rel="alternate" type="text/html" title="Arduino to AWS" /><published>2019-02-06T13:00:00+01:00</published><updated>2019-02-06T13:00:00+01:00</updated><id>http://localhost:4000/ArduinoAWS</id><content type="html" xml:base="http://localhost:4000/ArduinoAWS.html">&lt;h3 id=&quot;table-of-contents&quot;&gt;Table of Contents&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;#arduino-mkr-nb-1500-to-aws-iot&quot;&gt;Arduino: MKR NB-1500 to AWS-IoT&lt;/a&gt;
@@ -21,6 +263,7 @@
       &lt;li&gt;&lt;a href=&quot;#udp-data-bridge-connecting-using-nb-iot-o-lte-m&quot;&gt;UDP data Bridge: Connecting using NB-IoT o LTE-M&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#check-the-shadow&quot;&gt;Check the Shadow&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#send-a-command&quot;&gt;Send a command&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#create-your-dashboards&quot;&gt;Create your Dashboards&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -515,6 +758,19 @@ your own instructions. Feel free!&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;```&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;create-your-dashboards&quot;&gt;Create your Dashboards&lt;/h2&gt;
+
+&lt;p&gt;Now, you can collect the information from your devices. But reviewing the data from the Shadow can be a tedious task.
+The best option is to create a dashboard. It will allow you to visualize all the information.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/freeboard/freeboard_init_dashboard.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;There is a great availability of tools for this purpose. 
+But some like freeboard, it can subscribe directly to the AWS topic.
+If you want to learn how, click in the next &lt;a href=&quot;#AWSdashboard.html&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Table of Contents</summary></entry><entry><title type="html">Arduino to Google Cloud</title><link href="http://localhost:4000/ArduinoGCP.html" rel="alternate" type="text/html" title="Arduino to Google Cloud" /><published>2019-02-06T13:00:00+01:00</published><updated>2019-02-06T13:00:00+01:00</updated><id>http://localhost:4000/ArduinoGCP</id><content type="html" xml:base="http://localhost:4000/ArduinoGCP.html">&lt;h3 id=&quot;table-of-contents&quot;&gt;Table of Contents&lt;/h3&gt;
 
@@ -1648,7 +1904,109 @@ Easy, isn’t it?&lt;/p&gt;
 
 &lt;p&gt;Soon ..&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Table of Contents Bootstraping Why do we need Bootstraping? What will you need? What does it do? How to get started What is Bootstraping? If we told you that your device could be anything you wanted, we wouldn’t be telling you anything you didn’t already know. But if we tell you now that your device may be something different depending on the SIM you use. Would it change anything? This could be very helpful, if you control a wide variety of devices. IoT-Activation offers you this possibility!! Why do we need Bootstraping? Imagine making all your devices completely the same and configuring their operation only through the connection they use. In case of failure, you will only need to replace the old SIM in your new device. Easy, isn’t it? What will you need? Soon .. What it does? Soon .. How to get started Soon ..</summary></entry><entry><title type="html">Data Bridge</title><link href="http://localhost:4000/BPDataBridge.html" rel="alternate" type="text/html" title="Data Bridge" /><published>2019-02-06T13:00:00+01:00</published><updated>2019-02-06T13:00:00+01:00</updated><id>http://localhost:4000/BPDataBridge</id><content type="html" xml:base="http://localhost:4000/BPDataBridge.html">&lt;h3 id=&quot;table-of-contents&quot;&gt;Table of Contents&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Table of Contents Bootstraping Why do we need Bootstraping? What will you need? What does it do? How to get started What is Bootstraping? If we told you that your device could be anything you wanted, we wouldn’t be telling you anything you didn’t already know. But if we tell you now that your device may be something different depending on the SIM you use. Would it change anything? This could be very helpful, if you control a wide variety of devices. IoT-Activation offers you this possibility!! Why do we need Bootstraping? Imagine making all your devices completely the same and configuring their operation only through the connection they use. In case of failure, you will only need to replace the old SIM in your new device. Easy, isn’t it? What will you need? Soon .. What it does? Soon .. How to get started Soon ..</summary></entry><entry><title type="html">Cloud Connector</title><link href="http://localhost:4000/BPCloudConnector.html" rel="alternate" type="text/html" title="Cloud Connector" /><published>2019-02-06T13:00:00+01:00</published><updated>2019-02-06T13:00:00+01:00</updated><id>http://localhost:4000/BPCloudConnector</id><content type="html" xml:base="http://localhost:4000/BPCloudConnector.html">&lt;h3 id=&quot;table-of-contents&quot;&gt;Table of Contents&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#what-is-cloud-connector&quot;&gt;What is Cloud Connector?&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#benefits-of-using-cloud-connector&quot;&gt;Benefits of using Cloud Connector&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#available-information&quot;&gt;Available information&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#how-to-get-it&quot;&gt;How to get it&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;what-is-cloud-connector&quot;&gt;What is Cloud Connector?&lt;/h1&gt;
+
+&lt;p&gt;Cloud Connector is a service that publish on different public cloud the SIM and
+connectivity information available on the Kite Platform as your device does. 
+It allows you to manage the information of your SIM’s as a resource from your devices
+With just a configuration change, network, consumption and location data can be sent to the Cloud&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pictures/CloudConnector/CloudConnector_diagram.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;With some effort and imagination, you can do amazing things.&lt;/p&gt;
+
+&lt;h2 id=&quot;benefits-of-using-cloud-connector&quot;&gt;Benefits of using Cloud Connector&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Integration cost and time reduction: customers don’t need to make complex integration between Kite and the Cloud platform.&lt;/li&gt;
+  &lt;li&gt;Unique information source&lt;/li&gt;
+  &lt;li&gt;Business logic built over network data:
+    &lt;ul&gt;
+      &lt;li&gt;Detect when a device is being used for another purpose than expected&lt;/li&gt;
+      &lt;li&gt;Device is having technical issues or poor performance&lt;/li&gt;
+      &lt;li&gt;Cross information with other sources (operation systems, logistics, …)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;available-information&quot;&gt;Available information&lt;/h2&gt;
+
+&lt;p&gt;The Kite Platform parameters set that are transferred to the public cloud platforms are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Level: named as “presenceLevel”&lt;/li&gt;
+  &lt;li&gt;IP&lt;/li&gt;
+  &lt;li&gt;Cause: named as “event”&lt;/li&gt;
+  &lt;li&gt;Timestamp&lt;/li&gt;
+  &lt;li&gt;Automatic Location: shown as “Latitude and Longitude” in the JSON&lt;/li&gt;
+  &lt;li&gt;APN&lt;/li&gt;
+  &lt;li&gt;Operator&lt;/li&gt;
+  &lt;li&gt;Daily Consumption: Voice (in seconds), Data in kB), SMS&lt;/li&gt;
+  &lt;li&gt;IMEI&lt;/li&gt;
+  &lt;li&gt;Comms Module Module&lt;/li&gt;
+  &lt;li&gt;Comms Module Manufacturer&lt;/li&gt;
+  &lt;li&gt;Life Cycle Status&lt;/li&gt;
+  &lt;li&gt;Activation Date&lt;/li&gt;
+  &lt;li&gt;Alias&lt;/li&gt;
+  &lt;li&gt;ICCID&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Below is an example of the information dumped in the public cloud from the Kite
+Platform:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;reported&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;country&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;ES&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;commsModModel&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;HUAWEI&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;E3276s-150&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;commsModManufacturer&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;HUAWEI&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Technologies&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Co&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Ltd&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;imei&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;863781010957232&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;iccid&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;8952031422900140636&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;alias&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;8952031422900140636&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;event&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;ACCOUNTING_RADIUS_START&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;dailyVoice&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;dailySMS&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;dailyData&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;apn&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;mconnect.pre.telefonica.com&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;lifeCycleStatus&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;ACTIVATION_READY&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;operator&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Telefonica&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Moviles&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;España&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;timestamp&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;1560850561000&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;activationDate&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;1525947198000&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Latitude&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;42.6217&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Longitude&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;-7.767138&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;presenceLevel&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;GPRS&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;ip&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;172.18.213.250&quot;&lt;/span&gt;
+&lt;span class=&quot;pi&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;📍
+The first time the SIM cards are registered in the Supervision group, all the
+parameters are published in the public cloud, thereafter, only in case of any change.
+There are no periodic updates of any parameter.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-get-it&quot;&gt;How to get it&lt;/h2&gt;
+
+&lt;p&gt;Contact your Kite Provider and ask for it. Very soon you will be able to activate this service from your Kite platform.&lt;/p&gt;
+
+&lt;p&gt;If you already have the SIM cloud monitoring service available, you will have the option
+to activate the service for all SIM cards you wants, by including them in a
+Monitoring Group and activating Cloud Monitoring (ON mode).&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Table of Contents What is Cloud Connector? Benefits of using Cloud Connector Available information How to get it What is Cloud Connector? Cloud Connector is a service that publish on different public cloud the SIM and connectivity information available on the Kite Platform as your device does. It allows you to manage the information of your SIM’s as a resource from your devices With just a configuration change, network, consumption and location data can be sent to the Cloud With some effort and imagination, you can do amazing things. Benefits of using Cloud Connector Integration cost and time reduction: customers don’t need to make complex integration between Kite and the Cloud platform. Unique information source Business logic built over network data: Detect when a device is being used for another purpose than expected Device is having technical issues or poor performance Cross information with other sources (operation systems, logistics, …) Available information The Kite Platform parameters set that are transferred to the public cloud platforms are: Level: named as “presenceLevel” IP Cause: named as “event” Timestamp Automatic Location: shown as “Latitude and Longitude” in the JSON APN Operator Daily Consumption: Voice (in seconds), Data in kB), SMS IMEI Comms Module Module Comms Module Manufacturer Life Cycle Status Activation Date Alias ICCID Below is an example of the information dumped in the public cloud from the Kite Platform: &quot;reported&quot;: { &quot;country&quot;: &quot;ES&quot;, &quot;commsModModel&quot;: &quot;HUAWEI E3276s-150&quot;, &quot;commsModManufacturer&quot;: &quot;HUAWEI Technologies Co Ltd&quot;, &quot;imei&quot;: &quot;863781010957232&quot;, &quot;iccid&quot;: &quot;8952031422900140636&quot;, &quot;alias&quot;: &quot;8952031422900140636&quot;, &quot;event&quot;: &quot;ACCOUNTING_RADIUS_START&quot;, &quot;dailyVoice&quot;: 0, &quot;dailySMS&quot;: 0, &quot;dailyData&quot;: 0, &quot;apn&quot;: &quot;mconnect.pre.telefonica.com&quot;, &quot;lifeCycleStatus&quot;: &quot;ACTIVATION_READY&quot;, &quot;operator&quot;: &quot;Telefonica Moviles España&quot;, &quot;timestamp&quot;: 1560850561000, &quot;activationDate&quot;: 1525947198000, &quot;Latitude&quot;: 42.6217, &quot;Longitude&quot;: -7.767138, &quot;presenceLevel&quot;: &quot;GPRS&quot;, &quot;ip&quot;: &quot;172.18.213.250&quot; } 📍 The first time the SIM cards are registered in the Supervision group, all the parameters are published in the public cloud, thereafter, only in case of any change. There are no periodic updates of any parameter. How to get it Contact your Kite Provider and ask for it. Very soon you will be able to activate this service from your Kite platform. If you already have the SIM cloud monitoring service available, you will have the option to activate the service for all SIM cards you wants, by including them in a Monitoring Group and activating Cloud Monitoring (ON mode).</summary></entry><entry><title type="html">Data Bridge</title><link href="http://localhost:4000/BPDataBridge.html" rel="alternate" type="text/html" title="Data Bridge" /><published>2019-02-06T13:00:00+01:00</published><updated>2019-02-06T13:00:00+01:00</updated><id>http://localhost:4000/BPDataBridge</id><content type="html" xml:base="http://localhost:4000/BPDataBridge.html">&lt;h3 id=&quot;table-of-contents&quot;&gt;Table of Contents&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;#what-is-the-data-bridge&quot;&gt;What is Data Bridge?&lt;/a&gt;
@@ -2277,1137 +2635,4 @@ INFO : GET information related to [ 00.00.00.00 ] from  KITE Platform
 INFO : Sent MESSAGE [{&quot;msg&quot;:&quot;ERROR:connection with Kite not established&quot;,&quot;code&quot;:404}] to [ 84.78.20.223 ]:[4114]
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Table of Contents What does it do? AWS Options: AWS Option 1: Telemetry AWS Option 2: Telemetry and Commands Deploy and defend your Bridge on AWS! What will you need? Data Bridge python code KITE Platform certificates IPsec tunnel configuration between Telefónica and AWS Amazon Web Services Cloud Computing Services AWS Identity and Access Management (IAM) AWS Systems Manager Parameter Store AWS IoT Core Amazon Elastic Compute Cloud (EC2) How to run it Download it Configure it Launch it What does it do? Each UDP message sent by a device, it is linked to several information such as source IP, destination IP and destination Port. The Bridge will use the device source IP to gather all the sim information stored at Kite platform. For the tutorial purpose you should pay attention to SIM’s custom fields, that you can manage from your Kite Platform account. Field 1 : Device Cloud Name (required) -&amp;gt; this is the name that will appear at the cloud (shadow name, twin name …) Field 2 : topic to publish (optional) Depending on the content of the fields, the Bridge will act differently. To choose between the different options you have to configure SIM information at the Custom Field 📍 The device name is a mandatory field, otherwise an error code will be returned, because the bridge wouldn’t know the virtual representation of the physical device. As we said before, There are two ways of working depending on the information provided as custom parameter in Kite. AWS Options: AWS Option 1: Telemetry AWS Option 2: Telemetry and Commands AWS Option 1: Telemetry This is the most straight forward option. You only have to provide a device cloud name at the first custom parameter in Kite. As a result all the messages sent by your device will be published at the default topic. The default topic has this structure: tlm/{DEVICE_NAME_IN_KITE}/raw Otherwise, If you prefer to send your device messages to another topic, you should add it as a second custom field at Kite. AWS Option 2: Telemetry and Commands The configuration is quite simple, you should identify the topic update of your device and copy it into the second custom field. It should look like this: $aws/things/{DEVICE_NAME_IN_KITE}/shadow/update The bridge will recognize it as an AWS reserved topic and will use the appropriate logic for the connection. The data sent will be published in the shadow in the raw field as shown in the following example. { &quot;reported&quot;: { &quot;raw&quot;: &quot;&amp;lt;MESSAGE SENT HERE&amp;gt;&quot;, } } Moreover, the Bridge will subscribe to the Accepted and Rejected topics, so you will be able to control if the publication has been done or rejected by the broker. Another advantage of using the AWS shadows, is the communication with the device, it allows you to send commands to it. You have to complete the json raw data field at device shadow desired field. { &quot;desired&quot;: { &quot;raw&quot;: &quot;&amp;lt;MESSAGE FOR THE DEVICE&amp;gt;&quot;, } } If you try to publish into a shadow that it isn’t already provisioned the Data Bridge will create it before publishing so you don’t have to worry about it :). But if you still want to create it manually you can follow these steps Deploy and defend your Bridge on AWS! What will you need? Data Bridge code KITE Platform Certificates files An IpSec Service provided by Telefónica (IPsec) AWS account: Identity and Access Management roles AWS Systems Manager Parameter Store Amazon Elastic Compute Cloud instance (EC2) AWS IoT Core 📍 For the time being, if you use a SIM from the Thinx testing network you will not have access to the Kite Platform. Data Bridge python code You can download it from our repository KITE Platform certificates One of the Data Bridge strong points, is the integration with Kite. Kite is the Telefónica’s IoT Connectivity Platform, and Kite provides an API interface for management via HTTPS. Ask your Telefonica’s local contact for the certificates associated to your account. Once you receive this certificate, you will need to extract the keys that the Bridge will use to validate the connection. If you want to see how to do it, you can follow our documentation When you finish these steps, you should have a file with the certificate and another one with the access key: your_customer_certificate.cer your_customer_certificate.key IPsec tunnel configuration between Telefónica and AWS An IPsec tunnel is a direct connection between the mobile network of your SIM pool and the Data Bridge deployed in AWS. This connection not only creates a new network (VPN) but also guarantees the security of your data by allowing communication only between the devices that belong to this network. Although its functioning is quite complex to explain. The configuration is quite simple if you follow our tutorial When you finish this tutorial, you will also have created a EC2 machine. This is the machine you will use to deploy your Data Bridge. Remember to keep both the private IP of your IPsec network and the public IP to remotely access the machine. Amazon Web Services Cloud Computing Services If you are using this tutorial is because you have chosen Amazon as your cloud. For this reason, we have tried that all the services provided in the Data Bridge are integrated at AWS platform. In the following steps we will explain how to configure these services. AWS Identity and Access Management (IAM) IAM is a service that allows you to manage access to AWS services and resources securely. This service will allow you to control users and their permissions. But it will also allow you to manage access policies between the different Amazon services. You will need it in this tutorial because it is necessary to assign an access policy to the EC2 machine that allows access to the other services. Your EC2 needs the following policies: Access to IoT Core Access to AWS Systems Manager Parameter store To attach an IAM role to an instance … Open the Amazon EC2 console at https://console.aws.amazon.com/ec2/. In the navigation pane, choose Instances. Select the instance, choose Actions, Instance Settings, Attach/Replace IAM role. Select the IAM role to attach to your instance, and choose Apply. AWS Systems Manager Parameter Store AWS Systems Manager is a service that gives you visibility and control of your infrastructure. Among its resources, there is the Parameter Store. This parameter storage allows the secure storage of certificates and passwords. For this example, we will use this service to store the content of the Kite certificates files. In the AWS Console. Go to Systems Manager / Parameter Store / Select: Create parameter Select a name for the parameter. And copy the contents of the file in the value field. Do this for each of the files: your_customer_certificate.cer your_customer_certificate.key And click on the Create parameter button at the bottom of the page. Save the names of the parameters, they are necessary to configure the Bridge. AWS IoT Core AWS IoT Core is a managed cloud service that lets connected devices easily and securely interact with cloud applications and other devices. If you have not previously worked with IoT Core, we recommend that you familiarize with the environment. And make sure you understand concepts like MQTT, Broker and Shadow. As for configuring a new device, you can do so by following these steps but if you’re too lazy for it. “No problemo” The Bridge will create it for you. Auto provisioning of new devices!! Amazon Elastic Compute Cloud (EC2) Amazon EC2 is a web service that provides secure, resizable compute capacity in the cloud. If you have carefully followed the steps to create the IPsec tunnel, you should already have created an instance. We have chosen an instance with linux, but if you prefer any other, just make sure that the instance can execute code in python. To attach an IAM role to an instance that has no role, the instance can be in the stopped or running state. Open the Amazon EC2 console at https://console.aws.amazon.com/ec2/. In the navigation pane, choose Instances. Select the instance, choose Actions, Instance Settings, Attach/Replace IAM role. Select the IAM role to attach to your instance, and choose Apply. Requirements to connect to your EC2 instance with SSH SSH file.pem provided by Amazon when you launch the instance IP-address assigned to your ec2 instance The username on the instance distro On linux Open a terminal Type the SSH command ssh -i file.pem username@IP-address Now you’re connected On Windows Install Putty https://www.putty.org/ Open PuttyGen Select checkbox “RSA” Click load and select your file.pem A message will prompt, click ok. Click on save private key. Then a message will prompt, select yes Type a name for your key file.ppk Now close PuttyGen program and open Putty Go to Connection/SSH section and double-click it. Go to Auth section and select your file.ppk Go back at the top in the Session section. Fill the field Hostname IP-address and click open A warning will prompt. Click yes. Type your username Now you’re connected Upload files using FTP Client You can download Filezilla using the next link (https://filezilla-project.org/download.php) Go to Edit/Settings/Connection/SFTP, Click “Add key file” Browse to the location and select your file.pem A message box will appear to convert the file into .ppk. Click Yes, and store it. If the new file is shown in the list of Keyfiles, then continue to the next step. If not, then click “Add keyfile…” and select the converted file. Go to File/Site Manager/Add a new site with the following parameters: Protocol: SFTP Host: IP-address Logon Type: Key File User: username How to run it Now that you know how to configure AWS. You can run it in just 3 steps !!! Download it You can choose between several options: option 1: Download the Github repository on the instance Install git on the instace sudo yum upgrade sudo yum install git Clone the repository git clone https://github.com/telefonicaid/iot-activation.git Go to Bridge path: scripts/Data_Bridge/ option 2: Upload the files from an FTP client Download the Github repository Open Filezilla client Select the path scripts/Data_Bridge/ Upload all files and folders to the instance Now that you have the code in the machine you just have to install the python libraries. You can install them one by one. But the fastest way is to use the requirements file pip install -r requirements.txt Configure it We have tried to make this as simple as possible. So, you’ll only need to fill in a few fields in the configuration file Configuration.yaml cloud: AWS UDP: ip: &quot;0.0.0.0&quot; port: 4114 KITE: url: &quot;https://m2m-api.telefonica.com&quot; certificate: &quot;cer_file&quot; private_key: &quot;key_file&quot; Configure the Cloud This parameter is used to identify the cloud and select the configuration file. In this example you must select AWS cloud: AWS Configure the UDP socket Here you can choose the port through which you will receive the UDP messages and the allowed IP addresses UDP: ip: &quot;0.0.0.0&quot; port: 4114 allow any address allowed values: ip: “0.0.0.0” (allow any address) ip: “X.X.X.X” (restrict to a single address) Configure the Kite Platform connection This parameter allows you to select the files the certificates to access the Kite Platform. KITE: url: &quot;https://m2m-api.telefonica.com&quot; certificate: &quot;cer_file&quot; private_key: &quot;key_file&quot; Do you remember the name of the parameters created in AWS? Now is the time to use them. Configure the AWS file Here is an example of a configuration file for AWS connection Configuration_AWS.yaml cloud: AWS region: &quot;eu-west-1&quot; MQTT: topic: update: &quot;$aws/things/&amp;lt;DEVICE_NAME&amp;gt;/shadow/update&quot; default: &quot;tlm/&amp;lt;DEVICE_NAME&amp;gt;/raw&quot; log_device: &quot;log/device/provision/new&quot; reserved: &quot;$aws&quot; The file is quite intuitive, however here you can see carefully how to configure each section Server configuration cloud: AWS region: &quot;xx-xxxx-x&quot; Topic configuration At the moment you only have to keep the fields as is MQTT: topic: update: &quot;$aws/things/&amp;lt;DEVICE_NAME&amp;gt;/shadow/update&quot; default: &quot;tlm/&amp;lt;DEVICE_NAME&amp;gt;/raw&quot; log_device: &quot;log/device/provision/new&quot; reserved: &quot;$aws&quot; update: this topic is the specific of AWS. It doesn’t make any sense to modify it. default: configure this field to select the default topic name. log_device: topic name in which the new things creations are reported. reserved: this parameter indicates that the name is a AWS standard topic. Launch it Go to Bridge path and execute this command sudo nohup python main.py &amp;amp; sudo Execute the instruction as if you were the administrator. nohup It’ll keep running even when you close the session. python main.py will execute the code When the Bridge is running, it will record all UDP messages he receives in a log file. You can monitor the last lines of the file with this command: tail -f log/data_bridge.log This is a log file example. INFO : ################################# waiting for a new message ################################# INFO : Message Received [ {&quot;v&quot;:33,&quot;a&quot;:28} ] from [ 10.5.0.5 ] : [ 4114 ] INFO : KITE Response status code [ 200 ] INFO : GET information related to [ 10.5.0.5 ] from KITE Platform INFO : Found device cloud name [ MyDevice ] and topic [ ] in KITE Platform INFO : Select Option 1: DEVICE [ MyDevice ] and DEFAULT TOPIC INFO : Publish message [ {&quot;v&quot;:33,&quot;a&quot;:28} ] into topic [ tlm/MyDevice/raw ] INFO : Publish Accepted code [ 200 ] INFO : Sent MESSAGE [ {&quot;msg&quot;: &quot;OK: msg published&quot;, &quot;code&quot;: 200} ] to [ 10.5.0.5 ] : [ 4114 ] INFO : ################################# waiting for a new message ################################# INFO : Message Received [ aaa ] from [ 00.00.00.00 ] : [ 4114 ] INFO : KITE Response status code [ 204 ] INFO : GET information related to [ 00.00.00.00 ] from KITE Platform INFO : Sent MESSAGE [{&quot;msg&quot;:&quot;ERROR:connection with Kite not established&quot;,&quot;code&quot;:404}] to [ 84.78.20.223 ]:[4114]</summary></entry><entry><title type="html">Data Bridge on Google Cloud</title><link href="http://localhost:4000/BPDataBridgeGoogleCloud.html" rel="alternate" type="text/html" title="Data Bridge on Google Cloud" /><published>2019-02-06T13:00:00+01:00</published><updated>2019-02-06T13:00:00+01:00</updated><id>http://localhost:4000/BPDataBridgeGoogleCloud</id><content type="html" xml:base="http://localhost:4000/BPDataBridgeGoogleCloud.html">&lt;h3 id=&quot;table-of-contents&quot;&gt;Table of Contents&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;#what-does-it-do&quot;&gt;What does it do?&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#google-cloud-options&quot;&gt;Google Cloud Options&lt;/a&gt;
-        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#gcp-option-1-publish-in-a-default-topic&quot;&gt;GCP Option 1: publish in a default topic&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#now-deploy-and-defend-your-bridge&quot;&gt;Deploy and defend your Bridge!&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#what-will-you-need&quot;&gt;What will you need?&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#data-bridge-python-code&quot;&gt;Data Bridge python code&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#kite-platform-certificates&quot;&gt;KITE Platform certificates&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#ipsec-tunnel-configuration-between-telefónica-and-aws&quot;&gt;IPsec tunnel configuration between Telefónica and AWS&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#google-cloud-platform-computing-services&quot;&gt;Google Cloud Platform Computing Services&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#how-to-run-it&quot;&gt;How to run it&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#download-it&quot;&gt;Download it&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#configure-it&quot;&gt;Configure it&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#launch-it&quot;&gt;Launch it&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;what-does-it-do&quot;&gt;What does it do?&lt;/h1&gt;
-
-&lt;p&gt;Each UDP message sent by a device, it is linked to several information such as source IP, destination IP and destination Port. 
-The Bridge will use the device source IP to gather all the sim information stored at Kite platform.&lt;/p&gt;
-
-&lt;p&gt;For the tutorial purpose you should pay attention to SIM’s custom fields, 
-that you can manage from your Kite Platform account.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Field 1 : Device Cloud Name (required) -&amp;gt; this is the name that will appear at the cloud (shadow name, twin name …)&lt;/li&gt;
-  &lt;li&gt;Field 2 : topic to publish (optional)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Depending on the content of the fields the Bridge will act differently.&lt;/p&gt;
-
-&lt;p&gt;To choose between the different options you have to configure SIM information at the &lt;a href=&quot;KitePlatform.html#edit-custom-field&quot;&gt;Custom Field&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;📍
-The device name is a mandatory field, otherwise an error code will be returned, because the bridge wouldn’t know the virtual representation of the physical device.&lt;/p&gt;
-
-&lt;p&gt;As we said before, There are 1 way of working depending on the information provided as custom parameter in Kite.&lt;/p&gt;
-
-&lt;p&gt;news options in process …&lt;/p&gt;
-
-&lt;h2 id=&quot;google-cloud-options&quot;&gt;Google Cloud Options&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;#gcp-option-1-publish-in-a-default-topic&quot;&gt;GCP Option 1: publish in a default topic&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;gcp-option-1-telemetry&quot;&gt;GCP Option 1: Telemetry&lt;/h4&gt;
-
-&lt;p&gt;You only have to provide a device cloud name at the first custom parameter in Kite. 
-As a result all the messages sent by your device will be published at the device telemetry topic.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;now-deploy-and-defend-your-bridge&quot;&gt;Now, Deploy and defend your Bridge!&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Data Bridge &lt;a href=&quot;https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge&quot;&gt;code&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;KITE Platform &lt;a href=&quot;KitePlatform.html#what-is-kite-platform-api&quot;&gt;Certificates files&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;An IpSec Service provided by Telefónica &lt;a href=&quot;BPIPsec.html#what-is-ipsec&quot;&gt;(IPsec)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Google Cloud account:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;📍
-For the time being, if you use a SIM from the Thinx testing network you will not have access to the Kite Platform.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;data-bridge-python-code&quot;&gt;Data Bridge python code&lt;/h2&gt;
-
-&lt;p&gt;You can download it from our &lt;a href=&quot;https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge&quot;&gt;repository&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;kite-platform-certificates&quot;&gt;KITE Platform certificates&lt;/h2&gt;
-
-&lt;p&gt;One of the Data Bridge strong points, is the integration with Kite.
-Kite is the Telefónica’s IoT Connectivity Platform, and Kite provides an API interface for management via HTTPS.&lt;/p&gt;
-
-&lt;p&gt;Ask your Telefonica’s local contact for the certificates associated to your account.&lt;/p&gt;
-
-&lt;p&gt;Once you receive this certificate, you will need to extract the keys that the Bridge will use to validate the connection.
-If you want to learn how to do it, you can follow our 
-&lt;a href=&quot;KitePlatform.html#extract-your-credentials-files&quot;&gt;documentation&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;When you finish these steps, you should have a file with the certificate and another one with the access key:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;your_customer_certificate.cer&lt;/li&gt;
-  &lt;li&gt;your_customer_certificate.key&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;ipsec-tunnel-configuration-between-telefónica-and-aws&quot;&gt;IPsec tunnel configuration between Telefónica and AWS&lt;/h2&gt;
-
-&lt;p&gt;An IPsec tunnel is a direct connection between the mobile network of your SIM pool and the Data Bridge deployed in AWS.&lt;/p&gt;
-
-&lt;p&gt;This connection not only creates a new network (VPN) but also guarantees the security of your data 
-by allowing communication only between the devices that belong to this network.&lt;/p&gt;
-
-&lt;p&gt;Although its functioning is quite complex to explain. The configuration is quite simple if you follow our 
-&lt;a href=&quot;BPIPsec.html#how-to-make-your-own-ipsec-vpn&quot;&gt;tutorial&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;When you finish this tutorial, you will also have created a EC2 machine. 
-This is the machine you will use to deploy your Data Bridge.&lt;/p&gt;
-
-&lt;p&gt;Remember to keep both the private IP of your IPsec network and the public IP to remotely access the machine.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;google-cloud-platform-computing-services&quot;&gt;Google Cloud Platform Computing Services&lt;/h2&gt;
-
-&lt;p&gt;If you are using this tutorial is because you have chosen Google as your cloud.&lt;/p&gt;
-
-&lt;p&gt;For this reason, we have tried that all the services provided in the Data Bridge are integrated at Google Cloud Platform platform.
-In the following steps we will explain how to configure these services.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;in process ..&lt;/p&gt;
-
-&lt;h1 id=&quot;how-to-run-it&quot;&gt;How to run it&lt;/h1&gt;
-
-&lt;p&gt;Now that you know how to configure AWS. You can run it in just 3 steps !!!&lt;/p&gt;
-
-&lt;h2 id=&quot;download-it&quot;&gt;Download it&lt;/h2&gt;
-
-&lt;p&gt;You can choose between several options:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;option 1: Download the Github repository on the instance&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Install git on the instace
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get upgrade
-&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;git
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Clone the repository
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/telefonicaid/iot-activation.git
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Go to Bridge path: &lt;strong&gt;scripts/Data_Bridge/&lt;/strong&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;option 2: Upload the files from an FTP client&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Download the Github repository&lt;/li&gt;
-  &lt;li&gt;Open Filezilla client&lt;/li&gt;
-  &lt;li&gt;Select the path scripts/Data_Bridge/&lt;/li&gt;
-  &lt;li&gt;Upload all files and folders to the instance&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Now that you have the code in the machine you just have to install the python libraries.&lt;/p&gt;
-
-&lt;p&gt;You can install them one by one. But the fastest way is to use the requirements file&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;pip&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requirements&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;txt&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;configure-it&quot;&gt;Configure it&lt;/h2&gt;
-
-&lt;p&gt;We have tried to make this as simple as possible.&lt;/p&gt;
-
-&lt;p&gt;So, you’ll only need to fill in a few fields in the configuration file 
-&lt;a href=&quot;https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge/config/Configuration.yaml&quot;&gt;Configuration.yaml&lt;/a&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;cloud&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GCP&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;UDP&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;ip&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;0.0.0.0&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;4114&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;KITE&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;https://m2m-api.telefonica.com&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;certificate&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;cer_file&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;private_key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;key_file&quot;&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;configure-the-cloud&quot;&gt;Configure the Cloud&lt;/h4&gt;
-
-&lt;p&gt;This parameter is used to identify the cloud and select the configuration file. 
-In this example you must select GCP&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;cloud&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GCP&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;configure-the-udp-socket&quot;&gt;Configure the UDP socket&lt;/h4&gt;
-
-&lt;p&gt;Here you can choose the port through which you will receive the UDP messages and the allowed IP addresses&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;UDP&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;ip&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;0.0.0.0&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;4114&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;allow any address&lt;/p&gt;
-
-&lt;p&gt;allowed values:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;ip: “0.0.0.0”    (allow any address)&lt;/li&gt;
-  &lt;li&gt;ip: “X.X.X.X”	   (restrict to a single address)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;configure-the-kite-platform-connection&quot;&gt;Configure the Kite Platform connection&lt;/h4&gt;
-
-&lt;p&gt;This parameter allows you to select the files the certificates to access the Kite Platform.&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;KITE&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;https://m2m-api.telefonica.com&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;certificate&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;cer_file&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;private_key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;key_file&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Do you remember the name of the parameters created?
-Now is the time to use them.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;configure-the-google-file&quot;&gt;Configure the Google file&lt;/h4&gt;
-
-&lt;p&gt;Here is an example of a configuration file for Google Cloud connection 
-&lt;a href=&quot;https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge/config/Configuration_GCP.yaml&quot;&gt;Configuration_GCP.yaml&lt;/a&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;https://cloudiotdevice.googleapis.com/v1&quot;&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;project_id&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;xxxxxxxxxx&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;cloud_region&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;xxxx-xxxx&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;registry_id&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;xxxxxxxx&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;service_account_json&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;service_account.json&quot;&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;algorithm&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;RS256&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;CA/&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;ca_certs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;https://pki.google.com/roots.pem&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;private_key_file&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GCP_rsa_private.pem&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;public_key_file&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GCP_rsa_public.pem&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Currently the access keys must be configured via the configuration file and stored on the server.&lt;/p&gt;
-
-&lt;h5 id=&quot;project-configuration&quot;&gt;Project configuration&lt;/h5&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;project_id&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;xxxxxxxxxx&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;cloud_region&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;xxxx-xxxx&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;registry_id&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;xxxxxxxx&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;service_account_json&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;service_account.json&quot;&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;service_account.json:&lt;/strong&gt; A file that establish the identity of the service account&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;service_account&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;project_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;[PROJECT-ID]&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;private_key_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;[KEY-ID]&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;private_key&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;-----BEGIN PRIVATE KEY-----&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;[PRIVATE-KEY]&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;-----END PRIVATE KEY-----&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;client_email&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;[SERVICE-ACCOUNT-EMAIL]&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;client_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;[CLIENT-ID]&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;auth_uri&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://accounts.google.com/o/oauth2/auth&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;token_uri&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://accounts.google.com/o/oauth2/token&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;auth_provider_x509_cert_url&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://www.googleapis.com/oauth2/v1/certs&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;client_x509_cert_url&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://www.googleapis.com/robot/v1/metadata/x509/[SERVICE-ACCOUNT-EMAIL]&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h5 id=&quot;certificates-configuration&quot;&gt;Certificates configuration&lt;/h5&gt;
-
-&lt;p&gt;These are the parameters that will guarantee the security of your devices.
-if you want to know how to generate them access the &lt;a href=&quot;ArduinoGCP.html#-generate-your-devices-keys&quot;&gt;tutorial&lt;/a&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;algorithm&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;RS256&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;CA/&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;ca_certs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;https://pki.google.com/roots.pem&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;private_key_file&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GCP_rsa_private.pem&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;public_key_file&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GCP_rsa_public.pem&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;GCP_rsa_private.pem:&lt;/strong&gt; The private key that must be securely stored on the device and used to sign the authentication.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;GCP_rsa_public.pem:&lt;/strong&gt; The public key that must be stored in Cloud IoT Core and used to verify the signature of the authentication.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;launch-it&quot;&gt;Launch it&lt;/h2&gt;
-
-&lt;p&gt;Go to Bridge path and execute this command&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo nohup &lt;/span&gt;python main.py &amp;amp;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;sudo&lt;/strong&gt; Execute the instruction as if you were the administrator.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;nohup&lt;/strong&gt; It’ll keep running even when you close the session.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;python main.py&lt;/strong&gt; will execute the code&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;When the Bridge is running, it will record all UDP messages he receives in a log file. 
-You can monitor the last lines of the file with this command:&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;tail&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; log/data_bridge.log
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This is a log file example.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-log&quot;&gt;INFO : ################################# waiting for a new message #################################
-INFO : Message Received [ {&quot;v&quot;:33,&quot;a&quot;:28} ] from [ 10.5.0.5 ] : [ 4114 ]
-INFO : KITE Response status code [ 200 ]
-INFO : GET information related to [ 10.5.0.5 ] from  KITE Platform
-INFO : Found device cloud name [ MyDevice ] and topic [  ] in KITE Platform
-INFO : Select Option 1: DEVICE [ MyDevice ] and DEFAULT TOPIC
-INFO : Publish message [ {&quot;v&quot;:33,&quot;a&quot;:28} ] into topic [ tlm/MyDevice/raw ]
-INFO : Publish Accepted code [ 200 ]
-INFO : Sent MESSAGE [ {&quot;msg&quot;: &quot;OK: msg published&quot;, &quot;code&quot;: 200} ] to [ 10.5.0.5 ] : [ 4114 ]
-INFO : ################################# waiting for a new message #################################
-INFO : Message Received [ aaa ] from [ 00.00.00.00 ] : [ 4114 ]
-INFO : KITE Response status code [ 204 ]
-INFO : GET information related to [ 00.00.00.00 ] from  KITE Platform
-INFO : Sent MESSAGE [{&quot;msg&quot;:&quot;ERROR:connection with Kite not established&quot;,&quot;code&quot;:404}] to [ 84.78.20.223 ]:[4114]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Table of Contents What does it do? Google Cloud Options GCP Option 1: publish in a default topic Deploy and defend your Bridge! What will you need? Data Bridge python code KITE Platform certificates IPsec tunnel configuration between Telefónica and AWS Google Cloud Platform Computing Services How to run it Download it Configure it Launch it What does it do? Each UDP message sent by a device, it is linked to several information such as source IP, destination IP and destination Port. The Bridge will use the device source IP to gather all the sim information stored at Kite platform. For the tutorial purpose you should pay attention to SIM’s custom fields, that you can manage from your Kite Platform account. Field 1 : Device Cloud Name (required) -&amp;gt; this is the name that will appear at the cloud (shadow name, twin name …) Field 2 : topic to publish (optional) Depending on the content of the fields the Bridge will act differently. To choose between the different options you have to configure SIM information at the Custom Field 📍 The device name is a mandatory field, otherwise an error code will be returned, because the bridge wouldn’t know the virtual representation of the physical device. As we said before, There are 1 way of working depending on the information provided as custom parameter in Kite. news options in process … Google Cloud Options GCP Option 1: publish in a default topic GCP Option 1: Telemetry You only have to provide a device cloud name at the first custom parameter in Kite. As a result all the messages sent by your device will be published at the device telemetry topic. Now, Deploy and defend your Bridge! Data Bridge code KITE Platform Certificates files An IpSec Service provided by Telefónica (IPsec) Google Cloud account: 📍 For the time being, if you use a SIM from the Thinx testing network you will not have access to the Kite Platform. Data Bridge python code You can download it from our repository KITE Platform certificates One of the Data Bridge strong points, is the integration with Kite. Kite is the Telefónica’s IoT Connectivity Platform, and Kite provides an API interface for management via HTTPS. Ask your Telefonica’s local contact for the certificates associated to your account. Once you receive this certificate, you will need to extract the keys that the Bridge will use to validate the connection. If you want to learn how to do it, you can follow our documentation When you finish these steps, you should have a file with the certificate and another one with the access key: your_customer_certificate.cer your_customer_certificate.key IPsec tunnel configuration between Telefónica and AWS An IPsec tunnel is a direct connection between the mobile network of your SIM pool and the Data Bridge deployed in AWS. This connection not only creates a new network (VPN) but also guarantees the security of your data by allowing communication only between the devices that belong to this network. Although its functioning is quite complex to explain. The configuration is quite simple if you follow our tutorial When you finish this tutorial, you will also have created a EC2 machine. This is the machine you will use to deploy your Data Bridge. Remember to keep both the private IP of your IPsec network and the public IP to remotely access the machine. Google Cloud Platform Computing Services If you are using this tutorial is because you have chosen Google as your cloud. For this reason, we have tried that all the services provided in the Data Bridge are integrated at Google Cloud Platform platform. In the following steps we will explain how to configure these services. in process .. How to run it Now that you know how to configure AWS. You can run it in just 3 steps !!! Download it You can choose between several options: option 1: Download the Github repository on the instance Install git on the instace sudo apt-get upgrade sudo apt-get install git Clone the repository git clone https://github.com/telefonicaid/iot-activation.git Go to Bridge path: scripts/Data_Bridge/ option 2: Upload the files from an FTP client Download the Github repository Open Filezilla client Select the path scripts/Data_Bridge/ Upload all files and folders to the instance Now that you have the code in the machine you just have to install the python libraries. You can install them one by one. But the fastest way is to use the requirements file pip install -r requirements.txt Configure it We have tried to make this as simple as possible. So, you’ll only need to fill in a few fields in the configuration file Configuration.yaml cloud: GCP UDP: ip: &quot;0.0.0.0&quot; port: 4114 KITE: url: &quot;https://m2m-api.telefonica.com&quot; certificate: &quot;cer_file&quot; private_key: &quot;key_file&quot; Configure the Cloud This parameter is used to identify the cloud and select the configuration file. In this example you must select GCP cloud: GCP Configure the UDP socket Here you can choose the port through which you will receive the UDP messages and the allowed IP addresses UDP: ip: &quot;0.0.0.0&quot; port: 4114 allow any address allowed values: ip: “0.0.0.0” (allow any address) ip: “X.X.X.X” (restrict to a single address) Configure the Kite Platform connection This parameter allows you to select the files the certificates to access the Kite Platform. KITE: url: &quot;https://m2m-api.telefonica.com&quot; certificate: &quot;cer_file&quot; private_key: &quot;key_file&quot; Do you remember the name of the parameters created? Now is the time to use them. Configure the Google file Here is an example of a configuration file for Google Cloud connection Configuration_GCP.yaml base_url: &quot;https://cloudiotdevice.googleapis.com/v1&quot; project_id: &quot;xxxxxxxxxx&quot; cloud_region: &quot;xxxx-xxxx&quot; registry_id: &quot;xxxxxxxx&quot; service_account_json: &quot;service_account.json&quot; algorithm: &quot;RS256&quot; path: &quot;CA/&quot; ca_certs: &quot;https://pki.google.com/roots.pem&quot; private_key_file: GCP_rsa_private.pem public_key_file: GCP_rsa_public.pem Currently the access keys must be configured via the configuration file and stored on the server. Project configuration project_id: &quot;xxxxxxxxxx&quot; cloud_region: &quot;xxxx-xxxx&quot; registry_id: &quot;xxxxxxxx&quot; service_account_json: &quot;service_account.json&quot; service_account.json: A file that establish the identity of the service account { &quot;type&quot;: &quot;service_account&quot;, &quot;project_id&quot;: &quot;[PROJECT-ID]&quot;, &quot;private_key_id&quot;: &quot;[KEY-ID]&quot;, &quot;private_key&quot;: &quot;-----BEGIN PRIVATE KEY-----\n[PRIVATE-KEY]\n-----END PRIVATE KEY-----\n&quot;, &quot;client_email&quot;: &quot;[SERVICE-ACCOUNT-EMAIL]&quot;, &quot;client_id&quot;: &quot;[CLIENT-ID]&quot;, &quot;auth_uri&quot;: &quot;https://accounts.google.com/o/oauth2/auth&quot;, &quot;token_uri&quot;: &quot;https://accounts.google.com/o/oauth2/token&quot;, &quot;auth_provider_x509_cert_url&quot;: &quot;https://www.googleapis.com/oauth2/v1/certs&quot;, &quot;client_x509_cert_url&quot;: &quot;https://www.googleapis.com/robot/v1/metadata/x509/[SERVICE-ACCOUNT-EMAIL]&quot; } Certificates configuration These are the parameters that will guarantee the security of your devices. if you want to know how to generate them access the tutorial algorithm: &quot;RS256&quot; path: &quot;CA/&quot; ca_certs: &quot;https://pki.google.com/roots.pem&quot; private_key_file: GCP_rsa_private.pem public_key_file: GCP_rsa_public.pem GCP_rsa_private.pem: The private key that must be securely stored on the device and used to sign the authentication. GCP_rsa_public.pem: The public key that must be stored in Cloud IoT Core and used to verify the signature of the authentication. Launch it Go to Bridge path and execute this command sudo nohup python main.py &amp;amp; sudo Execute the instruction as if you were the administrator. nohup It’ll keep running even when you close the session. python main.py will execute the code When the Bridge is running, it will record all UDP messages he receives in a log file. You can monitor the last lines of the file with this command: tail -f log/data_bridge.log This is a log file example. INFO : ################################# waiting for a new message ################################# INFO : Message Received [ {&quot;v&quot;:33,&quot;a&quot;:28} ] from [ 10.5.0.5 ] : [ 4114 ] INFO : KITE Response status code [ 200 ] INFO : GET information related to [ 10.5.0.5 ] from KITE Platform INFO : Found device cloud name [ MyDevice ] and topic [ ] in KITE Platform INFO : Select Option 1: DEVICE [ MyDevice ] and DEFAULT TOPIC INFO : Publish message [ {&quot;v&quot;:33,&quot;a&quot;:28} ] into topic [ tlm/MyDevice/raw ] INFO : Publish Accepted code [ 200 ] INFO : Sent MESSAGE [ {&quot;msg&quot;: &quot;OK: msg published&quot;, &quot;code&quot;: 200} ] to [ 10.5.0.5 ] : [ 4114 ] INFO : ################################# waiting for a new message ################################# INFO : Message Received [ aaa ] from [ 00.00.00.00 ] : [ 4114 ] INFO : KITE Response status code [ 204 ] INFO : GET information related to [ 00.00.00.00 ] from KITE Platform INFO : Sent MESSAGE [{&quot;msg&quot;:&quot;ERROR:connection with Kite not established&quot;,&quot;code&quot;:404}] to [ 84.78.20.223 ]:[4114]</summary></entry><entry><title type="html">IPsec</title><link href="http://localhost:4000/BPIPsec.html" rel="alternate" type="text/html" title="IPsec" /><published>2019-02-06T13:00:00+01:00</published><updated>2019-02-06T13:00:00+01:00</updated><id>http://localhost:4000/BPIPsec</id><content type="html" xml:base="http://localhost:4000/BPIPsec.html">&lt;h3 id=&quot;table-of-contents&quot;&gt;Table of Contents&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;#what-is-ipsec&quot;&gt;What is IPsec?&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#what-will-you-need&quot;&gt;What will you need?&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#what-does-it-do&quot;&gt;What does it do?&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#how-to-make-your-own-ipsec-vpn&quot;&gt;How to make your own IPsec VPN!&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#request-a-private-apn-to-telefónica&quot;&gt;Request private APN to Telefónica&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#table-of-contents-ipsec-in-aws&quot;&gt;IPsec step by step in AWS&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;what-is-ipsec&quot;&gt;What is IPsec?&lt;/h1&gt;
-
-&lt;p&gt;IPsec is one of the most important security protocols. It was created to provide security in network and in transport layer.
-It guarantees the security using both TCP and UDP protocols.&lt;/p&gt;
-
-&lt;p&gt;IPsec protects data flows between two security gateways. It allows two networks to be connected.
-It also includes a series of protocols to establish authentication between networks.&lt;/p&gt;
-
-&lt;p&gt;Its main purpose is to create a Private Networks (VPN).&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/schematics/IPsec_diagram.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;what-will-you-need&quot;&gt;What will you need?&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Telefónica SIM with private APN (IPsec)&lt;/li&gt;
-  &lt;li&gt;A Cloud machine with IPsec tunnel&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;what-does-it-do&quot;&gt;What does it do?&lt;/h2&gt;
-
-&lt;p&gt;When you request your SIMs from Telefónica, you can ask for a private APN. This APN includes your SIMs in a new network.
-The goal is to establish a direct connection between the new network and your network.&lt;/p&gt;
-
-&lt;p&gt;The IPsec guarantee that two networks work as one. It provides a secure connection between them.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;how-to-make-your-own-ipsec-vpn&quot;&gt;How to make your own IPsec VPN!&lt;/h1&gt;
-
-&lt;p&gt;We believe in the importance of your data, for this reason we want to provide you a secure network.&lt;/p&gt;
-
-&lt;h2 id=&quot;request-a-private-apn-to-telefónica&quot;&gt;Request a private APN to Telefónica&lt;/h2&gt;
-
-&lt;p&gt;We assume that because you are following this tutorial with us, you are interested in connecting your devices through Telefónica’s network.&lt;/p&gt;
-
-&lt;p&gt;It is important for you to know that when you request for new SIM’s you can ask for the creation of your own APN (Access Point Name).&lt;/p&gt;
-
-&lt;p&gt;This new APN can be set to have its own IP’s range. This range cannot correspond to your own network. 
-An example of networks that you can request are the following:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Class A: up to 16777215 devices xxx.0.0.0/8&lt;/li&gt;
-  &lt;li&gt;Class B: up to 65535 devices    xxx.xxx.0.0/16&lt;/li&gt;
-  &lt;li&gt;Class C: up to 255 devices      xxx.xxx.xxx.0/24&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Where you can choose a desired range: &lt;strong&gt;192.164.0.0/24&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;This range includes the IP address from 192.164.0.0 to 192.164.0.255 .&lt;/p&gt;
-
-&lt;p&gt;In addition to the range you must provide to Telefónica the internet gateways configuration.&lt;/p&gt;
-
-&lt;p&gt;This setting will depend on your public cloud:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;#table-of-contents-ipsec-in-aws&quot;&gt;IPsec step by step in AWS&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Other clouds tutorials in development …&lt;/p&gt;
-
-&lt;h2 id=&quot;ipsec-step-by-step-in-aws&quot;&gt;IPsec step by step in AWS&lt;/h2&gt;
-
-&lt;h4 id=&quot;table-of-contents-ipsec-in-aws&quot;&gt;Table of Contents IPsec in AWS&lt;/h4&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;#configure-ipsec-step-by-step-in-aws&quot;&gt;Configure IPsec step by step in AWS&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#1-create-vpc&quot;&gt;1. Create VPC&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#2-create-vpg&quot;&gt;2. Create VPG&lt;/a&gt;
-        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#21-attach-vpg-to-vpc&quot;&gt;2.1. Attach VPG to VPC&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#3-enable-propagation-of-routes-from-vpg&quot;&gt;3. Enable propagation of routes from VPG&lt;/a&gt;
-        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#31-edit-route-table&quot;&gt;3.1. Edit Route Table&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#4-create-2-custom-gateway&quot;&gt;4. Create 2 Custom Gateway&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#5-create-2-vpn-connection&quot;&gt;5. Create 2 VPN Connection&lt;/a&gt;
-        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#51-download-configuration&quot;&gt;5.1. Download Configuration&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#6-create-an-ec2-instance&quot;&gt;6. Create an EC2 instance&lt;/a&gt;
-        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#61-launch-ec2-instance&quot;&gt;6.1. Launch EC2 instance&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#62-enable-internet-connection-ec2-instance&quot;&gt;6.2. Enable Internet Connection EC2 instance&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;configure-ipsec-step-by-step-in-aws&quot;&gt;Configure IPsec step by step in AWS&lt;/h1&gt;
-
-&lt;p&gt;In the Amazon nomenclature the client servers are located in the virtual machines of the client’s Virtual Private Cloud, 
-while Telefónica’s network will act as “Local Network”.&lt;/p&gt;
-
-&lt;p&gt;On Amazon, IPsec tunnels are created using VPN Connections. When a VPN connection is created between the Virtual Private Gateway
-and the Customer Gateway (Telefónica Encrypter)
-automatically assigns two public IPs to its VPG which will be the peer IPsec on the Amazon side.&lt;/p&gt;
-
-&lt;p&gt;Amazon provide a redundant connection. In other words, you’ll need create two gateways.&lt;/p&gt;
-
-&lt;p&gt;For more details see the following diagram&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_00_Overview.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The following tutorial intends to be a simple guide to configure the IPsec between an EC2 machine and your pool of SIMs 
-from the Telefónica’s network.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents-ipsec-in-aws&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;1-create-vpc&quot;&gt;1. Create VPC&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;What Is Amazon VPC?&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Amazon Virtual Private Cloud (Amazon VPC) enables you to launch AWS resources into a virtual network.
-This virtual network closely resembles a traditional network that you’d operate in your own data center.&lt;/p&gt;
-
-&lt;p&gt;Go to &lt;strong&gt;VPC Dashboard / Virtual Private Cloud / Your VPCs /&lt;/strong&gt; Select: &lt;strong&gt;Create VPC&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_01_VPCdashboard_CreateVPC.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Fill in the fields:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Name tag:&lt;/strong&gt; Select a name for identify your VPC in the next steps&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;IPv4 CIDR block:&lt;/strong&gt; Select your network range. It must not match the range of your SIM pool&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_01_VPCdashboard_CreateVPC_config.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Click on create.&lt;/p&gt;
-
-&lt;p&gt;Now you can see the new VPC&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_01_VPCdashboard_CreateVPC_config_end.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents-ipsec-in-aws&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;2-create-vpg&quot;&gt;2. Create VPG&lt;/h2&gt;
-
-&lt;p&gt;Go to &lt;strong&gt;VPC Dashboard / Virtual Private Network / Virtual Private Gateway /&lt;/strong&gt; Select: &lt;strong&gt;Create Virtual Private Gateway&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_02_VPCdashboard_CreateVPG.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Name tag:&lt;/strong&gt; Select a name for identify your VPG in the next steps&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_02_VPCdashboard_CreateVPG_config.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Click on &lt;strong&gt;create&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Now you can see the new VP Gateway&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_02_VPCdashboard_CreateVPG_config_done.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now you can check the VPG status and read in red &lt;strong&gt;detached&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;21-attach-vpg-to-vpc&quot;&gt;2.1. Attach VPG to VPC&lt;/h3&gt;
-
-&lt;p&gt;On the previous screen 
-&lt;strong&gt;VPC Dashboard / Virtual Private Network / Virtual Private Gateway&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Select your VPG: 
-&lt;strong&gt;Actions&lt;/strong&gt; button / Select: &lt;strong&gt;Attach to VPC&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Select your VPC &lt;strong&gt;Name tag&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_02_VPCdashboard_CreateVPG_config_end_attach.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Click on &lt;strong&gt;Yes, Attach&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Wait a moment until it appears &lt;strong&gt;attached&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents-ipsec-in-aws&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;3-enable-propagation-of-routes-from-vpg&quot;&gt;3. Enable propagation of routes from VPG&lt;/h2&gt;
-
-&lt;p&gt;This means that in your VPC the routes to our local network automatically point to the Virtual Private Gateway:&lt;/p&gt;
-
-&lt;h3 id=&quot;31-edit-route-table&quot;&gt;3.1. Edit Route Table&lt;/h3&gt;
-
-&lt;p&gt;To enable instances in your VPC to reach your customer gateway, you must configure your route table to include 
-the routes used by your VPN connection. They have to point to your Virtual Private Gateway.
-You can enable route propagation for your route table to automatically propagate
-those routes to the table for you.&lt;/p&gt;
-
-&lt;p&gt;Go to &lt;strong&gt;VPC Dashboard / Virtual Private Cloud / Route Tables&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Select the table with your VPC and in the bottom menu select the tab:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Route Propagation / Edit route propagation&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_03_VPCdashboard_RouteTables.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;A new window opens to activate it&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_03_VPCdashboard_RouteTables_propagation.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Click on &lt;strong&gt;Save&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Now you can see route propagate to &lt;strong&gt;YES&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents-ipsec-in-aws&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;4-create-2-custom-gateway&quot;&gt;4. Create 2 Custom Gateway&lt;/h2&gt;
-
-&lt;p&gt;To be able to connect to the Telefónica network it is necessary to establish 2 Gateway with the 2 Telefónica’s encrypters.&lt;/p&gt;
-
-&lt;p&gt;Go to &lt;strong&gt;VPC Dashboard / Virtual Private Network (VPN) / Customer Gateway /&lt;/strong&gt; Select: &lt;strong&gt;Create Customer Gateway&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_04_VPCdashboard_CustomerGateway_CreateCG.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;fill in the fields with the following information:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Encrypter3:&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;Name: TEF_Cifra3&lt;/li&gt;
-      &lt;li&gt;Routing: Dynamic&lt;/li&gt;
-      &lt;li&gt;BGP ASN: 3352&lt;/li&gt;
-      &lt;li&gt;IP Address: 213.0.185.6&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Encrypter4:&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;Name: TEF_Cifra4&lt;/li&gt;
-      &lt;li&gt;Routing: Dynamic&lt;/li&gt;
-      &lt;li&gt;BGP ASN: 3352&lt;/li&gt;
-      &lt;li&gt;IP Address: 213.0.185.8&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_04_VPCdashboard_CustomerGateway_CreateCG_config.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Once the Customers Gateway corresponding to the Telefónica’s encrypters have been created, they appear as shown below:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_04_VPCdashboard_CustomerGateway_CreateCG_config_done.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents-ipsec-in-aws&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;5-create-2-vpn-connection&quot;&gt;5. Create 2 VPN Connection&lt;/h2&gt;
-
-&lt;p&gt;You must create a VPN connection for each of the two customer gateways corresponding to Telefónica’s two encryption devices.&lt;/p&gt;
-
-&lt;p&gt;Go to &lt;strong&gt;VPC Dashboard / Virtual Private Network (VPN) / Site-to-Site VPN /&lt;/strong&gt; Select: &lt;strong&gt;Create VPN Connection&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_05_VPCdashboard_VPNconnection_createVPNc.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Name tag:&lt;/strong&gt; Select a name for identify your VPC connection in the next steps&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;VPG&lt;/strong&gt; Select your VPN Gateway attached to your VPC&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Customer Gateway&lt;/strong&gt; Existing&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Customer Gateway ID&lt;/strong&gt; Select each of the two Customers Gateway created&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Routing Options&lt;/strong&gt; Dynamic&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;for the &lt;strong&gt;first&lt;/strong&gt; VPN connection:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Inside IP CIDR for Tunnel 1&lt;/strong&gt;  169.254.30.0/30&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Inside IP CIDR for Tunnel 2&lt;/strong&gt;  169.254.30.4/30&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;and for the &lt;strong&gt;second&lt;/strong&gt; VPN connection:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Inside IP CIDR for Tunnel 1&lt;/strong&gt;  169.254.40.0/30&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Inside IP CIDR for Tunnel 2&lt;/strong&gt;  169.254.40.4/30&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_05_VPCdashboard_VPNconnection_createVPNc_config1.png&quot; alt=&quot;pic&quot; /&gt;
-&lt;img src=&quot;pictures/IPsec/IPsec_AWS_05_VPCdashboard_VPNconnection_createVPNc_config2.png&quot; alt=&quot;pic&quot; /&gt;
-&lt;img src=&quot;pictures/IPsec/IPsec_AWS_05_VPCdashboard_VPNconnection_createVPNc_config3.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Click on &lt;strong&gt;Create VPN Connection&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_05_VPCdashboard_VPNconnection_createVPNc_config_done.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now you can read in the tab &lt;strong&gt;Tunnel Detail&lt;/strong&gt; the status in red &lt;strong&gt;DOWN&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;This will hold, until you contact to Telefónica and send them the configuration.&lt;/p&gt;
-
-&lt;h3 id=&quot;51-download-configuration&quot;&gt;5.1. Download Configuration&lt;/h3&gt;
-
-&lt;p&gt;Amazon offers you the possibility to download a configuration file for the Customer Gateway.
-You will need provide this file to Telefónica.&lt;/p&gt;
-
-&lt;p&gt;Clicking on each encrypter, select the tab &lt;strong&gt;Download Configuration&lt;/strong&gt; and fill like the following example&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_05_VPCdashboard_VPNconnection_createVPNc_config_download.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;You keep these two files that they are necessary to configure the other tunnel end.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents-ipsec-in-aws&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;6-create-an-ec2-instance&quot;&gt;6. Create an EC2 instance&lt;/h2&gt;
-
-&lt;p&gt;Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides secure, resizable compute capacity in the cloud. 
-It is designed to make web-scale cloud computing easier for developers.&lt;/p&gt;
-
-&lt;h3 id=&quot;61-launch-ec2-instance&quot;&gt;6.1. Launch EC2 instance&lt;/h3&gt;
-
-&lt;p&gt;Go to EC2 Dashboard / Instances / Instances / Select: &lt;strong&gt;Launch Instance&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_06_EC2dashboard_Instance_launch.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Step 1:&lt;/strong&gt; Choose the SO&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_06_EC2dashboard_Instance_launch_step1.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Click &lt;strong&gt;Next&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Step 2:&lt;/strong&gt; Choose the machine size&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_06_EC2dashboard_Instance_launch_step2.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Click &lt;strong&gt;Next&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Step 3:&lt;/strong&gt; Configure the machine connection&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Network&lt;/strong&gt; Select your VPC&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Subnet&lt;/strong&gt; Create a new Subnet (look like y the next step 6.1)&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Auto-assigns Public IP&lt;/strong&gt; Enable&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_06_EC2dashboard_Instance_launch_step3.png&quot; alt=&quot;pic&quot; /&gt;
-&lt;img src=&quot;pictures/IPsec/IPsec_AWS_06_EC2dashboard_Instance_launch_step3a.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Click &lt;strong&gt;Next&lt;/strong&gt; until Step 6&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Step 6:&lt;/strong&gt; Open a Port to test the connection&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Assign a security group&lt;/strong&gt; Create a new security group&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Security group name&lt;/strong&gt; Select a name for identify your Security group in the next steps&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Add Rule&lt;/strong&gt; Custom ICMP like the picture for enable the ping response&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_06_EC2dashboard_Instance_launch_step6.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents-ipsec-in-aws&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;61a-create-subnet&quot;&gt;6.1.a Create Subnet&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Name tag&lt;/strong&gt; Select a name for identify your Subnet in the next steps&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;VPC&lt;/strong&gt; Select your VPC&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;IPv4 CIDR block&lt;/strong&gt; use the same IP range but choose a smaller mask&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_06_EC2dashboard_Instance_launch_step3_subnet1.png&quot; alt=&quot;pic&quot; /&gt;
-&lt;img src=&quot;pictures/IPsec/IPsec_AWS_06_EC2dashboard_Instance_launch_step3_subnet2.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Click on &lt;strong&gt;Create&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Now your machine is running, but it is connected to a virtual network. You must configurate an internet gateway&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents-ipsec-in-aws&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;62-enable-internet-connection-ec2-instance&quot;&gt;6.2. Enable Internet Connection EC2 instance&lt;/h3&gt;
-
-&lt;p&gt;Go to VPC &lt;strong&gt;Dashboard / Virtual Private Cloud / Internet Gateway /&lt;/strong&gt; Select: &lt;strong&gt;Create internet gateway&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_06_VirtualPrivateCloud_InternetGateway_CreateIG.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Name tag&lt;/strong&gt; Select a name for identify your Subnet in the next steps&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_06_VirtualPrivateCloud_InternetGateway_CreateIG_config.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Click on &lt;strong&gt;Create&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Now select the Internet Gateway and select &lt;strong&gt;attach to VPC&lt;/strong&gt; on Actions tab&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_06_VirtualPrivateCloud_InternetGateway_CreateIG_config_attach.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;VPC&lt;/strong&gt; Select the VPC&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_06_VirtualPrivateCloud_InternetGateway_CreateIG_config_attach_VPC.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Click on &lt;strong&gt;Attach&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Now you have access to an internet gateway, you only have to modify the rules of the gateway to allow traffic.&lt;/p&gt;
-
-&lt;p&gt;Go to &lt;strong&gt;VPC Dashboard / Virtual Private Cloud / Route Table /&lt;/strong&gt; Select the route table of the VPC&lt;/p&gt;
-
-&lt;p&gt;On the tab &lt;strong&gt;Routes&lt;/strong&gt; click on &lt;strong&gt;Edit Routes&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_06_VirtualPrivateCloud_RouteTables.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Add a new route with the interface 0.0.0.0/0
-and select the internet gateway like target.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/IPsec/IPsec_AWS_06_VirtualPrivateCloud_RouteTables_editroute.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents-ipsec-in-aws&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Table of Contents What is IPsec? What will you need? What does it do? How to make your own IPsec VPN! Request private APN to Telefónica IPsec step by step in AWS What is IPsec? IPsec is one of the most important security protocols. It was created to provide security in network and in transport layer. It guarantees the security using both TCP and UDP protocols. IPsec protects data flows between two security gateways. It allows two networks to be connected. It also includes a series of protocols to establish authentication between networks. Its main purpose is to create a Private Networks (VPN). What will you need? Telefónica SIM with private APN (IPsec) A Cloud machine with IPsec tunnel What does it do? When you request your SIMs from Telefónica, you can ask for a private APN. This APN includes your SIMs in a new network. The goal is to establish a direct connection between the new network and your network. The IPsec guarantee that two networks work as one. It provides a secure connection between them. How to make your own IPsec VPN! We believe in the importance of your data, for this reason we want to provide you a secure network. Request a private APN to Telefónica We assume that because you are following this tutorial with us, you are interested in connecting your devices through Telefónica’s network. It is important for you to know that when you request for new SIM’s you can ask for the creation of your own APN (Access Point Name). This new APN can be set to have its own IP’s range. This range cannot correspond to your own network. An example of networks that you can request are the following: Class A: up to 16777215 devices xxx.0.0.0/8 Class B: up to 65535 devices xxx.xxx.0.0/16 Class C: up to 255 devices xxx.xxx.xxx.0/24 Where you can choose a desired range: 192.164.0.0/24 This range includes the IP address from 192.164.0.0 to 192.164.0.255 . In addition to the range you must provide to Telefónica the internet gateways configuration. This setting will depend on your public cloud: IPsec step by step in AWS Other clouds tutorials in development … IPsec step by step in AWS Table of Contents IPsec in AWS Configure IPsec step by step in AWS 1. Create VPC 2. Create VPG 2.1. Attach VPG to VPC 3. Enable propagation of routes from VPG 3.1. Edit Route Table 4. Create 2 Custom Gateway 5. Create 2 VPN Connection 5.1. Download Configuration 6. Create an EC2 instance 6.1. Launch EC2 instance 6.2. Enable Internet Connection EC2 instance Configure IPsec step by step in AWS In the Amazon nomenclature the client servers are located in the virtual machines of the client’s Virtual Private Cloud, while Telefónica’s network will act as “Local Network”. On Amazon, IPsec tunnels are created using VPN Connections. When a VPN connection is created between the Virtual Private Gateway and the Customer Gateway (Telefónica Encrypter) automatically assigns two public IPs to its VPG which will be the peer IPsec on the Amazon side. Amazon provide a redundant connection. In other words, you’ll need create two gateways. For more details see the following diagram The following tutorial intends to be a simple guide to configure the IPsec between an EC2 machine and your pool of SIMs from the Telefónica’s network. 1. Create VPC What Is Amazon VPC? Amazon Virtual Private Cloud (Amazon VPC) enables you to launch AWS resources into a virtual network. This virtual network closely resembles a traditional network that you’d operate in your own data center. Go to VPC Dashboard / Virtual Private Cloud / Your VPCs / Select: Create VPC Fill in the fields: Name tag: Select a name for identify your VPC in the next steps IPv4 CIDR block: Select your network range. It must not match the range of your SIM pool Click on create. Now you can see the new VPC 2. Create VPG Go to VPC Dashboard / Virtual Private Network / Virtual Private Gateway / Select: Create Virtual Private Gateway Name tag: Select a name for identify your VPG in the next steps Click on create. Now you can see the new VP Gateway Now you can check the VPG status and read in red detached 2.1. Attach VPG to VPC On the previous screen VPC Dashboard / Virtual Private Network / Virtual Private Gateway Select your VPG: Actions button / Select: Attach to VPC Select your VPC Name tag Click on Yes, Attach Wait a moment until it appears attached 3. Enable propagation of routes from VPG This means that in your VPC the routes to our local network automatically point to the Virtual Private Gateway: 3.1. Edit Route Table To enable instances in your VPC to reach your customer gateway, you must configure your route table to include the routes used by your VPN connection. They have to point to your Virtual Private Gateway. You can enable route propagation for your route table to automatically propagate those routes to the table for you. Go to VPC Dashboard / Virtual Private Cloud / Route Tables Select the table with your VPC and in the bottom menu select the tab: Route Propagation / Edit route propagation A new window opens to activate it Click on Save Now you can see route propagate to YES 4. Create 2 Custom Gateway To be able to connect to the Telefónica network it is necessary to establish 2 Gateway with the 2 Telefónica’s encrypters. Go to VPC Dashboard / Virtual Private Network (VPN) / Customer Gateway / Select: Create Customer Gateway fill in the fields with the following information: Encrypter3: Name: TEF_Cifra3 Routing: Dynamic BGP ASN: 3352 IP Address: 213.0.185.6 Encrypter4: Name: TEF_Cifra4 Routing: Dynamic BGP ASN: 3352 IP Address: 213.0.185.8 Once the Customers Gateway corresponding to the Telefónica’s encrypters have been created, they appear as shown below: 5. Create 2 VPN Connection You must create a VPN connection for each of the two customer gateways corresponding to Telefónica’s two encryption devices. Go to VPC Dashboard / Virtual Private Network (VPN) / Site-to-Site VPN / Select: Create VPN Connection Name tag: Select a name for identify your VPC connection in the next steps VPG Select your VPN Gateway attached to your VPC Customer Gateway Existing Customer Gateway ID Select each of the two Customers Gateway created Routing Options Dynamic for the first VPN connection: Inside IP CIDR for Tunnel 1 169.254.30.0/30 Inside IP CIDR for Tunnel 2 169.254.30.4/30 and for the second VPN connection: Inside IP CIDR for Tunnel 1 169.254.40.0/30 Inside IP CIDR for Tunnel 2 169.254.40.4/30 Click on Create VPN Connection Now you can read in the tab Tunnel Detail the status in red DOWN This will hold, until you contact to Telefónica and send them the configuration. 5.1. Download Configuration Amazon offers you the possibility to download a configuration file for the Customer Gateway. You will need provide this file to Telefónica. Clicking on each encrypter, select the tab Download Configuration and fill like the following example You keep these two files that they are necessary to configure the other tunnel end. 6. Create an EC2 instance Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides secure, resizable compute capacity in the cloud. It is designed to make web-scale cloud computing easier for developers. 6.1. Launch EC2 instance Go to EC2 Dashboard / Instances / Instances / Select: Launch Instance Step 1: Choose the SO Click Next Step 2: Choose the machine size Click Next Step 3: Configure the machine connection Network Select your VPC Subnet Create a new Subnet (look like y the next step 6.1) Auto-assigns Public IP Enable Click Next until Step 6 Step 6: Open a Port to test the connection Assign a security group Create a new security group Security group name Select a name for identify your Security group in the next steps Add Rule Custom ICMP like the picture for enable the ping response 6.1.a Create Subnet Name tag Select a name for identify your Subnet in the next steps VPC Select your VPC IPv4 CIDR block use the same IP range but choose a smaller mask Click on Create Now your machine is running, but it is connected to a virtual network. You must configurate an internet gateway 6.2. Enable Internet Connection EC2 instance Go to VPC Dashboard / Virtual Private Cloud / Internet Gateway / Select: Create internet gateway Name tag Select a name for identify your Subnet in the next steps Click on Create Now select the Internet Gateway and select attach to VPC on Actions tab VPC Select the VPC Click on Attach Now you have access to an internet gateway, you only have to modify the rules of the gateway to allow traffic. Go to VPC Dashboard / Virtual Private Cloud / Route Table / Select the route table of the VPC On the tab Routes click on Edit Routes Add a new route with the interface 0.0.0.0/0 and select the internet gateway like target.</summary></entry><entry><title type="html">Kite Platform</title><link href="http://localhost:4000/KitePlatform.html" rel="alternate" type="text/html" title="Kite Platform" /><published>2019-02-06T13:00:00+01:00</published><updated>2019-02-06T13:00:00+01:00</updated><id>http://localhost:4000/KitePlatform</id><content type="html" xml:base="http://localhost:4000/KitePlatform.html">&lt;h3 id=&quot;table-of-contents&quot;&gt;Table of Contents&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;#this-is-kite&quot;&gt;This is KITE!&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#quick-view-to-kite-graphic-interface&quot;&gt;Quick view to Kite Graphic Interface&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#manage-your-sims&quot;&gt;Manage your SIMs&lt;/a&gt;
-        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#sim-inventory&quot;&gt;SIM inventory&lt;/a&gt;
-            &lt;ul&gt;
-              &lt;li&gt;&lt;a href=&quot;#sim-inventory-bottom-menu&quot;&gt;SIM inventory bottom menu&lt;/a&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#sim-details&quot;&gt;SIM details&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#how-to-get-started-with-your-sim&quot;&gt;How to get started with your SIM&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#what-is-kite-platform-api&quot;&gt;What is Kite Platform API?&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#how-to-access-kite-platform-api&quot;&gt;How to access Kite Platform API?&lt;/a&gt;
-        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#extract-your-credentials-files&quot;&gt;Extract your credentials files&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#access-api-using-a-command&quot;&gt;Access API using a command&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#how-its-made&quot;&gt;How it’s made&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#activate-data-traffic&quot;&gt;Activate Data traffic&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#activate-location-service&quot;&gt;Activate Location Service&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#activate-lte-nb-4g&quot;&gt;Activate LTE / NB (4G)&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#assign-subscription-group&quot;&gt;Assign Subscription group&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#change-life-cycle-state&quot;&gt;Change life cycle state&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#edit-custom-field&quot;&gt;Edit Custom Field&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#select-apn&quot;&gt;Select APN&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#deactivate-any-service&quot;&gt;Deactivate any Service&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=Kr5aICVJxSA&quot;&gt;&lt;img src=&quot;pictures/Kite/Kite.png&quot; alt=&quot;IMAGE ALT TEXT HERE&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;this-is-kite&quot;&gt;This is KITE!&lt;/h1&gt;
-&lt;p&gt;Kite Platform improves productivity globally in the M2M sphere, providing tools to
-manage your devices connectivity.&lt;/p&gt;
-
-&lt;p&gt;Among these tools are:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;SIM card management&lt;/li&gt;
-  &lt;li&gt;Display and management SIM’s parameters&lt;/li&gt;
-  &lt;li&gt;Activation services and other administrative changes&lt;/li&gt;
-  &lt;li&gt;Line assignment or migration to different commercial plans&lt;/li&gt;
-  &lt;li&gt;Pre-bill invoices inquiries&lt;/li&gt;
-  &lt;li&gt;Users and organizations management&lt;/li&gt;
-  &lt;li&gt;Alarms and reports&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;In addition, Kite Platform, provides an API for the integration in the client’s systems. 
-This API description are available in the Help menu in the web portal.&lt;/p&gt;
-
-&lt;h1 id=&quot;quick-view-to-kite-graphic-interface&quot;&gt;Quick view to Kite Graphic Interface&lt;/h1&gt;
-
-&lt;p&gt;The graphic interface of Kite is organised in three sections:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;1 Configuration menu&lt;/li&gt;
-  &lt;li&gt;2 Main menu&lt;/li&gt;
-  &lt;li&gt;3 Work area&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;manage-your-sims&quot;&gt;Manage your SIMs&lt;/h2&gt;
-
-&lt;h3 id=&quot;sim-inventory&quot;&gt;SIM inventory&lt;/h3&gt;
-
-&lt;p&gt;You can use the search engine of the platform to locate a SIM by copying its ICC number in the bar
-or you can access the SIM inventory, where you can locate and manage all your cards.&lt;/p&gt;
-
-&lt;p&gt;If you want to check the SIM details, you make double click on each of them.&lt;/p&gt;
-
-&lt;p&gt;Some of them may be deactivated, and you may need to change their status. 
-In the next step we will show you how to check that a SIM card is operational.&lt;/p&gt;
-
-&lt;h4 id=&quot;sim-inventory-bottom-menu&quot;&gt;SIM inventory bottom menu&lt;/h4&gt;
-
-&lt;p&gt;It appear at the bottom of the window when you select a SIM card.&lt;/p&gt;
-
-&lt;p&gt;It allows you to perform actions such as activate or deactivate services, change SIM parameters and other options.&lt;/p&gt;
-
-&lt;h3 id=&quot;sim-details&quot;&gt;SIM details&lt;/h3&gt;
-
-&lt;p&gt;Different tabs appear in this menu, allowing you to review all SIM information about services, connectivity and status.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;SIM identification:&lt;/strong&gt;
-When the section opens, the detailed information on the SIM card is accessed.
-Some of these fields are editable with the &lt;strong&gt;Edit&lt;/strong&gt; button on the top right corner.
-Here you can add an &lt;strong&gt;Alias&lt;/strong&gt; to your SIM and add a &lt;strong&gt;custom field&lt;/strong&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Life cycle state:&lt;/strong&gt;
-It groups information related to the status changes in the life cycle of the SIM card.
-It displays only the value of the current state.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Presence:&lt;/strong&gt;
-It displays SIM information related to the connectivity.
-If you do not know the APN which your SIM can connect,
-you can check it in this section.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Traffic consumption control:&lt;/strong&gt;
-It shows detailed, summary information on the SMS messages, data and traffic and
-voice consumption of the SIM card during the current billing period.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Monthly expense control:&lt;/strong&gt;
-It shows detailed, summary information on the SMS messages, data and traffic and
-voice consumption of the SIM card during the last months.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Basic services and Supplementary services:&lt;/strong&gt;
-They includes a list of services for SIM cards and they indicate if they are activated&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt;
-It allows you to preview the location in a map.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;how-to-get-started-with-your-sim&quot;&gt;How to get started with your SIM&lt;/h1&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;First of all, your SIM must be &lt;a href=&quot;#assign-subscription-group&quot;&gt;assigned to a subscription group&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;In order for a SIM to be operational, it must be in &lt;a href=&quot;#change-life-cycle-state&quot;&gt;activated state&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;And lastly you must make sure that the SIM has the &lt;a href=&quot;#activate-data-traffic&quot;&gt;data traffic activated&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;There are many more options and &lt;a href=&quot;#how-its-made&quot;&gt;services available&lt;/a&gt; for your SIM&lt;/p&gt;
-
-&lt;h5 id=&quot;learn-about-life-cycle-state&quot;&gt;Learn about life cycle state&lt;/h5&gt;
-
-&lt;p&gt;For connect your SIM need to be operational. for it, the SIM must be activated.
-Follow the diagram below&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;pictures/Kite/Kite_interface_SIM_LifeCycle.png&quot; alt=&quot;pic&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Inactive new&lt;/strong&gt;: initial state of any SIM card. The card will remain in this state until you 
-assign a Subscription Group to it (including a commercial plan).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Test&lt;/strong&gt;: optional and available test for once the SIM card is assigned to a
-Subscriptions group that takes into account that state in its commercial plan.
-This state enables a limited traffic in order to prove the SIM card is functioning
-correctly.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Activation ready&lt;/strong&gt;: previous state to Activated and state the SIM card changes to
-once the time or the available traffic is consumed in the Test state.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Pending activation&lt;/strong&gt;: It is a state similar to the previous one, but in this one the change
-to the Activated state is done manually from Inventory.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Activated&lt;/strong&gt;: In this state the SIM card is fully operating.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Deactivated&lt;/strong&gt;: In this state, the SIM card does not have traffic but its permanence
-can entail an associated fee. From this state, the card can be activated again
-manually.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Suspended&lt;/strong&gt;: This is used typically in cases of fraud or unpaid.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Retired&lt;/strong&gt;: This state will always be the last.. This state can only be reached if the card is suspended.
-Once in this state, there is no going back.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;what-is-kite-platform-api&quot;&gt;What is Kite Platform API?&lt;/h1&gt;
-&lt;p&gt;The Kite Platform offers you an API (application program interface) that allows you to integrate it with all your systems.
-It enables you to access all your data and it offers you news possibilities.&lt;/p&gt;
-
-&lt;h2 id=&quot;how-to-access-kite-platform-api&quot;&gt;How to access Kite Platform API?&lt;/h2&gt;
-
-&lt;p&gt;The API is available in the address m2m-api.telefonica.com through the port 8010.
-Therefore, this API services can be used from any system with Internet access.&lt;/p&gt;
-
-&lt;p&gt;📍
-All your API requests must use the HTTPS protocol. This guarantees the confidentiality of your data.&lt;/p&gt;
-
-&lt;p&gt;For this reason, you have to use the SSL (Secure Sockets Layer) protocol. 
-This protocol allows you to establish a bidirectional communication between your systems and Kite.&lt;/p&gt;
-
-&lt;p&gt;This request is made through a certificate and a private key for encryption,
-these files are exclusive to you. Take good care of it!
-Remember that they are the gateway to all your SIM data.&lt;/p&gt;
-
-&lt;h3 id=&quot;extract-your-credentials-files&quot;&gt;Extract your credentials files&lt;/h3&gt;
-
-&lt;p&gt;If you requeste access to the Kite Platform API, the support team will provided you an encrypted file.pfx.
-This file contain both the key and the certificate for the SSL context of your connection. They will also provide you
-a password so that you can extract them.&lt;/p&gt;
-
-&lt;p&gt;📍
-It is important not to modify the name of the file.pfx until you extract the files.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Open a Linux Terminal and install openssl, if you do not have it installed.
-This command allows you to decrypt your file
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install openssl
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Extract the public key from Customer certificate &lt;strong&gt;your_customer_certificate.pfx&lt;/strong&gt;
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;openssl pkcs12 -in your_customer_certificate.pfx -clcerts -nokeys -out \
-your_customer_certificate.cer -password pass:xxxxxxx
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-    &lt;p&gt;You will need the password provided by the Kite Platform Support Team&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Extract the private key from the Customer certificate
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;openssl pkcs12 -in your_customer_certificate.pfx -nocerts -nodes -out \
-your_customer_certificate.key -password pass:xxxxxxxx
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-    &lt;p&gt;also you will need your password here.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;📍
-Remember, keep these new files in a safe place!!&lt;/p&gt;
-
-&lt;h3 id=&quot;access-api-using-a-command&quot;&gt;Access API using a command&lt;/h3&gt;
-
-&lt;p&gt;The Curl command is used to transfer files from a server, it supports various protocols such as HTTP, FTP…&lt;/p&gt;
-
-&lt;p&gt;There is an example about the access to the Commercial Plan API REST using the CURL command&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo curl --cert ./your_customer_certificate.cer --key ./your_customer_certificate.key \
-https://m2m-api.telefonica.com:8010/services/REST/GlobalM2M/ServicePacks/v2/r12/servicePack
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;how-its-made&quot;&gt;How it’s made&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;#activate-data-traffic&quot;&gt;Activate Data traffic&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#activate-location-service&quot;&gt;Activate Location Service&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#activate-lte-nb-4g&quot;&gt;Activate LTE / NB (4G)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#assign-subscription-group&quot;&gt;Assign Subscription group&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#change-life-cycle-state&quot;&gt;Change life cycle state&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#edit-custom-field&quot;&gt;Edit Custom Field&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#select-apn&quot;&gt;Select APN&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#deactivate-any-service&quot;&gt;Deactivate any Service&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;📍
-Some services will only be available if they are included in your data plan.
-But if they’re not available you should contact your local SIM distributor.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;activate-data-traffic&quot;&gt;Activate Data traffic&lt;/h3&gt;
-
-&lt;p&gt;Go to &lt;strong&gt;SIM Inventory&lt;/strong&gt; / &lt;strong&gt;Select your SIM&lt;/strong&gt; / and Press &lt;strong&gt;Activate&lt;/strong&gt; on the bottom-menu&lt;/p&gt;
-
-&lt;p&gt;find the opction &lt;strong&gt;Activate Data traffic (home/roaming)&lt;/strong&gt; and click it&lt;/p&gt;
-
-&lt;p&gt;A new window is open! Click in &lt;strong&gt;Activation&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Now the service is activate, click on &lt;strong&gt;Finish&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;activate-location-service&quot;&gt;Activate Location Service&lt;/h3&gt;
-
-&lt;p&gt;Go to &lt;strong&gt;SIM Inventory&lt;/strong&gt; / &lt;strong&gt;Select your SIM&lt;/strong&gt; / and Press &lt;strong&gt;Activate&lt;/strong&gt; on the bottom-menu&lt;/p&gt;
-
-&lt;p&gt;find the opction &lt;strong&gt;Activate Location&lt;/strong&gt; and click it&lt;/p&gt;
-
-&lt;p&gt;A new window is open! Click in &lt;strong&gt;Activation&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Now the service is activate, click on &lt;strong&gt;Finish&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;activate-lte--nb-4g&quot;&gt;Activate LTE / NB (4G)&lt;/h3&gt;
-
-&lt;p&gt;Go to &lt;strong&gt;SIM Inventory&lt;/strong&gt; / &lt;strong&gt;Select your SIM&lt;/strong&gt; / and Press &lt;strong&gt;Activate&lt;/strong&gt; on the bottom-menu&lt;/p&gt;
-
-&lt;p&gt;find the opction &lt;strong&gt;Activate LTE&lt;/strong&gt; and click it&lt;/p&gt;
-
-&lt;p&gt;A new window is open! Click in &lt;strong&gt;Activation&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Now the service is activate, click on &lt;strong&gt;Finish&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;assign-subscription-group&quot;&gt;Assign Subscription group&lt;/h3&gt;
-
-&lt;p&gt;Go to &lt;strong&gt;SIM Inventory&lt;/strong&gt; / &lt;strong&gt;Select your SIM&lt;/strong&gt; / and Press &lt;strong&gt;Assign&lt;/strong&gt; on the bottom-menu&lt;/p&gt;
-
-&lt;p&gt;find the opction &lt;strong&gt;Assign to subscription group&lt;/strong&gt; and click it&lt;/p&gt;
-
-&lt;p&gt;A new window is open! Choose the new Subscription group name and click in &lt;strong&gt;Proceed&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Select &lt;strong&gt;Assign&lt;/strong&gt; to continue&lt;/p&gt;
-
-&lt;p&gt;Now your SIM is subscribed to the group, click on &lt;strong&gt;Finish&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;change-life-cycle-state&quot;&gt;Change life cycle state&lt;/h3&gt;
-
-&lt;p&gt;Go to &lt;strong&gt;SIM Inventory&lt;/strong&gt; / &lt;strong&gt;Select your SIM&lt;/strong&gt; / and Press &lt;strong&gt;Change&lt;/strong&gt; on the bottom-menu&lt;/p&gt;
-
-&lt;p&gt;find the opction &lt;strong&gt;Change life cycle state&lt;/strong&gt; and click it&lt;/p&gt;
-
-&lt;p&gt;A new window is open! Choose the new state name and select &lt;strong&gt;Proceed&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Select &lt;strong&gt;Change&lt;/strong&gt; to continue&lt;/p&gt;
-
-&lt;p&gt;Now the state is changed, click on &lt;strong&gt;Finish&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;edit-custom-field&quot;&gt;Edit Custom Field&lt;/h3&gt;
-
-&lt;p&gt;Go to &lt;strong&gt;SIM Inventory&lt;/strong&gt; / &lt;strong&gt;Select your SIM&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;double Click on your SIM&lt;/p&gt;
-
-&lt;p&gt;find the opction &lt;strong&gt;SIM identification&lt;/strong&gt; unfold the tab and select &lt;strong&gt;Edit&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Edit the information and click on &lt;strong&gt;Save&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;select-apn&quot;&gt;Select APN&lt;/h3&gt;
-
-&lt;p&gt;Go to &lt;strong&gt;SIM Inventory&lt;/strong&gt; / &lt;strong&gt;Select your SIM&lt;/strong&gt; / and Press &lt;strong&gt;Change&lt;/strong&gt; on the bottom-menu&lt;/p&gt;
-
-&lt;p&gt;find the opction &lt;strong&gt;Change dynamic APNs&lt;/strong&gt; and click it&lt;/p&gt;
-
-&lt;p&gt;A new window is open! Choose the new APN name and Select the action &lt;strong&gt;Add/Delete&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Select &lt;strong&gt;Add APN&lt;/strong&gt; to continue&lt;/p&gt;
-
-&lt;p&gt;Now the APN is added, click on &lt;strong&gt;Finish&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;deactivate-any-service&quot;&gt;Deactivate any Service&lt;/h3&gt;
-
-&lt;p&gt;Follow the same steps as to activate, but from the tab &lt;strong&gt;Deactivate&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Go to &lt;strong&gt;SIM Inventory&lt;/strong&gt; / &lt;strong&gt;Select your SIM&lt;/strong&gt; / and Press &lt;strong&gt;Deactivate&lt;/strong&gt; on the bottom-menu&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Table of Contents This is KITE! Quick view to Kite Graphic Interface Manage your SIMs SIM inventory SIM inventory bottom menu SIM details How to get started with your SIM What is Kite Platform API? How to access Kite Platform API? Extract your credentials files Access API using a command How it’s made Activate Data traffic Activate Location Service Activate LTE / NB (4G) Assign Subscription group Change life cycle state Edit Custom Field Select APN Deactivate any Service This is KITE! Kite Platform improves productivity globally in the M2M sphere, providing tools to manage your devices connectivity. Among these tools are: SIM card management Display and management SIM’s parameters Activation services and other administrative changes Line assignment or migration to different commercial plans Pre-bill invoices inquiries Users and organizations management Alarms and reports In addition, Kite Platform, provides an API for the integration in the client’s systems. This API description are available in the Help menu in the web portal. Quick view to Kite Graphic Interface The graphic interface of Kite is organised in three sections: 1 Configuration menu 2 Main menu 3 Work area Manage your SIMs SIM inventory You can use the search engine of the platform to locate a SIM by copying its ICC number in the bar or you can access the SIM inventory, where you can locate and manage all your cards. If you want to check the SIM details, you make double click on each of them. Some of them may be deactivated, and you may need to change their status. In the next step we will show you how to check that a SIM card is operational. SIM inventory bottom menu It appear at the bottom of the window when you select a SIM card. It allows you to perform actions such as activate or deactivate services, change SIM parameters and other options. SIM details Different tabs appear in this menu, allowing you to review all SIM information about services, connectivity and status. SIM identification: When the section opens, the detailed information on the SIM card is accessed. Some of these fields are editable with the Edit button on the top right corner. Here you can add an Alias to your SIM and add a custom field. Life cycle state: It groups information related to the status changes in the life cycle of the SIM card. It displays only the value of the current state. Presence: It displays SIM information related to the connectivity. If you do not know the APN which your SIM can connect, you can check it in this section. Traffic consumption control: It shows detailed, summary information on the SMS messages, data and traffic and voice consumption of the SIM card during the current billing period. Monthly expense control: It shows detailed, summary information on the SMS messages, data and traffic and voice consumption of the SIM card during the last months. Basic services and Supplementary services: They includes a list of services for SIM cards and they indicate if they are activated Location: It allows you to preview the location in a map. How to get started with your SIM First of all, your SIM must be assigned to a subscription group In order for a SIM to be operational, it must be in activated state And lastly you must make sure that the SIM has the data traffic activated There are many more options and services available for your SIM Learn about life cycle state For connect your SIM need to be operational. for it, the SIM must be activated. Follow the diagram below Inactive new: initial state of any SIM card. The card will remain in this state until you assign a Subscription Group to it (including a commercial plan). Test: optional and available test for once the SIM card is assigned to a Subscriptions group that takes into account that state in its commercial plan. This state enables a limited traffic in order to prove the SIM card is functioning correctly. Activation ready: previous state to Activated and state the SIM card changes to once the time or the available traffic is consumed in the Test state. Pending activation: It is a state similar to the previous one, but in this one the change to the Activated state is done manually from Inventory. Activated: In this state the SIM card is fully operating. Deactivated: In this state, the SIM card does not have traffic but its permanence can entail an associated fee. From this state, the card can be activated again manually. Suspended: This is used typically in cases of fraud or unpaid. Retired: This state will always be the last.. This state can only be reached if the card is suspended. Once in this state, there is no going back. What is Kite Platform API? The Kite Platform offers you an API (application program interface) that allows you to integrate it with all your systems. It enables you to access all your data and it offers you news possibilities. How to access Kite Platform API? The API is available in the address m2m-api.telefonica.com through the port 8010. Therefore, this API services can be used from any system with Internet access. 📍 All your API requests must use the HTTPS protocol. This guarantees the confidentiality of your data. For this reason, you have to use the SSL (Secure Sockets Layer) protocol. This protocol allows you to establish a bidirectional communication between your systems and Kite. This request is made through a certificate and a private key for encryption, these files are exclusive to you. Take good care of it! Remember that they are the gateway to all your SIM data. Extract your credentials files If you requeste access to the Kite Platform API, the support team will provided you an encrypted file.pfx. This file contain both the key and the certificate for the SSL context of your connection. They will also provide you a password so that you can extract them. 📍 It is important not to modify the name of the file.pfx until you extract the files. Open a Linux Terminal and install openssl, if you do not have it installed. This command allows you to decrypt your file sudo apt-get install openssl Extract the public key from Customer certificate your_customer_certificate.pfx openssl pkcs12 -in your_customer_certificate.pfx -clcerts -nokeys -out \ your_customer_certificate.cer -password pass:xxxxxxx You will need the password provided by the Kite Platform Support Team Extract the private key from the Customer certificate openssl pkcs12 -in your_customer_certificate.pfx -nocerts -nodes -out \ your_customer_certificate.key -password pass:xxxxxxxx also you will need your password here. 📍 Remember, keep these new files in a safe place!! Access API using a command The Curl command is used to transfer files from a server, it supports various protocols such as HTTP, FTP… There is an example about the access to the Commercial Plan API REST using the CURL command sudo curl --cert ./your_customer_certificate.cer --key ./your_customer_certificate.key \ https://m2m-api.telefonica.com:8010/services/REST/GlobalM2M/ServicePacks/v2/r12/servicePack How it’s made Activate Data traffic Activate Location Service Activate LTE / NB (4G) Assign Subscription group Change life cycle state Edit Custom Field Select APN Deactivate any Service 📍 Some services will only be available if they are included in your data plan. But if they’re not available you should contact your local SIM distributor. Activate Data traffic Go to SIM Inventory / Select your SIM / and Press Activate on the bottom-menu find the opction Activate Data traffic (home/roaming) and click it A new window is open! Click in Activation Now the service is activate, click on Finish Activate Location Service Go to SIM Inventory / Select your SIM / and Press Activate on the bottom-menu find the opction Activate Location and click it A new window is open! Click in Activation Now the service is activate, click on Finish Activate LTE / NB (4G) Go to SIM Inventory / Select your SIM / and Press Activate on the bottom-menu find the opction Activate LTE and click it A new window is open! Click in Activation Now the service is activate, click on Finish Assign Subscription group Go to SIM Inventory / Select your SIM / and Press Assign on the bottom-menu find the opction Assign to subscription group and click it A new window is open! Choose the new Subscription group name and click in Proceed Select Assign to continue Now your SIM is subscribed to the group, click on Finish Change life cycle state Go to SIM Inventory / Select your SIM / and Press Change on the bottom-menu find the opction Change life cycle state and click it A new window is open! Choose the new state name and select Proceed Select Change to continue Now the state is changed, click on Finish Edit Custom Field Go to SIM Inventory / Select your SIM double Click on your SIM find the opction SIM identification unfold the tab and select Edit Edit the information and click on Save Select APN Go to SIM Inventory / Select your SIM / and Press Change on the bottom-menu find the opction Change dynamic APNs and click it A new window is open! Choose the new APN name and Select the action Add/Delete Select Add APN to continue Now the APN is added, click on Finish Deactivate any Service Follow the same steps as to activate, but from the tab Deactivate Go to SIM Inventory / Select your SIM / and Press Deactivate on the bottom-menu</summary></entry></feed>
+&lt;p&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;&lt;img src=&quot;pictures/utils/arrow_up.png&quot; alt=&quot;pic&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Table of Contents What does it do? AWS Options: AWS Option 1: Telemetry AWS Option 2: Telemetry and Commands Deploy and defend your Bridge on AWS! What will you need? Data Bridge python code KITE Platform certificates IPsec tunnel configuration between Telefónica and AWS Amazon Web Services Cloud Computing Services AWS Identity and Access Management (IAM) AWS Systems Manager Parameter Store AWS IoT Core Amazon Elastic Compute Cloud (EC2) How to run it Download it Configure it Launch it What does it do? Each UDP message sent by a device, it is linked to several information such as source IP, destination IP and destination Port. The Bridge will use the device source IP to gather all the sim information stored at Kite platform. For the tutorial purpose you should pay attention to SIM’s custom fields, that you can manage from your Kite Platform account. Field 1 : Device Cloud Name (required) -&amp;gt; this is the name that will appear at the cloud (shadow name, twin name …) Field 2 : topic to publish (optional) Depending on the content of the fields, the Bridge will act differently. To choose between the different options you have to configure SIM information at the Custom Field 📍 The device name is a mandatory field, otherwise an error code will be returned, because the bridge wouldn’t know the virtual representation of the physical device. As we said before, There are two ways of working depending on the information provided as custom parameter in Kite. AWS Options: AWS Option 1: Telemetry AWS Option 2: Telemetry and Commands AWS Option 1: Telemetry This is the most straight forward option. You only have to provide a device cloud name at the first custom parameter in Kite. As a result all the messages sent by your device will be published at the default topic. The default topic has this structure: tlm/{DEVICE_NAME_IN_KITE}/raw Otherwise, If you prefer to send your device messages to another topic, you should add it as a second custom field at Kite. AWS Option 2: Telemetry and Commands The configuration is quite simple, you should identify the topic update of your device and copy it into the second custom field. It should look like this: $aws/things/{DEVICE_NAME_IN_KITE}/shadow/update The bridge will recognize it as an AWS reserved topic and will use the appropriate logic for the connection. The data sent will be published in the shadow in the raw field as shown in the following example. { &quot;reported&quot;: { &quot;raw&quot;: &quot;&amp;lt;MESSAGE SENT HERE&amp;gt;&quot;, } } Moreover, the Bridge will subscribe to the Accepted and Rejected topics, so you will be able to control if the publication has been done or rejected by the broker. Another advantage of using the AWS shadows, is the communication with the device, it allows you to send commands to it. You have to complete the json raw data field at device shadow desired field. { &quot;desired&quot;: { &quot;raw&quot;: &quot;&amp;lt;MESSAGE FOR THE DEVICE&amp;gt;&quot;, } } If you try to publish into a shadow that it isn’t already provisioned the Data Bridge will create it before publishing so you don’t have to worry about it :). But if you still want to create it manually you can follow these steps Deploy and defend your Bridge on AWS! What will you need? Data Bridge code KITE Platform Certificates files An IpSec Service provided by Telefónica (IPsec) AWS account: Identity and Access Management roles AWS Systems Manager Parameter Store Amazon Elastic Compute Cloud instance (EC2) AWS IoT Core 📍 For the time being, if you use a SIM from the Thinx testing network you will not have access to the Kite Platform. Data Bridge python code You can download it from our repository KITE Platform certificates One of the Data Bridge strong points, is the integration with Kite. Kite is the Telefónica’s IoT Connectivity Platform, and Kite provides an API interface for management via HTTPS. Ask your Telefonica’s local contact for the certificates associated to your account. Once you receive this certificate, you will need to extract the keys that the Bridge will use to validate the connection. If you want to see how to do it, you can follow our documentation When you finish these steps, you should have a file with the certificate and another one with the access key: your_customer_certificate.cer your_customer_certificate.key IPsec tunnel configuration between Telefónica and AWS An IPsec tunnel is a direct connection between the mobile network of your SIM pool and the Data Bridge deployed in AWS. This connection not only creates a new network (VPN) but also guarantees the security of your data by allowing communication only between the devices that belong to this network. Although its functioning is quite complex to explain. The configuration is quite simple if you follow our tutorial When you finish this tutorial, you will also have created a EC2 machine. This is the machine you will use to deploy your Data Bridge. Remember to keep both the private IP of your IPsec network and the public IP to remotely access the machine. Amazon Web Services Cloud Computing Services If you are using this tutorial is because you have chosen Amazon as your cloud. For this reason, we have tried that all the services provided in the Data Bridge are integrated at AWS platform. In the following steps we will explain how to configure these services. AWS Identity and Access Management (IAM) IAM is a service that allows you to manage access to AWS services and resources securely. This service will allow you to control users and their permissions. But it will also allow you to manage access policies between the different Amazon services. You will need it in this tutorial because it is necessary to assign an access policy to the EC2 machine that allows access to the other services. Your EC2 needs the following policies: Access to IoT Core Access to AWS Systems Manager Parameter store To attach an IAM role to an instance … Open the Amazon EC2 console at https://console.aws.amazon.com/ec2/. In the navigation pane, choose Instances. Select the instance, choose Actions, Instance Settings, Attach/Replace IAM role. Select the IAM role to attach to your instance, and choose Apply. AWS Systems Manager Parameter Store AWS Systems Manager is a service that gives you visibility and control of your infrastructure. Among its resources, there is the Parameter Store. This parameter storage allows the secure storage of certificates and passwords. For this example, we will use this service to store the content of the Kite certificates files. In the AWS Console. Go to Systems Manager / Parameter Store / Select: Create parameter Select a name for the parameter. And copy the contents of the file in the value field. Do this for each of the files: your_customer_certificate.cer your_customer_certificate.key And click on the Create parameter button at the bottom of the page. Save the names of the parameters, they are necessary to configure the Bridge. AWS IoT Core AWS IoT Core is a managed cloud service that lets connected devices easily and securely interact with cloud applications and other devices. If you have not previously worked with IoT Core, we recommend that you familiarize with the environment. And make sure you understand concepts like MQTT, Broker and Shadow. As for configuring a new device, you can do so by following these steps but if you’re too lazy for it. “No problemo” The Bridge will create it for you. Auto provisioning of new devices!! Amazon Elastic Compute Cloud (EC2) Amazon EC2 is a web service that provides secure, resizable compute capacity in the cloud. If you have carefully followed the steps to create the IPsec tunnel, you should already have created an instance. We have chosen an instance with linux, but if you prefer any other, just make sure that the instance can execute code in python. To attach an IAM role to an instance that has no role, the instance can be in the stopped or running state. Open the Amazon EC2 console at https://console.aws.amazon.com/ec2/. In the navigation pane, choose Instances. Select the instance, choose Actions, Instance Settings, Attach/Replace IAM role. Select the IAM role to attach to your instance, and choose Apply. Requirements to connect to your EC2 instance with SSH SSH file.pem provided by Amazon when you launch the instance IP-address assigned to your ec2 instance The username on the instance distro On linux Open a terminal Type the SSH command ssh -i file.pem username@IP-address Now you’re connected On Windows Install Putty https://www.putty.org/ Open PuttyGen Select checkbox “RSA” Click load and select your file.pem A message will prompt, click ok. Click on save private key. Then a message will prompt, select yes Type a name for your key file.ppk Now close PuttyGen program and open Putty Go to Connection/SSH section and double-click it. Go to Auth section and select your file.ppk Go back at the top in the Session section. Fill the field Hostname IP-address and click open A warning will prompt. Click yes. Type your username Now you’re connected Upload files using FTP Client You can download Filezilla using the next link (https://filezilla-project.org/download.php) Go to Edit/Settings/Connection/SFTP, Click “Add key file” Browse to the location and select your file.pem A message box will appear to convert the file into .ppk. Click Yes, and store it. If the new file is shown in the list of Keyfiles, then continue to the next step. If not, then click “Add keyfile…” and select the converted file. Go to File/Site Manager/Add a new site with the following parameters: Protocol: SFTP Host: IP-address Logon Type: Key File User: username How to run it Now that you know how to configure AWS. You can run it in just 3 steps !!! Download it You can choose between several options: option 1: Download the Github repository on the instance Install git on the instace sudo yum upgrade sudo yum install git Clone the repository git clone https://github.com/telefonicaid/iot-activation.git Go to Bridge path: scripts/Data_Bridge/ option 2: Upload the files from an FTP client Download the Github repository Open Filezilla client Select the path scripts/Data_Bridge/ Upload all files and folders to the instance Now that you have the code in the machine you just have to install the python libraries. You can install them one by one. But the fastest way is to use the requirements file pip install -r requirements.txt Configure it We have tried to make this as simple as possible. So, you’ll only need to fill in a few fields in the configuration file Configuration.yaml cloud: AWS UDP: ip: &quot;0.0.0.0&quot; port: 4114 KITE: url: &quot;https://m2m-api.telefonica.com&quot; certificate: &quot;cer_file&quot; private_key: &quot;key_file&quot; Configure the Cloud This parameter is used to identify the cloud and select the configuration file. In this example you must select AWS cloud: AWS Configure the UDP socket Here you can choose the port through which you will receive the UDP messages and the allowed IP addresses UDP: ip: &quot;0.0.0.0&quot; port: 4114 allow any address allowed values: ip: “0.0.0.0” (allow any address) ip: “X.X.X.X” (restrict to a single address) Configure the Kite Platform connection This parameter allows you to select the files the certificates to access the Kite Platform. KITE: url: &quot;https://m2m-api.telefonica.com&quot; certificate: &quot;cer_file&quot; private_key: &quot;key_file&quot; Do you remember the name of the parameters created in AWS? Now is the time to use them. Configure the AWS file Here is an example of a configuration file for AWS connection Configuration_AWS.yaml cloud: AWS region: &quot;eu-west-1&quot; MQTT: topic: update: &quot;$aws/things/&amp;lt;DEVICE_NAME&amp;gt;/shadow/update&quot; default: &quot;tlm/&amp;lt;DEVICE_NAME&amp;gt;/raw&quot; log_device: &quot;log/device/provision/new&quot; reserved: &quot;$aws&quot; The file is quite intuitive, however here you can see carefully how to configure each section Server configuration cloud: AWS region: &quot;xx-xxxx-x&quot; Topic configuration At the moment you only have to keep the fields as is MQTT: topic: update: &quot;$aws/things/&amp;lt;DEVICE_NAME&amp;gt;/shadow/update&quot; default: &quot;tlm/&amp;lt;DEVICE_NAME&amp;gt;/raw&quot; log_device: &quot;log/device/provision/new&quot; reserved: &quot;$aws&quot; update: this topic is the specific of AWS. It doesn’t make any sense to modify it. default: configure this field to select the default topic name. log_device: topic name in which the new things creations are reported. reserved: this parameter indicates that the name is a AWS standard topic. Launch it Go to Bridge path and execute this command sudo nohup python main.py &amp;amp; sudo Execute the instruction as if you were the administrator. nohup It’ll keep running even when you close the session. python main.py will execute the code When the Bridge is running, it will record all UDP messages he receives in a log file. You can monitor the last lines of the file with this command: tail -f log/data_bridge.log This is a log file example. INFO : ################################# waiting for a new message ################################# INFO : Message Received [ {&quot;v&quot;:33,&quot;a&quot;:28} ] from [ 10.5.0.5 ] : [ 4114 ] INFO : KITE Response status code [ 200 ] INFO : GET information related to [ 10.5.0.5 ] from KITE Platform INFO : Found device cloud name [ MyDevice ] and topic [ ] in KITE Platform INFO : Select Option 1: DEVICE [ MyDevice ] and DEFAULT TOPIC INFO : Publish message [ {&quot;v&quot;:33,&quot;a&quot;:28} ] into topic [ tlm/MyDevice/raw ] INFO : Publish Accepted code [ 200 ] INFO : Sent MESSAGE [ {&quot;msg&quot;: &quot;OK: msg published&quot;, &quot;code&quot;: 200} ] to [ 10.5.0.5 ] : [ 4114 ] INFO : ################################# waiting for a new message ################################# INFO : Message Received [ aaa ] from [ 00.00.00.00 ] : [ 4114 ] INFO : KITE Response status code [ 204 ] INFO : GET information related to [ 00.00.00.00 ] from KITE Platform INFO : Sent MESSAGE [{&quot;msg&quot;:&quot;ERROR:connection with Kite not established&quot;,&quot;code&quot;:404}] to [ 84.78.20.223 ]:[4114]</summary></entry></feed>
