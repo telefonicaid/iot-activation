@@ -111,8 +111,39 @@
   </li>
   <li><a href="#how-to-make-your-own-ipsec-vpn">How to make your own IPsec VPN!</a>
     <ul>
-      <li><a href="#request-a-private-apn-to-telefónica">Request private APN to Telefónica</a></li>
-      <li><a href="#table-of-contents-ipsec-in-aws">IPsec step by step in AWS</a></li>
+      <li><a href="#request-a-private-apn-to-telefónica">Request private APN to Telefónica</a>
+        <h4 id="table-of-contents-ipsec-in-aws">Table of Contents IPsec in AWS</h4>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#configure-ipsec-step-by-step-in-aws">Configure IPsec step by step in AWS</a>
+    <ul>
+      <li><a href="#1-create-vpc">1. Create VPC</a></li>
+      <li><a href="#2-create-vpg">2. Create VPG</a>
+        <ul>
+          <li><a href="#21-attach-vpg-to-vpc">2.1. Attach VPG to VPC</a></li>
+        </ul>
+      </li>
+      <li><a href="#3-enable-propagation-of-routes-from-vpg">3. Enable propagation of routes from VPG</a>
+        <ul>
+          <li><a href="#31-edit-route-table">3.1. Edit Route Table</a></li>
+        </ul>
+      </li>
+      <li><a href="#4-create-two-customer-gateway">4. Create two customer Gateway</a></li>
+      <li><a href="#5-create-two-vpn-connection">5. Create two VPN Connection</a>
+        <ul>
+          <li><a href="#51-download-configuration">5.1. Download Configuration</a></li>
+        </ul>
+      </li>
+      <li><a href="#6-create-an-ec2-instance">6. Create an EC2 instance</a>
+        <ul>
+          <li><a href="#61-launch-ec2-instance">6.1. Launch EC2 instance</a></li>
+          <li><a href="#62-create-a-subnet">6.2. Create a Subnet</a></li>
+          <li><a href="#63-enable-internet-connection-ec2-instance">6.3. Enable Internet Connection EC2 instance</a></li>
+          <li><a href="#64-attach-to-vpc">6.4. Attach to VPC</a></li>
+          <li><a href="#65-enable-a-new-route">6.5. Enable a new Route</a></li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ul>
@@ -139,7 +170,7 @@ It also includes a series of protocols to establish authentication between netwo
 <h2 id="what-does-it-do">What does it do?</h2>
 
 <p>When you request your SIMs from Telefónica, you can ask for a private APN. This APN includes your SIMs in a new network.
-The goal is to establish a direct connection between the new network and your network.</p>
+The goal is to establish a direct connection between your network and the Cloud.</p>
 
 <p>The IPsec guarantee that two networks work as one. It provides a secure connection between them.</p>
 
@@ -149,11 +180,19 @@ The goal is to establish a direct connection between the new network and your ne
 
 <p>We believe in the importance of your data, for this reason we want to provide you a secure network.</p>
 
+<p>Benefits:</p>
+<ul>
+  <li>Enhanced security</li>
+  <li>Integration cost and time reduction: customers don’t need to create ad-hoc VPN integration processes.</li>
+</ul>
+
 <h2 id="request-a-private-apn-to-telefónica">Request a private APN to Telefónica</h2>
 
-<p>We assume that because you are following this tutorial with us, you are interested in connecting your devices through Telefónica’s network.</p>
+<p>We assume that because you are following this tutorial with us, you are interested in connecting your devices 
+through Telefónica’s network.</p>
 
-<p>It is important for you to know that when you request for new SIM’s you can ask for the creation of your own APN (Access Point Name).</p>
+<p>It is important for you to know that when you request for new SIM’s you can ask for the creation of 
+your own APN (Access Point Name).</p>
 
 <p>This new APN can be set to have its own IP’s range. This range cannot correspond to your own network. 
 An example of networks that you can request are the following:</p>
@@ -164,74 +203,33 @@ An example of networks that you can request are the following:</p>
   <li>Class C: up to 255 devices      xxx.xxx.xxx.0/24</li>
 </ul>
 
-<p>Where you can choose a desired range: <strong>192.164.0.0/24</strong></p>
+<p>Where you can choose a desired range: <strong>192.168.0.0/24</strong></p>
 
-<p>This range includes the IP address from 192.164.0.0 to 192.164.0.255 .</p>
+<p>This range includes the IP address from 192.168.0.0 to 192.168.0.255.</p>
 
 <p>In addition to the range you must provide to Telefónica the internet gateways configuration.</p>
 
-<p>This setting will depend on your public cloud:</p>
-
-<ul>
-  <li><a href="#table-of-contents-ipsec-in-aws">IPsec step by step in AWS</a></li>
-</ul>
-
-<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
-
-<p>Other clouds tutorials in development …</p>
-
-<h2 id="ipsec-step-by-step-in-aws">IPsec step by step in AWS</h2>
-
-<h4 id="table-of-contents-ipsec-in-aws">Table of Contents IPsec in AWS</h4>
-<ul>
-  <li><a href="#configure-ipsec-step-by-step-in-aws">Configure IPsec step by step in AWS</a>
-    <ul>
-      <li><a href="#1-create-vpc">1. Create VPC</a></li>
-      <li><a href="#2-create-vpg">2. Create VPG</a>
-        <ul>
-          <li><a href="#21-attach-vpg-to-vpc">2.1. Attach VPG to VPC</a></li>
-        </ul>
-      </li>
-      <li><a href="#3-enable-propagation-of-routes-from-vpg">3. Enable propagation of routes from VPG</a>
-        <ul>
-          <li><a href="#31-edit-route-table">3.1. Edit Route Table</a></li>
-        </ul>
-      </li>
-      <li><a href="#4-create-2-custom-gateway">4. Create 2 Custom Gateway</a></li>
-      <li><a href="#5-create-2-vpn-connection">5. Create 2 VPN Connection</a>
-        <ul>
-          <li><a href="#51-download-configuration">5.1. Download Configuration</a></li>
-        </ul>
-      </li>
-      <li><a href="#6-create-an-ec2-instance">6. Create an EC2 instance</a>
-        <ul>
-          <li><a href="#61-launch-ec2-instance">6.1. Launch EC2 instance</a></li>
-          <li><a href="#62-enable-internet-connection-ec2-instance">6.2. Enable Internet Connection EC2 instance</a></li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
+<p>This setting will depend on your public cloud</p>
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
 <h1 id="configure-ipsec-step-by-step-in-aws">Configure IPsec step by step in AWS</h1>
 
-<p>In the Amazon nomenclature the client servers are located in the virtual machines of the client’s Virtual Private Cloud, 
-while Telefónica’s network will act as “Local Network”.</p>
-
 <p>On Amazon, IPsec tunnels are created using VPN Connections. When a VPN connection is created between the Virtual Private Gateway
 and the Customer Gateway (Telefónica Encrypter)
-automatically assigns two public IPs to its VPG which will be the peer IPsec on the Amazon side.</p>
+automatically assigns two public IPs to its VPG. This are de IPs on the Amazon side.</p>
 
 <p>Amazon provide a redundant connection. In other words, you’ll need create two gateways.</p>
 
-<p>For more details see the following diagram</p>
+<p>It is illustrated in the diagram below.</p>
 
 <p><img src="pictures/IPsec/IPsec_AWS_00_Overview.png" alt="pic" /></p>
 
 <p>The following tutorial intends to be a simple guide to configure the IPsec between an EC2 machine and your pool of SIMs 
 from the Telefónica’s network.</p>
+
+<p>Follow this tutorial to build an IPsec in AWS and learn how to do it step by step, but if you prefer, 
+you can build it in <a href="AWSCFIPsec.html">one click</a></p>
 
 <p><a href="#table-of-contents-ipsec-in-aws"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
@@ -248,13 +246,18 @@ This virtual network closely resembles a traditional network that you’d operat
 
 <p>Fill in the fields:</p>
 
-<p><strong>Name tag:</strong> Select a name for identify your VPC in the next steps</p>
-
-<p><strong>IPv4 CIDR block:</strong> Select your network range. It must not match the range of your SIM pool</p>
+<ul>
+  <li>
+    <p><strong>Name tag:</strong> Select a name for identifying your VPC in the next steps</p>
+  </li>
+  <li>
+    <p><strong>IPv4 CIDR block:</strong> Select your network range. It must not match the range of your SIM pool</p>
+  </li>
+</ul>
 
 <p><img src="pictures/IPsec/IPsec_AWS_01_VPCdashboard_CreateVPC_config.png" alt="pic" /></p>
 
-<p>Click on create.</p>
+<p>Click on <strong>create</strong>.</p>
 
 <p>Now you can see the new VPC</p>
 
@@ -262,23 +265,26 @@ This virtual network closely resembles a traditional network that you’d operat
 
 <p><a href="#table-of-contents-ipsec-in-aws"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
-<h2 id="2-create-vpg">2. Create VPG</h2>
+<h2 id="2-create-virtual-private-gateway">2. Create Virtual Private Gateway</h2>
+
+<p>The VPG provides a link between the VPC and an external environment.</p>
 
 <p>Go to <strong>VPC Dashboard / Virtual Private Network / Virtual Private Gateway /</strong> Select: <strong>Create Virtual Private Gateway</strong></p>
 
 <p><img src="pictures/IPsec/IPsec_AWS_02_VPCdashboard_CreateVPG.png" alt="pic" /></p>
 
-<p><strong>Name tag:</strong> Select a name for identify your VPG in the next steps</p>
+<p><strong>Name tag:</strong> Select a name for identifying your VPG in the next steps</p>
 
 <p><img src="pictures/IPsec/IPsec_AWS_02_VPCdashboard_CreateVPG_config.png" alt="pic" /></p>
 
 <p>Click on <strong>create</strong>.</p>
 
-<p>Now you can see the new VP Gateway</p>
+<p>Now you can see the new VPG</p>
 
 <p><img src="pictures/IPsec/IPsec_AWS_02_VPCdashboard_CreateVPG_config_done.png" alt="pic" /></p>
 
-<p>Now you can check the VPG status and read in red <strong>detached</strong></p>
+<p>Now you can check the VPG status and read in red <strong>detached</strong>
+The VPG is created, but you need to attach it to the VPC.</p>
 
 <h3 id="21-attach-vpg-to-vpc">2.1. Attach VPG to VPC</h3>
 
@@ -300,14 +306,12 @@ This virtual network closely resembles a traditional network that you’d operat
 
 <h2 id="3-enable-propagation-of-routes-from-vpg">3. Enable propagation of routes from VPG</h2>
 
-<p>This means that in your VPC the routes to our local network automatically point to the Virtual Private Gateway:</p>
+<p>To allow your VPC to reach other services. 
+You must include the routes used by your VPN connection in the routing tables. They have to point to your VPG.</p>
 
 <h3 id="31-edit-route-table">3.1. Edit Route Table</h3>
 
-<p>To enable instances in your VPC to reach your customer gateway, you must configure your route table to include 
-the routes used by your VPN connection. They have to point to your Virtual Private Gateway.
-You can enable route propagation for your route table to automatically propagate
-those routes to the table for you.</p>
+<p>You can enable route propagation for your route table to automatically propagate it.</p>
 
 <p>Go to <strong>VPC Dashboard / Virtual Private Cloud / Route Tables</strong></p>
 
@@ -327,9 +331,10 @@ those routes to the table for you.</p>
 
 <p><a href="#table-of-contents-ipsec-in-aws"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
-<h2 id="4-create-2-custom-gateway">4. Create 2 Custom Gateway</h2>
+<h2 id="4-create-two-customer-gateway">4. Create two Customer Gateway</h2>
 
-<p>To be able to connect to the Telefónica network it is necessary to establish 2 Gateway with the 2 Telefónica’s encrypters.</p>
+<p>The customer gateway is the connection between your network and the VPC.
+To be able to connect to the Telefónica network it is necessary to establish two Gateway with the two Telefónica’s encrypters.</p>
 
 <p>Go to <strong>VPC Dashboard / Virtual Private Network (VPN) / Customer Gateway /</strong> Select: <strong>Create Customer Gateway</strong></p>
 
@@ -364,7 +369,7 @@ those routes to the table for you.</p>
 
 <p><a href="#table-of-contents-ipsec-in-aws"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
-<h2 id="5-create-2-vpn-connection">5. Create 2 VPN Connection</h2>
+<h2 id="5-create-two-vpn-connection">5. Create two VPN Connection</h2>
 
 <p>You must create a VPN connection for each of the two customer gateways corresponding to Telefónica’s two encryption devices.</p>
 
@@ -372,31 +377,45 @@ those routes to the table for you.</p>
 
 <p><img src="pictures/IPsec/IPsec_AWS_05_VPCdashboard_VPNconnection_createVPNc.png" alt="pic" /></p>
 
-<p><strong>Name tag:</strong> Select a name for identify your VPC connection in the next steps</p>
-
-<p><strong>VPG</strong> Select your VPN Gateway attached to your VPC</p>
-
-<p><strong>Customer Gateway</strong> Existing</p>
-
-<p><strong>Customer Gateway ID</strong> Select each of the two Customers Gateway created</p>
-
-<p><strong>Routing Options</strong> Dynamic</p>
-
 <ul>
-  <li>for the <strong>first</strong> VPN connection:</li>
+  <li>
+    <p><strong>Name tag:</strong> Select a name for identifying your VPC connection in the next steps</p>
+  </li>
+  <li>
+    <p><strong>VPG</strong> Select your VPN Gateway attached to your VPC</p>
+  </li>
+  <li>
+    <p><strong>Customer Gateway</strong> Existing</p>
+  </li>
+  <li>
+    <p><strong>Customer Gateway ID</strong> Select each of the two Customers Gateway created</p>
+  </li>
+  <li>
+    <p><strong>Routing Options</strong> Dynamic</p>
+  </li>
 </ul>
 
-<p><strong>Inside IP CIDR for Tunnel 1</strong>  169.254.30.0/30</p>
-
-<p><strong>Inside IP CIDR for Tunnel 2</strong>  169.254.30.4/30</p>
+<p><strong>for the First VPN connection:</strong></p>
 
 <ul>
-  <li>and for the <strong>second</strong> VPN connection:</li>
+  <li>
+    <p><strong>Inside IP CIDR for Tunnel 1</strong>  169.254.30.0/30</p>
+  </li>
+  <li>
+    <p><strong>Inside IP CIDR for Tunnel 2</strong>  169.254.30.4/30</p>
+  </li>
 </ul>
 
-<p><strong>Inside IP CIDR for Tunnel 1</strong>  169.254.40.0/30</p>
+<p><strong>and for the Second VPN connection:</strong></p>
 
-<p><strong>Inside IP CIDR for Tunnel 2</strong>  169.254.40.4/30</p>
+<ul>
+  <li>
+    <p><strong>Inside IP CIDR for Tunnel 1</strong>  169.254.40.0/30</p>
+  </li>
+  <li>
+    <p><strong>Inside IP CIDR for Tunnel 2</strong>  169.254.40.4/30</p>
+  </li>
+</ul>
 
 <p><img src="pictures/IPsec/IPsec_AWS_05_VPCdashboard_VPNconnection_createVPNc_config1.png" alt="pic" />
 <img src="pictures/IPsec/IPsec_AWS_05_VPCdashboard_VPNconnection_createVPNc_config2.png" alt="pic" />
@@ -428,13 +447,16 @@ You will need provide this file to Telefónica.</p>
 <p>Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides secure, resizable compute capacity in the cloud. 
 It is designed to make web-scale cloud computing easier for developers.</p>
 
+<p>In this case, we have decided to use a linux instance, but you can use others.
+Just check that the image can execute Python code</p>
+
 <h3 id="61-launch-ec2-instance">6.1. Launch EC2 instance</h3>
 
-<p>Go to EC2 Dashboard / Instances / Instances / Select: <strong>Launch Instance</strong></p>
+<p>Go to <strong>EC2 Dashboard / Instances / Instances /</strong> Select: <strong>Launch Instance</strong></p>
 
 <p><img src="pictures/IPsec/IPsec_AWS_06_EC2dashboard_Instance_launch.png" alt="pic" /></p>
 
-<p><strong>Step 1:</strong> Choose the SO</p>
+<p><strong>Step 1:</strong> Choose the OS (AMI)</p>
 
 <p><img src="pictures/IPsec/IPsec_AWS_06_EC2dashboard_Instance_launch_step1.png" alt="pic" /></p>
 
@@ -446,13 +468,19 @@ It is designed to make web-scale cloud computing easier for developers.</p>
 
 <p>Click <strong>Next</strong></p>
 
-<p><strong>Step 3:</strong> Configure the machine connection</p>
+<p><strong>Step 3:</strong> Configure the machine network connection</p>
 
-<p><strong>Network</strong> Select your VPC</p>
-
-<p><strong>Subnet</strong> Create a new Subnet (look like y the next step 6.1)</p>
-
-<p><strong>Auto-assigns Public IP</strong> Enable</p>
+<ul>
+  <li>
+    <p><strong>Network:</strong> Select your VPC</p>
+  </li>
+  <li>
+    <p><strong>Subnet:</strong> Create a new Subnet (it will continue in the <a href="#62-create-a-subnet">step 6.2</a>)</p>
+  </li>
+  <li>
+    <p><strong>Auto-assigns Public IP:</strong> Enable</p>
+  </li>
+</ul>
 
 <p><img src="pictures/IPsec/IPsec_AWS_06_EC2dashboard_Instance_launch_step3.png" alt="pic" />
 <img src="pictures/IPsec/IPsec_AWS_06_EC2dashboard_Instance_launch_step3a.png" alt="pic" /></p>
@@ -461,50 +489,78 @@ It is designed to make web-scale cloud computing easier for developers.</p>
 
 <p><strong>Step 6:</strong> Open a Port to test the connection</p>
 
-<p><strong>Assign a security group</strong> Create a new security group</p>
-
-<p><strong>Security group name</strong> Select a name for identify your Security group in the next steps</p>
-
-<p><strong>Add Rule</strong> Custom ICMP like the picture for enable the ping response</p>
+<ul>
+  <li>
+    <p><strong>Assign a security group:</strong> Create a new security group</p>
+  </li>
+  <li>
+    <p><strong>Security group name:</strong> Select a name for identifying your Security group in the next steps</p>
+  </li>
+  <li>
+    <p><strong>Add Rule:</strong> Custom ICMP like the picture for enable the ping response</p>
+  </li>
+</ul>
 
 <p><img src="pictures/IPsec/IPsec_AWS_06_EC2dashboard_Instance_launch_step6.png" alt="pic" /></p>
 
+<p>Now your machine is running, but it is connected to a virtual network. You must configurate an internet gateway to
+enable the <a href="#63-enable-internet-connection-ec2-instance">internet connection</a></p>
+
 <p><a href="#table-of-contents-ipsec-in-aws"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
-<h3 id="61a-create-subnet">6.1.a Create Subnet</h3>
+<h3 id="62-create-a-subnet">6.2. Create a Subnet</h3>
 
-<p><strong>Name tag</strong> Select a name for identify your Subnet in the next steps</p>
+<p>A subnet is a range of IP addresses in your VPC. You need launch your EC2 instance into a specified subnet.</p>
 
-<p><strong>VPC</strong> Select your VPC</p>
-
-<p><strong>IPv4 CIDR block</strong> use the same IP range but choose a smaller mask</p>
+<ul>
+  <li>
+    <p><strong>Name tag:</strong> Select a name for identifying your Subnet in the next steps</p>
+  </li>
+  <li>
+    <p><strong>VPC:</strong> Select your VPC</p>
+  </li>
+  <li>
+    <p><strong>IPv4 CIDR block:</strong> use the same IP range but choose a smaller mask</p>
+  </li>
+</ul>
 
 <p><img src="pictures/IPsec/IPsec_AWS_06_EC2dashboard_Instance_launch_step3_subnet1.png" alt="pic" />
 <img src="pictures/IPsec/IPsec_AWS_06_EC2dashboard_Instance_launch_step3_subnet2.png" alt="pic" /></p>
 
 <p>Click on <strong>Create</strong></p>
 
-<p>Now your machine is running, but it is connected to a virtual network. You must configurate an internet gateway</p>
-
 <p><a href="#table-of-contents-ipsec-in-aws"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
-<h3 id="62-enable-internet-connection-ec2-instance">6.2. Enable Internet Connection EC2 instance</h3>
+<h3 id="63-enable-internet-connection-ec2-instance">6.3. Enable Internet Connection EC2 instance</h3>
+
+<p>You have previously created a gateway to connect your network with the VPN of AWS. 
+This is a similar step for connecting the VPN to an external network (Internet).</p>
 
 <p>Go to VPC <strong>Dashboard / Virtual Private Cloud / Internet Gateway /</strong> Select: <strong>Create internet gateway</strong></p>
 
 <p><img src="pictures/IPsec/IPsec_AWS_06_VirtualPrivateCloud_InternetGateway_CreateIG.png" alt="pic" /></p>
 
-<p><strong>Name tag</strong> Select a name for identify your Subnet in the next steps</p>
+<ul>
+  <li><strong>Name tag:</strong> Select a name for identifying the gateway in the next steps</li>
+</ul>
 
 <p><img src="pictures/IPsec/IPsec_AWS_06_VirtualPrivateCloud_InternetGateway_CreateIG_config.png" alt="pic" /></p>
 
 <p>Click on <strong>Create</strong></p>
 
-<p>Now select the Internet Gateway and select <strong>attach to VPC</strong> on Actions tab</p>
+<p>Now that you have created the VPG, connect it to the VPN</p>
+
+<p><a href="#table-of-contents-ipsec-in-aws"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h3 id="64-attach-to-vpc">6.4. Attach to VPC</h3>
+
+<p>Now select the Internet Gateway and select <strong>attach to VPC</strong> on <strong>Actions</strong> button</p>
 
 <p><img src="pictures/IPsec/IPsec_AWS_06_VirtualPrivateCloud_InternetGateway_CreateIG_config_attach.png" alt="pic" /></p>
 
-<p><strong>VPC</strong> Select the VPC</p>
+<ul>
+  <li><strong>VPC</strong> Select the VPC</li>
+</ul>
 
 <p><img src="pictures/IPsec/IPsec_AWS_06_VirtualPrivateCloud_InternetGateway_CreateIG_config_attach_VPC.png" alt="pic" /></p>
 
@@ -512,9 +568,13 @@ It is designed to make web-scale cloud computing easier for developers.</p>
 
 <p>Now you have access to an internet gateway, you only have to modify the rules of the gateway to allow traffic.</p>
 
+<p><a href="#table-of-contents-ipsec-in-aws"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h3 id="65-enable-a-new-route">6.5. Enable a new Route</h3>
+
 <p>Go to <strong>VPC Dashboard / Virtual Private Cloud / Route Table /</strong> Select the route table of the VPC</p>
 
-<p>On the tab <strong>Routes</strong> click on <strong>Edit Routes</strong></p>
+<p>On the <strong>Routes</strong> tab, click on <strong>Edit Routes</strong> button</p>
 
 <p><img src="pictures/IPsec/IPsec_AWS_06_VirtualPrivateCloud_RouteTables.png" alt="pic" /></p>
 
@@ -583,6 +643,11 @@ and select the internet gateway like target.</p>
 </div>
 
 
+
+<div class="g_share">
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<div class="g-plus" data-action="share" data-annotation="bubble"></div>
+</div>
 
         </div>
         <div class="col-md-1"></div>

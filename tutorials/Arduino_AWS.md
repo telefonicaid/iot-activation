@@ -19,6 +19,7 @@ categories: tutorial
   * [UDP data Bridge: Connecting using NB-IoT o LTE-M](#udp-data-bridge-connecting-using-nb-iot-o-lte-m)
   * [Check the Shadow](#check-the-shadow)
   * [Send a command](#send-a-command)
+  * [Create your Dashboards](#create-your-dashboards)
 
 
 # Arduino: MKR NB-1500 to AWS-IoT
@@ -454,6 +455,20 @@ your own instructions. Feel free!
 		}
 	
 ```
+
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
+
+## Create your Dashboards
+
+Now, you can collect the information from your devices. But reviewing the data from the Shadow can be a tedious task.
+The best option is to create a dashboard. It will allow you to visualize all the information.
+
+![pic](pictures/freeboard/freeboard_init_dashboard.png)
+
+There is a great availability of tools for this purpose. 
+But some like freeboard, it can subscribe directly to the AWS topic.
+If you want to learn how, click in the next [link](AWS_dashboard.md).
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 

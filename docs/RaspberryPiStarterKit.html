@@ -501,23 +501,26 @@ we will assign an IP of our choice to the configuration that you assign for the 
 <p>If you are connected by cable you will see an IP address assigned.
 This IP has been assigned automatically and will change whenever you establish a new connection.</p>
 
+<p>First configure the the IP at manual mode. Edit the file <strong>/etc/network/interfaces</strong>
+and add the next line:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iface eth0 inet manual
+</code></pre></div></div>
+
 <p>To set a default IP address edit the file <strong>/etc/dhcpcd.conf</strong>
 use the command <code class="highlighter-rouge">sudo nano /etc/dhcpcd.conf</code> at the command prompt.
 Scroll to the bottom of the script, and add the following lines</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>interface eth0
+static ip_address=192.168.0.10/24
+</code></pre></div></div>
+<p>Save the file with <strong>Ctrl+O</strong>  and close it with <strong>Ctrl+X</strong>
+review the changes whit the command <code class="highlighter-rouge">cat /etc/dhcpcd.conf</code></p>
 
 <p>📍
 It is common for configuration files to contain commented examples.
 If you have any problem with the configuration, search and comment the example you need.
 It can save you a headache.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	interface eth0
-
-	static ip_address=192.168.0.2/24
-	static routers=192.168.0.1
-	static domain_name_servers=192.168.0.1
-</code></pre></div></div>
-<p>Save the file with <strong>Ctrl+O</strong>  and close it with <strong>Ctrl+X</strong>
-review the changes whit the command <code class="highlighter-rouge">cat /etc/dhcpcd.conf</code></p>
 
 <p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
 
@@ -580,6 +583,11 @@ review the changes whit the command <code class="highlighter-rouge">cat /etc/dhc
 </div>
 
 
+
+<div class="g_share">
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<div class="g-plus" data-action="share" data-annotation="bubble"></div>
+</div>
 
         </div>
         <div class="col-md-1"></div>

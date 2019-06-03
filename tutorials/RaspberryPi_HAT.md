@@ -22,7 +22,7 @@ categories: tutorial
       - [Check the Shadow](#check-the-shadow-state)
       - [LED screen](#watch-the-led-screen)
       - [Send a command](#send-a-command)
-
+  * [Create your Dashboards](#create-your-dashboards)
 
 # Raspberry: Sense-HAT to AWS-IoT
 For this project, we will sample the different sensors included on the board and publish their values in AWS.
@@ -442,9 +442,9 @@ Depending on Phyton's interpreter version, there may be conflicts when accessing
 Install the libraries from your folder directory with the commands:
 
 ```
-sudo pip install paho-mqtt -t ./
-sudo pip install json -t ./
-sudo pip install yaml -t ./
+sudo pip install paho-mqtt
+sudo pip install json
+sudo pip install Pyaml
 ```
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
@@ -541,6 +541,20 @@ by using the json that we provide. You can change both the message and the backg
 using an RGB encoding (Red, Green, Blue).
 
 You can change this instruction as many times as necessary.
+
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
+
+## Create your Dashboards
+
+Now, you can collect the information from your devices. But reviewing the data from the Shadow can be a tedious task.
+The best option is to create a dashboard. It will allow you to visualize all the information.
+
+![pic](pictures/freeboard/freeboard_init_dashboard.png)
+
+There is a great availability of tools for this purpose. 
+But some like freeboard, it can subscribe directly to the AWS topic.
+If you want to learn how, click in the next [link](AWS_dashboard.md).
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 

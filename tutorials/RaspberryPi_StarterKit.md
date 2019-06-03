@@ -397,25 +397,28 @@ Open a terminal window use the next command 'sudo ifconfig -a'
 If you are connected by cable you will see an IP address assigned.
 This IP has been assigned automatically and will change whenever you establish a new connection.
 
+First configure the the IP at manual mode. Edit the file **/etc/network/interfaces**
+and add the next line:
+
+```
+iface eth0 inet manual
+```
+
 To set a default IP address edit the file **/etc/dhcpcd.conf**
 use the command `sudo nano /etc/dhcpcd.conf` at the command prompt.
 Scroll to the bottom of the script, and add the following lines
+
+```
+interface eth0
+static ip_address=192.168.0.10/24
+```
+Save the file with **Ctrl+O**  and close it with **Ctrl+X**
+review the changes whit the command `cat /etc/dhcpcd.conf`
 
 &#x1F4CD;
 It is common for configuration files to contain commented examples.
 If you have any problem with the configuration, search and comment the example you need.
 It can save you a headache.
-
-```
-	interface eth0
-
-	static ip_address=192.168.0.2/24
-	static routers=192.168.0.1
-	static domain_name_servers=192.168.0.1
-```
-Save the file with **Ctrl+O**  and close it with **Ctrl+X**
-review the changes whit the command `cat /etc/dhcpcd.conf`
-
 
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>AWS CloudFormation IPsec</title>
+  <meta name="description" content="Table of Contents  IPsec VPN one click away          AWS CloudFormation                  EC2 Key Pair          Cloud Formation create new stack          Down...">
+  <meta name="google-translate-customization" content="b9870a0c7376df54-aa35852016e6a5cc-ga0a0d80f6c171f17-e"></meta>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="canonical" href="http://localhost:4000/AWSCFIPsec.html">
+  <link href="/favicon.png" rel="icon">
+  <!--link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"-->
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="alternate" type="application/atom+xml" title="IoT Activation" href="http://localhost:4000/atom.xml" />
+</head>
+
+
+  <body>
+         <div class="col-md-12 navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/iot-activation/">IoT Activation</a>
+      </div>
+      <div class="navbar-collapse collapse navbar-inverse-collapse">
+        <ul class="nav navbar-nav">
+          
+            
+          
+            
+              <!-- li><a href="/about.html">About</a></li-->
+            
+          
+            
+          
+            
+          
+          
+<!--           <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+            
+              
+            
+              
+                <li><a href="/about.html" style="text-transform : uppercase;">About</a></li>
+              
+            
+              
+            
+              
+            
+            </ul>
+          </li>
+ -->        </ul>
+       
+        <ul class="nav navbar-nav navbar-right left-syms">
+          <li><a href="https://iot.telefonica.com/blog" target="_blank"><i class="fa fa-rss"></i> <span>Blog</span></a></li>
+          <li><a href="https://www.linkedin.com/showcase/telefonicaiot/" target="_blank"><i class="fa fa-linkedin"></i> <span>linkedin</span></a></li>
+          <li><a href="//twitter.com/TelefonicaIoT" target="_blank"><i class="fa fa-twitter"></i> <span>Twitter</span></a></li>
+          <li><a href="https://www.youtube.com/user/m2mtelefonica/featured" target="_blank"><i class="fa fa-youtube"></i> <span>Youtube</span></a></li>
+          <li><a href="http://github.com/telefonicaid/iot-activation" target="_blank"><i class="fa fa-github"></i> <span>Github</span></a></li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="col-md-12 blog-theme-class">
+          <!-- Top Blog Header -->
+          <div class="row jumb-bot">
+            <div class="col-md-1"></div>
+            <div class="jumbotron jumb-bot-jumbu col-md-10">
+
+              <h1>IoT Activation</h1>
+              <p>Welcome to the Revolu<strong>IOT</strong>n</p>
+            </div>            
+            <div class="col-md-1"></div>
+          </div>
+    </div>
+    <div class="col-md-12">
+        <div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+
+	  	
+	    <h1>AWS CloudFormation IPsec</h1>
+	    <!--<div id="google_translate_element" style="padding-right: 27px;float: left;"></div><script type="text/javascript">
+			function googleTranslateElementInit() {
+  				new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+				}
+		</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+		-->
+	    <p class="post-meta">Feb 6, 2019</p>
+
+	   
+	  	<article class="blog-post-small blog-post-content">
+	    	<h3 id="table-of-contents">Table of Contents</h3>
+<ul>
+  <li><a href="#ipsec-vpn-one-click-away">IPsec VPN one click away</a>
+    <ul>
+      <li><a href="#aws-cloudformation">AWS CloudFormation</a>
+        <ul>
+          <li><a href="#ec2-key-pair">EC2 Key Pair</a></li>
+          <li><a href="#cloud-formation-create-new-stack">Cloud Formation create new stack</a></li>
+          <li><a href="#download-configuration">Download Configuration</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="ipsec-vpn-one-click-away">IPsec VPN one click away</h1>
+
+<p>if you prefer, you can configure the AWS IPsec following the next tutorial step by step.
+But if this is not the case. We have this one click solution for you!!</p>
+
+<h2 id="aws-cloudformation">AWS CloudFormation</h2>
+
+<p>CloudFormation provides a common language for you to describe and provision 
+all the infrastructure resources in your cloud environment.</p>
+
+<p>It allows you to use a simple text file to build and rebuild your infrastructure.</p>
+
+<h3 id="ec2-key-pair">EC2 Key Pair</h3>
+
+<p>Before starting, you need create a Key Pair for secure access to the EC2 machine.</p>
+
+<p>For it, go to EC2 AWS console / <strong>NETWORK &amp; SECURITY</strong> / <strong>Key Pairs</strong></p>
+
+<p>and click on <strong>Create Key Pair</strong> button.</p>
+
+<p><img src="pictures/AWS/AWS_Console_EC2_KeyPair_create.png" alt="pic" /></p>
+
+<p>Type a Key Pair name:</p>
+
+<p><img src="pictures/AWS/AWS_Console_EC2_KeyPair_create_name.png" alt="pic" /></p>
+
+<p>A new .pem file is created. Use this file to connect EC2 machine using a SSH client.</p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h3 id="cloud-formation-create-new-stack">Cloud Formation create new stack</h3>
+
+<p>To begin with, Go to CloudFormation Console:</p>
+
+<p>Click on <strong>Create Stack</strong> button</p>
+
+<p><img src="pictures/AWS/AWS_Console_CloudFormation_Stack_create.png" alt="pic" /></p>
+
+<p>In the new window that opens, fill the form with the <a href="https://github.com/telefonicaid/iot-activation/tree/master/scripts/Cloud_Formation/IPsec.txt">file</a></p>
+
+<p><img src="pictures/AWS/AWS_Console_CloudFormation_Stack_create_config_file.png" alt="pic" /></p>
+
+<p>Click <strong>Next</strong>.</p>
+
+<p>Choose a name for your Stack and select your EC2 Key Pair created in the previous step.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>awscloudformationipsec
+</code></pre></div></div>
+
+<p><img src="pictures/AWS/AWS_Console_CloudFormation_Stack_create_config_ipsec.png" alt="pic" /></p>
+
+<p>Click <strong>Next</strong>.</p>
+
+<p>In the next window, you don’t need to configure any options</p>
+
+<p><img src="pictures/AWS/AWS_Console_CloudFormation_Stack_create_config_option.png" alt="pic" /></p>
+
+<p>Click <strong>Next</strong>.</p>
+
+<p>Now the wizard shows you a stack review.</p>
+
+<p><img src="pictures/AWS/AWS_Console_CloudFormation_Stack_create_config_review_ipsec1.png" alt="pic" />
+<img src="pictures/AWS/AWS_Console_CloudFormation_Stack_create_config_review_ipsec2.png" alt="pic" /></p>
+
+<p>Click on the <strong>Execute</strong> button.</p>
+
+<p>It can take several minutes for deploy all the services.</p>
+
+<p><img src="pictures/AWS/AWS_Console_CloudFormation_Stack_create_running_ipsec.png" alt="pic" /></p>
+
+<p>wait for a few minutes</p>
+
+<p><img src="pictures/AWS/AWS_Console_CloudFormation_Stack_create_running_ipsec_ok.png" alt="pic" /></p>
+
+<p>Now, all you infrastructure are created. It just needs a last step.</p>
+
+<p><a href="#table-of-contents"><img src="pictures/utils/arrow_up.png" alt="pic" /></a></p>
+
+<h3 id="download-configuration">Download Configuration</h3>
+
+<p>To Configure the IPsec connection with Telefonica’s network you must send a configuration file.
+This file can be download from AWS console.</p>
+
+<p>Go to VPC console / <strong>Virtual Private Network (VPN)</strong> / <strong>Site-to-Site VPN</strong> / 
+And Select your VPN connections</p>
+
+<p><img src="pictures/AWS/AWS_Console_VPC_VPNconnection_download_ipsec.png" alt="pic" /></p>
+
+<p>complete the information as in the image below and click <strong>Download</strong></p>
+
+<p><img src="pictures/AWS/AWS_Console_VPC_VPNconnection_download_config_ipsec.png" alt="pic" /></p>
+
+<p>Amazon provide a redundant connection. You have to download and send the two VPN connection files.</p>
+
+
+	  	</article>
+	  	
+	  	
+	  	
+<!-- Output author details if some exist. -->
+   
+
+    <!--ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="iot-activation/RaspberryPiPython.html" title="Previous Post:
+        Your first python Script">&laquo; Your first python Script</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+      <li class="next"><a class="basic-alignment right" 
+	    href="iot-activation/AWSdashboard.html" title="Next Post: 
+		AWS Dashboard">AWS Dashboard
+        &raquo;</a></li>
+      
+    </ul-->
+	</div>
+	<div class="col-md-1"></div>
+</div>
+    </div>
+    <div class="col-md-12 share-div">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          
+<div class="fb_share">
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=354997024639145&version=v2.0";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+<div class="fb-share-button" data-layout="button_count"></div>
+</div>
+
+
+
+<div class="twitter_share">
+	<a href="https://twitter.com/share" class="twitter-share-button" data-via="TelefonicaIoT" data-hashtags="sailsjs">Tweet</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+</div>
+
+
+
+<div class="linkedin_share">
+	<script src="//platform.linkedin.com/in.js" type="text/javascript">
+	  lang: en_US
+	</script>
+	<script type="IN/Share" data-counter="right"></script>
+</div>
+
+
+
+<div class="g_share">
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<div class="g-plus" data-action="share" data-annotation="bubble"></div>
+</div>
+
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="col-md-12">
+    
+    </div>
+    <div class="col-md-12">
+    			<div class="row end_footer">
+              <div class="col-md-1"></div>
+              <div class="col-md-6">
+                
+              </div>
+              <div class="col-md-4"></div>
+              <div class="col-md-1"></div>
+            </div>
+    </div>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/prettify.js"></script>
+    <script>
+      [].forEach.call(document.getElementsByTagName("pre"), function(el) {
+        el.classList.add("prettyprint");
+      });
+
+      prettyPrint();
+    </script>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+
+    <style>
+      pre.prettyprint {
+
+        font-size: 13px;
+        font-family: "Open Sans";
+        padding: 8px 12px;
+        border: 1px solid #bbb;
+        border-radius: 4px;
+      }
+    </style>
+
+  </body>
+
+</html>
