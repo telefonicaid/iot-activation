@@ -9,14 +9,16 @@ categories: tutorial
   * [AWS CloudFormation](#aws-cloudformation)
   * [Freeboard](#freeboard)
     + [load a freeboard](#load-a-freeboard)
+  * [Protect you account](#protect-you-account)
+
 
 
 # Display your dashboard in less than 3 minutes. One click away!!
 
-Storing your values in the shade is a great solution, but sometimes your clients become far more demanding.
-In these cases, you need to develop a custom dashboard.
+Storing your values in the shadow is a great solution, but sometimes your clients will become more demanding.
+In these cases, you will need to develop a custom dashboard.
 
-We've thought in this case. We have this one click solution for you!!
+We've been thinking about this. We have this one click solution for you!!
 
 ![pic](pictures/freeboard/freeboard_init_dashboard.png)
 
@@ -25,12 +27,15 @@ We've thought in this case. We have this one click solution for you!!
 
 ## AWS CloudFormation
 
-CloudFormation provides a common language for you to describe and provision 
+CloudFormation provides a common language to describe and provision 
 all the infrastructure resources in your cloud environment.
 
-It allows you to use a simple text file to build and rebuild your infrastructure.
+Its allows you to use a simple text file to build and rebuild your infrastructure.
 
-To begin with, Go to CloudFormation Console:
+To begin with it, go to CloudFormation Console:
+
+&#x1F4CD; 
+Make sure that you are in Ireland region (eu-west-1) some elements are deployed in this region.
 
 Click on **Create Stack** button
 
@@ -78,7 +83,7 @@ It can take several minutes for deploy all the services.
 
 As a result, when it's finishes you will get a new link for display your dashboard.
 
-Go to **Output** tab an click on the Website URL
+Go to **Output** tab and click on the Website URL
 
 ![pic](pictures/AWS/AWS_Console_CloudFormation_Stack_create_ok.png)
 
@@ -91,8 +96,8 @@ You'll already have your freeboard created.
 
 ## Freeboard
 
-Freeboard is a simple dashboards for your devices.
-It allow you build real-time, interactive dashboards and visualizations in minutes using the intuitive interface.
+Freeboard is a simple dashboard for your devices.
+Its allows you build a real-time dashboards and interactives visualizations using the intuitive interface in a few minutes.
 
 ![pic](pictures/freeboard/freeboard_init_add.png)
 
@@ -139,4 +144,87 @@ It is lost every time you refresh the web.
 Be careful, you don't share this file. It contains your account access key.
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
+
+### Protect you account
+
+If you need share your dashboard configuration file, the best way to protect your account 
+is generate a new user whit a specific policy. This is possible through IAM console.
+
+Go to AWS IAM console / **Policy** / **Create Policy**
+
+![pic](pictures/AWS/AWS_Console_IAM_Policies_create.png)
+
+You can define permissions using a json structure.
+Design a specific rule for your user, in which it is only allowed:
+- connect as a client
+- Subscribe to a specific topic
+
+Use the following template by completing the information with your **AWS_account**, **region** and **Name_topic** 
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "iot:Connect",
+            "Resource": "arn:aws:iot:region:AWS_account:client/*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": ["iot:Receive"],
+            "Resource": [
+                "arn:aws:iot:region:AWS_account:topic/Name_topic"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": "iot:Subscribe",
+            "Resource": [
+                "arn:aws:iot:region:AWS_account:topicfilter/Name_topic"
+            ]
+        }
+    ]
+}
+```
+
+Click on **Review policy**
+
+![pic](pictures/AWS/AWS_Console_IAM_Policies_create_new1.png)
+
+And click on **Create policy**
+
+![pic](pictures/AWS/AWS_Console_IAM_Policies_create_new2.png)
+
+Now, you have a restricted access
+
+![pic](pictures/AWS/AWS_Console_IAM_Policies_create_done.png)
+
+The next step is to link this policy to your new user
+
+Go to AWS IAM console / **Users** / **Add User**
+
+![pic](pictures/AWS/AWS_Console_IAM_Users_create.png)
+
+Select your user name and choose a user for programmatic access. 
+This option generates a new user with access to the account using a password.
+
+![pic](pictures/AWS/AWS_Console_IAM_Users_create_config1.png)
+
+Attach the policy created in the previous step.
+
+![pic](pictures/AWS/AWS_Console_IAM_Users_create_config2.png)
+
+Review it
+
+![pic](pictures/AWS/AWS_Console_IAM_Users_create_config3.png)
+
+And click on **Create user**
+
+Download de file with the credential and use these keys for access from de freeboard.
+
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
+
 
