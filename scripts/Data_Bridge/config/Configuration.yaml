@@ -1,0 +1,16 @@
+cloud: AWS
+
+UDP:
+  ip: "0.0.0.0"
+  port: 4114
+
+
+KITE:
+  url: "https://m2m-api.telefonica.com"
+  certificate: "cer_file"
+  private_key: "key_file"
+
+
+location: True
+
+
