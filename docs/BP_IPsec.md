@@ -1,26 +1,16 @@
 ### Table of Contents
 
 - [What is IPsec?](#what-is-ipsec)
-  * [What will you need?](#what-will-you-need)
-  * [What does it do?](#what-does-it-do)
 - [How to make your own IPsec VPN!](#how-to-make-your-own-ipsec-vpn)
-  * [Request private APN to Telefónica](#request-a-private-apn-to-telefónica)
+
   #### Table of Contents IPsec in AWS
 - [Configure IPsec step by step in AWS](#configure-ipsec-step-by-step-in-aws)
   * [1. Create VPC](#1-create-vpc)
   * [2. Create VPG](#2-create-vpg)
-    + [2.1. Attach VPG to VPC](#21-attach-vpg-to-vpc)
   * [3. Enable propagation of routes from VPG](#3-enable-propagation-of-routes-from-vpg)
-    + [3.1. Edit Route Table](#31-edit-route-table)
   * [4. Create two customer Gateway](#4-create-two-customer-gateway)
   * [5. Create two VPN Connection](#5-create-two-vpn-connection)
-    + [5.1. Download Configuration](#51-download-configuration)
   * [6. Create an EC2 instance](#6-create-an-ec2-instance)
-    + [6.1. Launch EC2 instance](#61-launch-ec2-instance)
-    + [6.2. Create a Subnet](#62-create-a-subnet)
-    + [6.3. Enable Internet Connection EC2 instance](#63-enable-internet-connection-ec2-instance)
-    + [6.4. Attach to VPC](#64-attach-to-vpc)
-    + [6.5. Enable a new Route](#65-enable-a-new-route)
 
 
 # What is IPsec?

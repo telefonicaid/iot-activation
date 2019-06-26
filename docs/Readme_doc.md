@@ -1,7 +1,5 @@
 # Welcome to IoT Activation of Telefónica
 
-![pic](pictures/miscellaneous/IOT_Activation.png)
-
 We welcome you to The IoT World.
 These tutorials are designed to assist you in your beginnings and resolve any doubts that may arise you.
 With this guide you will discover the advantages of IoT devices.
@@ -27,7 +25,7 @@ We will also teach you different technologies so you can decide which one works 
     <h4>Activate your SIM</h4>
 </div>
 <p align="center">
-    <a href="easym2m.md#activate-your-sim" align="center" border="10">
+    <a href="#/easym2m.md#activate-your-sim" align="center" border="10">
         <img src="pictures/miscellaneous/Telefonica_SIM.png"
         width="200" height="125">
     </a>
@@ -38,7 +36,7 @@ We will also teach you different technologies so you can decide which one works 
 <table style="width:90%" align="center">
   <tr>
 	<th>
-		<a href="RaspberryPi_StarterKit.md" align="center" >
+		<a href="#/RaspberryPi_StarterKit.md" align="center" >
 			Raspberry Pi Starter-Kit
 		</a>
 	</th>
@@ -46,21 +44,21 @@ We will also teach you different technologies so you can decide which one works 
 		<img src="pictures/portfolio/portfolio_white.png" width="1" height="1">
 	</th>
 	<th>
-		<a href="Arduino_StarterKit.md" align="center">
+		<a href="#/Arduino_StarterKit.md" align="center">
 			Arduino Starter-Kit
 		</a>
 	</th>
   </tr>
   <tr>
 	<th>
-		<a href="RaspberryPi_StarterKit.md" align="center">
+		<a href="#/RaspberryPi_StarterKit.md" align="center">
 			<img src="pictures/portfolio/portfolio-Raspberry-Kit.png"
 			width="300" height="200">
 		</a>
 	</th>
 	<th></th>
 	<th>
-		<a href="Arduino_StarterKit.md" align="center">
+		<a href="#/Arduino_StarterKit.md" align="center">
 			<img src="pictures/portfolio/portfolio-Arduino-Kit.png"
 			width="300" height="200">
 		</a>
@@ -69,27 +67,27 @@ We will also teach you different technologies so you can decide which one works 
   <tr></tr>
   <tr>
 	<th>
-		<a href="RaspberryPi_StarterKit.md" align="center">
+		<a href="#/RaspberryPi_StarterKit.md" align="center">
 			Raspberry Pi Hat to AWS
 		</a>
 	</th>
 	<th></th>
 	<th>
-		<a href="Arduino_AWS.md" align="center">
+		<a href="#/Arduino_AWS.md" align="center">
 			Arduino to AWS
 		</a>
 	</th>
   </tr>
   <tr>
 	<th>
-		<a href="RaspberryPi_HAT.md" align="center">
+		<a href="#/RaspberryPi_HAT.md" align="center">
 			<img src="pictures/portfolio/portfolio-Raspberry-AWS.png"
 			width="300" height="200">
 		</a>
 	</th>
 	<th></th>
 	<th>
-		<a href="Arduino_AWS.md" align="center">
+		<a href="#/Arduino_AWS.md" align="center">
 			<img src="pictures/portfolio/portfolio-Arduino-AWS.png"
 			width="300" height="200">
 		</a>
@@ -98,27 +96,27 @@ We will also teach you different technologies so you can decide which one works 
     <tr></tr>
     <tr>
 	<th>
-		<a href="Kite_Platform.md" align="center">
+		<a href="#/Kite_Platform.md" align="center">
 			Kite Platform
 		</a>
 	</th>
 	<th></th>
 	<th>
-		<a href="Arduino_GCP.md" align="center">
+		<a href="#/Arduino_GCP.md" align="center">
 			Arduino to Google Cloud
 		</a>
 	</th>
   </tr>
   <tr>
 	<th>
-		<a href="Kite_Platform.md" align="center">
+		<a href="#/Kite_Platform.md" align="center">
 			<img src="pictures/portfolio/portfolio-Kite.png"
 			width="300" height="200">
 		</a>
 	</th>
 	<th></th>
 	<th>
-		<a href="Arduino_GCP.md" align="center">
+		<a href="#/Arduino_GCP.md" align="center">
 			<img src="pictures/portfolio/portfolio-Arduino-GCP.png"
 			width="300" height="200">
 		</a>
@@ -156,13 +154,13 @@ We are developing a set of tools to do the hard work.
 	</th>
   </tr>
 	<th>
-		<a href="BP_DataBridge.md" align="center">
+		<a href="#/BP_DataBridge.md" align="center">
 			<img src="pictures/portfolio/portfolio_bp_databridge.png"
 			width="350" height="225">
 		</a>
 	</th>
 	<th>
-		<a href="BP_IPsec.md" align="center">
+		<a href="#/BP_IPsec.md" align="center">
 			<img src="pictures/portfolio/portfolio_bp_ipsec.png"
 			width="350" height="225">
 		</a>
@@ -187,13 +185,13 @@ We are developing a set of tools to do the hard work.
 	</th>
   </tr>
   	<th>
-		<a href="BP_Asset_Tracking.md" align="center">
+		<a href="#/BP_Asset_Tracking.md" align="center">
 			<img src="pictures/portfolio/portfolio_bp_Asset_Tracking.png"
 			width="350" height="225">
 		</a>
 	</th>
 	<th>
-		<a href="BP_Bootstraping.md" align="center">
+		<a href="#/BP_Bootstraping.md" align="center">
 			<img src="pictures/portfolio/portfolio_bp_bootstraping.png"
 			width="350" height="225">
 		</a>

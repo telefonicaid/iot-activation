@@ -32,7 +32,7 @@ To learn how to configure your device and start developing your applications che
 [Raspberry Pi StarterKit guide](RaspberryPi_StarterKit.md)
 
 <p align="center">
-	<a href="RaspberryPi_StarterKit.md" lign="center">
+	<a align="center">
 		<img src="pictures/Raspberry/Raspi_logol.png"
 		width="250" height="75">
 	</a>
@@ -52,7 +52,7 @@ To learn how to configure your device and start developing your applications che
 [Arduino StarterKit guide](Arduino_StarterKit.md)
 
 <p align="center">
-	<a href="Arduino_StarterKit.md" lign="center">
+	<a align="center">
 		<img src="pictures/Arduino/Arduino_Logo.png"
 		width="150" height="100">
 	</a>
@@ -88,7 +88,7 @@ low power consumption enables a battery life of several years.
 Likewise, it preserves all characteristic of security and privacy of a mobile net.
 
 <p align="center">
-	<a href="README.md">
+	<a>
 		<img src="pictures/miscellaneous/nbiot_logo.png"
 		width="250" height="75">
 	</a>
@@ -101,7 +101,7 @@ LTE is a standard for high-speed wireless communication for mobile devices.
 It allows bigger rate of data enable a real-time communication voice included.
 
 <p align="center">
-	<a href="README.md">
+	<a>
 		<img src="pictures/miscellaneous/ltem_logo.png"
 		width="250" height="75">
 	</a>

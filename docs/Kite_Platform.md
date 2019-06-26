@@ -2,15 +2,8 @@
 
 - [This is KITE!](#this-is-kite)
 - [Quick view to Kite Graphic Interface](#quick-view-to-kite-graphic-interface)
-  * [Manage your SIMs](#manage-your-sims)
-    + [SIM inventory](#sim-inventory)
-      - [SIM inventory bottom menu](#sim-inventory-bottom-menu)
-    + [SIM details](#sim-details)
 - [How to get started with your SIM](#how-to-get-started-with-your-sim)
 - [What is Kite Platform API?](#what-is-kite-platform-api)
-  * [How to access Kite Platform API?](#how-to-access-kite-platform-api)
-    + [Extract your credentials files](#extract-your-credentials-files)
-    + [Access API using a command](#access-api-using-a-command)
 - [How it's made](#how-its-made)
     + [Activate Data traffic](#activate-data-traffic)
     + [Activate Location Service](#activate-location-service)
@@ -223,7 +216,7 @@ But if they're not available you should contact your local SIM distributor.
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
-### Activate Data traffic
+## Activate Data traffic
 
 Go to **SIM Inventory** / **Select your SIM** / and Press **Activate** on the bottom-menu
 
@@ -235,7 +228,7 @@ Now the service is activate, click on **Finish**
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
-### Activate Location Service
+## Activate Location Service
 
 Go to **SIM Inventory** / **Select your SIM** / and Press **Activate** on the bottom-menu
 
@@ -247,7 +240,7 @@ Now the service is activate, click on **Finish**
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
-### Activate LTE / NB (4G)
+## Activate LTE / NB (4G)
 
 Go to **SIM Inventory** / **Select your SIM** / and Press **Activate** on the bottom-menu
 
@@ -259,7 +252,7 @@ Now the service is activate, click on **Finish**
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
-### Assign Subscription group
+## Assign Subscription group
 
 Go to **SIM Inventory** / **Select your SIM** / and Press **Assign** on the bottom-menu
 
@@ -273,7 +266,7 @@ Now your SIM is subscribed to the group, click on **Finish**
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
-### Change life cycle state
+## Change life cycle state
 
 Go to **SIM Inventory** / **Select your SIM** / and Press **Change** on the bottom-menu
 
@@ -287,7 +280,7 @@ Now the state is changed, click on **Finish**
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
-### Edit Custom Field
+## Edit Custom Field
 
 Go to **SIM Inventory** / **Select your SIM** 
 
@@ -299,7 +292,7 @@ Edit the information and click on **Save**
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
-### Select APN
+## Select APN
 
 Go to **SIM Inventory** / **Select your SIM** / and Press **Change** on the bottom-menu
 
@@ -313,7 +306,7 @@ Now the APN is added, click on **Finish**
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
-### Deactivate any Service
+## Deactivate any Service
 
 Follow the same steps as to activate, but from the tab **Deactivate**
 

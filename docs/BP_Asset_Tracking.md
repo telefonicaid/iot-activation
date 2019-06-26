@@ -35,7 +35,7 @@ Through the managed connection, you can access the location of the SIM using the
 
 It's easy, you just have to activate the Location Service of your SIM in Kite
 
-![pic](pictures/AssetTracking/AssetTracking_kite_location_on.png)
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
 ## What will you need?
 
@@ -55,19 +55,12 @@ Soon ..
 
 First Go to **SIM Inventory** / **Select your SIM** / and Press **Activate** on the bottom-menu
 
-![pic](pictures/Kite/Kite_HowTo_SIM_Activate_Service.png)
-
 find the option **Activate Location** and click it.
-
-![pic](pictures/Kite/Kite_HowTo_SIM_Activate_Service_location.png)
 
 A new window is open! Click in **Activation**
 
-![pic](pictures/Kite/Kite_HowTo_SIM_Activate_Service_location_config.png)
-
 Now the service is activated click on **Finish**
 
-![pic](pictures/Kite/Kite_HowTo_SIM_Activate_Service_location_config_done.png)
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 

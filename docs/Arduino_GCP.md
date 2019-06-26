@@ -2,8 +2,6 @@
 
 - [Arduino: MKR NB-1500 to Google Cloud IoT](#arduino-mkr-nb-1500-to-google-cloud-iot)
   * [Getting started with the MKR NB-1500](#getting-started-with-the-mkr-nb-1500)
-    - [What will you learn?](#what-will-you-learn)
-    - [What will you need?](#what-will-you-need)
   * [What is MQTT](#what-is-mqtt)
   * [Generate your devices keys](#Generate-your-devices-keys)
   * [How to communicate with Google Cloud](#how-to-communicate-with-google-cloud)

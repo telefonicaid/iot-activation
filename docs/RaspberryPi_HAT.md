@@ -67,9 +67,9 @@ If you have any questions about how to run your code, you do not forget to visit
 [tutorial](RaspberryPi_Python.md) for Raspberry or click on the image
 
 <p align="center">
-	<a href="RaspberryPi_Python.md">
+	<a>
 		<img src="pictures/miscellaneous/Python_logo.png"
-		width="400" height="170">
+		width="400" height="165">
 	</a>
 </p>
 
