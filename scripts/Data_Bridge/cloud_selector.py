@@ -18,95 +18,106 @@
 #                                                                                                                      #
 ########################################################################################################################
 from __future__ import print_function
-from log import *
-from utils import *
 from cloud_selector_aws import *
-#from cloud_selector_gcp import *
+
+CODE_ERROR_CLOUD_NOT_IMPLEMENTED = 501
+MSG_CLOUD_NOT_IMPLEMENTED = 'ERROR: Cloud id Not Implemented'
 
 
 def cloud_configure(config):
-    """ Use the configuration fil for select and load the Cloud configuration
-
-    if the selected cloud is not implemented it returns an error code
-    config_cloud["code"] = CODE_CLOUD_NOT_FOUND
-    CODE_CLOUD_NOT_FOUND = 404 (utils.py)
-
+    """
+    Function Invocation for configure the selected Cloud
     :param config: configuration
     :return: Cloud configuration
     """
     try:
-        config_cloud = {}
         if config["cloud"] == "AWS":
             logger.debug("CLOUD: Selected connect to AWS:")
-            config_cloud=read_config('config/Configuration_AWS.yaml')
+            config_cloud = read_config('config/Configuration_AWS.yaml')
             config_cloud["cloud"] = "AWS"
+            config_cloud["code"] = 200
         else:
-            if config["cloud"] == "GCP":
-                logger.debug("CLOUD: Selected connect to Google Cloud:")
-                config_cloud = read_config('config/Configuration_GCP.yaml')
-                config_cloud["cloud"] = "GCP"
-            else:
-                logger.error("CLOUD: Cloud not defined")
-                config_cloud["code"] = CODE_CLOUD_NOT_FOUND
+            logger.error("CLOUD: Cloud not defined")
+            config_cloud = {"code": CODE_ERROR_CLOUD_NOT_IMPLEMENTED, "msg": MSG_CLOUD_NOT_IMPLEMENTED}
 
         return config_cloud
 
     except Exception as e:
         logger.error("CLOUD: exception cloud_config()")
+        logger.error("message:{}".format(e.message))
         traceback.print_exc(file=sys.stdout)
 
 
 def cloud_publish(thing, topic, status, config_cloud):
-    """ Invokes the publish function corresponding to the library of the selected cloud.
-
-    if the selected cloud is not implemented it returns an error code
-    config_cloud["code"] = CODE_CLOUD_NOT_FOUND
-    CODE_CLOUD_NOT_FOUND = 404 (utils.py)
-
+    """
+    Function Invocation for publish in the selected Cloud.
     :param thing:
     :param topic:
     :param status:
     :param config_cloud:
-    :return:
+    :return: response = {"code": 200, "msg": "OK"}
     """
+    response = {"code": 500, "msg": "Publish - Internal Server Error"}
     try:
-        response = {}
-
         if config_cloud["cloud"] == "AWS":
             logger.debug("CLOUD: Selected Publish in AWS:")
             response = cloud_publish_aws(thing, topic, status, config_cloud)
         else:
-            if config_cloud["cloud"] == "GCP":
-                logger.debug("CLOUD: Selected Publish in GCP:")
-                response = cloud_publish_gcp(thing, topic, status, config_cloud)
-            else:
-                logger.error("CLOUD: Cloud not defined")
-                response["code"] = CODE_ERROR_CLOUD_NOT_IMPLEMENTED
-                response["msg"] = MSG_ERROR_CLOUD_NOT_IMPLEMENTED
-
-        return response
+            logger.error("CLOUD: Cloud not defined")
+            response = {"code": CODE_ERROR_CLOUD_NOT_IMPLEMENTED, "msg": MSG_CLOUD_NOT_IMPLEMENTED}
 
     except Exception as e:
         logger.error("CLOUD: exception cloud_publish()")
+        logger.error("message:{}".format(e.message))
         traceback.print_exc(file=sys.stdout)
+
+    finally:
+        return response
 
 
 def cloud_get_parameter(parameter_name, config_cloud):
+    """
+    Function Invocation for the parameter stored in the selected Cloud
+    :param parameter_name:
+    :param config_cloud:
+    :return: parameter {"code": 200, "msg": parameter_value}
+    """
+    parameter = {"code": 500, "msg": "Get parameter - Internal Server Error"}
     try:
-        parameter = ""
-
         if config_cloud["cloud"] == "AWS":
             logger.debug("CLOUD: Selected get parameter for AWS:")
             parameter = cloud_get_parameter_aws(parameter_name, config_cloud)
         else:
-            if config_cloud["cloud"] == "GCP":
-                logger.debug("CLOUD: Selected Publish in GCP:")
-
-            else:
-                logger.error("CLOUD: Cloud not defined")
-
-        return parameter
-
+            logger.error("CLOUD: Cloud not defined")
+            parameter = {"code": CODE_ERROR_CLOUD_NOT_IMPLEMENTED, "msg": MSG_CLOUD_NOT_IMPLEMENTED}
     except Exception as e:
         logger.error("CLOUD: exception cloud_get_parameter()")
+        logger.error("message:{}".format(e.message))
         traceback.print_exc(file=sys.stdout)
+    finally:
+        return parameter
+
+
+def cloud_test_credentials(config_file, config_cloud):
+    """
+    Function Invocation for test the credentials of the selected Cloud
+    :param config_file:
+    :param config_cloud:
+    :return: Boolean (True/False)
+    """
+    logger.info("Testing Cloud Credentials")
+    status = False
+    try:
+        if config_cloud["cloud"] == "AWS":
+            logger.debug("CLOUD: Selected test credentials for AWS:")
+            status_environment = cloud_test_credentials_environment_aws()
+            # status_cred = cloud_test_credentials_aws(config_file, config_cloud)
+            status = status_environment
+        else:
+            logger.error("CLOUD: Cloud not defined")
+    except Exception as e:
+        logger.error("CLOUD: exception cloud_get_parameter()")
+        logger.error("message:{}".format(e.message))
+        traceback.print_exc(file=sys.stdout)
+    finally:
+        return status

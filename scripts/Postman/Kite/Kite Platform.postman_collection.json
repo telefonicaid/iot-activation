@@ -1,0 +1,207 @@
+{
+	"info": {
+		"_postman_id": "3c45e24b-a8d9-4569-b819-8fdd09048382",
+		"name": "Kite Platform",
+		"description": "API colecction for Kite Platform",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "servicePack",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/services/REST/GlobalM2M/ServicePacks/v2/r12/servicePack",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"services",
+						"REST",
+						"GlobalM2M",
+						"ServicePacks",
+						"v2",
+						"r12",
+						"servicePack"
+					]
+				},
+				"description": "This resource is used to retrieve Basic Services Commercial Plans of consumer\r\nCustomer account"
+			},
+			"response": []
+		},
+		{
+			"name": "Inventory list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/services/REST/GlobalM2M/Inventory/v6/r12/sim?startIndex=0&maxBatchSize=100",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"services",
+						"REST",
+						"GlobalM2M",
+						"Inventory",
+						"v6",
+						"r12",
+						"sim"
+					],
+					"query": [
+						{
+							"key": "startIndex",
+							"value": "0",
+							"description": "Offset to be applied to the response. E.g.:\nstartIndex=50 means that entries since\n51 should be returned (first 50 entries\nshould not be returned). Accepted values\nrange is from 0.\n"
+						},
+						{
+							"key": "maxBatchSize",
+							"value": "100",
+							"description": "A maximum number of entries to be\nreturned in the response. Accepted values\nrange is 1 to 100"
+						}
+					]
+				},
+				"description": "Retrieves Customer Subscriptions inventory.\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "SIM",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/services/REST/GlobalM2M/Inventory/v6/r12/sim?",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"services",
+						"REST",
+						"GlobalM2M",
+						"Inventory",
+						"v6",
+						"r12",
+						"sim"
+					],
+					"query": [
+						{
+							"key": "startIndex",
+							"value": "0",
+							"description": "Offset to be applied to the response. E.g.:\nstartIndex=50 means that entries since\n51 should be returned (first 50 entries\nshould not be returned). Accepted values\nrange is from 0.\n",
+							"disabled": true
+						},
+						{
+							"key": "maxBatchSize",
+							"value": "100",
+							"description": "A maximum number of entries to be\nreturned in the response. Accepted values\nrange is 1 to 100",
+							"disabled": true
+						},
+						{
+							"key": "alias",
+							"value": "xxxxxxx",
+							"description": "Alias of the Subscription",
+							"disabled": true
+						},
+						{
+							"key": "icc",
+							"value": "000000000000000",
+							"description": "ICC of the Subscription",
+							"disabled": true
+						},
+						{
+							"key": "apn",
+							"value": "m2m.movistar.es",
+							"description": "Returns all the subscriptions that are\ncurrently using the given APN during an\nongoing GPRS session",
+							"disabled": true
+						},
+						{
+							"key": "ip",
+							"value": "0.0.0.0",
+							"description": "Returns all the subscriptions that are\ncurrently using the given IP address\nduring an ongoing GPRS session",
+							"disabled": true
+						},
+						{
+							"key": "imsi",
+							"value": "000000000",
+							"description": "IMSI of the Subscription",
+							"disabled": true
+						},
+						{
+							"key": "msisdn",
+							"value": "0000000",
+							"description": "MSISDN of the Subscription",
+							"disabled": true
+						},
+						{
+							"key": "imei",
+							"value": "0000",
+							"description": "Get subscription attached to the given\nCommunications Module.",
+							"disabled": true
+						},
+						{
+							"key": "customField_1",
+							"value": "",
+							"description": "Custom Field value of the Subscription",
+							"disabled": true
+						},
+						{
+							"key": "customField_2",
+							"value": "",
+							"description": "Custom Field value of the Subscription",
+							"disabled": true
+						}
+					]
+				},
+				"description": "It allows to list all deployed SIM's that match a given criterion."
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "1Nternet12345",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "raul.perez",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "b4582bde-20c1-483e-9402-77325e685df1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "53ba1ea6-f921-4508-9f4c-6ed8e7606512",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "87b64efb-52b0-439a-a68e-7a3d3a3d9e5f",
+			"key": "url",
+			"value": "https://m2m-api.telefonica.com:8010",
+			"type": "string"
+		}
+	]
+}

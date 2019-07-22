@@ -19,57 +19,67 @@
 ########################################################################################################################
 
 from __future__ import print_function
-from log import *
 from utils import *
-from os import remove
 import requests
 import json
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-
-KITE_API = ":8010/services/REST/GlobalM2M/Inventory/v6/r12/sim?"
+KITE_API = "/services/REST/GlobalM2M/Inventory/v6/r12/sim?"
 KITE_API_IP = "ip=%s"
 KITE_API_ICC = "icc=%s"
 KITE_API_ALIAS = "alias=%s"
+KITE_API_APN = "apn=%s"
 
-def get_info_from_ip(url, certificate, key, ipAddress):
-    """HTTPS request in Kite using the IP Address.
 
+def get_info_from_ip(url, certificate, key, ip_address, apn):
+    """
+    HTTPS request in Kite using the SIM IP and its APN.
     :param url: url of Kite to search using the ip
     :param certificate: certificate file for Kite connection
     :param key: private key file for Kite connection
-    :param ipAddress: SIM's IP Address
+    :param ip_address: SIM's IP Address
+    :param apn: SIM APN
     :return: the https response from url find by the IP
 
     """
     url_api = url + KITE_API_IP
-    kite_response = requests.get(url_api % ipAddress,cert=(certificate, key), verify=False)
+    url_api = url_api % ip_address
+    url_api = url_api + "&" + KITE_API_APN
+    url_api = url_api % apn
+    kite_response = requests.get(url_api, cert=(certificate, key), verify=False)
 
     return kite_response
 
 
-def get_info_from_icc(url, certificate, key, iccNumber):
-    """ HTTPS request in Kite using the ICC Number.
-
+def get_info_from_icc(url, certificate, key, icc_number, apn):
+    """
+     HTTPS request in Kite using the SIM ICC and its APN.
     :param url: url of Kite to search using the icc
     :param certificate: certificate file for Kite connection
     :param key: private key file for Kite connection
-    :param iccNumber: SIM's ICC Number
+    :param icc_number: SIM's ICC Number
+    :param apn: SIM APN
     :return: the https response from url find by the ICC
 
     """
     url_api = url + KITE_API_ICC
-    kite_response = requests.get(url_api % iccNumber, cert=(certificate, key), verify=False)
+    url_api = url_api % icc_number
+    url_api = url_api + "&" + KITE_API_APN
+    url_api = url_api % apn
+
+    kite_response = requests.get(url_api, cert=(certificate, key), verify=False)
 
     return kite_response
 
 
 def get_info_from_alias(url, certificate, key, alias_name):
-    """HTTPS request in Kite using the IP Address.
-
+    """
+    HTTPS request in Kite using the SIM Alias.
     :param url: url of Kite to search using the ip
     :param certificate: certificate file for Kite connection
     :param key: private key file for Kite connection
-    :param ipAddress: SIM's IP Address
+    :param alias_name: SIM Alias
     :return: the https response from url find by the IP
 
     """
@@ -79,94 +89,93 @@ def get_info_from_alias(url, certificate, key, alias_name):
     return kite_response
 
 
-def kite_get_custom_parameters(url, certificate, key, ipAddress):
-    """Get de Custom Fields from Kite Platform
-
-    :param url: dictionary with Kite urls
-    :param certificate: certificate file for Kite connection
-    :param key: private key file for Kite connection
-    :param ipAddress:
-    :return: status of the connection[0], Thing name [1] and default topic [2]
-
+def kite_get_parameters(ip_address, certificate, private_key):
     """
-    url_api = url + KITE_API
-    kite_response = get_info_from_ip(url_api, certificate, key, ipAddress)
+    Function for get the SIM parameter stored in Kite Platform
+    :param ip_address:
+    :param certificate:
+    :param private_key:
+    :return: SIM parameter stored in Kite Platform
+    """
 
-    thing_name = ""
-    thing_topic = ""
-    thing_latitude = ""
-    thing_longitude = ""
+    logger.debug("KITE: Reading config file")
+    config_file = read_config('config/Configuration.yaml')
+    url_kite = config_file["KITE"]["url"]
+    apn_kite = config_file["KITE"]["apn"]
+    logger.debug("KITE: url [ %s ]", url_kite)
+    logger.debug("KITE: APN [ %s ]", apn_kite)
 
-    logger.info("KITE Response status code [ %s ]" % kite_response.status_code )
+    url_api = url_kite + KITE_API
+    temp_path_cert = tmp_file(certificate)
+    temp_path_key = tmp_file(private_key)
 
-    if kite_response.status_code == 200:
-        connected = True
-        json_kite_response = json.loads(kite_response.text)
-        thing_name = json_kite_response["subscriptionData"][0]["customField1"]
-        thing_topic = json_kite_response["subscriptionData"][0]["customField2"]
-        logger.debug("KITE: Reading thing name [ %s ]" % thing_name)
-        logger.debug("KITE: Reading thing topic [ %s ]" % thing_topic)
+    kite_parameters = {"code": 500, "msg": "KITE - Internal Server Error"}
 
-        if json_kite_response["subscriptionData"][0]["supplServices"]["location"]:
-            thing_latitude = json_kite_response["subscriptionData"][0]["automaticLocation"]["coordinates"]["latitude"]
-            thing_longitude = json_kite_response["subscriptionData"][0]["manualLocation"]["coordinates"]["longitude"]
-            logger.debug("KITE: Reading latitude [ %s ]" % thing_latitude)
-            logger.debug("KITE: Reading longitude [ %s ]" % thing_longitude)
+    try:
+        kite_response = get_info_from_ip(url_api, temp_path_cert, temp_path_key, ip_address, apn_kite)
 
+    except Exception as e:
+        kite_parameters = {"code": 400, "msg": "KITE - Access Error"}
+        logger.error("KITE - Access Error")
+        logger.error("message:{}".format(e.message))
+        traceback.print_exc(file=sys.stdout)
 
     else:
-        connected = False
+        os.remove(temp_path_cert)
+        os.remove(temp_path_key)
 
-    return connected, thing_name, thing_topic, kite_response.status_code, thing_latitude, thing_longitude
+        kite_parameters["code"] = kite_response.status_code
+        kite_parameters["msg"] = ""
 
-class Kite:
-    """ Contains the information of the SIM in Kite.
+        logger.info("KITE Response status code [ %s ]" % kite_parameters["code"])
 
+        if kite_parameters["code"] == 200:
+            json_kite_response = json.loads(kite_response.text)
+            thing_name = json_kite_response["subscriptionData"][0]["customField1"]
+            thing_topic = json_kite_response["subscriptionData"][0]["customField2"]
+            logger.debug("KITE: Reading thing name [ %s ]" % thing_name)
+            logger.debug("KITE: Reading thing topic [ %s ]" % thing_topic)
+
+            kite_parameters["connected"] = True
+            kite_parameters["thing_name"] = thing_name
+            kite_parameters["thing_topic"] = thing_topic
+
+            if json_kite_response["subscriptionData"][0]["supplServices"]["location"]:
+                thing_latitude = json_kite_response["subscriptionData"][0]["automaticLocation"]["coordinates"]["latitude"]
+                thing_longitude = json_kite_response["subscriptionData"][0]["manualLocation"]["coordinates"]["longitude"]
+                logger.debug("KITE: Reading latitude [ %s ]" % thing_latitude)
+                logger.debug("KITE: Reading longitude [ %s ]" % thing_longitude)
+                kite_parameters["location"] = True
+                kite_parameters["latitude"] = thing_latitude
+                kite_parameters["longitude"] = thing_longitude
+            else:
+                kite_parameters["location"] = False
+        else:
+            kite_parameters["msg"] = kite_response.text
+    finally:
+        return kite_parameters
+
+
+def kite_test_credentials(certificate, private_key):
     """
-    status_ok = False
-    ip = ''
-    device_name = ''
-    cloud_topic = ''
-    latitude = ''
-    longitude = ''
-    code = 0
+    Function for test the credentials files
+    :param certificate:
+    :param private_key:
+    :return: Boolean (True/False)
+    """
+    logger.debug("KITE: Testing credentials files")
+    config_file = read_config('config/Configuration.yaml')
+    url_base = config_file["KITE"]["url"]
+    url = url_base + "/services/REST/GlobalM2M/ServicePacks/v2/r12/servicePack"
 
-    def __init__(self, ip_address, certificate, private_key):
-        """ Class Kite Constructor.
+    temp_path_cert = tmp_file(certificate)
+    temp_path_key = tmp_file(private_key)
 
-        :param ipAddress: SIM's IP Address
+    kite_response = requests.get(url, cert=(temp_path_cert, temp_path_key), verify=False)
 
-        """
-        logger.debug("KITE: Reading config file")
-        config_file = read_config('config/Configuration.yaml')
-        url = config_file["KITE"]["url"]
+    if kite_response.status_code == 200:
+        status = True
+    else:
+        status = False
 
-        '''fd_cert, temp_path_cert = tempfile.mkstemp()
-        temp_file_cert = open(temp_path_cert, 'w')
-        temp_file_cert.write(certificate)
-        temp_file_cert.close()
-
-        fd_key, temp_path_key = tempfile.mkstemp()
-        temp_file_key = open(temp_path_key, 'w')
-        temp_file_key.write(private_key)
-        temp_file_key.close()'''
-
-        temp_path_cert = tmp_file(certificate)
-        temp_path_key = tmp_file(private_key)
-
-        try:
-
-            self.ip = ip_address
-            self.status_ok, self.device_name, self.cloud_topic, self.code, self.latitude, self.longitude = \
-                kite_get_custom_parameters(url, temp_path_cert, temp_path_key, ip_address)
-
-            os.remove(temp_path_cert)
-            os.remove(temp_path_key)
-
-        except Exception as e:
-            os.remove(temp_path_cert)
-            os.remove(temp_path_key)
-
-        logger.debug("KITE: Readed ")
-
-
+    return status

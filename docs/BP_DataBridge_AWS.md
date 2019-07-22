@@ -121,6 +121,18 @@ For the time being, if you use a SIM from the Thinx testing network you will not
 
 You can download it from our [repository](https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge)
 
+Or use the command: `wget`
+
+```
+wget https://raw.githubusercontent.com/telefonicaid/iot-activation/master/scripts/Data_Bridge/Data_Bridge.zip
+```
+
+Unzip the new file
+
+```
+unzip Data_Bridge.zip
+```
+
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
 
@@ -351,9 +363,7 @@ sudo yum install python-pip
 You can install them one by one from the Bridge folder.
 
 ```python
-sudo pip install boto3 -t ./
-sudo pip install jwt
-sudo pip install PyJWT
+sudo pip install -r requirements.txt
 ```
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)

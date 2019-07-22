@@ -19,7 +19,6 @@
 ########################################################################################################################
 from __future__ import print_function
 import logging.handlers
-import uuid
 import sys
 import os
 import traceback
@@ -31,10 +30,13 @@ try:
     if "LOG_LEVEL" in os.environ:
         if os.environ["LOG_LEVEL"] in ["INFO", "DEBUG", "WARNING", "ERROR"]:
             logger.setLevel(logging.os.environ["LOG_LEVEL"])
+            log_level = os.environ["LOG_LEVEL"]
         else:
             logger.setLevel(logging.INFO)
+            log_level = "INFO"
     else:
         logger.setLevel(logging.INFO)
+        log_level = "INFO"
 
     handler = logging.StreamHandler(sys.stdout)
     log_format = logging.Formatter("%(asctime)s - %(levelname)s : %(message)s")
@@ -42,15 +44,21 @@ try:
     logger.addHandler(handler)
 
     filename = "log/data_bridge.log"
-    loghandler = logging.handlers.TimedRotatingFileHandler(filename, when='midnight', backupCount=7)
+    log_handler = logging.handlers.TimedRotatingFileHandler(filename, when='midnight', backupCount=7)
     log_format = logging.Formatter("%(asctime)s - %(levelname)s : %(message)s")
-    loghandler.setFormatter(log_format)
-    logger.addHandler(loghandler)
+    log_handler.setFormatter(log_format)
+    logger.addHandler(log_handler)
 
-    logger.info("Setting log ")
+    logger.info("Setting log file")
+    logger.info("log Level [ %s ] ", log_level)
 
-except Exception as e:
-    logger.error("exception main()")
-    logger.error("message:{}".format(e.message))
+    if "LOG_LEVEL" in os.environ:
+        logger.debug("Found 'LOG_LEVEL' in environment variable")
+
+    logger.info("log file [ %s ] ", filename)
+
+except Exception as excepts:
+    logger.error("exception Setting log")
+    logger.error("message:{}".format(excepts.message))
     traceback.print_exc(file=sys.stdout)
 

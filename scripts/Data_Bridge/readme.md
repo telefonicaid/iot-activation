@@ -1,6 +1,6 @@
 # Bridge UDP
 
-Learn more visiting our [tutorial](../../tutorials/Bridge_UDP.md)
+Learn more visiting our [tutorial](../../docs/BP_DataBridge.md)
 
 
 # About the Code
@@ -23,7 +23,3 @@ config/
 CA/
 ```
 
-![pic](img/Bridge_code.png)
-
-
-[![pic](img/arrow_up.png)](#bridge-udp)

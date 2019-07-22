@@ -72,4 +72,6 @@ https://easym2mmanagementapiv2en.docs.apiary.io/
 
 ![pic](pictures/easym2m/easym2m_api_console.png)
 
+Learn how to use the API with the [Postman tool](easym2m_API.md)
+
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)

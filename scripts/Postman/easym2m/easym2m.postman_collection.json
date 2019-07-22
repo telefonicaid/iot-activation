@@ -1,0 +1,311 @@
+{
+	"info": {
+		"_postman_id": "314f1de4-16ce-4fc9-8e3e-6e5ea823720d",
+		"name": "easym2m",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SIM show it",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{usuario_api_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{usuario_api_id}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-key",
+						"type": "text",
+						"value": "{{usuario_api_key}}"
+					}
+				],
+				"url": {
+					"raw": "https://www.easym2m.eu/api/v2/customer/simcard/{{iccid}}",
+					"protocol": "https",
+					"host": [
+						"www",
+						"easym2m",
+						"eu"
+					],
+					"path": [
+						"api",
+						"v2",
+						"customer",
+						"simcard",
+						"{{iccid}}"
+					]
+				},
+				"description": "Obtain all the attributes of a SIM card using its ICCID."
+			},
+			"response": []
+		},
+		{
+			"name": "SIM update it",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{usuario_api_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{usuario_api_id}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-key",
+						"type": "text",
+						"value": "{{usuario_api_key}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"alias\" : \"IoT-Activation\"\r\n}"
+				},
+				"url": {
+					"raw": "https://www.easym2m.eu/api/v2/customer/simcard/{{iccid}}",
+					"protocol": "https",
+					"host": [
+						"www",
+						"easym2m",
+						"eu"
+					],
+					"path": [
+						"api",
+						"v2",
+						"customer",
+						"simcard",
+						"{{iccid}}"
+					]
+				},
+				"description": "This method allows changes to specific SIM card attributes. It is necessary to enter the ICCID of the SIM card to be modified.\r\nDepending on the type of product assigned to the SIM card, certain parameters can be changed.\r\n\r\nFor prepaid products, only the following can be updated:\r\n\r\n- Life cycle of the SIM card or status (lifeCycleStatus)\r\n- Alias (alias).Alarm ID (idAlarm)\r\n\r\nFor post-paid products, in addition to the parameters that can be modified for prepaid SIM cards, it is also possible to change the following:\r\n- Threshold for daily consumption (dailyConsumptionThreshold)\r\n- Threshold for monthly consumption (monthlyConsumptionThreshold)"
+			},
+			"response": []
+		},
+		{
+			"name": "SIM inventory",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{usuario_api_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{usuario_api_id}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json "
+					},
+					{
+						"key": "X-Api-Key",
+						"type": "text",
+						"value": "{{usuario_api_key}}"
+					}
+				],
+				"url": {
+					"raw": "https://www.easym2m.eu/api/v2/customer/simcards/{{size}}/{{index}}/{{Status}}",
+					"protocol": "https",
+					"host": [
+						"www",
+						"easym2m",
+						"eu"
+					],
+					"path": [
+						"api",
+						"v2",
+						"customer",
+						"simcards",
+						"{{size}}",
+						"{{index}}",
+						"{{Status}}"
+					]
+				},
+				"description": "Obtain a list of SIM cards in inventory. The result is paginated and can be filtered on life cycle of the SIM cards.\r\n\r\nThe valid entries for the SIM status are the following Status:\r\n\r\n- INACTIVE_NEW \r\n- TEST\r\n- ACTIVATION_READY\r\n- ACTIVATION_PENDANT\r\n- ACTIVE\r\n- DEACTIVATED\r\n- SUSPENDED\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Balance total",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{usuario_api_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{usuario_api_id}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json ",
+						"type": "text"
+					},
+					{
+						"key": "X-Api-Key",
+						"value": "{{usuario_api_key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://www.easym2m.eu/api/v2/customer/balance",
+					"protocol": "https",
+					"host": [
+						"www",
+						"easym2m",
+						"eu"
+					],
+					"path": [
+						"api",
+						"v2",
+						"customer",
+						"balance"
+					]
+				},
+				"description": "Show the actual customer balance in Euros (€)."
+			},
+			"response": []
+		},
+		{
+			"name": "Balance of one SIM",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{usuario_api_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{usuario_api_id}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json "
+					},
+					{
+						"key": "X-Api-Key",
+						"type": "text",
+						"value": "{{usuario_api_key}}"
+					}
+				],
+				"url": {
+					"raw": "https://www.easym2m.eu/api/v2/customer/balance/{{iccid}}",
+					"protocol": "https",
+					"host": [
+						"www",
+						"easym2m",
+						"eu"
+					],
+					"path": [
+						"api",
+						"v2",
+						"customer",
+						"balance",
+						"{{iccid}}"
+					]
+				},
+				"description": "Show the balance of one SIM card"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "fca7cf3a-462b-4de2-8848-9ce068707096",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "f6ca4b5f-baa7-4b34-8922-40730062a3a5",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "b4772da5-7c8a-4ad5-ba51-e32df672e486",
+			"key": "usuario_api_key",
+			"value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+			"type": "string"
+		},
+		{
+			"id": "3e7c5bdf-4dc9-42c4-991f-bc6c40601278",
+			"key": "usuario_api_id",
+			"value": "xxxxxxxxxxxxxxxxxx.easym2m.eu",
+			"type": "string"
+		},
+		{
+			"id": "2749c34f-18fc-420d-bac0-845fa338bbfa",
+			"key": "usuario_api_password",
+			"value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+			"type": "string"
+		}
+	]
+}

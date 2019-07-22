@@ -197,6 +197,9 @@ sudo curl --cert ./your_customer_certificate.cer --key ./your_customer_certifica
 https://m2m-api.telefonica.com:8010/services/REST/GlobalM2M/ServicePacks/v2/r12/servicePack
 ```
 
+Learn how to use the API with the [Postman tool](Kite_Platform_API.md)
+
+
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
 # How it's made

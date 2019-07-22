@@ -1,19 +1,10 @@
-sudo yum install openssl-devel 
-sudo yum install gcc
-
-sudo pip install pyJWT 
-sudo pip install google-api-python-client
-sudo pip install google-oauth -t
-sudo pip install google-auth -t
-sudo pip install google-auth-httplib2
-sudo pip install google-cloud
-sudo pip install google-cloud-pubsub
-sudo pip install pyOpenSSL cryptography
-sudo pip install pyOpenSSL 
-
-sudo pip install paho.mqtt.client
-sudo pip install json
-sudo pip install yaml
-sudo pip install ssl
-sudo pip install requests
-sudo pip install boto3 
+urllib3==1.24.3
+PyYAML==5.1.1
+PyJWT==1.7.1
+requests==2.21.0
+boto3==1.9.187
+sockets=1.0.0
+temp=2019.4.13
+os-sys=1.9.7
+traceback2=1.4.0
+logging=0.4.9.6

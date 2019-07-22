@@ -5,7 +5,8 @@
   * [What our bridge is already doing](#what-our-bridge-is-already-doing)
   * [What's it gonna do next?](#whats-it-gonna-do-next)
   * [What will you need?](#what-will-you-need)
-
+  * [Download](#download)
+  * [Cloud](#cloud)
 
 # What is The Data Bridge?
 
@@ -73,12 +74,37 @@ For the time being, If you use a SIM from the Thinx, you will not have access to
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
-### To continue with the installation select your Public Cloud
+## Download
+
+Downoload from [github](https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge/Data_Bridge.zip)
+
+Or use the command: `wget`
+
+```
+wget https://raw.githubusercontent.com/telefonicaid/iot-activation/master/scripts/Data_Bridge/Data_Bridge.zip
+```
+
+Unzip the new file
+
+```
+unzip Data_Bridge.zip
+```
+
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
+
+## Cloud
+
+To continue with the installation select your Public Cloud
+
+- [Amazon Web Services](BP_DataBridge_AWS.md)
+
+- [Google Cloud](BP_DataBridge_GoogleCloud.md)
 
 <table>
   <tr>
 	<th>
-		<a href="BP_DataBridge_AWS.md" align="center">
+		<a href="#/BP_DataBridge_AWS.md" align="center">
 			<img src="pictures/AWS/AWS_logo.png"
 			width="350" height="225">
 		</a>
@@ -87,7 +113,7 @@ For the time being, If you use a SIM from the Thinx, you will not have access to
 		<img src="pictures/portfolio/portfolio_white.png" width="75" height="1">
 	</th>
 	<th>
-		<a href="BP_DataBridge_GoogleCloud.md" align="center">
+		<a href="#/BP_DataBridge_GoogleCloud.md" align="center">
 			<img src="pictures/GCP/GCP_logo.png"
 			width="350" height="225">
 		</a>

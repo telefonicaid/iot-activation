@@ -17,47 +17,33 @@
 # DEALINGS IN THE SOFTWARE.                                                                                            #
 #                                                                                                                      #
 ########################################################################################################################
-
 from __future__ import print_function
-from log import *
-from utils import *
+from test import *
 from bridge import *
-import time
-import socket
-import threading
-import json
-import random
-import string
+
 
 if __name__ == '__main__':
 
     try:
 
-        logger.info("Reading configuration files")
-        config_file = read_config('config/Configuration.yaml')
+        file_configuration = "config/Configuration.yaml"
+        logger.info("Reading Configuration file [ %s ]", file_configuration)
+        config_file = read_config(file_configuration)
         logger.debug(config_file)
         config_cloud = cloud_configure(config_file)
         logger.debug(config_cloud)
 
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.bind((config_file["UDP"]["ip"], (config_file["UDP"]["port"])))
-
-        while True:
-
-            logger.info("################################# Waiting for a New Message #################################")
-
-            udp_msg, udp_ip = sock.recvfrom(1024)
-            logger.info("Message Received [ %s ] from [ %s ] : [ %s ]" % (udp_msg, udp_ip[0],udp_ip[1] ))
-
-            response = bridge_routine(udp_msg, udp_ip[0],config_file, config_cloud)
-            ack_msg = json.dumps(response)
-            logger.info("Generate ACK payload [ %s ]" % response)
-
-            logger.info("Sent MESSAGE [ %s ] to [ %s ] : [ %s ]" % (ack_msg, udp_ip[0], udp_ip[1]))
-            sock.sendto(ack_msg, udp_ip)
-
+        if config_cloud["code"] == 200 and test(config_file, config_cloud):
+            while True:
+                bridge_loop(config_file, config_cloud)
+        else:
+            logger.error("Failed tests")
     except Exception as e:
         logger.error("exception main()")
         logger.error("message:{}".format(e.message))
         traceback.print_exc(file=sys.stdout)
+
+
+
+
 
