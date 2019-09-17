@@ -20,7 +20,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // libraries
 #include <MKRNB.h>
-#include "setup_SaraR410M_movistar.h"
+#include "setup_SaraR410M_telefonica.h"
 
 // initialize the library instance
 NBScanner scannerNetworks;
@@ -80,7 +80,7 @@ void setup() {
   
   Serial.println("START setup");
   //setup modem Sara R410M
-  setup_SaraR410M_movistar();
+  setup_SaraR410M_telefonica();
   
   Serial.println("Testing Modem:");
   IMEI = test_modem();

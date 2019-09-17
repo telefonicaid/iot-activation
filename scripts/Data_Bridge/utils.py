@@ -25,7 +25,7 @@ import tempfile
 
 # Keywords
 CODE_CLOUD_NOT_FOUND = 404
-
+CODE_OK = 200
 # ERROR list
 
 
@@ -55,10 +55,9 @@ def tmp_file(file_content):
 def is_json(str_json):
     json_check = False
     try:
-        json.loads(str_json)
-        json_check = True
+        json_var =json.loads(str_json)
+        json_check = (type(json_var) != int) # if str_json is a integer, conversion to json works incorrectly
     except Exception as e:
-        logger.error("message:{}".format(e.message))
-        traceback.print_exc(file=sys.stdout)
+        json_check = False
     finally:
         return json_check

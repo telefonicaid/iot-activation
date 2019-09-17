@@ -85,7 +85,7 @@ if __name__ == "__main__":
 
     logger.info("AWS Region[ %s ] ", aws_region)
 
-    url_iam = "https://console.aws.amazon.com/iam/home"
+    url_iam = "https://console.aws.amazon.com/iam/home#/users"
     os.system("chromium-browser " + url_iam + " 2> log/url_iam.log &")
 
     time.sleep(5)

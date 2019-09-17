@@ -19,18 +19,18 @@
 ########################################################################################################################
 
 from __future__ import print_function
-import socket
 from kite_platform import *
 from cloud_selector import *
 
 
-def bridge_routine(udp_msg, ip, config, config_cloud):
-    """ this function receive the ip, the UDP message and the configuration.
+def bridge(id, udp_msg, ip, config, config_cloud, request):
+    """ this function receive the ip, the message and the configuration.
     It do the magic!
 
             response["code"] = 000
             response["msg"] = "xxxxxxxxxxxxxxxxxx"
 
+    :param id: uuid
     :param udp_msg: string with the message
     :param ip: a ip address '0.0.0.0'
     :param config: configuration
@@ -42,94 +42,67 @@ def bridge_routine(udp_msg, ip, config, config_cloud):
         kite_file_key = cloud_get_parameter(config["KITE"]["private_key"], config_cloud)
         kite_file_cer = cloud_get_parameter(config["KITE"]["certificate"], config_cloud)
 
-        if kite_file_key["code"] == 200:
-            if kite_file_cer["code"] == 200:
+        if kite_file_key["code"] == CODE_OK:
+            if kite_file_cer["code"] == CODE_OK:
 
-                logger.debug("Kite credentials extracted:")
-                kite_parameters = kite_get_parameters(ip, kite_file_cer["msg"], kite_file_key["msg"])
-                # kite = Kite(ip, kite_file_cer["msg"], kite_file_key["msg"])
-                logger.info("GET information related to [ %s ] from  KITE Platform" % ip)
+                isajson = is_json(udp_msg)
+                icc = None
+                if isajson:
+                    json_udp_msg = json.loads(udp_msg)
+                    if "icc" in json_udp_msg:
+                        icc = json_udp_msg["icc"]
 
-                if kite_parameters["code"] == 200:
-                    logger.info("Found device cloud name [ %s ] and topic [ %s ] in KITE Platform" % (
-                        kite_parameters["thing_name"], kite_parameters["thing_topic"]))
+                logger.info("%s - GET information related to [ %s ] from  KITE Platform" % (id, ip))
+                kite_parameters = kite_get_parameters(ip, kite_file_cer["msg"], kite_file_key["msg"], icc)
+                logger.info("%s - KITE Response status code [ %s ]" % (id, kite_parameters["code"]))
+
+                if kite_parameters["code"] == CODE_OK:
+                    logger.info("%s - Found device cloud name [ %s ] and topic [ %s ] in KITE Platform" % (id,
+                                                                                                           kite_parameters[
+                                                                                                               "thing_name"],
+                                                                                                           kite_parameters[
+                                                                                                               "thing_topic"]))
 
                     if kite_parameters["thing_name"] != '':
-                        logger.debug("Kite parameter extracted")
-                        logger.debug("Publishing in the Cloud")
 
-                        if is_json(udp_msg):
-                            json_udp_msg = json.loads(udp_msg)
-                            json_msg = {"raw": json_udp_msg}
-                        else:
-                            json_msg = {"raw": udp_msg}
+                        if request == "POST":
+                            if isajson:
+                                json_msg = {"raw": json_udp_msg}
+                            else:
+                                json_msg = {"raw": udp_msg}
 
-                        if "location" in config and config["location"] and kite_parameters["location"]:
-                            location = {"longitude": kite_parameters["longitude"],
-                                        "latitude": kite_parameters["latitude"]}
-                            json_msg["location"] = location
+                            if "location" in config and config["location"] and kite_parameters["location"]:
+                                location = {"longitude": kite_parameters["longitude"],
+                                            "latitude": kite_parameters["latitude"]}
+                                json_msg["location"] = location
 
-                        response = cloud_publish(kite_parameters["thing_name"], kite_parameters["thing_topic"],
-                                                 json_msg, config_cloud)
+                            response = cloud_publish(id, kite_parameters["thing_name"], kite_parameters["thing_topic"],
+                                                     json_msg, config_cloud)
+                        elif request == "GET":
+                            response = cloud_get(id, kite_parameters["thing_name"], config_cloud)
 
-                    else:  # if kite_parameters["thing_name"] != '':
-                        logger.warning("Not Found device Cloud Name in KITE Platform")
+                    else:  # if kite_parameters["thing_name"] == '':
+                        logger.warning("%s - Not Found device Cloud Name in KITE Platform", id)
                         response["code"] = 404
                         response["msg"] = "KITE Platform: Device Name Not Found"
-                else:  # if kite_parameters["code"] == 200:
-                    logger.error("Not Connected to KITE Platform")
+                else:  # if kite_parameters["code"] != CODE_OK:
+                    logger.error("%s - Not Connected to KITE Platform", id)
                     response["code"] = kite_parameters["code"]
                     response["msg"] = "KITE " + kite_parameters["msg"]
 
-            else:  # if kite_file_cer["code"] == 200:
-                logger.error("Not Connected to Cloud Get Parameter [ %s ]", config["KITE"]["certificate"])
+            else:  # if kite_file_cer["code"] != CODE_OK:
+                logger.error("%s - Not Connected to Cloud Get Parameter [ %s ]", id, config["KITE"]["certificate"])
                 response["code"] = kite_file_cer["code"]
                 response["msg"] = kite_file_cer["msg"]
-        else:  # if kite_file_key["code"] == 200:
-            logger.error("Not Connected to Cloud Get Parameter [ %s ]", config["KITE"]["private_key"])
+        else:  # if kite_file_key["code"] != CODE_OK:
+            logger.error("%s - Not Connected to Cloud Get Parameter [ %s ]", id, config["KITE"]["private_key"])
             response["code"] = kite_file_key["code"]
             response["msg"] = kite_file_key["msg"]
 
     except Exception as e:
-        logger.error('exception bridge_routine()')
+        logger.error('%s - exception bridge_POST()', id)
         logger.error('message:{}'.format(e.message))
         traceback.print_exc(file=sys.stdout)
 
     finally:
         return response
-
-
-def bridge_loop(config_file, config_cloud):
-    """
-    Listening loop,
-    Open a socket to receive a UDP message and send the ACK
-    :param config_file:
-    :param config_cloud:
-    :return:
-    """
-    try:
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.bind((config_file["UDP"]["ip"], (config_file["UDP"]["port"])))
-        logger.debug("UDP port listener: [ %s ]", (config_file["UDP"]["port"]))
-        loop_text = "######################## UDP Port [ %s ]: waiting for a message ########################"
-
-        while True:
-            logger.info(loop_text, config_file["UDP"]["port"])
-
-            udp_msg, udp_ip = sock.recvfrom(1024)
-            logger.info("Message Received [ %s ] from [ %s ] : [ %s ]" % (udp_msg, udp_ip[0], udp_ip[1]))
-
-            response = bridge_routine(udp_msg, udp_ip[0], config_file, config_cloud)
-            ack_msg = json.dumps(response)
-            logger.debug("Generate ACK payload [ %s ]" % response)
-
-            logger.info("Sent MESSAGE [ %s ] to [ %s ] : [ %s ]" % (ack_msg, udp_ip[0], udp_ip[1]))
-            sock.sendto(ack_msg, udp_ip)
-
-    except Exception as e:
-        logger.error("exception bridge_loop()")
-        logger.error("message:{}".format(e.message))
-        traceback.print_exc(file=sys.stdout)
-
-    finally:
-        return 0

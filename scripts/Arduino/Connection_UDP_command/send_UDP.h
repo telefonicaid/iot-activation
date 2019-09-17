@@ -20,71 +20,50 @@
 ////////////////////////////////////////////////////////////////////////////////
 #include <ArduinoJson.h>
 
-JsonObject& send_UDP_ack(NBUDP Udp, char *packetBuffer){
+int first_udp = 0;
 
-  //DynamicJsonDocument jsonBuffer;
-  //DynamicJsonBuffer jsonBuffer;  
-  StaticJsonBuffer<200> jsonBuffer;
+DynamicJsonDocument send_UDP_ack(NBUDP Udp, char *packetBuffer){
+
+  StaticJsonDocument<256> jsonBuffer;
   int packetSize = 0;
-
-  Serial.println("Sending UDP...");
-  Serial.print("- packet length: ");
-  Serial.println(strlen(packetBuffer));
-
-  Serial.println("Sending packet...");
+  
+  Serial.print("Send UDP to: ");
   Serial.print(platform);
   Serial.print(":");
   Serial.println(local_Port);
+  Serial.println(strlen(packetBuffer));
 
   Udp.beginPacket(platform, local_Port);
   Udp.write(packetBuffer, strlen(packetBuffer));
   Udp.endPacket();
   Serial.println("Sent packet");  
-
-  Serial.println("Receiving ack...");
-
-  bool ack = false;
-  int cont = 5;
-
-  delay(100);  
-
-  while (cont > 0 and (!ack)){    
-
-      packetSize = Udp.parsePacket();
-      if (packetSize) {
-
-        Serial.print("Received packet of size: ");
-        Serial.println(packetSize);
-        Serial.print("From ");
-        IPAddress remote = Udp.remoteIP();
-        for (int i=0; i < 4; i++) {
-            Serial.print(remote[i], DEC);
-            if (i < 3) {
-                Serial.print(".");
-            }
+  
+  
+  Serial.println("Receiving ack");
+  delay(5000);
+  packetSize = Udp.parsePacket();
+  delay(1000);  
+  
+  Serial.print("Received packet of size: ");
+  Serial.print(packetSize);
+  Serial.print(" from: ");
+  IPAddress remote = Udp.remoteIP();
+    for (int i=0; i < 4; i++) {
+        Serial.print(remote[i], DEC);
+        if (i < 3) {
+            Serial.print(".");
         }
-        Serial.print(", port ");
-        Serial.println(Udp.remotePort());
+    }
+  Serial.print(", port: ");
+  Serial.println(Udp.remotePort());
+  
+  Udp.read(packetBuffer, 255);
+  Serial.print ("message received: ");
+  Serial.println(packetBuffer);
 
-        // read the packet into packetBufffer
-        Udp.read(packetBuffer, 255);
-        Serial.print ("Contents: ");
-        Serial.println(packetBuffer);
-        
-        //JsonObject& ack_command = jsonBuffer.parseObject(packetBuffer);
-        JsonObject& ack_command = jsonBuffer.parseObject(packetBuffer);  
-        ack = true;
-        Serial.println("Completed Reading");
-        return ack_command;
-    } 
-    Serial.print("Waiting ack ");
-    Serial.println(cont);
-    delay(1000);
-    cont = cont - 1;
-  }
+  DynamicJsonDocument ack_command(256);
+  DeserializationError error = deserializeJson(ack_command, packetBuffer);
 
-  JsonObject& ack_default = jsonBuffer.createObject();
-  ack_default["code"] = 0;
-  return ack_default;
+  return ack_command;
 
 }

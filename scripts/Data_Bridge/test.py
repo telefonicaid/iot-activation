@@ -56,16 +56,11 @@ def test(config_file, config_cloud):
     """
     flag_test_server = test_server()
     flag_test_python = test_python()
-    flag_test_cloud = cloud_test_credentials(config_file, config_cloud)
+    flag_test_cloud = test_cloud(config_file, config_cloud)
 
     # kite_file_key = cloud_get_parameter(config_file["KITE"]["private_key"], config_cloud)
     # kite_file_cer = cloud_get_parameter(config_file["KITE"]["certificate"], config_cloud)
     # flag_test_kite = kite_test_credentials(kite_file_cer,kite_file_key)
 
     return flag_test_server and flag_test_python and flag_test_cloud
-
-
-
-
-
 

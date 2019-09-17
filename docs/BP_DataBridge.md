@@ -55,6 +55,7 @@ We wanna show you a energy consumption comparison: We sent 300 bytes packet with
 
 - It accesses to Kite Platform to retrieve your custom information (the device name and topic)
 - It received a UDP message and it publishes in the Cloud.
+- It receives CoAP requests (GET/PUT) and connect to the Cloud
 - It returns a message with the process result and commands
 
 ## What's it gonna do next?

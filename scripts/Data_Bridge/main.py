@@ -19,13 +19,15 @@
 ########################################################################################################################
 from __future__ import print_function
 from test import *
-from bridge import *
+from server_coap import *
+from server_udp import *
+from health_check import *
+import threading
 
 
 if __name__ == '__main__':
 
     try:
-
         file_configuration = "config/Configuration.yaml"
         logger.info("Reading Configuration file [ %s ]", file_configuration)
         config_file = read_config(file_configuration)
@@ -33,16 +35,30 @@ if __name__ == '__main__':
         config_cloud = cloud_configure(config_file)
         logger.debug(config_cloud)
 
-        if config_cloud["code"] == 200 and test(config_file, config_cloud):
-            while True:
-                bridge_loop(config_file, config_cloud)
+        if config_cloud["code"] == CODE_OK and test(config_file, config_cloud):
+
+            if config_file["COAP"]["enable"]:
+                thread_coap = threading.Thread(name='CoAPserver', target=coap_loop, args=(config_file, config_cloud))
+                thread_coap.setDaemon(True)
+                thread_coap.start()
+
+            if config_file["UDP"]["enable"]:
+                thread_udp = threading.Thread(name='UDP_socket', target=udp_loop, args=(config_file, config_cloud))
+                thread_udp.setDaemon(True)
+                thread_udp.start()
+
+                thread_health = threading.Thread(name='healthtest', target=health_check)
+                thread_health.start()
         else:
             logger.error("Failed tests")
+
     except Exception as e:
         logger.error("exception main()")
         logger.error("message:{}".format(e.message))
         traceback.print_exc(file=sys.stdout)
 
+    except (KeyboardInterrupt, SystemExit):
+        logger.warning("KeyboardInterrupt main()")
 
 
 

@@ -3,7 +3,8 @@
 - [What is IPsec?](#what-is-ipsec)
 - [How to make your own IPsec VPN!](#how-to-make-your-own-ipsec-vpn)
 
-  #### Table of Contents IPsec in AWS
+### Table of Contents IPsec in AWS
+- [Configure IPsec in AWS one click](AWS_CF_IPsec.md)
 - [Configure IPsec step by step in AWS](#configure-ipsec-step-by-step-in-aws)
   * [1. Create VPC](#1-create-vpc)
   * [2. Create VPG](#2-create-vpg)

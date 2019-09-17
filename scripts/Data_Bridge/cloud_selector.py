@@ -35,7 +35,7 @@ def cloud_configure(config):
             logger.debug("CLOUD: Selected connect to AWS:")
             config_cloud = read_config('config/Configuration_AWS.yaml')
             config_cloud["cloud"] = "AWS"
-            config_cloud["code"] = 200
+            config_cloud["code"] = CODE_OK
         else:
             logger.error("CLOUD: Cloud not defined")
             config_cloud = {"code": CODE_ERROR_CLOUD_NOT_IMPLEMENTED, "msg": MSG_CLOUD_NOT_IMPLEMENTED}
@@ -48,7 +48,7 @@ def cloud_configure(config):
         traceback.print_exc(file=sys.stdout)
 
 
-def cloud_publish(thing, topic, status, config_cloud):
+def cloud_publish(id, thing, topic, status, config_cloud):
     """
     Function Invocation for publish in the selected Cloud.
     :param thing:
@@ -61,9 +61,36 @@ def cloud_publish(thing, topic, status, config_cloud):
     try:
         if config_cloud["cloud"] == "AWS":
             logger.debug("CLOUD: Selected Publish in AWS:")
-            response = cloud_publish_aws(thing, topic, status, config_cloud)
+            response = cloud_publish_aws(id, thing, topic, status, config_cloud)
         else:
-            logger.error("CLOUD: Cloud not defined")
+            logger.error("%s - CLOUD: Cloud not defined", id)
+            response = {"code": CODE_ERROR_CLOUD_NOT_IMPLEMENTED, "msg": MSG_CLOUD_NOT_IMPLEMENTED}
+
+    except Exception as e:
+        logger.error("CLOUD: exception cloud_publish()")
+        logger.error("message:{}".format(e.message))
+        traceback.print_exc(file=sys.stdout)
+
+    finally:
+        return response
+
+
+def cloud_get(id, thing, config_cloud):
+    """
+    Function Invocation for publish in the selected Cloud.
+    :param thing:
+    :param topic:
+    :param status:
+    :param config_cloud:
+    :return: response = {"code": 200, "msg": "OK"}
+    """
+    response = {"code": 500, "msg": "Publish - Internal Server Error"}
+    try:
+        if config_cloud["cloud"] == "AWS":
+            logger.debug("CLOUD: Selected Publish in AWS:")
+            response = cloud_get_aws(id, thing, config_cloud)
+        else:
+            logger.error("%s - CLOUD: Cloud not defined", id)
             response = {"code": CODE_ERROR_CLOUD_NOT_IMPLEMENTED, "msg": MSG_CLOUD_NOT_IMPLEMENTED}
 
     except Exception as e:
@@ -98,7 +125,7 @@ def cloud_get_parameter(parameter_name, config_cloud):
         return parameter
 
 
-def cloud_test_credentials(config_file, config_cloud):
+def test_cloud(config_file, config_cloud):
     """
     Function Invocation for test the credentials of the selected Cloud
     :param config_file:
@@ -110,7 +137,7 @@ def cloud_test_credentials(config_file, config_cloud):
     try:
         if config_cloud["cloud"] == "AWS":
             logger.debug("CLOUD: Selected test credentials for AWS:")
-            status_environment = cloud_test_credentials_environment_aws()
+            status_environment = cloud_test_aws(config_file, config_cloud)
             # status_cred = cloud_test_credentials_aws(config_file, config_cloud)
             status = status_environment
         else:

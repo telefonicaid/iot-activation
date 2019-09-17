@@ -1,7 +1,8 @@
+#include "arduino_secrets.h"
 ////////////////////////////////////////////////////////////////////////////////
 // MIT License
 //
-// Copyright (c) 2018 Telefonica R&D 
+// Copyright (c) 2018 Telefonica R&D
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +25,7 @@
 #include "my_sensor.h"
 #include "send_UDP.h"
 #include "device.h"
-#include "setup_SaraR410M_movistar.h"
+#include "setup_SaraR410M_telefonica.h"
 
 // Const
 const int PACKET_BUFFER_SIZE = 255;
@@ -37,8 +38,9 @@ my_sensor data;
 
 char packetBuffer[PACKET_BUFFER_SIZE]; //buffer to send packets
 //char data_string[30];
-const char PINNUMBER[]=SECRET_PINNUMBER;
-const int polling=POLL_TIME*1000;
+const char PINNUMBER[] = SECRET_PINNUMBER;
+String string_polling = SECRET_POLL_TIME;
+const int polling = string_polling.toInt() * 1000;
 
 
 void setup() {
@@ -51,14 +53,12 @@ void setup() {
   digitalWrite(SARA_RESETN, HIGH);
   delay(100);
   digitalWrite(SARA_RESETN, LOW);
-  
 
-  
   Serial.begin(9600);
   delay(2000);
-  Serial.println("11111111111111111111111111111111111111111");
-  setup_SaraR410M_movistar();
-  
+  Serial.println("Starting SaraR410M configuration");
+  setup_SaraR410M_telefonica();
+
   Serial.println("START setup");
 
   Serial.println("Starting Arduino NBIoT/LTE-M Connection.");
@@ -74,47 +74,47 @@ void setup() {
         (gprs.attachGPRS() == GPRS_READY)) {
       connected = true;
     } else {
-      Serial.println("Not connected");      
+      Serial.println("Not connected");
     }
-    
-  }
-  
-  Udp.begin(local_Port);
 
+  }
+
+  Udp.begin(local_Port);
+ 
   device_setup();
-  
+
   Serial.println("END setup");
 
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-    
+
   Serial.println("measuring...");
   data.measurement();
   Serial.print("- voltage: ");
   Serial.println(data.get_voltage());
-  Serial.print("- amperage: "); 
-  Serial.println();  
-      
-  Serial.println("Formating...");
+  Serial.print("- amperage: ");
+  Serial.println(data.get_amperage());
+  
   memset(packetBuffer, 0x00, PACKET_BUFFER_SIZE);
-  sprintf(packetBuffer,"{\"v\":%d,\"a\":%d}",data.get_voltage(),data.get_amperage());
+  sprintf(packetBuffer, "{\"v\":%d,\"a\":%d}", data.get_voltage(), data.get_amperage());
+  
+  Serial.print("message sent: ");
   Serial.println(packetBuffer);
 
-  Serial.println("Sending data to UDP ... ");      
-  JsonObject& ack_command = send_UDP_ack(Udp,packetBuffer); 
+  DynamicJsonDocument ack_command = send_UDP_ack(Udp, packetBuffer);
 
-  if (ack_command["code"] == 200){
+  if (ack_command["code"] == 200) {
     Serial.print("command: ");
     char msg = ack_command["msg"];
-    Serial.println(msg); 
+    Serial.println(msg);
     char status_device = device_task(msg);
   }
+
   
-  
-  Serial.print("waiting for "); 
-  Serial.print(polling/1000); 
-  Serial.println(" seconds ... "); 
+  Serial.print("waiting for ");
+  Serial.print(polling / 1000);
+  Serial.println(" seconds ... ");
   delay(polling);
 }

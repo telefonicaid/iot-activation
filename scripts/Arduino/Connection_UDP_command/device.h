@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // MIT License
 //
-// Copyright (c) 2018 Telefonica R&D 
+// Copyright (c) 2018 Telefonica R&D
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //of this software and associated documentation files (the "Software"), to deal
@@ -24,32 +24,32 @@ void device_setup() {
   pinMode(LED_BUILTIN, OUTPUT);
 }
 
-void device_task_led_on(){
+void device_task_led_on() {
   digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
 }
 
-void device_task_led_off(){
+void device_task_led_off() {
   digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
 }
 
-char device_task(char  msg){
+char device_task(char  msg) {
 
-  switch (msg) {  
-  case 1:
-    Serial.println("turn ON led command");
-    device_task_led_on();
-    break;  
-  case 2:
-    Serial.println("turn OFF led command");
-    device_task_led_off();
-    break;
-  default:
-    Serial.println("Unidentified command"); 
-    break;
-  return msg;
-}
+  switch (msg) {
+    case 1:
+      Serial.println("turn ON led command");
+      device_task_led_on();
+      break;
+    case 2:
+      Serial.println("turn OFF led command");
+      device_task_led_off();
+      break;
+    default:
+      Serial.println("Unidentified command");
+      break;
+      return msg;
+  }
 
-  
 
-  
+
+
 }

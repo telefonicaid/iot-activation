@@ -1,0 +1,4 @@
+#define SECRET_PINNUMBER ""
+#define SECRET_POLL_TIME ""
+#define SECRET_LOCAL_PORT ""
+#define SECRET_IP_ADDRESS ""

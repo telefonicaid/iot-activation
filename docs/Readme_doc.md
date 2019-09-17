@@ -96,8 +96,8 @@ We will also teach you different technologies so you can decide which one works 
     <tr></tr>
     <tr>
 	<th>
-		<a href="#/Kite_Platform.md" align="center">
-			Kite Platform
+		<a href="#/RaspberryPi_1Click.md" align="center">
+			RaspberryPi 1Click
 		</a>
 	</th>
 	<th></th>
@@ -109,8 +109,8 @@ We will also teach you different technologies so you can decide which one works 
   </tr>
   <tr>
 	<th>
-		<a href="#/Kite_Platform.md" align="center">
-			<img src="pictures/portfolio/portfolio-Kite.png"
+		<a href="#/RaspberryPi_1Click.md" align="center">
+			<img src="pictures/portfolio/portfolio-Raspberry-1Click.png"
 			width="300" height="200">
 		</a>
 	</th>

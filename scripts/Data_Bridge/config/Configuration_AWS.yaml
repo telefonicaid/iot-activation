@@ -1,10 +1,9 @@
 cloud: AWS
-region: "xx-xxxx-x"
+
+region: "eu-west-1"
+
 MQTT:
   topic:
-    update: "$aws/things/<DEVICE_NAME>/shadow/update"
     default: "tlm/<DEVICE_NAME>/raw"
     log_device: "log/device/provision/new"
-    reserved: "$aws"
-
 

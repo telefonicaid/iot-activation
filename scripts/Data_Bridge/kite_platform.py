@@ -65,8 +65,8 @@ def get_info_from_icc(url, certificate, key, icc_number, apn):
     """
     url_api = url + KITE_API_ICC
     url_api = url_api % icc_number
-    url_api = url_api + "&" + KITE_API_APN
-    url_api = url_api % apn
+    # url_api = url_api + "&" + KITE_API_APN
+    # url_api = url_api % apn
 
     kite_response = requests.get(url_api, cert=(certificate, key), verify=False)
 
@@ -89,7 +89,7 @@ def get_info_from_alias(url, certificate, key, alias_name):
     return kite_response
 
 
-def kite_get_parameters(ip_address, certificate, private_key):
+def kite_get_parameters(ip_address, certificate, private_key, icc):
     """
     Function for get the SIM parameter stored in Kite Platform
     :param ip_address:
@@ -112,7 +112,10 @@ def kite_get_parameters(ip_address, certificate, private_key):
     kite_parameters = {"code": 500, "msg": "KITE - Internal Server Error"}
 
     try:
-        kite_response = get_info_from_ip(url_api, temp_path_cert, temp_path_key, ip_address, apn_kite)
+        if icc is None:
+            kite_response = get_info_from_ip(url_api, temp_path_cert, temp_path_key, ip_address, apn_kite)
+        else:
+            kite_response = get_info_from_icc(url_api, temp_path_cert, temp_path_key, icc, apn_kite)
 
     except Exception as e:
         kite_parameters = {"code": 400, "msg": "KITE - Access Error"}
@@ -127,9 +130,9 @@ def kite_get_parameters(ip_address, certificate, private_key):
         kite_parameters["code"] = kite_response.status_code
         kite_parameters["msg"] = ""
 
-        logger.info("KITE Response status code [ %s ]" % kite_parameters["code"])
+        logger.debug("KITE Response status code [ %s ]" % kite_parameters["code"])
 
-        if kite_parameters["code"] == 200:
+        if kite_parameters["code"] == CODE_OK:
             json_kite_response = json.loads(kite_response.text)
             thing_name = json_kite_response["subscriptionData"][0]["customField1"]
             thing_topic = json_kite_response["subscriptionData"][0]["customField2"]
@@ -173,7 +176,7 @@ def kite_test_credentials(certificate, private_key):
 
     kite_response = requests.get(url, cert=(temp_path_cert, temp_path_key), verify=False)
 
-    if kite_response.status_code == 200:
+    if kite_response.status_code == CODE_OK:
         status = True
     else:
         status = False

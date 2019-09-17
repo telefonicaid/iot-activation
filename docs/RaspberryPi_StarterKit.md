@@ -447,6 +447,7 @@ It can save you a headache.
 
 # Tutorials
 
+- [Raspberry Pi 1Click](RaspberryPi_1Click.md)
 - [Raspberry Pi and Sense-Hat to AWS](RaspberryPi_HAT.md)
 - [Raspberry Pi and Node-Red to AWS](RaspberryPi_nodered.md)
 

@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // MIT License
 //
-// Copyright (c) 2018 Telefonica R&D 
+// Copyright (c) 2018 Telefonica R&D
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //of this software and associated documentation files (the "Software"), to deal
@@ -19,35 +19,34 @@
 //SOFTWARE.
 ////////////////////////////////////////////////////////////////////////////////
 #include "my_sensor.h"
-
 #include "Arduino.h"
 
-my_sensor::my_sensor(){
-  _voltage=0 ;
-  _amperage=0 ;
+my_sensor::my_sensor() {
+  _voltage = 0 ;
+  _amperage = 0 ;
 }
 
-void my_sensor::set_voltage(){
+void my_sensor::set_voltage() {
   randomSeed(millis());
-  _voltage=random(30,40);  
+  _voltage = random(30, 40);
 }
 
-void my_sensor::set_amperage(){
+void my_sensor::set_amperage() {
   randomSeed(millis());
-  _amperage=random(5,30);    
+  _amperage = random(5, 30);
 }
 
-void my_sensor::measurement(){
+void my_sensor::measurement() {
   set_voltage();
-  set_amperage();    
-}     
-      
-int my_sensor::get_voltage(){
-  return _voltage;    
+  set_amperage();
 }
 
-int my_sensor::get_amperage(){
-  return _amperage ;    
+int my_sensor::get_voltage() {
+  return _voltage;
 }
 
-  
+int my_sensor::get_amperage() {
+  return _amperage ;
+}
+
+

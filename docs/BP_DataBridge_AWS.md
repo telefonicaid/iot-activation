@@ -23,7 +23,7 @@
 
 # What does it do?
 
-Each UDP message sent by a device, it is linked to several information such as source IP, destination IP and destination Port. 
+Each UDP message or CoAP request sent by a device, it is linked to several information such as source IP, destination IP and destination Port. 
 The Bridge will use the device source IP to gather all the sim information stored at Kite platform. 
 
 For the tutorial purpose you should pay attention to SIM's custom fields, 
@@ -331,7 +331,7 @@ Now that you know how to configure AWS. You can run it in just 3 steps !!!
 
 You can choose between several options: 
 
-- option 1: Download the Github repository on the instance
+- Option 1: Download the Github repository on the instance
 
 1. Install git on the instace
 ```shell
@@ -344,12 +344,16 @@ git clone https://github.com/telefonicaid/iot-activation.git
 ```
 3. Go to Bridge path: **scripts/Data_Bridge/**
 
-- option 2: Upload the files from an FTP client
+- Option 2: Download the Data Bridge Code
 
-1. Download the Github repository
-2. Open Filezilla client
-3. Select the path scripts/Data_Bridge/
-4. Upload all files and folders to the instance
+1. Download the Code with the command: `wget`
+```
+wget https://raw.githubusercontent.com/telefonicaid/iot-activation/master/scripts/Data_Bridge/Data_Bridge.zip
+```
+2. Unzip the new file
+```
+unzip Data_Bridge.zip
+```
 
 Now that you have the code in the machine you just have to install the python libraries.
 
@@ -383,6 +387,10 @@ UDP:
   ip: "0.0.0.0"
   port: 4114
 
+COAP:
+  ip: "0.0.0.0"
+  port: 5683
+
 KITE:
   url: "https://m2m-api.telefonica.com"
   certificate: "cer_file"
@@ -410,12 +418,28 @@ UDP:
   ip: "0.0.0.0"
   port: 4114
 ```
-allow any address
 
 allowed values:
 - ip: "0.0.0.0"    (allow any address)
 - ip: "X.X.X.X"	   (restrict to a single address)
 
+If you don't want to configure the connection through UDP, remove this section from the file.
+
+#### Configure the COAP proxy
+
+Here you can choose the port through which you will receive the UDP messages and the allowed IP addresses
+
+```yaml
+COAP:
+  ip: "0.0.0.0"
+  port: 5683
+```
+
+allowed values:
+- ip: "0.0.0.0"    (allow any address)
+- ip: "X.X.X.X"	   (restrict to a single address)
+
+If you don't want to configure the COAP proxy, remove this section from the file.
 
 #### Configure the Kite Platform connection
 
@@ -441,7 +465,7 @@ Here is an example of a configuration file for AWS connection
 
 ```yaml
 cloud: AWS
-region: "eu-west-1"
+region: "xx-xxxx-x"
 MQTT:
   topic:
     update: "$aws/things/<DEVICE_NAME>/shadow/update"
@@ -452,7 +476,10 @@ MQTT:
 
 The file is quite intuitive, however here you can see carefully how to configure each section
 
-##### Server configuration
+##### Region configuration
+
+Configure the region of your devices
+
 ```yaml
 cloud: AWS
 region: "xx-xxxx-x"

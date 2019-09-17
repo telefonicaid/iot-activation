@@ -1,0 +1,1 @@
+{"cpu":{"name":"Arduino MKR NB 1500","com_name":"COM10","fqbn":"arduino:samd:mkrnb1500","flavour":"default"},"secrets":[{"name":"SECRET_PINNUMBER","value":"","isOptional":false},{"name":"SECRET_POLL_TIME","value":"","isOptional":false},{"name":"SECRET_LOCAL_PORT","value":"","isOptional":false},{"name":"SECRET_IP_ADDRESS","value":"","isOptional":false}]}

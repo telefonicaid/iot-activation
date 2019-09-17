@@ -99,12 +99,70 @@ What is your region in the AWS cloud?
 The next step is to setup an AWS user with access to the IoT-Core.
 You can use a previous user or create a new user login in the AWS console (open in a window)
 
-To create a new user, you can follow the AWS documentation on the browser
-
 ```
 Copy your Access key ID: xxxxxxxxxxxxxxxxxxxx
 Copy your Secret access key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
+
+To create a new user, you can follow the AWS documentation on the browser:
+this user requires the following permissions:
+
+- AWSIoTFullAccess
+
+And the following custom policy to create a dashboard from Cloudformation:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "iam:GenerateCredentialReport",
+                "iam:GetAccountPasswordPolicy",
+                "iam:GetServiceLastAccessedDetailsWithEntities",
+                "iam:ListServerCertificates",
+                "iam:GenerateServiceLastAccessedDetails",
+                "iam:ListPoliciesGrantingServiceAccess",
+                "iam:GetServiceLastAccessedDetails",
+                "iam:ListVirtualMFADevices",
+                "iam:SimulateCustomPolicy",
+                "iam:CreateAccountAlias",
+                "iam:GetAccountAuthorizationDetails",
+                "iam:DeleteAccountAlias",
+                "iam:GetCredentialReport",
+                "sns:*",
+                "iam:ListPolicies",
+                "iam:DeleteAccountPasswordPolicy",
+                "iam:ListSAMLProviders",
+                "s3:*",
+                "cloudformation:*",
+                "iam:ListRoles",
+                "iam:GetContextKeysForCustomPolicy",
+                "iam:UpdateAccountPasswordPolicy",
+                "iam:ListOpenIDConnectProviders",
+                "lambda:*",
+                "iam:ListAccountAliases",
+                "iam:ListUsers",
+                "iam:ListGroups",
+                "iam:GetAccountSummary"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": "iam:*",
+            "Resource": [
+                "arn:aws:iam::*:policy/*",
+                "arn:aws:iam::*:role/*"
+            ]
+        }
+    ]
+}
+```
+
 
 Then, you only have to configure the broker MQTT.
 Copy the address from the new tab that will open.
@@ -116,7 +174,7 @@ Copy your AWS broker from the web:  xxxxxxxxxxxxxx-ats.iot.xx-xxxxx-x.amazonaws.
 Now the device will register on the IoT-Core and download its certificates for secure access.
 
 
-As a last step, if you have configured your server in the Region of Ireland. 
+Last but not least, if you have configured your server in the Region of Ireland. 
 You can choose to create a dashboard from which to view the data report.
 
 ```
@@ -141,6 +199,9 @@ Do you want to publish in AWS every time you turn on the device? [y/N]
 ```
 
 After these steps your Raspberry will start publishing in the Cloud
+
+
+
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 

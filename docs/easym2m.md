@@ -3,6 +3,8 @@
 - [Who is easym2m?](#who-is-easym2m2)
 - [easyM2M customer portal](#easym2m-customer-portal)
   - [Activate your SIM](#activate-your-sim)
+  - [SIM status](#sim-status)
+  - [Identify your APN](#identify-your-apn)
 - [easyM2M API](#easym2m-api)
 
 ## What is easym2m?
@@ -50,6 +52,22 @@ When you receive your SIM cards, you can activate them to start enjoying Telefó
 
 4- Now the SIM is activated, check the status: **TEST**
 ![pic](pictures/easym2m/easym2m_mysim_inactivenew_activate_ask_ok.png)
+
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
+### SIM status
+
+- **INACTIVE NEW:** SIM must be activated before use
+
+- **ACTIVATION READY:** SIM is activated but has not been used yet
+
+- **ACTIVE:** SIM card is activated and has been used
+
+### Identify your APN
+
+Search the **My Data** tab and locate it, in the **Network Settings** box:
+
+![pic](pictures/easym2m/easym2m_mydata_init_apn.png)
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
