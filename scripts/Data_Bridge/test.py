@@ -29,10 +29,10 @@ def test_server():
     """
     status = True
     host_name = socket.gethostname()
-    host_ip = socket.gethostbyname(host_name)
+    # host_ip = socket.gethostbyname(host_name)
 
     logger.info("Hostname : [ %s ]", host_name)
-    logger.info("Host IP Address : [ %s ]", host_ip)
+    # logger.info("Host IP Address : [ %s ]", host_ip)
 
     return status
 
