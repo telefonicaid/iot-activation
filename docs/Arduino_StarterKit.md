@@ -68,18 +68,29 @@ An electrical device that supplies electric power to your Arduino board
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
 ### Telefónica SIM Card
-This little one makes you enjoy all the advantages of the Telefónica network. 
-Take care of it, It will be your partner into the IoT world.
 
-&#x1F4CD;
-Note that to insert it into the Arduino board you will need a microSIM.
+This little one makes you enjoy all the advantages of the Telefonica network. 
+Take care of her, she will be your partner into the IoT world.
 
 <p align="center">
       <img title="Telefonica_SIM" src="pictures/miscellaneous/Telefonica_SIM.png"
 	  width="300" height="210">
 </p>
 
+
+Just one SIM card (Global SIM-Vivo, Movistar, O2), one platform, one service, and one invoice that allows companies 
+to integrate their services into the global processes of their supply chain and to reduce complexity and costs.
+
+The Global SIM-Vivo, Movistar, O2- provide companies that are deploying IoT devices globally with:
+
+- A homogenous service in the footprint they require, extending the service all around the world -specially in LATAM and Europe-
+- Connectivity to over 550 carrier networks and in more than 200 countries with a single contact with Telefónica
+- Integrated with Telefonica's IoT managed connectivity platform for inventory, provisioning, traffic and expenses controlling, 
+security tools, billing, and reporting.
+- Access to global experts in IoT connectivity
+
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
 
 # Getting started with your Arduino
 

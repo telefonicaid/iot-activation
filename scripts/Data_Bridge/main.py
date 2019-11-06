@@ -23,6 +23,7 @@ from server_coap import *
 from server_udp import *
 from health_check import *
 import threading
+import os.path
 
 
 if __name__ == '__main__':
@@ -30,7 +31,7 @@ if __name__ == '__main__':
     try:
         file_configuration = "config/Configuration.yaml"
         logger.info("Reading Configuration file [ %s ]", file_configuration)
-        config_file = read_config(file_configuration)
+        config_file = read_config_file(file_configuration)
         logger.debug(config_file)
         config_cloud = cloud_configure(config_file)
         logger.debug(config_cloud)

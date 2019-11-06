@@ -1,0 +1,425 @@
+Parameters:
+  KeyName:
+    Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
+    Type: 'AWS::EC2::KeyPair::KeyName'
+    ConstraintDescription: must be the name of an existing EC2 KeyPair.
+  InstanceType:
+    Description: DataBridge EC2 instance type
+    Type: String
+    Default: t2.nano
+    AllowedValues:
+      - t2.nano
+      - t2.micro
+      - t2.small
+    ConstraintDescription: must be a valid EC2 instance type.
+  InstancesNumber:
+    Description: Additional Number of EC2 instances
+    Type: Number
+    Default: 1
+    MinValue: 0
+    MaxValue: 10
+    ConstraintDescription: must be a number between 0 and 10.
+  KiteCertificateParameterStore:
+    Description: Name of the Kite Certificate file in the Parameter Store
+    Default: cer_file
+    Type: String
+  KiteKeyParameterStore:
+    Description: Name of the Kite Key file in the Parameter Store
+    Default: key_file
+    Type: String
+  KiteURL:
+    Description: The Kite URL.
+    Default: https://m2m-api.telefonica.com:8010
+    Type: String
+  SIMcardsAPN:
+    Description: The APN of your SIM cards.
+    Default: m2m.movistar.es
+    Type: String
+  Cifrador3IpAddress:
+    Description: Telefónica Encrypter IpAddress.
+    Default: 213.0.185.6
+    Type: String
+    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})
+    ConstraintDescription: must be a valid IP address of the form x.x.x.x.
+  Cifrador4IpAddress:
+    Description: Telefónica Encrypter IpAddress.
+    Default: 213.0.185.8
+    Type: String
+    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})
+    ConstraintDescription: must be a valid IP address of the form x.x.x.x.
+  VPCCidrBlock:
+    Description: VPC CidrBlock
+    Default: 10.0.0.0/16
+    Type: String
+    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\/(\d{1,2})
+    ConstraintDescription: must be a valid CidrBlock of the form x.x.x.x/xx.
+  SubNetCidrBlock:
+    Description:  SubNet CidrBlock (must be smaller than VPC CidrBlock)
+    Default: 10.0.0.0/24
+    Type: String
+    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\/(\d{1,2})
+    ConstraintDescription: must be a valid CidrBlock of the form x.x.x.x/xx.
+  EnableCoAP:
+    Description: Enable CoAP reception
+    Default: False
+    Type: String
+    AllowedValues: 
+      - True
+      - False
+  IPsecVPN1TunnelInsideCidrA:
+    Description:  First Tunnel Inside Cidr (A)
+    Default: 169.254.30.0/30
+    Type: String
+    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\/(\d{1,2})
+    ConstraintDescription: must be a valid CidrBlock of the form x.x.x.x/xx.
+  IPsecVPN1TunnelInsideCidrB:
+    Description:  First Tunnel Inside Cidr (B)
+    Default: 169.254.30.4/30
+    Type: String
+    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\/(\d{1,2})
+    ConstraintDescription: must be a valid CidrBlock of the form x.x.x.x/xx.
+  IPsecVPN2TunnelInsideCidrA:
+    Description:  Second Tunnel Inside Cidr (A)
+    Default: 169.254.40.0/30
+    Type: String
+    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\/(\d{1,2})
+    ConstraintDescription: must be a valid CidrBlock of the form x.x.x.x/xx.
+  IPsecVPN2TunnelInsideCidrB:
+    Description:  Second Tunnel Inside Cidr (B)
+    Default: 169.254.40.4/30
+    Type: String
+    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\/(\d{1,2})
+    ConstraintDescription: must be a valid CidrBlock of the form x.x.x.x/xx.
+
+Conditions: # Checks to see if Conditional Values are True
+  ReceptionCoAP: !Equals [ !Ref EnableCoAP, True]
+
+Resources:
+  DataBridgeVPC:
+    Type: 'AWS::EC2::VPC'
+    Properties:
+      CidrBlock: !Ref VPCCidrBlock
+      EnableDnsSupport: 'true'
+      EnableDnsHostnames: 'true'
+      InstanceTenancy: default
+      Tags:
+        - Key: Name
+          Value: DataBridgeVPC
+  DataBridgeGateway:
+    Type: 'AWS::EC2::VPNGateway'
+    Properties:
+      Type: ipsec.1
+      Tags:
+        - Key: Name
+          Value: DataBridgeGateway
+  DataBridgeVPNGatewayAttachment:
+    Type: 'AWS::EC2::VPCGatewayAttachment'
+    Properties:
+      VpcId:
+        Ref: DataBridgeVPC
+      VpnGatewayId:
+        Ref: DataBridgeGateway
+  DataBridgeSubNet:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref DataBridgeVPC
+      CidrBlock: !Ref SubNetCidrBlock
+      Tags:
+        - Key: Name
+          Value: DataBridgeSubNet
+    DependsOn:
+      - DataBridgeVPC
+  DataBridgeInternetGateway:
+    Type: 'AWS::EC2::InternetGateway'
+    Properties:
+      Tags:
+        - Key: Name
+          Value: DataBridgeInternetGateway
+    DependsOn:
+      - DataBridgeVPC
+  DataBridgeInternetGatewayAttachment:
+    Type: 'AWS::EC2::VPCGatewayAttachment'
+    Properties:
+      VpcId: !Ref DataBridgeVPC
+      InternetGatewayId: !Ref DataBridgeInternetGateway
+    DependsOn:
+      - DataBridgeInternetGateway
+  DataBridgeRouteTable:
+    Type: 'AWS::EC2::RouteTable'
+    Properties:
+      VpcId:
+        Ref: DataBridgeVPC
+      Tags:
+        - Key: Name
+          Value: DataBridgeRouteTable
+  DataBridgeInternetRoute:
+    Type: 'AWS::EC2::Route'
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref DataBridgeInternetGateway
+      RouteTableId: !Ref DataBridgeRouteTable
+    DependsOn:
+      - DataBridgeInternetGatewayAttachment
+      - DataBridgeRouteTable
+  DataBridgeVPNGatewayRoutePropagation:
+    Type: 'AWS::EC2::VPNGatewayRoutePropagation'
+    Properties:
+      RouteTableIds:
+        - !Ref DataBridgeRouteTable
+      VpnGatewayId: !Ref DataBridgeGateway
+    DependsOn:
+      - DataBridgeGateway
+      - DataBridgeInternetGatewayAttachment
+      - DataBridgeRouteTable
+  Cifrador3:
+    Type: 'AWS::EC2::CustomerGateway'
+    Properties:
+      Type: ipsec.1
+      BgpAsn: 3352
+      IpAddress: !Ref Cifrador3IpAddress 
+      Tags:
+        - Key: Name
+          Value: Cifrador3
+  Cifrador4:
+    Type: 'AWS::EC2::CustomerGateway'
+    Properties:
+      Type: ipsec.1
+      BgpAsn: 3352
+      IpAddress: !Ref Cifrador4IpAddress 
+      Tags:
+        - Key: Name
+          Value: Cifrador4
+  IPsecVPN1:
+    Type: 'AWS::EC2::VPNConnection'
+    Properties:
+      Type: ipsec.1
+      StaticRoutesOnly: false
+      CustomerGatewayId: !Ref Cifrador3
+      VpnGatewayId: !Ref DataBridgeGateway
+      VpnTunnelOptionsSpecifications:
+        - TunnelInsideCidr: !Ref IPsecVPN1TunnelInsideCidrA
+        - TunnelInsideCidr: !Ref IPsecVPN1TunnelInsideCidrB
+      Tags:
+        - Key: Name
+          Value: IPsecVPN1
+  IPsecVPN2:
+    Type: 'AWS::EC2::VPNConnection'
+    Properties:
+      Type: ipsec.1
+      StaticRoutesOnly: false
+      CustomerGatewayId: !Ref Cifrador4
+      VpnGatewayId: !Ref DataBridgeGateway
+      VpnTunnelOptionsSpecifications:
+        - TunnelInsideCidr: !Ref IPsecVPN2TunnelInsideCidrA
+        - TunnelInsideCidr: !Ref IPsecVPN2TunnelInsideCidrB
+      Tags:
+        - Key: Name
+          Value: IPsecVPN2
+  DataBridgeRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId:
+        Ref: DataBridgeSubNet
+      RouteTableId:
+        Ref: DataBridgeRouteTable
+    DependsOn:
+      - DataBridgeSubNet
+      - DataBridgeRouteTable
+  DataBridgeSGcoap:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      VpcId: !Ref DataBridgeVPC
+      GroupDescription: Security Group for EC2 Data Bridge
+      SecurityGroupIngress:
+        - IpProtocol: udp
+          FromPort: 5683
+          ToPort: 5683
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: DataBridgeSGcoap
+    DependsOn:
+      - DataBridgeSubNet
+  DataBridgeSG:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      VpcId: !Ref DataBridgeVPC
+      GroupDescription: Security Group for EC2 Data Bridge
+      SecurityGroupIngress:
+        - IpProtocol: udp
+          FromPort: 4114
+          ToPort: 4114
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 5000
+          ToPort: 5000
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: icmp
+          CidrIp: 0.0.0.0/0
+          FromPort: -1
+          ToPort: -1
+      Tags:
+        - Key: Name
+          Value: DataBridgeSG
+    DependsOn:
+      - DataBridgeSubNet
+  DataBridgeEC2Role:
+    Type: AWS::IAM::Role
+    Properties: 
+      AssumeRolePolicyDocument: 
+        Version: "2012-10-17"
+        Statement: 
+          - 
+            Effect: "Allow"
+            Principal: 
+              Service: 
+                - "ec2.amazonaws.com"
+            Action: 
+              - "sts:AssumeRole"
+      ManagedPolicyArns: 
+      - arn:aws:iam::aws:policy/AmazonSSMFullAccess
+      - arn:aws:iam::aws:policy/AWSIoTFullAccess
+      RoleName: DataBridgeEC2Role
+  DataBridgeEC2Profile:
+    Type: 'AWS::IAM::InstanceProfile'
+    Properties:
+      Roles:
+       - !Ref DataBridgeEC2Role
+  DataBridgeEC2:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      KeyName: !Ref KeyName
+      ImageId: ami-028188d9b49b32a80
+      InstanceType: !Ref InstanceType
+      IamInstanceProfile: !Ref DataBridgeEC2Profile
+      NetworkInterfaces:
+        - SubnetId: !Ref DataBridgeSubNet
+          AssociatePublicIpAddress: 'true'
+          DeviceIndex: 0
+          GroupSet:
+            - !If [ReceptionCoAP, !Ref DataBridgeSGcoap, !Ref DataBridgeSG]
+            - !Ref DataBridgeSG
+      Tags:
+        - Key: Name
+          Value: DataBridgeEC2
+      UserData:
+        Fn::Base64:
+          !Sub |
+            Content-Type: multipart/mixed; boundary="//"
+            MIME-Version: 1.0
+            
+            --//
+            Content-Type: text/cloud-config; charset="us-ascii"
+            MIME-Version: 1.0
+            Content-Transfer-Encoding: 7bit
+            Content-Disposition: attachment; filename="cloud-config.txt"
+            
+            #cloud-config
+            cloud_final_modules:
+            - [scripts-user, always]
+            
+            --//
+            Content-Type: text/x-shellscript; charset="us-ascii"
+            MIME-Version: 1.0
+            Content-Transfer-Encoding: 7bit
+            Content-Disposition: attachment; filename="userdata.txt"
+            
+            #!/bin/bash
+            yum update -y
+            sudo yum -y install python-pip
+            wget https://raw.githubusercontent.com/telefonicaid/iot-activation/master/scripts/Data_Bridge/Data_Bridge.zip -O /home/ec2-user/Data_Bridge.zip
+            unzip /home/ec2-user/Data_Bridge.zip -d /home/ec2-user/Data_Bridge
+            cd /home/ec2-user/Data_Bridge/
+            pip install -r requirements.txt
+            echo "certificate:" ${KiteCertificateParameterStore} > config/cf_parameter.yaml
+            echo "private_key:" ${KiteKeyParameterStore} >> config/cf_parameter.yaml
+            echo "url:" ${KiteURL} >> config/cf_parameter.yaml
+            echo "apn:" ${SIMcardsAPN} >> config/cf_parameter.yaml
+            echo ${EnableCoAP} > config/cf_EnableCoAP.yaml
+            nohup python main.py &
+            --//
+    DependsOn:
+      - DataBridgeEC2Role
+  DataBridgeLoadBalancer:
+    Type: 'AWS::ElasticLoadBalancingV2::LoadBalancer'
+    Properties:
+      Name: DataBridgeLoadBalancer
+      Type: network
+      Scheme: internal 
+      Subnets:
+        - !Ref DataBridgeSubNet
+    DependsOn:
+      - DataBridgeRouteTableAssociation
+  DataBridgeLoadBalancerListenerudp:
+    Type: 'AWS::ElasticLoadBalancingV2::Listener'
+    Properties:
+      LoadBalancerArn: !Ref DataBridgeLoadBalancer
+      DefaultActions:
+        - Type: forward
+          TargetGroupArn: !Ref DataBridgeTGudp
+      Port: 4114
+      Protocol: UDP
+    DependsOn:
+      - DataBridgeTGudp
+  DataBridgeTGudp:
+    Type: 'AWS::ElasticLoadBalancingV2::TargetGroup'
+    Properties:
+      VpcId: !Ref DataBridgeVPC
+      HealthCheckEnabled: true
+      HealthCheckPort: 5000
+      HealthCheckProtocol: HTTP
+      Port: 4114
+      Protocol: UDP
+      Targets:
+        - Id: !Ref DataBridgeEC2
+          Port: 4114
+    DependsOn:
+      - DataBridgeLoadBalancer
+  DataBridgeLoadBalancerListenercoap:
+    Condition: ReceptionCoAP
+    Type: 'AWS::ElasticLoadBalancingV2::Listener'
+    Properties:
+      LoadBalancerArn: !Ref DataBridgeLoadBalancer
+      DefaultActions:
+        - Type: forward
+          TargetGroupArn: !Ref DataBridgeTGcoap
+      Port: 5683
+      Protocol: UDP
+    DependsOn:
+      - DataBridgeTGcoap
+  DataBridgeTGcoap:
+    Type: 'AWS::ElasticLoadBalancingV2::TargetGroup'
+    Properties:
+      VpcId: !Ref DataBridgeVPC
+      HealthCheckEnabled: true
+      HealthCheckPort: 5000
+      HealthCheckProtocol: HTTP
+      Port: 5683
+      Protocol: UDP
+      Targets:
+        - Id: !Ref DataBridgeEC2
+          Port: 5683
+    DependsOn:
+      - DataBridgeLoadBalancer
+  DataBridgeASGroup: 
+    Type: AWS::AutoScaling::AutoScalingGroup
+    Properties:
+      VPCZoneIdentifier: 
+        - Ref: DataBridgeSubNet
+      MinSize: !Ref InstancesNumber
+      MaxSize: !Ref InstancesNumber
+      InstanceId: !Ref DataBridgeEC2
+      TargetGroupARNs: 
+        - Ref: DataBridgeTGudp
+        - Ref: DataBridgeTGcoap
+    DependsOn:
+      - DataBridgeTGudp
+      - DataBridgeTGcoap
+Outputs:
+  DataBridgeDNS:
+    Description: The DNS name for the load balancer
+    Value: !GetAtt DataBridgeLoadBalancer.DNSName

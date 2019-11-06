@@ -1,30 +1,27 @@
 ### Table of Contents
 
-- [What does it do?](#what-does-it-do)
-  * [AWS Options:](#aws-options)
-    + [AWS Option 1: Telemetry](#aws-option-1-telemetry)
-    + [AWS Option 2: Telemetry and Commands](#aws-option-2-telemetry-and-commands)
+- [What does it do?](#what-does-it-do-)
+  * [AWS Options:](#aws-options-)
 - [Deploy and defend your Bridge on AWS!](#deploy-and-defend-your-bridge-on-aws)
   * [What will you need?](#what-will-you-need)
-  * [Data Bridge python code](#data-bridge-python-code)
   * [KITE Platform certificates](#kite-platform-certificates)
   * [IPsec tunnel configuration between Telefónica and AWS](#ipsec-tunnel-configuration-between-telefónica-and-aws)
-  * [Amazon Web Services Cloud Computing Services](#amazon-web-services-cloud-computing-services)
-    + [AWS Identity and Access Management (IAM)](#aws-identity-and-access-management-iam)
-    + [AWS Systems Manager Parameter Store](#aws-systems-manager-parameter-store)
-    + [AWS IoT Core](#aws-iot-core)
-    + [Amazon Elastic Compute Cloud (EC2)](#amazon-elastic-compute-cloud-ec2)
-- [How to run it](#how-to-run-it)
-  * [Download it](#download-it)
-  * [Configure it](#configure-it)
-  * [Launch it](#launch-it)
+  * [EC2 Key Pair](#ec2-key-pair)
+  * [AWS Systems Manager Parameter Store](#aws-systems-manager-parameter-store)
+  * [AWS CloudFormation](#aws-cloudformation)
+  * [Download IPsec configuration](#download-ipsec-configuration)
 
 
 
 # What does it do?
 
-Each UDP message or CoAP request sent by a device, it is linked to several information such as source IP, destination IP and destination Port. 
-The Bridge will use the device source IP to gather all the sim information stored at Kite platform. 
+Each UDP message sent by a device, it is linked to several information such as source IP, destination IP and destination Port. 
+The Bridge will use the device source IP to get all the sim information stored at Kite platform. 
+
+If you use the API CoAP, you can make two types of requests for the URI 
+- **GET** coap://host:5683/shadow?icc=xxxxxxxxxx
+- **PUT** coap://host:5683/shadow
+
 
 For the tutorial purpose you should pay attention to SIM's custom fields, 
 that you can manage from your Kite Platform account. 
@@ -45,7 +42,6 @@ As we said before, There are two ways of working depending on the information pr
 
 - [AWS Option 1: Telemetry](#aws-option-1-telemetry)
 - [AWS Option 2: Telemetry and Commands](#aws-option-2-telemetry-and-commands)
-
 
 #### AWS Option 1: Telemetry
 
@@ -69,20 +65,20 @@ The bridge will recognize it as an AWS reserved topic and will use the appropria
 The data sent will be published in the shadow in the **raw** field as shown in the following example.
 
 ```json
-{  
+{
   "reported": {
     "raw": "<MESSAGE SENT HERE>",
   }
 }
 ```
 
-Moreover, the Bridge will subscribe to the Accepted and Rejected topics, so you will be able to control if the publication has been done  or rejected by the broker.
+Moreover, the Bridge will be able to control if the publication has been done or rejected by the broker and it will return the code.
 
 Another advantage of using the AWS shadows, is the communication with the device, it allows you to send commands to it.
 You have to complete the json raw data field at device shadow desired field. 
 
 ```json
-{  
+{
   "desired": {
     "raw": "<MESSAGE FOR THE DEVICE>",
   }
@@ -100,41 +96,26 @@ But if you still want to create it manually you can follow these [steps](AWS_cre
 
 # Deploy and defend your Bridge on AWS!
 
+I suppose you've read about how the [Data Bridge works](BP_DataBridge_AWS.md) and you're deeply convinced of the advantages It can bring you.
+
+But if you have a problem running it, don't worry, you can use our Cloud Formation template
+
+Follow the link to deploy  the Data Bridge [step by step](BP_DataBridge_AWS_detail.md)
+
 ## What will you need?
 
 - Data Bridge [code](https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge)
 - KITE Platform [Certificates files](Kite_Platform.md#what-is-kite-platform-api)
-- An IpSec Service provided by Telefónica [(IPsec)](BP_IPsec.md#what-is-ipsec)
+- IpSec Service provided by Telefónica [(IPsec)](BP_IPsec.md#what-is-ipsec)
 - AWS account:
-	- Identity and Access Management roles
-	- AWS Systems Manager Parameter Store
-	- Amazon Elastic Compute Cloud instance (EC2)
-	- AWS IoT Core
+  - EC2 Key Pair
+  - Systems Manager Parameter Store
+  - CloudFormation
 
 &#x1F4CD;
 For the time being, if you use a SIM from the Thinx testing network you will not have access to the Kite Platform.
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
-
-
-## Data Bridge python code
-
-You can download it from our [repository](https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge)
-
-Or use the command: `wget`
-
-```
-wget https://raw.githubusercontent.com/telefonicaid/iot-activation/master/scripts/Data_Bridge/Data_Bridge.zip
-```
-
-Unzip the new file
-
-```
-unzip Data_Bridge.zip
-```
-
-[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
-
 
 ## KITE Platform certificates
 
@@ -171,42 +152,26 @@ Remember to keep both the private IP of your IPsec network and the public IP to 
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
+## EC2 Key Pair
 
-## Amazon Web Services Cloud Computing Services
+Before starting, you need create a Key Pair for secure access to the EC2 machine. This is the server where the code will be executed.
 
-If you are using this tutorial is because you have chosen Amazon as your cloud.
+For it, go to EC2 AWS console / **NETWORK & SECURITY** / **Key Pairs**
 
-For this reason, we have tried that all the services provided in the Data Bridge are integrated at AWS platform.
-In the following steps we will explain how to configure these services.
+and click on **Create Key Pair** button.
 
-[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+![pic](pictures/AWS/AWS_Console_EC2_KeyPair_create.png)
 
+Type a Key Pair name:
 
-### AWS Identity and Access Management (IAM)
+![pic](pictures/AWS/AWS_Console_EC2_KeyPair_create_name.png)
 
-IAM is a service that allows you to manage access to AWS services and resources securely.
-This service will allow you to control users and their permissions. 
-But it will also allow you to manage access policies between the different Amazon services.
-
-You will need it in this tutorial because it is necessary to assign an access policy to the EC2 machine 
-that allows access to the other services. 
-
-Your EC2 needs the following policies:
-- Access to IoT Core
-- Access to AWS Systems Manager Parameter store
-
-To attach an IAM role to an instance ...
-
-1. Open the Amazon EC2 console at https://console.aws.amazon.com/ec2/.
-2. In the navigation pane, choose Instances.
-3. Select the instance, choose Actions, Instance Settings, Attach/Replace IAM role.
-4. Select the IAM role to attach to your instance, and choose Apply.
-
+A new .pem file is created. Use this file to connect EC2 machine using a SSH client.
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
 
-### AWS Systems Manager Parameter Store
+## AWS Systems Manager Parameter Store
 
 AWS Systems Manager is a service that gives you visibility and control of your infrastructure.
 
@@ -224,324 +189,85 @@ Go to Systems Manager / Parameter Store / Select: Create parameter
 Select a name for the parameter. And copy the contents of the file in the **value** field.
 
 Do this for each of the files:
-- your_customer_certificate.cer
-- your_customer_certificate.key
+- your_customer_certificate.cer with the name **cer_file**
+- your_customer_certificate.key with the name **key_file**
 
 ![pic](pictures/AWS/AWS_Console_SystemsManager_ParameterStore_create_config1.png)
 ![pic](pictures/AWS/AWS_Console_SystemsManager_ParameterStore_create_config2.png)
 
 And click on the **Create parameter** button at the bottom of the page.
 
-Save the names of the parameters, they are necessary to configure the Bridge.
-
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
 
-### AWS IoT Core
+## AWS CloudFormation
 
-AWS IoT Core is a managed cloud service that lets connected devices easily and 
-securely interact with cloud applications and other devices.
+CloudFormation provides a common language for you to describe and provision 
+all the infrastructure resources in your cloud environment.
 
-If you have not previously worked with IoT Core, we recommend that you familiarize with the environment. 
-And make sure you understand concepts like MQTT, Broker and Shadow.
+It allows you to use a simple text file to build and rebuild your infrastructure.
 
-As for configuring a new device, you can do so by following these 
-[steps](AWS_create_new_thing.md#create-device-thing-in-aws-iot)
+To begin with, Go to CloudFormation Console:
 
-but if you're too lazy for it. "No problemo" The Bridge will create it for you.
+Click on **Create Stack** button
 
-Auto provisioning of new devices!!
+![pic](pictures/AWS/AWS_Console_CloudFormation_StackDB_create.png)
 
+In the new window that opens, fill the form with the [file](https://raw.githubusercontent.com/telefonicaid/iot-activation/master/scripts/Cloud_Formation/DataBridge_template.yml)
+
+The following parameters appear by default with values, but the template allows you to edit the values to suit your needs:
+
+1. Choose a name for your Stack 
+2. Select the IPsec source IP addresses 
+3. Enables the port for receiving CoAP requests 
+4. Cofiguration of the IPsec Tunnels
+5. Choose the size and number of instances
+6. Select your EC2 Key Pair and Parameters Store names created in the previous steps.
+7. Configure the Kite URL and the APN of your SIM cards
+8. Edit the VPC and AWS Subnet range
+
+![pic](pictures/AWS/AWS_Console_CloudFormation_StackDB_create_config1.png)
+![pic](pictures/AWS/AWS_Console_CloudFormation_StackDB_create_config2.png)
+![pic](pictures/AWS/AWS_Console_CloudFormation_StackDB_create_config3.png)
+![pic](pictures/AWS/AWS_Console_CloudFormation_StackDB_create_config4.png)
+
+Click **Next**. until the last step.
+
+Check the capabilities box for create IAM resources and click on **Create Stack**
+
+![pic](pictures/AWS/AWS_Console_CloudFormation_StackDB_create_config_end.png)
+
+wait until all resources are created and review the stack output
+
+![pic](pictures/AWS/AWS_Console_CloudFormation_StackDB_created_output.png)
+
+This DNS is the address to which your device will send reports
+
+&#x1F4CD;
+find the IP using the `host` command in the linux console
+```
+host DataBridgeLoadBalancer-xxxxxxxxxxxxx.elb.xx-xxxx-xx.amazonaws.com
+```
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
 
-### Amazon Elastic Compute Cloud (EC2)
+## Download IPsec configuration
 
-Amazon EC2 is a web service that provides secure, resizable compute capacity in the cloud.
+As the last step it is necessary to download the configuration of your IPsec tunnels.
 
-If you have carefully followed the steps to create the IPsec tunnel, you should already have created an instance.
+To Configure the IPsec connection with Telefonica's network you must send a configuration file.
+This file can be download from AWS console.
 
-We have chosen an instance with linux, but if you prefer any other, 
-just make sure that the instance can execute code in python.
+Go to VPC console / **Virtual Private Network (VPN)** / **Site-to-Site VPN** / 
+And Select your VPN connections
 
+![pic](pictures/AWS/AWS_Console_VPC_VPNconnection_download_ipsec.png)
 
-To attach an IAM role to an instance that has no role, the instance can be in the stopped or running state.
+complete the information as in the image below and click **Download**
 
-1. Open the Amazon EC2 console at https://console.aws.amazon.com/ec2/.
-2. In the navigation pane, choose Instances.
-3. Select the instance, choose Actions, Instance Settings, Attach/Replace IAM role.
-4. Select the IAM role to attach to your instance, and choose Apply.
+![pic](pictures/AWS/AWS_Console_VPC_VPNconnection_download_config_ipsec.png)
 
-Requirements to connect to your EC2 instance with SSH
-
-- SSH **file.pem** provided by Amazon when you launch the instance
-- **IP-address** assigned to your ec2 instance
-- The **username** on the instance distro
-
-On linux
-
-1. Open a terminal
-2. Type the SSH command 
-```
-ssh -i file.pem username@IP-address
-```
-3. Now you’re connected
-
-On Windows
-
-1. Install Putty https://www.putty.org/
-2. Open PuttyGen
-3. Select checkbox “RSA”
-4. Click load and select your **file.pem**
-5. A message will prompt, click ok.
-6. Click on save private key. 
-7. Then a message will prompt, select yes
-8. Type a name for your key **file.ppk**
-9. Now close PuttyGen program and open Putty
-10. Go to Connection/SSH section and double-click it.
-11. Go to Auth section and select your **file.ppk**
-12. Go back at the top in the Session section. Fill the field Hostname **IP-address** and click open
-13. A warning will prompt. Click yes.
-14. Type your **username**
-15. Now you’re connected
-
-Upload files using FTP Client
-
-You can download Filezilla using the next link (https://filezilla-project.org/download.php)
-
-1. Go to Edit/Settings/Connection/SFTP, Click "Add key file”
-2. Browse to the location and select your **file.pem**
-3. A message box will appear to convert the file into .ppk. Click Yes, and store it.
-4. If the new file is shown in the list of Keyfiles, then continue to the next step. If not, then click "Add keyfile..." and select the converted file.
-5. Go to File/Site Manager/Add a new site with the following parameters:
-
-- Protocol: SFTP
-- Host: **IP-address**
-- Logon Type: Key File
-- User: **username**
-
-[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
-
-
-# How to run it
-
-Now that you know how to configure AWS. You can run it in just 3 steps !!!
-
-## Download it
-
-You can choose between several options: 
-
-- Option 1: Download the Github repository on the instance
-
-1. Install git on the instace
-```shell
-sudo yum upgrade
-sudo yum install git
-```
-2. Clone the repository
-```shell
-git clone https://github.com/telefonicaid/iot-activation.git
-```
-3. Go to Bridge path: **scripts/Data_Bridge/**
-
-- Option 2: Download the Data Bridge Code
-
-1. Download the Code with the command: `wget`
-```
-wget https://raw.githubusercontent.com/telefonicaid/iot-activation/master/scripts/Data_Bridge/Data_Bridge.zip
-```
-2. Unzip the new file
-```
-unzip Data_Bridge.zip
-```
-
-Now that you have the code in the machine you just have to install the python libraries.
-
-
-If you are using an instance of EC2, run the following command. It will allow you to install python libraries
-
-```shell
-sudo yum install python-pip
-```
-
-You can install them one by one from the Bridge folder.
-
-```python
-sudo pip install -r requirements.txt
-```
-
-[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
-
-
-## Configure it
-
-We have tried to make this as simple as possible.
-
-So, you'll only need to fill in a few fields in the configuration file 
-[Configuration.yaml](https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge/config/Configuration.yaml)
-
-```yaml
-cloud: AWS
-
-UDP:
-  ip: "0.0.0.0"
-  port: 4114
-
-COAP:
-  ip: "0.0.0.0"
-  port: 5683
-
-KITE:
-  url: "https://m2m-api.telefonica.com"
-  certificate: "cer_file"
-  private_key: "key_file"
-
-```
-
-
-#### Configure the Cloud
-
-This parameter is used to identify the cloud and select the configuration file. 
-In this example you must select AWS
-
-```yaml
-cloud: AWS
-```
-
-
-#### Configure the UDP socket
-
-Here you can choose the port through which you will receive the UDP messages and the allowed IP addresses
-
-```yaml
-UDP:
-  ip: "0.0.0.0"
-  port: 4114
-```
-
-allowed values:
-- ip: "0.0.0.0"    (allow any address)
-- ip: "X.X.X.X"	   (restrict to a single address)
-
-If you don't want to configure the connection through UDP, remove this section from the file.
-
-#### Configure the COAP proxy
-
-Here you can choose the port through which you will receive the UDP messages and the allowed IP addresses
-
-```yaml
-COAP:
-  ip: "0.0.0.0"
-  port: 5683
-```
-
-allowed values:
-- ip: "0.0.0.0"    (allow any address)
-- ip: "X.X.X.X"	   (restrict to a single address)
-
-If you don't want to configure the COAP proxy, remove this section from the file.
-
-#### Configure the Kite Platform connection
-
-This parameter allows you to select the files the certificates to access the Kite Platform.
-
-```yaml
-KITE:
-  url: "https://m2m-api.telefonica.com"
-  certificate: "cer_file"
-  private_key: "key_file"
-```
-
-Do you remember the name of the parameters created in AWS?
-Now is the time to use them.
-
-[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
-
-
-#### Configure the AWS file
-
-Here is an example of a configuration file for AWS connection 
-[Configuration_AWS.yaml](https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge/config/Configuration_AWS.yaml)
-
-```yaml
-cloud: AWS
-region: "xx-xxxx-x"
-MQTT:
-  topic:
-    update: "$aws/things/<DEVICE_NAME>/shadow/update"
-    default: "tlm/<DEVICE_NAME>/raw"
-    log_device: "log/device/provision/new"
-    reserved: "$aws"
-```
-
-The file is quite intuitive, however here you can see carefully how to configure each section
-
-##### Region configuration
-
-Configure the region of your devices
-
-```yaml
-cloud: AWS
-region: "xx-xxxx-x"
-```
-
-##### Topic configuration
-
-At the moment you only have to keep the fields as is
-
-```yaml
-MQTT:
-  topic:
-    update: "$aws/things/<DEVICE_NAME>/shadow/update"
-    default: "tlm/<DEVICE_NAME>/raw"
-    log_device: "log/device/provision/new"
-    reserved: "$aws"
-```
-
-- **update**: this topic is the specific of AWS. It doesn't make any sense to modify it.
-- **default**: configure this field to select the default topic name.
-- **log_device**: topic name in which the new things creations are reported.
-- **reserved**: this parameter indicates that the name is a AWS standard topic.
-
-[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
-
-
-## Launch it
-
-Go to Bridge path and execute this command
-
-```shell
-sudo nohup python main.py &
-```
-- **sudo** Execute the instruction as if you were the administrator.
-- **nohup** It'll keep running even when you close the session.
-- **python main.py** will execute the code
-
-When the Bridge is running, it will record all UDP messages he receives in a log file. 
-You can monitor the last lines of the file with this command:
-
-```sh
-tail -f log/data_bridge.log
-```
-
-This is a log file example.
-
-```log
-INFO : ################################# waiting for a new message #################################
-INFO : Message Received [ {"v":33,"a":28} ] from [ 10.5.0.5 ] : [ 4114 ]
-INFO : KITE Response status code [ 200 ]
-INFO : GET information related to [ 10.5.0.5 ] from  KITE Platform
-INFO : Found device cloud name [ MyDevice ] and topic [  ] in KITE Platform
-INFO : Select Option 1: DEVICE [ MyDevice ] and DEFAULT TOPIC
-INFO : Publish message [ {"v":33,"a":28} ] into topic [ tlm/MyDevice/raw ]
-INFO : Publish Accepted code [ 200 ]
-INFO : Sent MESSAGE [ {"msg": "OK: msg published", "code": 200} ] to [ 10.5.0.5 ] : [ 4114 ]
-INFO : ################################# waiting for a new message #################################
-INFO : Message Received [ aaa ] from [ 00.00.00.00 ] : [ 4114 ]
-INFO : KITE Response status code [ 204 ]
-INFO : GET information related to [ 00.00.00.00 ] from  KITE Platform
-INFO : Sent MESSAGE [{"msg":"ERROR:connection with Kite not established","code":404}] to [ 84.78.20.223 ]:[4114]
-```
+Amazon provide a redundant connection. You have to download and send the two VPN connection files.
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 

@@ -1,23 +1,55 @@
 ### Table of Contents
 
 - [What is Data Bridge?](#what-is-the-data-bridge)
-  * [Why do we need Data Bridge?](#why-do-we-need-the-data-bridge)
-  * [What our bridge is already doing](#what-our-bridge-is-already-doing)
-  * [What's it gonna do next?](#whats-it-gonna-do-next)
+  * [Data Bridge Code](#data-bridge-code)
+  * [Benefits of using it](#benefits-of-using-the-data-bridge)
+  * [Benefits of using the Data Bridge](#benefits-of-using-the-data-bridge)
+  * [Upcoming features](#upcoming-features)
   * [What will you need?](#what-will-you-need)
-  * [Download](#download)
-  * [Cloud](#cloud)
+  * [Cloud Deployment](#cloud-deployment)
 
 # What is The Data Bridge?
 
-Data Bridge is a Python script. It can be deployed in any machine as a server.
-It enables the connection between public clouds IoT Core services and UDP messages.
-As a result, It will send back a message to the device with the publish code.
+Data Bridge is a tool Open Source that allows your devices connect with the public clouds using a UDP message.
+It also provides additional services that ensure both the security and management of the device.
+
+And most important of all. You can deploy it in just one Click!
+
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
+## Data Bridge Code
+
+The Data Bridge Python code is Open Source, Adapt it to your needs!
+
+Review our public repository in [Github](https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge)
+
+1. Download the Code with the command: `wget`
+```
+wget https://raw.githubusercontent.com/telefonicaid/iot-activation/master/scripts/Data_Bridge/Data_Bridge.zip
+```
+2. Unzip the new file
+```
+unzip Data_Bridge.zip
+```
+
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
 
-## Why do we need the Data Bridge?
 
-Among the communication protocols, MQTT is well known due to it is really easy to use and it secures the communication through a TLS context, although from the energetic perspective it is quite aggressive. You shouldn't choose between security and battery... so the Data Bridge will make your day :). 
+## Benefits of using the Data Bridge
+
+#### Secure Connection
+
+UDP uses a simple model with a minimum of protocol mechanisms. For this reason, it is not a secure protocol.
+At this point, the Data Bridge is designed to work using a Private Networks [(IPsec)](BP_IPsec.md)
+
+The SIM cards of your devices will be directly connected to the Data Bridge network! Identify them univocally through their IP.
+
+#### Energy saving
+
+Among the communication protocols, MQTT is well known due to it is really easy to use and it secures the communication through a TLS context, 
+although from the energetic perspective it is quite aggressive. You shouldn't choose between security and battery... 
+so the Data Bridge will make your day.
 
 We wanna show you a energy consumption comparison: We sent 300 bytes packet with the same device and the result looks as follows ...
 
@@ -51,56 +83,60 @@ We wanna show you a energy consumption comparison: We sent 300 bytes packet with
   </tr>
 </table>
 
-## What our bridge is already doing
+#### Device Management
 
-- It accesses to Kite Platform to retrieve your custom information (the device name and topic)
-- It received a UDP message and it publishes in the Cloud.
-- It receives CoAP requests (GET/PUT) and connect to the Cloud
-- It returns a message with the process result and commands
+Use [Kite Platform](Kite_Platform.md) to retrieve your custom information (the device name and topic)
+The Data Bridge access to the IoT connectivity platform, taking control of the devices. 
+When you replace an old device and use the same SIM card, the configuration will be maintained.
 
-## What's it gonna do next?
+#### Device self-provisioning
+
+If the device is not registered in the cloud, the first time the device receives a message 
+it will register it using the information of Kite
+
+#### Easy integration
+
+Communicate easily with your device. It sends a UDP frame and receives the status stored in the cloud.
+Report the message to the cloud and receive instructions!!
+
+in addition, Data Bridge allows you to interact with it from the application layer using the API CoAP
+**GET** a status device
+**PUT** a new state
+
+#### Deploy it in One-Click
+
+Don't worry about your installation, use our template!
+
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
+
+## Upcoming features
 
 - Compatibility with other clouds
-- Deploy your Bridge in One Click
+- new utilities
+
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
 
 ## What will you need?
 
-- A Linux instance on a Public Cloud
-- Python Interpreter
-- [KITE Platform](Kite_Platform.md#access-step-by-step-using-the-curl-command) Certificates files
-- IpSec Service provided by Telefonica [(IPsec)](BP_IPsec.md)
+- KITE Platform [Certificates files](Kite_Platform.md#what-is-kite-platform-api)
+- IPSec Service provided by Telefónica [(IPsec)](BP_IPsec.md#what-is-ipsec)
+- Public Cloud account
 
 &#x1F4CD;
-For the time being, If you use a SIM from the Thinx, you will not have access to the Kite Platform.
-
-[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
-
-## Download
-
-Downoload from [github](https://github.com/telefonicaid/iot-activation/tree/master/scripts/Data_Bridge/Data_Bridge.zip)
-
-Or use the command: `wget`
-
-```
-wget https://raw.githubusercontent.com/telefonicaid/iot-activation/master/scripts/Data_Bridge/Data_Bridge.zip
-```
-
-Unzip the new file
-
-```
-unzip Data_Bridge.zip
-```
+For the time being, if you use a SIM from the Thinx, you will not have access to the Kite Platform.
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
 
-## Cloud
+## Cloud Deployment
 
-To continue with the installation select your Public Cloud
+To continue with the installation, select your Public Cloud
 
 - [Amazon Web Services](BP_DataBridge_AWS.md)
 
-- [Google Cloud](BP_DataBridge_GoogleCloud.md)
+- [Google Cloud](BP_DataBridge_GoogleCloud.md)  in the near future!!
 
 <table>
   <tr>

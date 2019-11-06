@@ -22,12 +22,37 @@ from log import *
 import yaml
 import json
 import tempfile
-
+import os.path
 # Keywords
 CODE_CLOUD_NOT_FOUND = 404
 CODE_OK = 200
 # ERROR list
 
+
+def read_config_file(file_name):
+    """ Load a yaml configuration file in a dictionary
+
+    :param file_name: the name file
+    :return: dictionary with the file structure
+    """
+    logger.debug('Reading file [ %s ]', file_name)
+    logger.debug(file_name)
+    with open(file_name, 'r') as f:
+        config = yaml.load(f, Loader=yaml.FullLoader)
+    f.close()
+    file_name_cf = "config/cf_parameter.yaml"
+    if os.path.isfile(file_name_cf):
+        with open(file_name_cf, 'r') as ff:
+            config_kite = yaml.load(ff, Loader=yaml.FullLoader)
+        ff.close()
+        config["KITE"] = config_kite
+    file_name_cf_coap = "config/cf_EnableCoAP.yaml"
+    if os.path.isfile(file_name_cf_coap):
+        with open(file_name_cf_coap, 'r') as fff:
+            config_kite_coap = yaml.load(fff, Loader=yaml.FullLoader)
+        fff.close()
+        config["COAP"]["enable"] = config_kite_coap
+    return config
 
 def read_config(file_name):
     """ Load a yaml configuration file in a dictionary
@@ -41,7 +66,6 @@ def read_config(file_name):
         config = yaml.load(f, Loader=yaml.FullLoader)
     f.close()
     return config
-
 
 def tmp_file(file_content):
     fd_key, temp_path = tempfile.mkstemp()

@@ -22,7 +22,7 @@ import os
 import sys
 import time
 
-    from google.cloud import pubsub
+from google.cloud import pubsub
 from google.oauth2 import service_account
 from googleapiclient import discovery
 from googleapiclient.errors import HttpError

@@ -1,11 +1,12 @@
 ## Table of Contents
 
-- [Who is easym2m?](#who-is-easym2m2)
+- [What is easym2m?](#what-is-easym2m)
 - [easyM2M customer portal](#easym2m-customer-portal)
   - [Activate your SIM](#activate-your-sim)
   - [SIM status](#sim-status)
   - [Identify your APN](#identify-your-apn)
 - [easyM2M API](#easym2m-api)
+  - [Locate your credentials](#locate-your-credentials)
 
 ## What is easym2m?
 
@@ -63,6 +64,8 @@ When you receive your SIM cards, you can activate them to start enjoying Telefó
 
 - **ACTIVE:** SIM card is activated and has been used
 
+[![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
 ### Identify your APN
 
 Search the **My Data** tab and locate it, in the **Network Settings** box:
@@ -89,6 +92,12 @@ With the easyM2M API, you will do:
 https://easym2mmanagementapiv2en.docs.apiary.io/
 
 ![pic](pictures/easym2m/easym2m_api_console.png)
+
+### Locate your credentials
+
+Search the **My Data** tab and locate it, in the **API Settings** box:
+
+![pic](pictures/easym2m/easym2m_mydata_init_api.png)
 
 Learn how to use the API with the [Postman tool](easym2m_API.md)
 

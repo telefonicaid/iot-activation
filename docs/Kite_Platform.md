@@ -7,7 +7,7 @@
 - [How it's made](#how-its-made)
     + [Activate Data traffic](#activate-data-traffic)
     + [Activate Location Service](#activate-location-service)
-    + [Activate LTE / NB (4G)](#activate-lte-nb-4g)
+    + [Activate LTE / NB (4G)](#activate-lte--nb-4g
     + [Assign Subscription group](#assign-subscription-group)
     + [Change life cycle state](#change-life-cycle-state)
     + [Edit Custom Field](#edit-custom-field)

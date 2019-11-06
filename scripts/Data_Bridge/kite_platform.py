@@ -99,7 +99,7 @@ def kite_get_parameters(ip_address, certificate, private_key, icc):
     """
 
     logger.debug("KITE: Reading config file")
-    config_file = read_config('config/Configuration.yaml')
+    config_file = read_config_file('config/Configuration.yaml')
     url_kite = config_file["KITE"]["url"]
     apn_kite = config_file["KITE"]["apn"]
     logger.debug("KITE: url [ %s ]", url_kite)
@@ -167,7 +167,7 @@ def kite_test_credentials(certificate, private_key):
     :return: Boolean (True/False)
     """
     logger.debug("KITE: Testing credentials files")
-    config_file = read_config('config/Configuration.yaml')
+    config_file = read_config_file('config/Configuration.yaml')
     url_base = config_file["KITE"]["url"]
     url = url_base + "/services/REST/GlobalM2M/ServicePacks/v2/r12/servicePack"
 
