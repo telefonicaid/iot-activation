@@ -29,7 +29,35 @@ CODE_OK = 200
 # ERROR list
 
 
-def read_config_file(file_name):
+def read_config_file():
+    """ Load a yaml configuration file in a dictionary
+    :return: dictionary with the file structure
+    """
+    file_configuration = "config/Configuration.yaml"
+    logger.info("Reading Configuration file [ %s ]", file_configuration)
+    file_configuration = read_yaml(file_configuration)
+    file_configuration_cloud_name = "config/Configuration_cloud.yaml"
+    if os.path.isfile(file_configuration_cloud_name):
+        logger.info("Reading Configuration Cloud file [ %s ]", file_configuration_cloud_name)
+        file_configuration_cloud = read_yaml(file_configuration_cloud_name)
+        if "cloud" in file_configuration_cloud:
+            file_configuration["cloud"] = file_configuration_cloud["cloud"]
+        if "region" in file_configuration_cloud:
+            file_configuration["region"] = file_configuration_cloud["region"]
+        if "certificate" in file_configuration_cloud:
+            file_configuration["KITE"]["certificate"] = file_configuration_cloud["certificate"]
+        if "private_key" in file_configuration_cloud:
+            file_configuration["KITE"]["private_key"] = file_configuration_cloud["private_key"]
+        if "apn" in file_configuration_cloud:
+            file_configuration["KITE"]["apn"] = file_configuration_cloud["apn"]
+        if "url" in file_configuration_cloud:
+            file_configuration["KITE"]["url"] = file_configuration_cloud["url"]
+        if "enableCoAP" in file_configuration_cloud:
+            file_configuration["COAP"]["enable"] = file_configuration_cloud["enableCoAP"]
+    return file_configuration
+
+
+def read_yaml(file_name):
     """ Load a yaml configuration file in a dictionary
 
     :param file_name: the name file
@@ -40,32 +68,8 @@ def read_config_file(file_name):
     with open(file_name, 'r') as f:
         config = yaml.load(f, Loader=yaml.FullLoader)
     f.close()
-    file_name_cf = "config/cf_parameter.yaml"
-    if os.path.isfile(file_name_cf):
-        with open(file_name_cf, 'r') as ff:
-            config_kite = yaml.load(ff, Loader=yaml.FullLoader)
-        ff.close()
-        config["KITE"] = config_kite
-    file_name_cf_coap = "config/cf_EnableCoAP.yaml"
-    if os.path.isfile(file_name_cf_coap):
-        with open(file_name_cf_coap, 'r') as fff:
-            config_kite_coap = yaml.load(fff, Loader=yaml.FullLoader)
-        fff.close()
-        config["COAP"]["enable"] = config_kite_coap
     return config
 
-def read_config(file_name):
-    """ Load a yaml configuration file in a dictionary
-
-    :param file_name: the name file
-    :return: dictionary with the file structure
-    """
-    logger.debug('Reading file [ %s ]', file_name)
-    logger.debug(file_name)
-    with open(file_name, 'r') as f:
-        config = yaml.load(f, Loader=yaml.FullLoader)
-    f.close()
-    return config
 
 def tmp_file(file_content):
     fd_key, temp_path = tempfile.mkstemp()
@@ -79,7 +83,7 @@ def tmp_file(file_content):
 def is_json(str_json):
     json_check = False
     try:
-        json_var =json.loads(str_json)
+        json_var = json.loads(str_json)
         json_check = (type(json_var) != int) # if str_json is a integer, conversion to json works incorrectly
     except Exception as e:
         json_check = False

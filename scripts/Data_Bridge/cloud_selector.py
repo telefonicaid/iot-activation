@@ -32,10 +32,8 @@ def cloud_configure(config):
     """
     try:
         if config["cloud"] == "AWS":
-            logger.debug("CLOUD: Selected connect to AWS:")
-            config_cloud = read_config('config/Configuration_AWS.yaml')
-            config_cloud["cloud"] = "AWS"
-            config_cloud["code"] = CODE_OK
+            logger.debug("CLOUD: Selected AWS log file:")
+            config_cloud = cloud_configure_aws(config)
         else:
             logger.error("CLOUD: Cloud not defined")
             config_cloud = {"code": CODE_ERROR_CLOUD_NOT_IMPLEMENTED, "msg": MSG_CLOUD_NOT_IMPLEMENTED}
@@ -78,9 +76,8 @@ def cloud_publish(id, thing, topic, status, config_cloud):
 def cloud_get(id, thing, config_cloud):
     """
     Function Invocation for publish in the selected Cloud.
+    :param id: uuid
     :param thing:
-    :param topic:
-    :param status:
     :param config_cloud:
     :return: response = {"code": 200, "msg": "OK"}
     """
@@ -113,7 +110,24 @@ def cloud_get_parameter(parameter_name, config_cloud):
     try:
         if config_cloud["cloud"] == "AWS":
             logger.debug("CLOUD: Selected get parameter for AWS:")
-            parameter = cloud_get_parameter_aws(parameter_name, config_cloud)
+            parameter = cloud_get_parameter_aws(parameter_name)
+        else:
+            logger.error("CLOUD: Cloud not defined")
+            parameter = {"code": CODE_ERROR_CLOUD_NOT_IMPLEMENTED, "msg": MSG_CLOUD_NOT_IMPLEMENTED}
+    except Exception as e:
+        logger.error("CLOUD: exception cloud_get_parameter()")
+        logger.error("message:{}".format(e.message))
+        traceback.print_exc(file=sys.stdout)
+    finally:
+        return parameter
+
+
+def cloud_log(config_cloud):
+    parameter = {"code": 500, "msg": "Get parameter - Internal Server Error"}
+    try:
+        if config_cloud["cloud"] == "AWS":
+            logger.debug("CLOUD: Selected set log for AWS:")
+            parameter = cloud_log_aws(config_cloud)
         else:
             logger.error("CLOUD: Cloud not defined")
             parameter = {"code": CODE_ERROR_CLOUD_NOT_IMPLEMENTED, "msg": MSG_CLOUD_NOT_IMPLEMENTED}

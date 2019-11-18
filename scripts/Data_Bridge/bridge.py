@@ -52,8 +52,8 @@ def bridge(id, udp_msg, ip, config, config_cloud, request):
                     if "icc" in json_udp_msg:
                         icc = json_udp_msg["icc"]
 
-                logger.info("%s - GET information related to [ %s ] from  KITE Platform" % (id, ip))
-                kite_parameters = kite_get_parameters(ip, kite_file_cer["msg"], kite_file_key["msg"], icc)
+                logger.info("%s - GET information related to [ %s ] and APN [ %s ] in KITE Platform" % (id, ip, config["KITE"]["apn"]))
+                kite_parameters = kite_get_parameters(ip, kite_file_cer["msg"], kite_file_key["msg"], icc, config)
                 logger.info("%s - KITE Response status code [ %s ]" % (id, kite_parameters["code"]))
 
                 if kite_parameters["code"] == CODE_OK:

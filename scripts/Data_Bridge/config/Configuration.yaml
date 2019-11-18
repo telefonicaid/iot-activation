@@ -17,5 +17,5 @@ KITE:
   private_key: "key_file" # key file name
 
 location: True
-
+cloudlog: True
 
