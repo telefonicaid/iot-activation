@@ -335,11 +335,13 @@ Resources:
             unzip /home/ec2-user/Data_Bridge.zip -d /home/ec2-user/Data_Bridge
             cd /home/ec2-user/Data_Bridge/
             pip install -r requirements.txt
-            echo "certificate:" ${KiteCertificateParameterStore} > config/cf_parameter.yaml
-            echo "private_key:" ${KiteKeyParameterStore} >> config/cf_parameter.yaml
-            echo "url:" ${KiteURL} >> config/cf_parameter.yaml
-            echo "apn:" ${SIMcardsAPN} >> config/cf_parameter.yaml
-            echo ${EnableCoAP} > config/cf_EnableCoAP.yaml
+            echo "cloud: AWS" > config/Configuration_cloud.yaml
+            echo "certificate:" ${KiteCertificateParameterStore} >> config/Configuration_cloud.yaml
+            echo "private_key:" ${KiteKeyParameterStore} >> config/Configuration_cloud.yaml
+            echo "url:" ${KiteURL} >> config/Configuration_cloud.yaml
+            echo "apn:" ${SIMcardsAPN} >> config/Configuration_cloud.yaml
+            echo "region:" ${AWS::Region} >> config/Configuration_cloud.yaml
+            echo "enableCoAP:" ${EnableCoAP} >> config/Configuration_cloud.yaml
             nohup python main.py &
             --//
     DependsOn:
