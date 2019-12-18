@@ -1,3 +1,11 @@
+
+
+<a href="https://raw.githubusercontent.com/telefonicaid/iot-activation/master/scripts/Cloud_Formation/DataBridge_template.yml" align="center" download>
+	<img src="pictures/schematics/databridge_aws_cloudformation.png">
+</a>
+
+
+
 ### Table of Contents
 
 - [What does it do?](#what-does-it-do-)
@@ -213,7 +221,9 @@ Click on **Create Stack** button
 
 ![pic](pictures/AWS/AWS_Console_CloudFormation_StackDB_create.png)
 
-In the new window that opens, fill the form with the [file](https://raw.githubusercontent.com/telefonicaid/iot-activation/master/scripts/Cloud_Formation/DataBridge_template.yml)
+In the new window that opens, fill the form with the template file.
+
+[Download the Data Bridge Cloudformation Template](https://raw.githubusercontent.com/telefonicaid/iot-activation/master/scripts/Cloud_Formation/DataBridge_template.yml)
 
 The following parameters appear by default with values, but the template allows you to edit the values to suit your needs:
 

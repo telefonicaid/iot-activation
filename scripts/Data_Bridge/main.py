@@ -23,18 +23,18 @@ from server_coap import *
 from server_udp import *
 from health_check import *
 import threading
-import os.path
-
+import traceback
 
 if __name__ == '__main__':
 
     try:
-        file_configuration = "config/Configuration.yaml"
-        logger.info("Reading Configuration file [ %s ]", file_configuration)
-        config_file = read_config_file(file_configuration)
+        config_file = read_config_file()
         logger.debug(config_file)
         config_cloud = cloud_configure(config_file)
         logger.debug(config_cloud)
+
+        if config_file["cloudlog"]:
+            cloud_log(config_cloud)
 
         if config_cloud["code"] == CODE_OK and test(config_file, config_cloud):
 

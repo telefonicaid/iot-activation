@@ -52,12 +52,12 @@ def bridge(id, udp_msg, ip, config, config_cloud, request):
                     if "icc" in json_udp_msg:
                         icc = json_udp_msg["icc"]
 
-                logger.info("%s - GET information related to [ %s ] from  KITE Platform" % (id, ip))
-                kite_parameters = kite_get_parameters(ip, kite_file_cer["msg"], kite_file_key["msg"], icc)
-                logger.info("%s - KITE Response status code [ %s ]" % (id, kite_parameters["code"]))
+                logger.info("[ %s ] - GET information related to [ %s ] and APN [ %s ] in KITE Platform" % (id, ip, config["KITE"]["apn"]))
+                kite_parameters = kite_get_parameters(ip, kite_file_cer["msg"], kite_file_key["msg"], icc, config)
+                logger.info("[ %s ] - KITE Response status code [ %s ]" % (id, kite_parameters["code"]))
 
                 if kite_parameters["code"] == CODE_OK:
-                    logger.info("%s - Found device cloud name [ %s ] and topic [ %s ] in KITE Platform" % (id,
+                    logger.info("[ %s ] - Found device cloud name [ %s ] and topic [ %s ] in KITE Platform" % (id,
                                                                                                            kite_parameters[
                                                                                                                "thing_name"],
                                                                                                            kite_parameters[
@@ -82,25 +82,25 @@ def bridge(id, udp_msg, ip, config, config_cloud, request):
                             response = cloud_get(id, kite_parameters["thing_name"], config_cloud)
 
                     else:  # if kite_parameters["thing_name"] == '':
-                        logger.warning("%s - Not Found device Cloud Name in KITE Platform", id)
+                        logger.warning("[ %s ] - Not Found device Cloud Name in KITE Platform", id)
                         response["code"] = 404
                         response["msg"] = "KITE Platform: Device Name Not Found"
                 else:  # if kite_parameters["code"] != CODE_OK:
-                    logger.error("%s - Not Connected to KITE Platform", id)
+                    logger.error("[ %s ] - Not Connected to KITE Platform", id)
                     response["code"] = kite_parameters["code"]
                     response["msg"] = "KITE " + kite_parameters["msg"]
 
             else:  # if kite_file_cer["code"] != CODE_OK:
-                logger.error("%s - Not Connected to Cloud Get Parameter [ %s ]", id, config["KITE"]["certificate"])
+                logger.error("[ %s ] - Not Connected to Cloud Get Parameter [ %s ]", id, config["KITE"]["certificate"])
                 response["code"] = kite_file_cer["code"]
                 response["msg"] = kite_file_cer["msg"]
         else:  # if kite_file_key["code"] != CODE_OK:
-            logger.error("%s - Not Connected to Cloud Get Parameter [ %s ]", id, config["KITE"]["private_key"])
+            logger.error("[ %s ] - Not Connected to Cloud Get Parameter [ %s ]", id, config["KITE"]["private_key"])
             response["code"] = kite_file_key["code"]
             response["msg"] = kite_file_key["msg"]
 
     except Exception as e:
-        logger.error('%s - exception bridge_POST()', id)
+        logger.error('[ %s ] - exception bridge_POST()', id)
         logger.error('message:{}'.format(e.message))
         traceback.print_exc(file=sys.stdout)
 

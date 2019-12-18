@@ -18,17 +18,13 @@
 #                                                                                                                      #
 ########################################################################################################################
 from __future__ import print_function
-import logging.handlers
 import logging.config
-import sys
-import os
-import traceback
 
 
 # Setting log
-
 logger = logging.getLogger(__name__)
 logging.config.fileConfig("logging.conf", disable_existing_loggers=False)
+
 
 
 

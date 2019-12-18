@@ -49,22 +49,22 @@ class AdvancedResource(Resource):
 
     def render_GET_advanced(self, request, response):
         uuid_get = uuid.uuid4().hex
-        logger.info("%s CoAP GET request from [ %s ]", uuid_get, request.source[0])
+        logger.info("[ %s ] - CoAP GET request from [ %s ]", uuid_get, request.source[0])
         response_bridge = bridge(uuid_get, uri_query_parse(request.uri_query), request.source[0], self.config_file, self.config_cloud, "GET")
         response.payload = response_bridge
         response.code = to_coap_code(response_bridge["code"])
-        logger.info("%s - Sent MESSAGE [ %s ] to [ %s ] id [ %s ]" % (uuid_get, response_bridge, request.source[0], uuid_get))
+        logger.info("[ %s ] - Sent MESSAGE [ %s ] to [ %s ] id [ %s ]" % (uuid_get, response_bridge, request.source[0], uuid_get))
 
         return self, response
 
     def render_POST_advanced(self, request, response):
         uuid_post = uuid.uuid4().hex
-        logger.info("%s - CoAP POST request from [ %s ]", uuid_post, request.source[0])
-        logger.info("%s - POST request payload [ %s ]", uuid_post, request.payload)
+        logger.info("[ %s ] - CoAP POST request from [ %s ]", uuid_post, request.source[0])
+        logger.info("[ %s ] - POST request payload [ %s ]", uuid_post, request.payload)
         response_bridge = bridge(uuid_post, request.payload, request.source[0], self.config_file, self.config_cloud, "POST")
         response.payload = response_bridge
         response.code = to_coap_code(response_bridge["code"])
-        logger.info("%s - Sent MESSAGE [ %s ] to [ %s ]" % (uuid_post, response_bridge, request.source[0]))
+        logger.info("[ %s ] - Sent MESSAGE [ %s ] to [ %s ]" % (uuid_post, response_bridge, request.source[0]))
         return self, response
 
 

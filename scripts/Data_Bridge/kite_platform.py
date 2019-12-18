@@ -25,10 +25,9 @@ import json
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-KITE_API = "/services/REST/GlobalM2M/Inventory/v6/r12/sim?"
+KITE_API = "/services/REST/GlobalM2M/Inventory/v6/r12/sim?"  # type: str
 KITE_API_IP = "ip=%s"
 KITE_API_ICC = "icc=%s"
-KITE_API_ALIAS = "alias=%s"
 KITE_API_APN = "apn=%s"
 
 
@@ -52,54 +51,34 @@ def get_info_from_ip(url, certificate, key, ip_address, apn):
     return kite_response
 
 
-def get_info_from_icc(url, certificate, key, icc_number, apn):
+def get_info_from_icc(url, certificate, key, icc_number):
     """
      HTTPS request in Kite using the SIM ICC and its APN.
     :param url: url of Kite to search using the icc
     :param certificate: certificate file for Kite connection
     :param key: private key file for Kite connection
     :param icc_number: SIM's ICC Number
-    :param apn: SIM APN
     :return: the https response from url find by the ICC
-
     """
     url_api = url + KITE_API_ICC
     url_api = url_api % icc_number
-    # url_api = url_api + "&" + KITE_API_APN
-    # url_api = url_api % apn
 
     kite_response = requests.get(url_api, cert=(certificate, key), verify=False)
-
     return kite_response
 
 
-def get_info_from_alias(url, certificate, key, alias_name):
-    """
-    HTTPS request in Kite using the SIM Alias.
-    :param url: url of Kite to search using the ip
-    :param certificate: certificate file for Kite connection
-    :param key: private key file for Kite connection
-    :param alias_name: SIM Alias
-    :return: the https response from url find by the IP
-
-    """
-    url_api = url + KITE_API_ALIAS
-    kite_response = requests.get(url_api % alias_name, cert=(certificate, key), verify=False)
-
-    return kite_response
-
-
-def kite_get_parameters(ip_address, certificate, private_key, icc):
+def kite_get_parameters(ip_address, certificate, private_key, icc, config_file):
     """
     Function for get the SIM parameter stored in Kite Platform
     :param ip_address:
     :param certificate:
     :param private_key:
+    :param icc:
+    :param config_file:
     :return: SIM parameter stored in Kite Platform
     """
 
     logger.debug("KITE: Reading config file")
-    config_file = read_config_file('config/Configuration.yaml')
     url_kite = config_file["KITE"]["url"]
     apn_kite = config_file["KITE"]["apn"]
     logger.debug("KITE: url [ %s ]", url_kite)
@@ -115,7 +94,7 @@ def kite_get_parameters(ip_address, certificate, private_key, icc):
         if icc is None:
             kite_response = get_info_from_ip(url_api, temp_path_cert, temp_path_key, ip_address, apn_kite)
         else:
-            kite_response = get_info_from_icc(url_api, temp_path_cert, temp_path_key, icc, apn_kite)
+            kite_response = get_info_from_icc(url_api, temp_path_cert, temp_path_key, icc)
 
     except Exception as e:
         kite_parameters = {"code": 400, "msg": "KITE - Access Error"}
@@ -159,15 +138,15 @@ def kite_get_parameters(ip_address, certificate, private_key, icc):
         return kite_parameters
 
 
-def kite_test_credentials(certificate, private_key):
+def kite_test_credentials(certificate, private_key, config_file):
     """
     Function for test the credentials files
     :param certificate:
     :param private_key:
+    :param config_file:
     :return: Boolean (True/False)
     """
     logger.debug("KITE: Testing credentials files")
-    config_file = read_config_file('config/Configuration.yaml')
     url_base = config_file["KITE"]["url"]
     url = url_base + "/services/REST/GlobalM2M/ServicePacks/v2/r12/servicePack"
 
