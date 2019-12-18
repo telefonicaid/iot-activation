@@ -190,7 +190,7 @@ def cloud_publish_topic_aws(id_log, topic, status, config_cloud):
             msg_reported = json.dumps(status)
             response_publish = iot_data.publish(topic=topic, qos=0, payload=msg_reported)
             code = response_publish["ResponseMetadata"]["HTTPStatusCode"]
-            logger.info("%s - Publish Accepted code [ %s ]", id_log, code)
+            logger.info("[ %s ] - Publish Accepted code [ %s ]", id_log, code)
             if code == CODE_OK:
                 ack_publish = {"code": code, "msg": "Publish Accepted"}
             else:
@@ -229,9 +229,9 @@ def cloud_publish_in_shadow_aws(id_log, thing_name, status, config_cloud):
         traceback.print_exc(file=sys.stdout)
     else:
         if is_a_thing(thing_name, config_cloud):
-            logger.info("%s - Get thing Shadow[ %s ] from AWS", id_log, thing_name)
+            logger.info("[ %s ] - Get thing Shadow[ %s ] from AWS", id_log, thing_name)
             shadow = cloud_get_shadow_raw_aws(thing_name, config_cloud)
-            logger.info("%s - Thing Shadow received [ %s ] status code [ %s ]" % (id_log, shadow["msg"], shadow["code"]))
+            logger.info("[ %s ] - Thing Shadow received [ %s ] status code [ %s ]" % (id_log, shadow["msg"], shadow["code"]))
             # if shadow["code"] == CODE_OK:
             try:
                 response_update = iot_data.update_thing_shadow(thingName=thing_name, payload=msg_reported)
@@ -248,10 +248,10 @@ def cloud_publish_in_shadow_aws(id_log, thing_name, status, config_cloud):
             #    ack_publish = shadow
         else:  # is_a_thing(thing_name, config_cloud):
             try:  # Create New Thing
-                logger.warning("%s - Thing not found. Created a NEW THING [ %s ]", id_log, thing_name)
+                logger.warning("[ %s ] - Thing not found. Created a NEW THING [ %s ]", id_log, thing_name)
                 create_thing = cloud_create_new_thing_aws(thing_name, config_cloud)
                 if create_thing["code"] == CODE_OK:
-                    logger.info("%s - NEW Thing Created [ %s ] OK", id_log, thing_name)
+                    logger.info("[ %s ] - NEW Thing Created [ %s ] OK", id_log, thing_name)
                     topic_log = config_cloud["MQTT"]["topic"]["log_device"]
                     cloud_publish_topic_aws(id_log, topic_log, "Thing created: " + thing_name, config_cloud)
 
@@ -261,7 +261,7 @@ def cloud_publish_in_shadow_aws(id_log, thing_name, status, config_cloud):
                     code = response_publish["ResponseMetadata"]["HTTPStatusCode"]
                     ack_publish = {"code": code, "msg": ""}
                 else:
-                    logger.error("%s - NEW Thing Created [ %s ] OK", id_log, thing_name)
+                    logger.error("[ %s ] - NEW Thing Created [ %s ] OK", id_log, thing_name)
                     ack_publish = create_thing
 
             except Exception as e:
@@ -270,7 +270,7 @@ def cloud_publish_in_shadow_aws(id_log, thing_name, status, config_cloud):
                 traceback.print_exc(file=sys.stdout)
 
     finally:
-        logger.info("%s - Update reported [ %s ] into shadow code [ %s ]" % (id_log, msg_reported, ack_publish["code"]))
+        logger.info("[ %s ] - Update reported [ %s ] into shadow code [ %s ]" % (id_log, msg_reported, ack_publish["code"]))
         return ack_publish
 
 
@@ -290,24 +290,24 @@ def cloud_publish_aws(id_log, thing_name, topic, status, config_cloud):
     config_cloud["MQTT"]["topic"]["reserved"] = "$aws"
 
     if topic == "":  # if the topic is not defined publish in a default topic
-        logger.info("%s - Select Option 1: DEVICE [ %s ] and DEFAULT TOPIC", id_log, thing_name)
+        logger.info("[ %s ] - Select Option 1: DEVICE [ %s ] and DEFAULT TOPIC", id_log, thing_name)
         topic_default = config_cloud["MQTT"]["topic"]["default"].replace('<DEVICE_NAME>', thing_name)
-        logger.info("%s - Publish message [ %s ] into topic [ %s ] " % (id_log, status, topic_default))
+        logger.info("[ %s ] - Publish message [ %s ] into topic [ %s ] " % (id_log, status, topic_default))
         response = cloud_publish_topic_aws(id_log, topic_default, status, config_cloud)
 
     elif topic == config_cloud["MQTT"]["topic"]["update"].replace('<DEVICE_NAME>', thing_name):
-        logger.info("%s - Select Option 3: DEVICE [ %s ] and CLOUD TOPIC", id_log, thing_name)
-        logger.info("%s - Publish message [ %s ] into topic [ %s ] " % (id_log, status, topic))
+        logger.info("[ %s ] - Select Option 3: DEVICE [ %s ] and CLOUD TOPIC", id_log, thing_name)
+        logger.info("[ %s ] - Publish message [ %s ] into topic [ %s ] " % (id_log, status, topic))
         response = cloud_publish_in_shadow_aws(id_log, thing_name, status, config_cloud)
 
     elif topic[0:len(config_cloud["MQTT"]["topic"]["reserved"])] != config_cloud["MQTT"]["topic"]["reserved"]:
-        logger.info("%s - Select Option 2: DEVICE [ %s ] CUSTOM TOPIC", id_log, thing_name)
-        logger.info("%s - Publish message [ %s ] into topic [ %s ] " % (id_log, status, topic))
+        logger.info("[ %s ] - Select Option 2: DEVICE [ %s ] CUSTOM TOPIC", id_log, thing_name)
+        logger.info("[ %s ] - Publish message [ %s ] into topic [ %s ] " % (id_log, status, topic))
         response = cloud_publish_topic_aws(id_log, topic, status, config_cloud)
 
     else:
-        logger.info("%s - Select INVALID Option DEVICE [ %s ] CUSTOM TOPIC", id_log, thing_name)
-        logger.warning("%s - Try to publish in a AWS RESERVED TOPIC [ %s ]", id_log, topic)
+        logger.info("[ %s ] - Select INVALID Option DEVICE [ %s ] CUSTOM TOPIC", id_log, thing_name)
+        logger.warning("[ %s ] - Try to publish in a AWS RESERVED TOPIC [ %s ]", id_log, topic)
         response = {"code": 401, "msg": 'ERROR: Try to publish in an unauthorized topic ' + topic}
 
     return response
@@ -324,12 +324,12 @@ def cloud_get_aws(id_log, thing_name, config_cloud):
     ack_publish = {"code": 501, "msg": "Publish in Shadow AWS - Internal Server Error"}
 
     if is_a_thing(thing_name, config_cloud):
-        logger.info("%s - Get thing Shadow[ %s ] from AWS", id_log, thing_name)
+        logger.info("[ %s ] - Get thing Shadow[ %s ] from AWS", id_log, thing_name)
         shadow = cloud_get_shadow_aws(thing_name, config_cloud)
-        logger.info("%s - Thing Shadow received [ %s ] status code [ %s ]", id_log, shadow["msg"], shadow["code"])
+        logger.info("[ %s ] - Thing Shadow received [ %s ] status code [ %s ]", id_log, shadow["msg"], shadow["code"])
         ack_publish = shadow
     else:  # not is_a_thing(thing_name, config_cloud):
-        logger.warning("%s - Thing not found [ %s ]", id_log, thing_name)
+        logger.warning("[ %s ] - Thing not found [ %s ]", id_log, thing_name)
         ack_publish = {"code": 404, "msg": "Thing not found."}
 
     return ack_publish

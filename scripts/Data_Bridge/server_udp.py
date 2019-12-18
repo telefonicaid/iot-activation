@@ -47,13 +47,13 @@ def udp_loop(config_file, config_cloud):
         while True:
             udp_msg, udp_ip = sock.recvfrom(1024)
             uuid_udp = uuid.uuid4().hex
-            logger.info("%s - Message Received [ %s ] from [ %s ] : [ %s ]" % (uuid_udp, udp_msg, udp_ip[0], udp_ip[1]))
+            logger.info("[ %s ] - Message Received [ %s ] from [ %s ] : [ %s ]" % (uuid_udp, udp_msg, udp_ip[0], udp_ip[1]))
 
             response = bridge(uuid_udp, udp_msg, udp_ip[0], config_file, config_cloud, "POST")
             ack_msg = json.dumps(response)
-            logger.debug("%s - Generate ACK payload [ %s ]" % (uuid_udp, response))
+            logger.debug("[ %s ] - Generate ACK payload [ %s ]" % (uuid_udp, response))
 
-            logger.info("%s - Sent MESSAGE [ %s ] to [ %s ] : [ %s ]" % (uuid_udp, ack_msg, udp_ip[0], udp_ip[1]))
+            logger.info("[ %s ] - Sent MESSAGE [ %s ] to [ %s ] : [ %s ]" % (uuid_udp, ack_msg, udp_ip[0], udp_ip[1]))
             sock.sendto(ack_msg, udp_ip)
 
     except Exception as e:

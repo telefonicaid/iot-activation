@@ -76,10 +76,10 @@ We wanna show you a energy consumption comparison: We sent 300 bytes packet with
 			with high power consumption</div></th>
 	<th><div align="center">
 			Unsecured data transfer <br>
-			(30% savings compared to TLS)</div></th>
+			(30 times less without TLS)</div></th>
 	<th><div align="center">
 			Security provided by Telefónica's network <br>
-			(50% savings compared to MQTT + TLS)</div></th>
+			(50 times less than MQTT+TLS)</div></th>
   </tr>
 </table>
 
