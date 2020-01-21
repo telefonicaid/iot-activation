@@ -45,7 +45,8 @@ def get_info_from_ip(url, certificate, key, ip_address, apn):
     url_api = url + KITE_API_IP
     url_api = url_api % ip_address
     url_api = url_api + "&" + KITE_API_APN
-    url_api = url_api % apn
+    apn_low = apn.lower()
+    url_api = url_api % apn_low
     kite_response = requests.get(url_api, cert=(certificate, key), verify=False)
 
     return kite_response
