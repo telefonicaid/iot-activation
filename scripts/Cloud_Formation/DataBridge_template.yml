@@ -2,6 +2,7 @@ Parameters:
   KeyName:
     Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
     Type: 'AWS::EC2::KeyPair::KeyName'
+    Default: IPsec
     ConstraintDescription: must be the name of an existing EC2 KeyPair.
   InstanceType:
     Description: DataBridge EC2 instance type
@@ -36,13 +37,13 @@ Parameters:
     Default: m2m.movistar.es
     Type: String
   Cifrador3IpAddress:
-    Description: Telefónica Encrypter IP Address.
+    Description: Telefonica Encrypter IP Address.
     Default: 213.0.185.6
     Type: String
     AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})
     ConstraintDescription: must be a valid IP address of the form x.x.x.x.
   Cifrador4IpAddress:
-    Description: Telefónica Encrypter IP Address.
+    Description: Telefonica Encrypter IP Address.
     Default: 213.0.185.8
     Type: String
     AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})
@@ -107,6 +108,18 @@ Parameters:
     Type: String
     AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\/(\d{1,2})
     ConstraintDescription: must be a valid CidrBlock of the form x.x.x.x/xx.
+  DNSIpAddressA:
+    Description: DNS server address for IPsec domains.
+    Default: 10.0.1.100
+    Type: String
+    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})
+    ConstraintDescription: must be a valid IP address of the form x.x.x.x.
+  DNSIpAddressC:
+    Description: DNS server address for IPsec domains.
+    Default: 10.0.3.100
+    Type: String
+    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})
+    ConstraintDescription: must be a valid IP address of the form x.x.x.x.
 
 Conditions: # Checks to see if Conditional Values are True
   ReceptionCoAP: !Equals [ !Ref EnableCoAP, True]
@@ -315,18 +328,35 @@ Resources:
         - IpProtocol: tcp
           FromPort: 5000
           ToPort: 5000
-          CidrIp: !Ref DevicesCidrBlock
+          CidrIp: 0.0.0.0/0
         - IpProtocol: tcp
           FromPort: 22
           ToPort: 22
           CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: DataBridgeSG
+    DependsOn:
+      - DataBridgeSubNetA
+      - DataBridgeSubNetB
+      - DataBridgeSubNetC
+  DataBridgeSGicmp:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      VpcId: !Ref DataBridgeVPC
+      GroupDescription: Security Group for EC2 Data Bridge test instance
+      SecurityGroupIngress:
         - IpProtocol: icmp
           CidrIp: 0.0.0.0/0
           FromPort: -1
           ToPort: -1
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
-          Value: DataBridgeSG
+          Value: DataBridgeSGicmp
     DependsOn:
       - DataBridgeSubNetA
       - DataBridgeSubNetB
@@ -353,12 +383,30 @@ Resources:
     Properties:
       Roles:
        - !Ref DataBridgeEC2Role
+  DataBridgeEC2test:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      KeyName: !Ref KeyName
+      ImageId: ami-0713f98de93617bb4
+      InstanceType: !Ref InstanceType
+      IamInstanceProfile: !Ref DataBridgeEC2Profile
+      NetworkInterfaces:
+        - SubnetId: !Ref DataBridgeSubNetA
+          AssociatePublicIpAddress: 'true'
+          DeviceIndex: 0
+          GroupSet:
+            - !Ref DataBridgeSGicmp
+      Tags:
+        - Key: Name
+          Value: DataBridgeEC2test
+    DependsOn:
+      - DataBridgeEC2Role
   DataBridgeEC2:
-    Type: 'AWS::AutoScaling::LaunchConfiguration' #'AWS::EC2::Instance'
+    Type: 'AWS::AutoScaling::LaunchConfiguration'
     Properties:
       LaunchConfigurationName: DataBridgeLaunchConfigurationEC2
       KeyName: !Ref KeyName
-      ImageId: ami-028188d9b49b32a80
+      ImageId: ami-0713f98de93617bb4
       InstanceType: !Ref InstanceType
       IamInstanceProfile: !Ref DataBridgeEC2Profile
       AssociatePublicIpAddress: 'true'
@@ -388,12 +436,14 @@ Resources:
             Content-Disposition: attachment; filename="userdata.txt"
             
             #!/bin/bash
-            yum update -y
+            sudo yum update -y
             sudo yum -y install python-pip
-            wget https://raw.githubusercontent.com/telefonicaid/iot-activation/master/scripts/Data_Bridge/Data_Bridge.zip -O /home/ec2-user/Data_Bridge.zip
-            unzip /home/ec2-user/Data_Bridge.zip -d /home/ec2-user/Data_Bridge
-            cd /home/ec2-user/Data_Bridge/
-            pip install -r requirements.txt
+            wget https://github.com/telefonicaid/iot-activation/raw/master/scripts/Data_Bridge/Data_Bridge.zip -O /home/ec2-user/Data_Bridge.zip
+            unzip /home/ec2-user/Data_Bridge.zip -d /usr/local/bin/Data_Bridge
+            sudo chmod -R 777 /usr/local/bin/Data_Bridge
+            sudo cp /usr/local/bin/Data_Bridge/data-bridge.service /etc/systemd/system/data-bridge.service
+            cd /usr/local/bin/Data_Bridge
+            sudo pip install -r requirements.txt
             echo "cloud: AWS" > config/Configuration_cloud.yaml
             echo "certificate:" ${KiteCertificateParameterStore} >> config/Configuration_cloud.yaml
             echo "private_key:" ${KiteKeyParameterStore} >> config/Configuration_cloud.yaml
@@ -401,7 +451,9 @@ Resources:
             echo "apn:" ${SIMcardsAPN} >> config/Configuration_cloud.yaml
             echo "region:" ${AWS::Region} >> config/Configuration_cloud.yaml
             echo "enableCoAP:" ${EnableCoAP} >> config/Configuration_cloud.yaml
-            nohup python main.py &
+            sudo systemctl daemon-reload
+            sudo systemctl enable data-bridge.service
+            sudo systemctl start data-bridge.service
             --//
     DependsOn:
       - DataBridgeEC2Role
@@ -498,7 +550,43 @@ Resources:
         PredefinedMetricSpecification:
           PredefinedMetricType: ASGAverageCPUUtilization
         TargetValue: 10
+  DataBridgeSGdns:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      VpcId: !Ref DataBridgeVPC
+      GroupDescription: Security Group for DNS server
+      SecurityGroupIngress:
+        - IpProtocol: udp
+          FromPort: 53
+          ToPort: 53
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: DataBridgeSGdns
+    DependsOn:
+      - DataBridgeSubNetA
+      - DataBridgeSubNetB
+      - DataBridgeSubNetC
+  DataBridgeRoute53Resolver:
+    Type: AWS::Route53Resolver::ResolverEndpoint
+    Properties: 
+      Direction: INBOUND
+      IpAddresses:  
+        -   Ip: !Ref DNSIpAddressA
+            SubnetId: !Ref DataBridgeSubNetA
+        -   Ip: !Ref DNSIpAddressC
+            SubnetId: !Ref DataBridgeSubNetC
+      Name: DataBridgeRoute53Resolver
+      SecurityGroupIds: 
+        - !Ref DataBridgeSGdns
+
 Outputs:
   DataBridgeDNS:
     Description: The DNS name for the load balancer
     Value: !GetAtt DataBridgeLoadBalancer.DNSName
+  DataBridgeUDPport:
+    Description: UDP Port
+    Value: 4114
+  DataBridgeCoAPport:
+    Description: CoAP Port
+    Value: 5683
