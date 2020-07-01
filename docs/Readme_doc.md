@@ -23,7 +23,7 @@ It may seem small, but the possibilities are immense!!
 ## IoT Activation Kit - Benefits
 
 
-- ** Connectivity:**
+- **Connectivity:**
 Receive your IoT Toolkit Modules and devices with Telefónica SIMs, along with 6 months free global connectivity to test and validate your IoT solution
 to try your solution with the new NB-IoT, LTE-M and 5G connectivity.
 
