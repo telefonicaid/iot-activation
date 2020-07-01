@@ -2,9 +2,9 @@
 
 ![logo](https://www.telefonica.com/telefonica-theme/images/dFront/modules/mod_footer/logo_telefonica_azul.png)
 
-# IoT Activation Programme <small>Beyond Connectivity</small>
+# Activation Programme #IoT <small>Beyond Connectivity</small>
 
-[Welcome to the RevoluIoTn](IoT_basic.md)
+[Welcome to the RevoluIoTn](Readme_doc.md)
 
 <!-- background image -->
 

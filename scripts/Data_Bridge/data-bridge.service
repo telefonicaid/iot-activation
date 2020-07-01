@@ -1,0 +1,19 @@
+# ***data-bridge***
+# /etc/systemd/system/data-bridge.service
+# data-bridge.service
+# journalctl -u  data-bridge.service
+# systemctl | grep data-bridge
+
+
+[Unit]
+Description=UDP Bridge to connect to the public clouds
+After=multi-user.target
+ 
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/Data_Bridge/main.py
+User=ec2-user
+WorkingDirectory=/usr/local/bin/Data_Bridge/
+Restart=always
+StandardOutput=syslog
+StandardError=syslog

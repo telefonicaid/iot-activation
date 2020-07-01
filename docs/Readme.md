@@ -193,7 +193,7 @@ We are developing a set of tools to do the hard work.
 		</a>
 	</th>
 	<th>
-		<a href="BP_Bootstraping.md" align="center">
+		<a href="BP_Bootstrapping.md" align="center">
 			<img src="pictures/portfolio/portfolio_bp_bootstraping.png"
 			width="350" height="225">
 		</a>

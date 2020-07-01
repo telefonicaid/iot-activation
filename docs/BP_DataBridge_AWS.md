@@ -225,6 +225,10 @@ In the new window that opens, fill the form with the template file.
 
 [Download the Data Bridge Cloudformation Template](https://raw.githubusercontent.com/telefonicaid/iot-activation/master/scripts/Cloud_Formation/DataBridge_template.yml)
 
+Region | Launch Template
+------------ | -------------
+**Europe (Irlanda)** (eu-west-1) | [![Launch the Data Bridge Stack into Irlanda with CloudFormation](pictures/miscellaneous/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/new?stackName=DataBridge&templateURL=https://databridgetemplate.s3-eu-west-1.amazonaws.com/DataBridge_template.yml)
+
 The following parameters appear by default with values, but the template allows you to edit the values to suit your needs:
 
 1. Choose a name for your Stack 
@@ -240,6 +244,7 @@ The following parameters appear by default with values, but the template allows 
 ![pic](pictures/AWS/AWS_Console_CloudFormation_StackDB_create_config2.png)
 ![pic](pictures/AWS/AWS_Console_CloudFormation_StackDB_create_config3.png)
 ![pic](pictures/AWS/AWS_Console_CloudFormation_StackDB_create_config4.png)
+![pic](pictures/AWS/AWS_Console_CloudFormation_StackDB_create_config5.png)
 
 Click **Next**. until the last step.
 

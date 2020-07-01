@@ -1,0 +1,166 @@
+﻿say
+say "***************** NBIoT configuration and testing - Band20"
+
+call zocsend "AT#REBOOT^M"
+call zocwait ("OK")
+call zocdelay 10
+
+say
+say "***************** Configuring the Band20"
+
+call zocsend "AT+CFUN=4^M"
+call zocwait ("OK")
+
+call zocsend "AT#BND=0,0,524288^M"
+call zocwait ("OK")
+
+call zocsend "AT#WS46=1^M"
+call zocwait ("OK")
+
+call zocsend "AT+CFUN=6^M"
+call zocwait ("OK")
+call zocdelay 7
+
+
+say
+say TIME("N")
+
+say
+say "***************** Connection"
+
+call zocsend "AT+CEREG=2^M"
+call zocwait ("OK")
+
+call zocsend "AT+CFUN=1^M"
+call zocwait ("OK")
+
+say
+say "***************** Configuring the APN and PLMN"
+
+call zocsend "AT+CGDCONT=1,^(22)IP^(22)^M"
+call zocwait ("OK")
+
+call zocsend "AT+COPS=0^M"
+call zocwait ("OK")
+
+say 
+say "***************** Waiting for connection notification"
+say "Connecting..." TIME("N")
+
+call ZocTimeout 240
+call zocwait ("+CEREG: 1")
+call zocdelay 0.2
+call ZocTimeout 50
+
+say
+say "Connected" TIME("N")
+say "***************** Connection established with NBIoT"
+
+call zocsend "AT+COPS?^M"
+call zocwait ("OK")
+
+call zocsend "AT+CGPADDR=1^M"
+call zocwait ("OK")
+
+
+call zocsend "AT+CEREG?^M"
+call zocwait ("OK")
+
+call zocsend "AT+CSQ^M"
+call zocwait ("OK")
+
+say
+say "****** Activate PSM T3412: 1 hour; T3324: 1min"
+
+call zocsend "AT+CPSMS=1,,,^(22)00100001^(22),^(22)00100001^(22)^M"
+call zocwait ("OK")
+
+call zocsend "AT+CPSMS?^M"
+call zocwait ("OK")
+
+say
+say "***************** UDP test"
+say
+
+--call zocsend "AT#SCFG=1,1^M"
+--call zocwait ("OK")
+
+call zocsend "AT#SGACT=1,1^M"
+call zocwait ("OK")
+
+call zocsend "AT#SD=1,1,0000,^(22)00.00.00.00^(22),0,1234,1^M"
+call zocwait ("OK")
+
+---------------------Send data--------------------
+call zocsend "AT#SSENDEXT=1,50^M"
+call zocwait (">")
+call zocsend "01234567890123456789012345678901234567890123456789"
+call zocwait ("OK")
+
+call zocsend "AT#SH=1^M"
+call zocwait ("OK")
+
+say
+say say TIME("N")
+say "****** Start Inactivity Timer (X sec)"
+
+call zocdelay 5
+call zocwait ("+CSCON: 0")
+
+say 
+say say TIME("N")
+say "****** Stop Inactivity Timer (X sec)"
+
+say 
+say say TIME("N")
+say "****** Start DRX (1 min)"
+
+call zocdelay 55
+call zocwait ("#PSMR: 1")
+
+say 
+say say TIME("N")
+say "****** In - PSM (59 min)"
+-- 59x60 = 3540
+call zocdelay 3530
+
+call zocwait ("#PSMR: 0")
+
+say
+say say TIME("N")
+say "****** Out - PSM"
+
+
+call zocsend "AT+COPS?^M"
+call zocwait ("OK")
+
+call zocsend "AT+CEREG?^M"
+call zocwait ("OK")
+
+call zocsend "AT+CGPADDR=1^M"
+call zocwait ("OK")
+
+say
+say "***************** UDP test"
+say
+
+--call zocsend "AT#SCFG=1,1^M"
+--call zocwait ("OK")
+
+--call zocsend "AT#SGACT=1,1^M"
+--call zocwait ("OK")
+
+call zocsend "AT#SD=1,1,0000,^(22)00.00.00.00^(22),0,1234,1^M"
+call zocwait ("OK")
+
+---------------------Send data--------------------
+call zocsend "AT#SSENDEXT=1,50^M"
+call zocwait (">")
+call zocsend "01234567890123456789012345678901234567890123456789"
+call zocwait ("OK")
+
+call zocsend "AT#SH=1^M"
+call zocwait ("OK")
+
+say
+say ""***************** End of the test"

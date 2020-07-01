@@ -1,0 +1,70 @@
+﻿say
+say "***************** LTE-M configuration and testing - Band20"
+
+call zocsend "AT#REBOOT^M"
+call zocwait ("OK")
+call zocdelay 10
+
+say
+say "***************** Configuring the Band20"
+
+call zocsend "AT+CFUN=4^M"
+call zocwait ("OK")
+
+call zocsend "AT#BND=0,0,524288^M"
+call zocwait ("OK")
+
+call zocsend "AT#WS46=0^M"
+call zocwait ("OK")
+
+call zocsend "AT+CFUN=6^M"
+call zocwait ("OK")
+call zocdelay 7
+
+
+say
+say TIME("N")
+
+say
+say "***************** Connection"
+
+call zocsend "AT+CEREG=2^M"
+call zocwait ("OK")
+
+call zocsend "AT+CFUN=1^M"
+call zocwait ("OK")
+
+say
+say "***************** Configuring the APN and PLMN"
+
+call zocsend "AT+CGDCONT=1,^(22)IP^(22)^M"
+call zocwait ("OK")
+
+call zocsend "AT+COPS=0^M"
+call zocwait ("OK")
+
+say 
+say "***************** Waiting for connection notification"
+say "Connecting..." TIME("N")
+
+call ZocTimeout 240
+call zocwait ("+CEREG: 1")
+call zocdelay 0.2
+call ZocTimeout 50
+
+say
+say "Connected" TIME("N")
+say "***************** Connection established with LTE-M"
+
+call zocsend "AT+COPS?^M"
+call zocwait ("OK")
+
+call zocsend "AT+CGPADDR=1^M"
+call zocwait ("OK")
+
+
+call zocsend "AT+CEREG?^M"
+call zocwait ("OK")
+
+call zocsend "AT+CSQ^M"
+call zocwait ("OK")

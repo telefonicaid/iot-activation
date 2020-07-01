@@ -165,6 +165,63 @@
 			"response": []
 		},
 		{
+			"name": "SIM usage",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{usuario_api_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{usuario_api_id}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json "
+					},
+					{
+						"key": "X-Api-Key",
+						"type": "text",
+						"value": "{{usuario_api_key}}"
+					}
+				],
+				"url": {
+					"raw": "https://www.easym2m.eu/api/v2/customer/consumptions/{{year}}/{{month}}/{{iccid}}/data/{{size}}/{{page}}/true",
+					"protocol": "https",
+					"host": [
+						"www",
+						"easym2m",
+						"eu"
+					],
+					"path": [
+						"api",
+						"v2",
+						"customer",
+						"consumptions",
+						"{{year}}",
+						"{{month}}",
+						"{{iccid}}",
+						"data",
+						"{{size}}",
+						"{{page}}",
+						"true"
+					]
+				},
+				"description": "This call is used to show usage for different services during a predetermined period of time (year, month). The result is listed in descending order by date."
+			},
+			"response": []
+		},
+		{
 			"name": "Balance total",
 			"request": {
 				"auth": {
@@ -215,7 +272,7 @@
 			"response": []
 		},
 		{
-			"name": "Balance of one SIM",
+			"name": "Balance of one SIM - Show",
 			"request": {
 				"auth": {
 					"type": "basic",
@@ -264,6 +321,481 @@
 				"description": "Show the balance of one SIM card"
 			},
 			"response": []
+		},
+		{
+			"name": "Balance of one SIM - Add",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{usuario_api_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{usuario_api_id}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json "
+					},
+					{
+						"key": "X-Api-Key",
+						"type": "text",
+						"value": "{{usuario_api_key}}"
+					}
+				],
+				"url": {
+					"raw": "https://www.easym2m.eu/api/v2/customer/balance/{{iccid}}/{{quantity}}",
+					"protocol": "https",
+					"host": [
+						"www",
+						"easym2m",
+						"eu"
+					],
+					"path": [
+						"api",
+						"v2",
+						"customer",
+						"balance",
+						"{{iccid}}",
+						"{{quantity}}"
+					]
+				},
+				"description": "This call adds balance to a SIM card, subtracting the specified amount from the main customer acount balance. The amount added to a SIM card can never be more than the balance in the customer's main account."
+			},
+			"response": []
+		},
+		{
+			"name": "Balance of one SIM - Delete",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{usuario_api_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{usuario_api_id}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json "
+					},
+					{
+						"key": "X-Api-Key",
+						"type": "text",
+						"value": "{{usuario_api_key}}"
+					}
+				],
+				"url": {
+					"raw": "https://www.easym2m.eu/api/v2/customer/balance/{{iccid}}",
+					"protocol": "https",
+					"host": [
+						"www",
+						"easym2m",
+						"eu"
+					],
+					"path": [
+						"api",
+						"v2",
+						"customer",
+						"balance",
+						"{{iccid}}"
+					]
+				},
+				"description": "This call removes part of the balance on the SIM card and returns it back to the customer account, and changes the SIM status to 'deactivated'. The amount returned to the customer balance depends on the usage during the month and the number of days past since the first day of the month. The total retuned to the account is calculated based on the following formula: (actual balance on the SIM card) - [(balance used by the SIM card since the first day of the month) + (prorated MRC)]. Warning that using this call twice on the same day will repeat the operation, resulting in another deduction of the balance."
+			},
+			"response": []
+		},
+		{
+			"name": "Alarms - List of alarms",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{usuario_api_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{usuario_api_id}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json "
+					},
+					{
+						"key": "X-Api-Key",
+						"type": "text",
+						"value": "{{usuario_api_key}}"
+					}
+				],
+				"url": {
+					"raw": "https://www.easym2m.eu/api/v2/customer/alarm/{{size}}/{{page}}",
+					"protocol": "https",
+					"host": [
+						"www",
+						"easym2m",
+						"eu"
+					],
+					"path": [
+						"api",
+						"v2",
+						"customer",
+						"alarm",
+						"{{size}}",
+						"{{page}}"
+					]
+				},
+				"description": "Shows a paginated list of alarms created by the user either using the web interface or their own API."
+			},
+			"response": []
+		},
+		{
+			"name": "Alarms - Show alarm",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{usuario_api_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{usuario_api_id}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json "
+					},
+					{
+						"key": "X-Api-Key",
+						"type": "text",
+						"value": "{{usuario_api_key}}"
+					}
+				],
+				"url": {
+					"raw": "https://www.easym2m.eu/api/v2/customer/alarm/{{alarmid}}",
+					"protocol": "https",
+					"host": [
+						"www",
+						"easym2m",
+						"eu"
+					],
+					"path": [
+						"api",
+						"v2",
+						"customer",
+						"alarm",
+						"{{alarmid}}"
+					]
+				},
+				"description": "Shows detailed information of the specific alarm by its name."
+			},
+			"response": []
+		},
+		{
+			"name": "Alarms - Create alarm",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{usuario_api_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{usuario_api_id}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-Api-Key",
+						"type": "text",
+						"value": "{{usuario_api_key}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\" : \"Test1\",\r\n  \"description\" : \"\",\r\n  \"dailyVoiceThreshold50\": 0,\r\n  \"dailyVoiceThreshold60\": 0,\r\n  \"dailyVoiceThreshold80\": 0,\r\n  \"dailyVoiceThreshold90\": 0,\r\n  \"dailyVoiceThreshold100\": 0,\r\n  \"dailySmsThreshold50\": 0,\r\n  \"dailySmsThreshold60\": 0,\r\n  \"dailySmsThreshold80\": 0,\r\n  \"dailySmsThreshold90\": 0,\r\n  \"dailySmsThreshold100\": 0,\r\n  \"dailyDataThreshold50\": 0,\r\n  \"dailyDataThreshold60\": 0,\r\n  \"dailyDataThreshold80\": 0,\r\n  \"dailyDataThreshold90\": 0,\r\n  \"dailyDataThreshold100\": 0,\r\n  \"monthlyVoiceThreshold50\": 0,\r\n  \"monthlyVoiceThreshold60\": 0,\r\n  \"monthlyVoiceThreshold80\": 0,\r\n  \"monthlyVoiceThreshold90\": 0,\r\n  \"monthlyVoiceThreshold100\": 0,\r\n  \"monthlySmsThreshold50\": 0,\r\n  \"monthlySmsThreshold60\": 0,\r\n  \"monthlySmsThreshold80\": 0,\r\n  \"monthlySmsThreshold90\": 0,\r\n  \"monthlySmsThreshold100\": 0,\r\n  \"monthlyDataThreshold50\": 0,\r\n  \"monthlyDataThreshold60\": 0,\r\n  \"monthlyDataThreshold80\": 0,\r\n  \"monthlyDataThreshold90\": 0,\r\n  \"monthlyDataThreshold100\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://www.easym2m.eu/api/v2/customer/alarm",
+					"protocol": "https",
+					"host": [
+						"www",
+						"easym2m",
+						"eu"
+					],
+					"path": [
+						"api",
+						"v2",
+						"customer",
+						"alarm"
+					]
+				},
+				"description": "Create a new alarm by establishing different options given the following values:\n\t- 0: Do nothing.\n\t1: Notify via email.\n\t2: Deactivate. The options that do not go in the body of the message should have a value of 0.\n\nThe assignment of SIMs to this new alarm should be done using the update SIM card call using the alarm ID returned in the call 'create alarm' in the attribute idAlarm."
+			},
+			"response": []
+		},
+		{
+			"name": "Alarms - Update alarm",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{usuario_api_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{usuario_api_id}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json "
+					},
+					{
+						"key": "X-Api-Key",
+						"type": "text",
+						"value": "{{usuario_api_key}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"dailyVoiceThreshold50\": 0,\r\n  \"dailyVoiceThreshold60\": 0,\r\n  \"dailyVoiceThreshold80\": 0,\r\n  \"dailyVoiceThreshold90\": 0,\r\n  \"dailyVoiceThreshold100\": 0,\r\n  \"dailySmsThreshold50\": 0,\r\n  \"dailySmsThreshold60\": 0,\r\n  \"dailySmsThreshold80\": 0,\r\n  \"dailySmsThreshold90\": 0,\r\n  \"dailySmsThreshold100\": 0,\r\n  \"dailyDataThreshold50\": 0,\r\n  \"dailyDataThreshold60\": 0,\r\n  \"dailyDataThreshold80\": 0,\r\n  \"dailyDataThreshold90\": 0,\r\n  \"dailyDataThreshold100\": 0,\r\n  \"monthlyVoiceThreshold50\": 0,\r\n  \"monthlyVoiceThreshold60\": 0,\r\n  \"monthlyVoiceThreshold80\": 0,\r\n  \"monthlyVoiceThreshold90\": 0,\r\n  \"monthlyVoiceThreshold100\": 0,\r\n  \"monthlySmsThreshold50\": 0,\r\n  \"monthlySmsThreshold60\": 0,\r\n  \"monthlySmsThreshold80\": 0,\r\n  \"monthlySmsThreshold90\": 0,\r\n  \"monthlySmsThreshold100\": 0,\r\n  \"monthlyDataThreshold50\": 0,\r\n  \"monthlyDataThreshold60\": 0,\r\n  \"monthlyDataThreshold80\": 0,\r\n  \"monthlyDataThreshold90\": 0,\r\n  \"monthlyDataThreshold100\": 0\r\n}"
+				},
+				"url": {
+					"raw": "https://www.easym2m.eu/api/v2/customer/alarm/{{alarmid}}",
+					"protocol": "https",
+					"host": [
+						"www",
+						"easym2m",
+						"eu"
+					],
+					"path": [
+						"api",
+						"v2",
+						"customer",
+						"alarm",
+						"{{alarmid}}"
+					]
+				},
+				"description": "Modify an existing alarm, assigning new values for specific actions:\n\t0: Do nothing.\n\t1: Notify via email.\n\t2: Deactivate."
+			},
+			"response": []
+		},
+		{
+			"name": "Alarms - Delete alarm",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{usuario_api_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{usuario_api_id}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json "
+					},
+					{
+						"key": "X-Api-Key",
+						"type": "text",
+						"value": "{{usuario_api_key}}"
+					}
+				],
+				"url": {
+					"raw": "https://www.easym2m.eu/api/v2/customer/alarm/{{alarmid}}",
+					"protocol": "https",
+					"host": [
+						"www",
+						"easym2m",
+						"eu"
+					],
+					"path": [
+						"api",
+						"v2",
+						"customer",
+						"alarm",
+						"{{alarmid}}"
+					]
+				},
+				"description": "Delete a previously created alarm. All SIM cards that were assigned to this alarm will have the attribute 'idAlarm' changed to the value 'null'."
+			},
+			"response": []
+		},
+		{
+			"name": "Invoices",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{usuario_api_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{usuario_api_id}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json ",
+						"type": "text"
+					},
+					{
+						"key": "X-Api-Key",
+						"value": "{{usuario_api_key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://www.easym2m.eu/api/v2/customer/balance",
+					"protocol": "https",
+					"host": [
+						"www",
+						"easym2m",
+						"eu"
+					],
+					"path": [
+						"api",
+						"v2",
+						"customer",
+						"balance"
+					]
+				},
+				"description": "Show details for a batch of invoices."
+			},
+			"response": []
+		},
+		{
+			"name": "Statistics",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{usuario_api_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{usuario_api_id}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json "
+					},
+					{
+						"key": "X-Api-Key",
+						"type": "text",
+						"value": "{{usuario_api_key}}"
+					}
+				],
+				"url": {
+					"raw": "https://www.easym2m.eu/api/v2/customer/stats/{{year}}/{{month}}/{{iccid}}",
+					"protocol": "https",
+					"host": [
+						"www",
+						"easym2m",
+						"eu"
+					],
+					"path": [
+						"api",
+						"v2",
+						"customer",
+						"stats",
+						"{{year}}",
+						"{{month}}",
+						"{{iccid}}"
+					]
+				},
+				"description": "Show statistics for usage of the different services during a determined period or, if desired, show the information for only one specific SIM card. The data is an approximate estimation of the real usage, the exact information is available once the billing period has ended (approximately the fifth day of the month)."
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -290,22 +822,23 @@
 	],
 	"variable": [
 		{
-			"id": "b4772da5-7c8a-4ad5-ba51-e32df672e486",
+			"id": "64860bd1-2185-4981-a901-d299f9b18abb",
 			"key": "usuario_api_key",
-			"value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+			"value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 			"type": "string"
 		},
 		{
-			"id": "3e7c5bdf-4dc9-42c4-991f-bc6c40601278",
+			"id": "50823922-9c0d-4345-958c-ab650ecfa27c",
 			"key": "usuario_api_id",
-			"value": "xxxxxxxxxxxxxxxxxx.easym2m.eu",
+			"value": "xxxxxxxxxxxxxxx.easym2m.eu",
 			"type": "string"
 		},
 		{
-			"id": "2749c34f-18fc-420d-bac0-845fa338bbfa",
+			"id": "75e4d004-cf32-4f5b-8155-891d08aa24e5",
 			"key": "usuario_api_password",
 			"value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 			"type": "string"
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Serverless Specification template describing your function.
+Resources:
+  Devicemanagerlambdaupdate:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: .
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::976777021492:role/Bootstrapping_lambda_registration_role'
+      Events:
+        IoTRule1:
+          Type: IoTRule
+          Properties:
+            Sql: >
+              SELECT *, topic(3) as device, topic(5) as level FROM
+              'dm/device/+/update/#'

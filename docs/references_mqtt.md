@@ -14,6 +14,11 @@ The design principles are to minimise network bandwidth and device resource requ
 also attempting to ensure reliability and some degree of assurance of delivery.
 These principles also turn out to make the protocol ideal for Internet of Things.
 
+<p align="center"> 
+    <img src="pictures/schematics/mqtt_overview.png" width="640" height="360"> 
+</p>
+
+
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
 ## Overview

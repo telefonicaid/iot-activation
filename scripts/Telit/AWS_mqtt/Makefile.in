@@ -1,0 +1,4 @@
+CPPFLAGS += -I azx/hdr
+OBJS += $(patsubst %.c,%.o,$(wildcard azx/src/*.c))
+CPPFLAGS += -Wall -Werror -Wextra -Wunreachable-code -Wno-missing-field-initializers -Wno-format
+HEAP=0x20000
