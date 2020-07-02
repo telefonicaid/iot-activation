@@ -8,7 +8,7 @@
 ![pic](pictures/Wayra/Wayra_Offers_reg.png)
 
 3. Fill out the form:
-   - **a)** Open Future initiative: IoT Activation programme
+   - **a)** Open Future initiative:  Activation Programme #IoT #BlockChain #AI
    - **b)** Your startup: select your startup from the dropdown
    - **c)** Email, username, password, etc.
    - **d)** Click on Submit

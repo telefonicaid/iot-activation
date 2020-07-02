@@ -114,7 +114,8 @@ Send us an email to **contact@activationprogramme.telefonica.com**, telling us w
 
 ![pick](pictures/TheThinx/TheThinx_Madrid.png)
 
-When we receive your application by email, we will send you a **.zip** file with the required  documents:
+If you are interested in attending to TheThinx lab, please contact us requesting the **.zip** with all the documentation for TheThinx Madrid. 
+That .zip will include:
 
 1. **20180307_Thinx Open Lab Introduction_v03.pdf**
 2. **Mobile IoT Lab Quick User Guide.docx**
@@ -162,7 +163,8 @@ On the day of the visit, do not forget to bring the documentation of the attende
 
 ![pick](pictures/TheThinx/TheThinx_Barcelona.png)
 
-When we receive your application by email, we will send you a **.zip** file with the required  documents:
+If you are interested in attending to TheThinx lab, please contact us requesting the **.zip** with all the documentation for TheThinx Barcelona.
+That .zip will include:
 
 1. **The ThinX 5G Barcelona - Lab presentation.pdf**
 2. **The ThinX 5G Barcelona - User Guide.pdf**

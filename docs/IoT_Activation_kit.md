@@ -103,7 +103,7 @@ Go on to find out how [to apply](IoT_Activation_TheThinx.md)
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
-# first steps
+# First Steps
 
 Now that you know all the advantages we offer within the IoT Activation Program.
 Click here for [your first steps in the program](IoT_Activation_firststeps.md)

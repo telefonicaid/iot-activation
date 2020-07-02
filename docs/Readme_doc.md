@@ -1,4 +1,4 @@
-# Welcome to IoT Activation of Telefónica
+# Welcome to Telefónica Activation Programme #IoT 
 
 We welcome you to The IoT World.
 These tutorials are designed to assist you in your beginnings and resolve any doubts that may arise you.
@@ -20,12 +20,14 @@ and all the advantages of cloud computing.
 It may seem small, but the possibilities are immense!!
 
 
-## IoT Activation Kit - Benefits
+## IoT Toolkit – Benefits
 
-
-- **Connectivity:**
 Receive your IoT Toolkit Modules and devices with Telefónica SIMs, along with 6 months free global connectivity to test and validate your IoT solution
 to try your solution with the new NB-IoT, LTE-M and 5G connectivity.
+
+- **Connectivity:** 6 months free connectivity to test and validate your solution.
+
+- **Devices:** by requesting LPWA connectivity, you will receive an IoT module provided by Telit: [Bravo Board](Telit_Bravo.md)
 
 - **Access to the IoT Connectivity Platform:**
 Manage comprehensively the cellular connectivity of your IoT devices, such as inventory, expense control, alarms, 
@@ -42,6 +44,6 @@ By participating in the IoT Activation Programme you can get free credits on dif
 You can ask us any technical question by writing to the following email: **contact@activationprogramme.telefonica.com**
 
 
-# Your first workbench
+# Your First Workbench
 
 [Start now](IoT_Activation_kit.md)
