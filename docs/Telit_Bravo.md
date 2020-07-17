@@ -74,7 +74,7 @@ https://www.telit.com/developer-zone/telit-bravo-evaluation-kit/
 
 ## Tutorials
 - [Use your module as a modem](Telit_Bravo_modem.md)
-- [Connect with MQTT](Telit_Bravo_mqtt.md)
+- [Connect with MQTT](Telit_Bravo_mqtt_aws.md)
 
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)

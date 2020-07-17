@@ -1,4 +1,3 @@
-/*Copyright (C) 2020 Telit Communications S.p.A. Italy - All Rights Reserved.*/
 /*    See LICENSE file in the project root for full license information.     */
 
 /**
@@ -8,18 +7,6 @@
   @brief
     The file contains the MQTT utilities and logic
 
-  @details
-
-  @version
-    1.0.1
-  @note
-
-
-  @author
-
-
-  @date
-    09/04/2018
 */
 /* Include files ============================================================*/
 
