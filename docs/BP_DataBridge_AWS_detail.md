@@ -14,7 +14,7 @@
   * [Launch it](#launch-it)
   
 
-# Data Bridge behind the cenes
+# Data Bridge behind the scenes
 Adapting the Bridge to your needs may be necessary. 
 In this case you will need to know each one of the elements that compose it.
 

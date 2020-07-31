@@ -276,7 +276,7 @@ AT+M2M=4,10
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
-## troubleshooting
+## Troubleshooting
 
 Please, any new question contact us **contact@activationprogramme.telefonica.com**
 
@@ -294,7 +294,7 @@ A0B.810000
 OK
 ```
 Download the tool from our 
-[repository](https://github.com/telefonicaid/iot-activation/tree/master/scripts/Telit/resources/fw)
+[repository](https://github.com/telefonicaid/iot-activation/raw/master/scripts/Telit/resources/fw/ME910C1_E2_30.00.705_ME910-M2M-GPRS-TATP_TFI.zip)
 or send us an email to **contact@activationprogramme.telefonica.com**
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
@@ -308,13 +308,13 @@ or send us an email to **contact@activationprogramme.telefonica.com**
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 
-### trace_tools
+### Trace Tools
 
 Sometimes when a problem gets complicated it is unexpected you will need to resort to obtaining a more detailed log.
 
 To do this you must connect the board to your computer through the debug port, and use a tool that allows you to obtain a file with the traces
 
-Download the tool from our [repository](https://github.com/telefonicaid/iot-activation/tree/master/scripts/Telit/resources/tracetool)
+Download the tool from our [repository](https://github.com/telefonicaid/iot-activation/raw/master/scripts/Telit/resources/tracetool/trace_tools.zip)
 or send us an email to **contact@activationprogramme.telefonica.com**
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
