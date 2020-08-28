@@ -148,7 +148,7 @@ Here is a list of scripts ready for you to start your connection test in a faste
 
 - [NB-IoT Band 20](https://github.com/telefonicaid/iot-activation/tree/master/scripts/Telit/ME910C1_NBIoT.zrx)
 - [NB-IoT Band 20 UDP](https://github.com/telefonicaid/iot-activation/tree/master/scripts/Telit/ME910C1_NBIoT_UDPTX.zrx)
-- [NB-IoT Band 20 with PSM] (https://github.com/telefonicaid/iot-activation/tree/master/scripts/Telit/ME910C1_NBIoT_PSM1hour50bytes.zrx)
+- [NB-IoT Band 20 with PSM](https://github.com/telefonicaid/iot-activation/tree/master/scripts/Telit/ME910C1_NBIoT_PSM1hour50bytes.zrx)
 
 - [LTE-M Band 20](https://github.com/telefonicaid/iot-activation/tree/master/scripts/Telit/ME910C1_LTEM.zrx)
 - [LTE-M Band 20 UDP](https://github.com/telefonicaid/iot-activation/tree/master/scripts/Telit/ME910C1_LTEM_UDPTX.zrx)

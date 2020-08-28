@@ -38,12 +38,34 @@ automatic business rules and reporting, access via API,
 In this space, you can test and validate your IoT solutions, especially for new connectivity (NB-IoT, LTE-M and 5G).
 
 - **Wayra Offers:**
-By participating in the IoT Activation Programme you can get free credits on different platforms such as: AWS, Google cloud ... applying to [Wayra's offers](Wayra_Offers.md)
+By participating in the IoT Activation Programme you can get free credits on different platforms such as: AWS, Google Cloud ... applying to [Wayra's offers](Wayra_Offers.md)
 
 - **Mentoring:**
-You can ask us any technical question by writing to the following email: **contact@activationprogramme.telefonica.com**
+For technical support, contact us in the following email: **contact@activationprogramme.telefonica.com**
 
 
-# Your First Workbench
+# Select your Country
 
-[Start now](IoT_Activation_kit.md)
+
+<table>
+  <tr>
+	<th>
+		<a href="#/IoT_Activation_kit_eu.md" align="center">
+			<img src="pictures/miscellaneous/Country_Germany.jpg"
+			width="250" height="250">
+		</a>
+	</th>
+	<th>
+		<a href="#/IoT_Activation_kit.md" align="center">
+			<img src="pictures/miscellaneous/Country_Spain.jpg"
+			width="250" height="250">
+		</a>
+	</th>
+	<th>
+		<a href="#/IoT_Activation_kit_eu.md" align="center">
+			<img src="pictures/miscellaneous/Country_UK.jpg"
+			width="250" height="250">
+		</a>
+	</th>
+  </tr>
+</table>
