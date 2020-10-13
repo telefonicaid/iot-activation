@@ -54,7 +54,7 @@
 #define MQTT_BROKER_PORT_SSL    (UINT32)8883
 
 /* Client Configuration */
-#define CLIENT_ID "TelitTest"
+#define CLIENT_ID "Bravo_Telit"
 #define CLIENT_USERNAME ""
 #define CLIENT_PASSWORD ""
 
@@ -64,14 +64,14 @@
 #define CLIENT_KEEPALIVE_SEC 60 /*KeepAlive timeout*/
 
 
-#define SUB_TOPIC "$aws/things/xxx/shadow/update/delta"
-#define PUB_TOPIC "$aws/things/xxx/shadow/update"
+#define SUB_TOPIC "$aws/things/xxxxxx/shadow/update/delta"
+#define PUB_TOPIC "$aws/things/xxxxxx/shadow/update"
 
 
 #define PUB_MESSAGE "Hello from M2MB MQTT!"
 
 /* PDP configuration */
-#define APN      "xxxx.xxx"
+#define APN      "xxxxx.xxx"
 #define PDP_CTX   1
 
 UINT8 CA_BUF[2048];
@@ -628,10 +628,11 @@ INT32 MQTT_Task( INT32 type, INT32 param1, INT32 param2 )
         return -1;
       }
     }
-
-    /* Wait for pdp activation event to occur (released in PDPCallback function) */
-    m2mb_os_ev_get( net_pdp_evHandle, EV_PDP_BIT, M2MB_OS_EV_GET_ANY_AND_CLEAR, &curEvBits,
-        M2MB_OS_WAIT_FOREVER );
+    else{
+        /* Wait for pdp activation event to occur (released in PDPCallback function) */
+        m2mb_os_ev_get( net_pdp_evHandle, EV_PDP_BIT, M2MB_OS_EV_GET_ANY_AND_CLEAR, &curEvBits,
+            M2MB_OS_WAIT_FOREVER );
+    }
 
     AZX_LOG_INFO( "\r\nConnecting to broker <%s>:%u...\r\n", MQTT_BROKER_ADDRESS, MQTT_BROKER_PORT_SSL );
 
