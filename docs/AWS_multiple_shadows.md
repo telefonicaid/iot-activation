@@ -78,46 +78,34 @@ sudo nano /etc/mosquitto/conf.d/bridge.conf
 ```
 
 4. First, edit the following by replacing the value of the 'address' with the value of your AWS IoT Core ATS endpoint, set the thing name in the 'topic' variable and fill the name of the certificate and private key. Second, copy the content and paste it in the nano editor. Finally, save the file by using the following key combinations 'ctrl + o', 'enter', then 'ctrl + x'.
-```
+```bash
 # ============================================================
 # Bridge to AWS IOT
-# ============================================================
-
+# ===========================================================
 connection awsiot
-
 #<Paste your AWS IoT Core ATS endpoint retrieved from the AWS CLI in the form of xxxxxxxxxxxxxxx-ats.iot.<region>.amazonaws.com:8883
-
 address xxxxxxxxxxxxxxx-ats.iot.<region>.amazonaws.com:8883
-
 # Specifying which topics are bridged and in what fashion
 topic # out 0 "" $aws/things/<thing>/shadow/name/
-
 # Setting protocol version explicitly
 bridge_protocol_version mqttv311
 bridge_insecure false
-
-# Bridge connection name and MQTT client Id, enabling the connection automatically when the broker starts.
+#Bridge connection name and MQTT client Id, enabling the connection automatically when the broker starts.
 cleansession true
 clientid bridgeawsiot
 start_type automatic
 notifications false
 log_type all
-
 # ============================================================
 # Certificate based SSL/TLS support
 # ============================================================
-
-#Path to the rootCA
+# Path to the rootCA
 bridge_cafile /etc/mosquitto/certs/AmazonRootCA1.pem
-
 # Path to the PEM encoded client certificate
 bridge_certfile /etc/mosquitto/certs/xxxxx-certificate.pem.crt
-
 # Path to the PEM encoded client private key
 bridge_keyfile /etc/mosquitto/certs/xxxxx-private.pem.key
-
 #END of bridge.conf
-
 ```
 
 5. Now you can restart the Mosquitto broker to load this new configuration.
@@ -160,5 +148,3 @@ mosquitto_pub -h <MQTT broker host/IP> -p 1883 -q 0 -d -t sensor2/update  -i loc
 ![pic](pictures/AWS/AWS_updating_shadows.png)
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
-
-
