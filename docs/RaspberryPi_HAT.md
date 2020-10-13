@@ -12,12 +12,12 @@
   * [Execute your project and enjoy!!](#execute-your-project-and-enjoy)
   * [Create your Dashboards](#create-your-dashboards)
 
-  
+
 # Raspberry: Sense-HAT to AWS-IoT
 For this project, we will sample the different sensors included on the board and publish their values in AWS.
 You will also be able to send different commands from the MQTT.fx interface that will be received on your Raspberry.
 
-The Sense HAT will take measurements of your sensors by publishing them in the shadow, 
+The Sense HAT will take measurements of your sensors by publishing them in the shadow,
 showing them also in the LED display.
 
 <p align="center">      
@@ -28,15 +28,15 @@ showing them also in the LED display.
 
 ## Getting started with the Sense HAT
 
-The Sense HAT is an add-on board for the Raspberry Pi. 
-The board allows you to make measurements of temperature, humidity, pressure, and orientation 
+The Sense HAT is an add-on board for the Raspberry Pi.
+The board allows you to make measurements of temperature, humidity, pressure, and orientation
 and display information using the LED matrix.
 
-Installing and using your Sense HAT is easy, 
+Installing and using your Sense HAT is easy,
 just follow our tutorial below to get started!
 <p align="center">
       <img  title="Raspi_SenseHAT" src="pictures/Raspberry/Raspi_SenseHAT.gif"
-	  href="RaspberryPi_HAT.md" 
+	  href="RaspberryPi_HAT.md"
 	  width="400" height="300">
 </p>
 
@@ -62,8 +62,8 @@ just follow our tutorial below to get started!
 
 If you have successfully completed the Raspberry Starterkit tutorial, all the necessary software is already updated.
 
-First of all, you should know that you are going to manage your Sense HAT using Python. 
-If you have any questions about how to run your code, you do not forget to visit our 
+First of all, you should know that you are going to manage your Sense HAT using Python.
+If you have any questions about how to run your code, you do not forget to visit our
 [tutorial](RaspberryPi_Python.md) for Raspberry or click on the image
 
 <p align="center">
@@ -111,7 +111,7 @@ copy the content into a file and call it for example **AmazonRootCA1.pem**
 
 9. Don't forget to save these files, you need them to establish the connection
 
-10. Returns to the previous window and **Activate** 
+10. Returns to the previous window and **Activate**
 
 11. Select **Attach a policy**
 
@@ -123,7 +123,7 @@ copy the content into a file and call it for example **AmazonRootCA1.pem**
 
 13. Open the AWS IoT console again https://console.aws.amazon.com/iot
 
-14. In the left navigation pane, choose **Secure**, and then choose **Policies**. 
+14. In the left navigation pane, choose **Secure**, and then choose **Policies**.
 
 15. Select **Create a Policy**
 
@@ -132,7 +132,7 @@ copy the content into a file and call it for example **AmazonRootCA1.pem**
 16. Enter a Name for the policy:
     - **Action**        enter **iot:***
     - **Resource ARN**  enter **\***
-    - **Effect**        choose **Allow** 
+    - **Effect**        choose **Allow**
 Select Create. This policy allows your Raspberry Pi to publish messages to AWS IoT.
 
 ![pic](pictures/AWS/AWS_Console_Secure_Policies_Create.png)
@@ -147,7 +147,7 @@ It is the Broker Address for MQTT connection.
 
 ![pic](pictures/AWS/AWS_Console_Manage_Things_Details_Interact.png)
 
-19. Now select **Security**, and choose the certificate that you created earlier. 
+19. Now select **Security**, and choose the certificate that you created earlier.
 
 ![pic](pictures/AWS/AWS_Console_Manage_Things_Details_Security.png)
 
@@ -155,7 +155,7 @@ It is the Broker Address for MQTT connection.
 
 ![pic](pictures/AWS/AWS_Console_Manage_Things_Details_Security_Policy.png)
 
-21. Select your new policy and then choose Attach 
+21. Select your new policy and then choose Attach
 
 ![pic](pictures/AWS/AWS_Console_Manage_Things_Details_Security_Policy_Attach.png)
 
@@ -207,7 +207,7 @@ You can use these topics for send data and receive information from the shadow.
 
 For the time being, you only need to know a couple of them:
 
-- topic Update 
+- topic Update
 ```
 $aws/things/MyRaspberryPi/shadow/update
 ```
@@ -222,11 +222,11 @@ In this case we use MQTT.fx to communicate these desires to AWS and to report th
 ```
 $aws/things/MyRaspberryPi/shadow/update/delta
 ```
-This is the channel that AWS uses to communicate to the device 
+This is the channel that AWS uses to communicate to the device
 the difference between the reported status and the desired status.
 It is necessary that the device is subscribed to the topic.
 
-All these status are recorded in the **shadow** of the device. 
+All these status are recorded in the **shadow** of the device.
 To check the current status, you should access the AWS IoT core as we taught you at the previous section.
 
 Here you have an example:
@@ -278,7 +278,7 @@ Here you have an example:
 As you can read in the above example, there are three main keys:
 - "desired": It contains the desired state sent from the MQTT.fx
 - "reported": It contains the status information reported by the device
-- "delta": It contains the differences between the reported status and the desired status. 
+- "delta": It contains the differences between the reported status and the desired status.
 This is the information that is published in the delta topic.
 
 ![pic](pictures/AWS/AWS_Console_Manage_Things_Details_Shadow_Delta.png)
@@ -288,7 +288,7 @@ This is the information that is published in the delta topic.
 
 ## Test your Certificates with MQTT.fx
 
-One of the best ways to make sure that certificates had been created correctly, it is to try connecting via a 
+One of the best ways to make sure that certificates had been created correctly, it is to try connecting via a
 MQTT client with graphical interface.
 
 We recommend you download MQTT.fx from the following link https://mqttfx.jensd.de/
@@ -304,7 +304,7 @@ Remember to use the files you downloaded in the previous step. And configure the
 
 3. Now that you are connected to the broker, you need to subscribe to the topics accepted and rejected.
 
-When a message is published, 
+When a message is published,
 you can check in these topics if the message has been **accepted** or **rejected**.
 ```
 $aws/things/MyRaspberryPi/shadow/update/accepted
@@ -313,13 +313,13 @@ $aws/things/MyRaspberryPi/shadow/update/rejected
 
 ![pic](pictures/MQTT/MQTTFX_Topic_Subscribe.png)
 
-4. To update your device's shadow, you should publish in the topic the following **json file**, 
+4. To update your device's shadow, you should publish in the topic the following **json file**,
 you can use the following link to validate it https://jsonlint.com/
 
 ```
 {
     "state": {
-        "reported" : { 
+        "reported" : {
             "temp" : 22    
         }
     }
@@ -364,13 +364,13 @@ first you need to be familiar with the following concepts
 
 ## Execute the code in your Raspberry
 
-At this point your raspberry won't have any secrets for you. 
+At this point your raspberry won't have any secrets for you.
 Nevertheless we will help you to continue so that you do not have any mishap.
 
-Create a folder on your Raspberry's desktop called **Python** and copy into it the following 
+Create a folder on your Raspberry's desktop called **Python** and copy into it the following
 [folder](../scripts/Python/Sense_HAT_AWS) and copy in the **CA** folder the device's certification files
 
-Before, you need to edit the script configuration 
+Before, you need to edit the script configuration
 [file](https://github.com/telefonicaid/iot-activation/blob/master/scripts/Python/Sense_HAT_AWS/config/Config_HAT.yaml).
 
 ```yaml
@@ -403,7 +403,7 @@ Sense_HAT:
       max: 60
       min: 0
 ```
-You also need to edit the configuration 
+You also need to edit the configuration
 [file](https://github.com/telefonicaid/iot-activation/blob/master/scripts/Python/Sense_HAT_AWS/config/Config_Cloud.yaml).
 Pay attention to configure your device and select for the connection to AWS as well as the topics and messages.
 
@@ -441,7 +441,7 @@ sudo pip install Pyaml
 
 ## Send Command from MQTT.fx
 
-The first thing you need to know is that MQTT.fx is a powerful tool that allows you to both communicate 
+The first thing you need to know is that MQTT.fx is a powerful tool that allows you to both communicate
 with AWS and monitor all communications between AWS and the device.
 Use it whenever you have a problem or simply verify the content of a post.
 
@@ -452,14 +452,14 @@ $aws/things/MyRaspberryPi/shadow/update/accepted
 $aws/things/MyRaspberryPi/shadow/update/rejected
 $aws/things/MyRaspberryPi/shadow/delta
 ```
-If you subscribe to delta, you can review the content that AWS sends to your Raspberry. 
-As a tip, you can subscribe to the topics **accepted** and **rejected** for check if the communication 
+If you subscribe to delta, you can review the content that AWS sends to your Raspberry.
+As a tip, you can subscribe to the topics **accepted** and **rejected** for check if the communication
 is established or the message is rejected by the broker.
 
-Publish the following json file to send a command to your Raspberry. 
-When the broker receives it, it will update the shadow of the device. 
-Generating a delta message that will be used by your raspberry to update his status. 
-Showing the command and RGB colour on the LED display. 
+Publish the following json file to send a command to your Raspberry.
+When the broker receives it, it will update the shadow of the device.
+Generating a delta message that will be used by your raspberry to update his status.
+Showing the command and RGB colour on the LED display.
 
 Play trying new messages and colours. This can be very useful!
 
@@ -490,28 +490,28 @@ Play trying new messages and colours. This can be very useful!
 Great! Now you can start running the script, with the following command:
 
 ```
-sudo python Rasp_HAT_AWS.py
+sudo python main.py
 ```
 
 Another option is to configure your raspberry to run the script on power up
 
 Open the cron Table with de command `crontab -e` and copy the next line in the file
 ```
-@reboot ( sleep 60  ; /usr/bin/python2.7 /home/pi/Desktop/Rasp_HAT_AWS.py > /home/pi/Desktop/Rasp_HAT_AWS.log )
+@reboot ( sleep 60  ; /usr/bin/python2.7 /home/pi/Desktop/main.py > /home/pi/Desktop/Rasp_HAT_AWS.log )
 ```
 
 
 ### Check the Shadow state
 
-Before starting the execution, you will see how your shadow is empty. 
+Before starting the execution, you will see how your shadow is empty.
 With this script you can make temperature and humidity measurements in the board.
 This updated the shadow with each device shipment. It showing the same values as shown on the screen.
 
 
-### watch the LED screen 
+### watch the LED screen
 
-As you will be visualizing in your display, different messages are shown for the temperature and other 
-sensor measurements varying the intensity of the luminosity according to the measured value, 
+As you will be visualizing in your display, different messages are shown for the temperature and other
+sensor measurements varying the intensity of the luminosity according to the measured value,
 being able to modify even the message by the configuration file.
 
 ``` yaml
@@ -523,7 +523,7 @@ Sense_HAT:
       min: 0            # value with minimum light intensity
 ```
 
-The display is able to show up to different states, temperature, humidity, etc and 
+The display is able to show up to different states, temperature, humidity, etc and
 one last state to visualize the received command.
 
 
@@ -545,9 +545,8 @@ The best option is to create a dashboard. It will allow you to visualize all the
 
 ![pic](pictures/freeboard/freeboard_init_dashboard.png)
 
-There is a great availability of tools for this purpose. 
+There is a great availability of tools for this purpose.
 But some like freeboard, it can subscribe directly to the AWS topic.
 If you want to learn how, click in the next [link](AWS_dashboard.md).
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
-

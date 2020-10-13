@@ -83,7 +83,7 @@ def device_init_HAT(config_scrt):
     Access the configuration to read the Sense HAT status
     name: device_task(status,config_scrt)
     param: config_scrt [yaml]
-    return: Sense HAT status status json 
+    return: Sense HAT status status json
 """
 def device_read_HAT(config_scrt):
     global temperature, humidity, command, pressure, acceleration#, sense
@@ -96,7 +96,7 @@ def device_read_HAT(config_scrt):
     if "temperature" in config_scrt["Sense_HAT"]:
         if config_scrt["Sense_HAT"]["temperature"]["active"] == "ok":
             logger.info("DEVICE Sense HAT: - reading temperature:")
-            temperature.val = sense.get_temperature()            
+            temperature.val = sense.get_temperature()
             RGB = int((255 / (config_scrt["Sense_HAT"]["temperature"]["max"] - config_scrt["Sense_HAT"]["temperature"][
                 "min"])) * ( temperature.val - config_scrt["Sense_HAT"]["temperature"]["min"]))
             temperature.R = RGB
@@ -107,14 +107,14 @@ def device_read_HAT(config_scrt):
     if "humidity" in config_scrt["Sense_HAT"]:
         if config_scrt["Sense_HAT"]["humidity"]["active"] == "ok":
             logger.info("DEVICE Sense HAT: - reading humidity:")
-            humidity.val = sense.get_humidity()            
+            humidity.val = sense.get_humidity()
             RGB = int((255 / (config_scrt["Sense_HAT"]["humidity"]["max"] - config_scrt["Sense_HAT"]["humidity"][
                 "min"])) * ( humidity.val - config_scrt["Sense_HAT"]["humidity"]["min"]))
             humidity.B = RGB
             json_h = get_struct(humidity.val, humidity.R, humidity.G, humidity.B)
             status["humidity"] = json_h
 
-    
+
     if "pressure" in config_scrt["Sense_HAT"]:
         if config_scrt["Sense_HAT"]["pressure"]["active"] == "ok":
             logger.info("DEVICE Sense HAT: - reading pressure:")
@@ -134,9 +134,9 @@ def device_read_HAT(config_scrt):
                 "min"])) * ( acceleration.val - config_scrt["Sense_HAT"]["temperature"]["min"]))
             acceleration.G = RGB
             acceleration.B = RGB
-			json_a = get_struct(acceleration.val, acceleration.R, acceleration.G, acceleration.B)
+            json_a = get_struct(acceleration.val, acceleration.R, acceleration.G, acceleration.B)
             status["acceleration"] = json_a
-    
+
 
     if os.path.isfile('received.json'):
         with open('received.json') as file:
@@ -202,5 +202,3 @@ def device_task_HAT(status, config_scrt):
     sense.show_message(command.val, text_colour=white, back_colour=(command.R, command.G, command.B))
 
     return 0
-
-	
