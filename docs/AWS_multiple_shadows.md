@@ -160,3 +160,5 @@ mosquitto_pub -h <MQTT broker host/IP> -p 1883 -q 0 -d -t sensor2/update  -i loc
 ![pic](pictures/AWS/AWS_updating_shadows.png)
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
+
+
