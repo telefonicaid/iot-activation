@@ -39,7 +39,7 @@ Firstly, we launch an Ubuntu EC2 instance to install Grafana. What is Grafana? I
 3. Click Edit inbound rules
 ![pic](pictures/AWS/AWS_ec2_open_port2.png)
 
-4. Add a new rule and configure the port 3000 as follow
+4. Add a new rule and configure the port 3000 as follow.
 ![pic](pictures/AWS/AWS_ec2_open_port3.png)
 
 
@@ -112,6 +112,7 @@ A MySQL database is created to store data from the temperature and humidity sens
 ![pic](pictures/AWS/AWS_rds_create_db.png)
 
 3. You now have options to select your engine.  For this tutorial, click the MySQL icon, leave the default value of edition and engine version, and select the Free Tier template.
+
 ![pic](pictures/AWS/AWS_rds_engine_options.png)
 
 4. You will now configure your DB instance. Just configure the DB instance identifier, username and password.
@@ -251,6 +252,7 @@ Finally, we a dashboard on Grafana is created to visualize the temperature and h
 ### Create Dashboard
 
 1. Click **Create** icon and select **Dashboard**.
+
 ![pic](pictures/Grafana/Grafana_new_dashboard.png)
 
 2. Click **Add new panel** to create a graph.
@@ -292,6 +294,7 @@ ORDER BY timestamp
 ![pic](pictures/Grafana/Grafana_dashboard.png)
 
 9. Save dashboard.
+
 ![pic](pictures/Grafana/Grafana_save_dashboard.png)
 
 You can find more information about Grafana capabilities on their [website](https://grafana.com/docs/grafana/latest/).
