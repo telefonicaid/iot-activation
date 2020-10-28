@@ -6,34 +6,34 @@
 
 # Our Know-How
 
-We advocate that the use of Iot devices should be simple and intuitive. 
+We advocate that the use of Iot devices should be simple and intuitive.
 This is the reason why we believe that any IoT project must be conceived as the following architecture:
 
 ![pic](pictures/schematics/iot.png)
 
-The proposal, highlighting the need for a device to report their status. 
+The proposal, highlighting the need for a device to report their status.
 This implies that it is not necessary to have ultra-powerful devices that perform expensive calculation operations.
 You can save on the manufacture of your devices and take advantage of cloud computing.
 
-**Device:** 
-Its main function is to make the measurements and send the obtained values. 
-It does not need a great power of calculation nor will it have to carry out the most complex tasks for its analysis. 
-You will be able to invest all your effort in optimizing its cost and reducing its energy consumption, 
+**Device:**
+Its main function is to make the measurements and send the obtained values.
+It does not need a great power of calculation nor will it have to carry out the most complex tasks for its analysis.
+You will be able to invest all your effort in optimizing its cost and reducing its energy consumption,
 especially when this is a crucial point
 
 **Connectivity:**
-You should make sure you choose the one that best suits your needs. 
-Among the already known 2G/3G/4G cellular networks, you should know that nowadays there are more appropriate networks for IoT devices 
+You should make sure you choose the one that best suits your needs.
+Among the already known 2G/3G/4G cellular networks, you should know that nowadays there are more appropriate networks for IoT devices
 such as LTE-M and NB-IoT.
 If you need more low-power wide-area network technological background on things click on the following [link](technological_background.md)
 
 **Cloud:**
 Sometimes thinking about the cloud leads to the wrong idea of simply thinking about a remote server that we can access over the Internet.
-But nowadays the most popular public clouds such as AWS, Google or Azure offer innumerable services that provide permanent scalable storage 
+But nowadays the most popular public clouds such as AWS, Google or Azure offer innumerable services that provide permanent scalable storage
 and accessibility. Simplifying and reducing the costs of development and maintenance of the infrastructure.
 
-Please remember that by participating in the IoT Activation Programme you get credit on some of these platforms thanks to 
-[Wayra's offers.](Wayra_Offers.md)
+Please remember that by participating in the IoT Activation Programme you get credit on some of these platforms thanks to
+[Activation Programme Perks.](Activation_Programme_Perks.md)
 
 **Network Security:**
 The advantages offered by IoT technologies, is a reality. However, the information handled by these devices is increasingly sensitive.
@@ -56,7 +56,7 @@ and many other...
 
 # Getting Started
 
-You've probably come a long way in the world of IoT 
+You've probably come a long way in the world of IoT
 but if you need a little introduction about the basics you can check our [IoT basics guide](IoT_basic.md)
 
 However, if you still have any doubts, we will guide you step by step so you can start developing.
@@ -71,7 +71,7 @@ It is composed of three elements:
 
 Telefonica SIMs with 6 months of free global connectivity to test and validate your IoT solution.
 
-&#x1F4CD; As these are test SIM's, it is possible that global coverage in other countries is restricted. 
+&#x1F4CD; As these are test SIM's, it is possible that global coverage in other countries is restricted.
 If you wish to test your solutions in a different country, please contact us to confirm that it is available
 
 - **An Evaluation Kit:**
@@ -83,7 +83,7 @@ Connectivity management functionalities like inventory, real time expenses contr
 Remote management of devices that allow features like APN configuration.
 
 
-&#x1F4CD; Additionally, you'll be able to access [Wayra Offers](Wayra_Offers.md), where you'll have free access to various tools and services, 
+&#x1F4CD; Additionally, you'll be able to access [Activation Programme Perks](Activation_Programme_Perks.md), where you'll have free access to various tools and services,
 including Amazon **AWS** Activate, to grow and scale in the cloud.
 
 
