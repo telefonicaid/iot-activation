@@ -1,5 +1,4 @@
-# Activation Programme Perks : how to access?
-
+# Activation Programme Perks: how to access?
 
 1. Go to https://perks-activationprogramme.telefonica.com/
 
@@ -15,7 +14,7 @@
 
 ![pic](pictures/Perks/Perks_Offers_form.png)
 
-4. Once you submit it, you account will have to be validated.
+4. Once you submit it, your account will have to be validated.
 
 5. When your account is validated, you will receive an email.
 
@@ -27,17 +26,14 @@
 
 7. Once you are logged into the website, you can check out the offers you need and redeem them.
 
-![pic](pictures/Perks/perks_offers.jpg)
+![pic](pictures/Perks/Perks_offers.png)
 
-8. To redeem an offer, click on **"View how to get it"**
+8. To redeem an offer, click **Get it now**
 
-![pic](pictures/Perks/perks_activate.jpg)
+![pic](pictures/Perks/Perks_activate.png)
 
-![pic](pictures/Perks/perks_activate2.jpg)
+9. Depending on the perk/offer, you will you be either: redirected to the provider webpage, send an email with instructions or be shown a promotional code.
 
-9. Depending on the perk/offer, you will you be either: redirected to the providers webpage,
-send an email with instructions or be shown a promotional code.
-
-**E.g.:** Sample email when directed to the providers webpage.
+**E.g.:** Sample email when directed to the provider webpage.
 
 ![pic](pictures/Perks/perks_email_new_order.jpg)
