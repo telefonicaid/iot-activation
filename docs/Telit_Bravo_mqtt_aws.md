@@ -17,7 +17,7 @@ As we have discussed in previous chapters, the best option to get the most out o
 
 For this tutorial we will use the **IoT Core**, it is a managed cloud service from AWS that lets connected devices easily and securely interact with applications and other devices.
 
-Whether you already have your own AWS account or have not yet decided on this cloud, remember that by participating in the program  you have free credits in AWS by requesting them through the [Wayra's offers](Wayra_Offers.md)
+Whether you already have your own AWS account or have not yet decided on this cloud, remember that by participating in the program  you have free credits in AWS by requesting them through the [Activation Programme Perks](Activation_Programme_Perks.md)
 
 [![pic](pictures/utils/arrow_up.png)](#table-of-contents)
 

@@ -1,5 +1,6 @@
 # Wayra Offers: how to access?
 
+**This tutorial is obsolete. Visit the [Activation Programme Perks](https://telefonicaid.github.io/iot-activation/#/Activation_Programme_Perks.md) tutorial to know more information about the new offers.**
 
 1. Go to https://offers.wayra.co/
 
@@ -16,7 +17,7 @@
 ![pic](pictures/Wayra/Wayra_Offers_form.png)
 ![pic](pictures/Wayra/Wayra_Offers_form2.png)
 
-4. Once you submit it, you account will have to be validated. 
+4. Once you submit it, you account will have to be validated.
 You will receive an email including your account information and that it is being validated.
 
 ![pic](pictures/Wayra/Wayra_Offers_submit.png)
@@ -39,7 +40,7 @@ You will receive an email including your account information and that it is bein
 
 ![pic](pictures/Wayra/Wayra_Offers_offers_activate_ok.png)
 
-9. Depending on the perk/offer, you will you be either: redirected to the providers webpage, 
+9. Depending on the perk/offer, you will you be either: redirected to the providers webpage,
 send an email with instructions or be shown a promotional code.
 
 **E.g.:** Sample email when directed to the providers webpage.
