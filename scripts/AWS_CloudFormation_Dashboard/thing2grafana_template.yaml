@@ -1,0 +1,204 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Deploying a dashboard on AWS by using IoT core, Lambda function, RDS and Grafana
+
+Parameters:
+  KeyName:
+    Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
+    Type: 'AWS::EC2::KeyPair::KeyName'
+    Default: Grafana
+    ConstraintDescription: must be the name of an existing EC2 KeyPair.
+  DBName:
+    Default: mydb
+    Description: My database
+    Type: String
+    MinLength: '1'
+    MaxLength: '64'
+    AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
+    ConstraintDescription: Must begin with a letter and contain only alphanumeric characters.
+  DBUsername:
+    #NoEcho: 'true'
+    Default: admin
+    Description: Username for MySQL database access
+    Type: String
+    MinLength: '1'
+    MaxLength: '16'
+    AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
+    ConstraintDescription: must begin with a letter and contain only alphanumeric characters.
+  DBPassword:
+    #Default: adminadmin
+    NoEcho: 'true'
+    Description: Password MySQL database access
+    Type: String
+    MinLength: '8'
+    MaxLength: '41'
+    #AllowedPattern: '[a-zA-Z0-9]*'
+    ConstraintDescription: must contain only alphanumeric characters. length must be from 8 to 41
+
+Resources:
+  MyBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: Private
+
+  MyDB:
+    Type: 'AWS::RDS::DBInstance'
+    Properties:
+      DBName: !Ref DBName
+      DBInstanceClass: db.t2.micro
+      AllocatedStorage: 20
+      Engine: MySQL
+      EngineVersion: 8.0.20
+      MasterUsername: !Ref DBUsername
+      MasterUserPassword: !Ref DBPassword
+      PubliclyAccessible: true
+
+  MyEC2IAMRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - ec2.amazonaws.com
+            Action:
+              - sts:AssumeRole
+  MyEC2Profile:
+    Type: 'AWS::IAM::InstanceProfile'
+    Properties:
+      Roles:
+        - Ref: MyEC2IAMRole
+  MyEC2Policy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: !Sub AllowS3${MyBucket}
+      PolicyDocument:
+        Statement:
+        - Effect: Allow
+          Action: "*"
+          Resource: !Sub arn:aws:s3:::${MyBucket}/*
+      Roles:
+        - Ref: MyEC2IAMRole
+    DependsOn: MyBucket
+  MySecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Security Group for Ubunto EC2 Instance with grafana
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 3000
+          ToPort: 3000
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      KeyName: !Ref KeyName
+      ImageId: ami-0823c236601fef765
+      InstanceType: t2.micro
+      IamInstanceProfile: !Ref MyEC2Profile
+      SecurityGroups:
+        - Ref: MySecurityGroup
+      UserData:
+        Fn::Base64:
+          !Sub |
+            #!/bin/bash -ex
+            sudo apt-get update -y
+            sudo apt-get install -y python-pip
+            sudo apt-get install -y python-setuptools
+            sudo mkdir -p /opt/aws/bin
+            sudo python /usr/lib/python2.7/dist-packages/easy_install.py --script-dir /opt/aws/bin https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz
+            sudo apt install heat-cfntools -y
+            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+            sudo apt install unzip
+            unzip awscliv2.zip
+            sudo ./aws/install
+            wget https://github.com/telefonicaid/iot-activation/raw/master/scripts/AWS_CloudFormation_Dashboard/lambda_function.zip
+            aws s3 cp lambda_function.zip s3://${MyBucket}/
+            /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource MyEC2Instance --region ${AWS::Region}
+            sudo apt-get install -y apt-transport-https
+            sudo apt-get install -y software-properties-common wget
+            wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+            echo "deb https://packages.grafana.com/oss/deb stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+            sudo apt-get update
+            sudo apt-get install grafana -y
+            sudo systemctl daemon-reload
+            sudo systemctl start grafana-server
+            sudo systemctl enable grafana-server.service
+            sudo apt-get install mysql-client -y
+            mysql -h ${MyDB.Endpoint.Address} -u ${DBUsername} -p${DBPassword} -e "CREATE TABLE ${DBName}.sensorData (id int NOT NULL AUTO_INCREMENT, thingName varchar(45) NULL, sensorKey varchar(45) NULL, value VARCHAR(45) NULL, timestamp timestamp NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (id), UNIQUE INDEX id_UNIQUE (id ASC) VISIBLE) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;"
+    DependsOn:
+      - MyDB
+      - MyEC2Policy
+      - MyBucket
+    CreationPolicy:
+      ResourceSignal:
+        Count: 1
+        Timeout: "PT5M"
+
+  LambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service:
+              - lambda.amazonaws.com
+        Version: 2012-10-17
+  MyLambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Role: !GetAtt LambdaRole.Arn
+      Runtime: python3.8
+      Handler: lambda_function.lambda_handler
+      Code:
+        S3Bucket: !Ref MyBucket
+        S3Key: lambda_function.zip
+      Environment:
+        Variables:
+          DB_HOST: !GetAtt MyDB.Endpoint.Address
+          DB_NAME: !Ref DBName
+          DB_USER: !Ref DBUsername
+          DB_PASS: !Ref DBPassword
+      Timeout: 60
+      Description: Invoke a function during stack creation.
+    DependsOn:
+      - MyDB
+      - MyEC2Instance
+  LambdaInvocationPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      Principal: iot.amazonaws.com
+      FunctionName: !GetAtt MyLambdaFunction.Arn
+
+  MyTopicRule:
+    Type: AWS::IoT::TopicRule
+    Properties:
+      TopicRulePayload:
+        RuleDisabled: false
+        AwsIotSqlVersion: "2016-03-23"
+        Sql: SELECT *, topic(3) as thingName FROM '$aws/things/+/shadow/update/accepted' WHERE state.reported.key = 'thing2grafana'
+        Actions:
+          - Lambda:
+               FunctionArn: !GetAtt MyLambdaFunction.Arn
+
+Outputs:
+  RDSHost:
+    Description: MySQL Database host
+    Value: !GetAtt MyDB.Endpoint.Address
+  EC2instanceHost:
+    Description: "Ubuntu EC2 instance host (Grafana: <host>:3000)"
+    Value: !GetAtt MyEC2Instance.PublicDnsName
+  TopicName:
+    Description: Topic rule
+    Value: '$aws/things/<thing>/shadow/update'
+  JsonFormat:
+    Description: The json message must follow this format
+    Value: '{"state": {"reported": {"key": "thing2grafana",  "data": {"key1": value1,"key2": value2, "key3": value3,....}}}}'
